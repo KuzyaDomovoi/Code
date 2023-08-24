@@ -14,5 +14,15 @@ int main(void)
     double res_3 = 5.0 / (3.0 * 2.0);
     int p = 2 * (b + c);
 
+    double height, lenght;
+    int result = scanf("%lf %lf", &height, &lenght);
+    if(result != 2) {
+        printf("Error");
+        return 0;
+    }
+
+    double sq = height * lenght / 2.0;
+    printf("%.2f\n", sq);
+
     return 0;
 }
