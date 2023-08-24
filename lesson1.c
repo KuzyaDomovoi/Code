@@ -2,13 +2,12 @@
 
 int main(void)
 {
-    int code = 0;
-    int price = 0;
+    unsigned int price = 0;
     double wight = 0.0;
 
-    int res = scanf("%u, %u, %lf", &code, &price, &wight);
+    int res = scanf("%*u; %u; %lf", &price, &wight);
 
-    printf("res = %d: code = %u, price = %u, wight = %f\n", res, code, price, wight);
+    printf("res = %d: price = %d, wight = %.2f\n", res, price, wight);
 
     return 0;
 }
