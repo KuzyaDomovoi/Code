@@ -11,5 +11,8 @@ int main(void)
     short a = -5, b = 7, c = 4;
     double D = b * b - 4 * a * c;
 
+    double res_3 = 5.0 / (3.0 * 2.0);
+    int p = 2 * (b + c);
+
     return 0;
 }
