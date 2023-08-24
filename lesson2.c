@@ -6,7 +6,7 @@ int main(void)
 
     int res = scanf("%c %c", &byte1, &byte2);
 
-    printf("res = %d, byte1 = %c, byte2 = %c", res, byte1, byte2);
+    printf("res = %d, byte1 = %c, byte2 = %c\n", res, byte1, byte2);
 
     return 0;
 }
