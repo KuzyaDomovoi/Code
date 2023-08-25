@@ -4,11 +4,11 @@ int main(void)
 {
     int count = 0, size = 5;
 
-    int current = count++; //the variable count is incremented after math calculations: 0 = 0; ++ = 1;
-    int wight = ++size; //the variable size is decremented before math calculations: 5 ++ = 6;
+    int current = count++; //the variable count is unary and incremented after math calculations: 0 = 0; ++ = 1;
+    int wight = ++size; //the variable size is unary and decremented before math calculations: 5 ++ = 6;
 
-    int p = 2 * size++; //the variable size is incremented after math calcutations: = 2 * 6; 6 ++ = 7;
-    int r = 3 * --wight; //the variable wight is decremented before math calculations: 3 * (6 -- = 5); 5;
+    int p = 2 * size++; //the variable size is unary and incremented after math calcutations: = 2 * 6; 6 ++ = 7;
+    int r = 3 * --wight; //the variable wight is unary and decremented before math calculations: 3 * (6 -- = 5); 5;
     
     int wight1 = 5;
     --wight1; //5 -- = 4;
