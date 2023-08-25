@@ -20,9 +20,9 @@ int main(void)
     return 0;
 }
 // calculation ptiority in C:
-// + and +=  1;
-// - and -=  1;
-// * and *=  2;
+// -- and ++ 1;
+// % and %=  1;
 // / and /=  2;
-// % and %=  3;
-// -- and ++ 3;
+// * and *=  2;
+// - and -=  3;
+// + and +=  3;
