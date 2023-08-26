@@ -14,7 +14,7 @@ int main(void)
     //   11111111 (255);
     printf("var = %d, not_var = %d\n", var, not_var);
 
-// Bit opetation '&' (and) == (*):
+// Bit opetation '&' (and == *):
 
     unsigned char flags = 5;     //     00000101
                                  // &(*)
@@ -40,7 +40,7 @@ int main(void)
                            //     00000001 (1) res;
     printf("flags = %d\n", flags);
 
-// Bit operation '|' (or) (+):
+// Bit operation '|' (or == +):
 
     unsigned char flags_1 = 9; // 00001000;
     unsigned char mask_1 = 5;  // 00000101;
@@ -58,12 +58,12 @@ int main(void)
 
     unsigned char flags_2 = 9; // 00001001;
     unsigned char mask_2 = 1;  // 00000001;
-    //flags_2 = flags_2 ^ mask_2 == flags_2 ^= mask_2;
-    flags_2 = flags_2 ^ mask_2;
-    flags_2 ^= mask_2;           // 0 ^ 0 == 0;
-    //   00001001 (9)               0 ^ 1 == 1;
-    //  ^                           1 ^ 0 == 1;
-    //   00000001 (1)               1 ^ 1 == 0;
+    //flags_2 = flags_2 ^ mask_2 == flags_2 ^= mask_2;    0 ^ 0 == 0;
+    flags_2 ^= mask_2;                                 // 0 ^ 1 == 1;
+    flags_2 ^= mask_2;                                 // 1 ^ 0 == 1;
+    //   00001001 (9)                                     1 ^ 1 == 0;
+    //  ^                           
+    //   00000001 (1)               
     // ==
     //   00001000 (8);
     printf("flags_2 = %d\n", flags_2);
