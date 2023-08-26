@@ -35,5 +35,9 @@ int main(void)
     x2 = -(b - D) / (2.0 * a);
     printf("x1 = %.2f, x2 = %.2f\n", x1, x2);
 
+    double res_1 = sin(x1);
+    double res_2 = sin(2 * x1);
+    double res_3 = sin(10.0 / 15.0);
+    
     return 0;
 }
