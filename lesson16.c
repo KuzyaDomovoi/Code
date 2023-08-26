@@ -29,7 +29,6 @@ int main(void)
         printf("D = %.2f < 0\n", D);
         return 0;
     }
-
     D = sqrt(D);
     x1 = -(b + D) / (2.0 * a);
     x2 = -(b - D) / (2.0 * a);
@@ -38,6 +37,7 @@ int main(void)
     double res_1 = sin(x1);
     double res_2 = sin(2 * x1);
     double res_3 = sin(10.0 / 15.0);
+    printf("res_1 = %.2f, res_2 = %.2f, res_3 = %.2f\n", res_1, res_2, res_3);
     
     return 0;
 }
