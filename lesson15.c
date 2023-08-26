@@ -21,7 +21,7 @@ int main(void)
     unsigned char mask = 4;      //     00000100
                                  //   == 
     unsigned res = flags & mask; //     00000100;
-    //flags & mask (and) (*)
+    //  & (and) (*):
     //  0 * 0 == 0;   
     //  0 * 1 == 0;
     //  1 * 0 == 0;
