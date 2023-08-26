@@ -14,11 +14,11 @@ int main(void)
 
     printf("var = %d, not_var = %d\n", var, not_var);
 
-    unsigned char v_1 = 5; //    00000101;
-                           //   *
-    unsigned char v_2 = 4; //    00000100;
-                           //   = 
-    unsigned res = v_1 & v_2; // 00000100;
+    unsigned char v_1 = 5;    //  00000101
+                              // *
+    unsigned char v_2 = 4;    //  00000100
+                              // = 
+    unsigned res = v_1 & v_2; //  00000100;
 
     //  0 * 0 = 0;   
     //  0 * 1 = 0;
