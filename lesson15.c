@@ -86,13 +86,13 @@ int main(void)
     x <<= 2;                    // 00001000 (num 8) ( * (2 ** 2));
     printf("x = %d\n", x);
 
-    signed char x = -128;    // 1000 0000;
-    printf(" x = %d\n", x);
-    x <<= 1;                 // 0000 0000 (num 0);
-    printf(" x = %d\n", x);
-    x = -128;                // 1000 0000;
-    x >>= 1;                 // 1100 0000 (num -64);
-    printf(" x = %d\n", x);
+    signed char y = -128;    // 1000 0000;
+    printf("y = %d\n", y);
+    y <<= 1;                 // 0000 0000 (num 0); ( * (2 ** 1)); ??
+    printf("y = %d\n", y);
+    y = -128;                // 1000 0000;
+    y >>= 1;                 // 1100 0000 (num -64) ( / (2 ** 1));
+    printf("y = %d\n", y);
 
     return 0;
 }
