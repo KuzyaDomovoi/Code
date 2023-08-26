@@ -14,18 +14,30 @@ int main(void)
 
     printf("var = %d, not_var = %d\n", var, not_var);
 
-    unsigned char v_1 = 5;    //  00000101
-                              // *
-    unsigned char v_2 = 4;    //  00000100
-                              // = 
-    unsigned res = v_1 & v_2; //  00000100;
-
+    //flags & mask;
     //  0 * 0 = 0;   
     //  0 * 1 = 0;
     //  1 * 0 = 0;
-    //  1 * 1 = 1;
-
+    //  1 * 1 = 1;    
+    unsigned char flags = 5;     //     00000101
+                                 // &(*)
+    unsigned char mask = 4;      //     00000100
+                                 //    = 
+    unsigned res = flags & mask; //     00000100;
+    
     printf("%d\n", res);
+    
+    if((flags & mask) == mask)
+        printf("bit 2 is on\n");
+    else
+        printf("bit 2 is off\n");
+
+    flags = flags & ~mask; //     00000101 (5) flags
+                           // &(*)     
+                           //     11111011 (~00000100) (4) mask
+                           //    = 
+                           //     00000001 (1) res;
+    printf("Flags = %d\n", flags);
 
     return 0;
 }
