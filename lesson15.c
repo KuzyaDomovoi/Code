@@ -93,8 +93,8 @@ int main(void)
     y = -128;                // 1000 0000;
     y >>= 1;                 // 1100 0000 (num -64) (-128 // (2 ** 1));
     printf("y = %d\n", y);
-    
-/*!The priorety of bit shift operations are equal, but higher than 
+
+/*!The priorety of bit shift operations '>>' and '>>' are equal, but higher than 
 compar operations and lower than math opetrations!*/
 
     return 0;
