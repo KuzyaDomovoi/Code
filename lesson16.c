@@ -1,18 +1,39 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+//#include <stdlib.h>
+//#include <time.h>
+#include <math.h>
 
 int main(void)
 {
-    srand(time(NULL));
-    int range = 10;
-    int r_1 = rand() % range; // [0; range];
-    int r_2 = rand() % range - 5; // [-5; range - 5];
-    int r_3 = rand() + rand();
+    //srand(time(NULL));
+    //int range = 10;
+    //int r_1 = rand() % range; // [0; range];
+    //int r_2 = rand() % range - 5; // [-5; range - 5];
+    //int r_3 = rand() + rand();
+    //double range_float = (double)rand() / (double)RAND_MAX; // [0; 1];
+    //printf("%d, %d, %d, %.2f\n", r_1, r_2, r_3, range_float);
 
-    double range_float = (double)rand() / (double)RAND_MAX; // [0; 1];
+    // ax² + bx + c = 0;
+    // D = b² - 4ac;
+    // x1 = -(b + sqrt(D)) / (2 * a);
+    // x2 = -(b - sqrt(D)) / (2 * a);
+    double a, b, c;
+    double D, x1, x2;
+    if(scanf("%lf, %lf, %lf", &a, &b, &c) != 3) {
+        printf("Error input\n");
+        return 0;
+    }
+    
+    D = b * b - 4 * a * c;
+    if(D < 0) {
+        printf("D = %.2f < 0\n", D);
+        return 0;
+    }
 
-    printf("%d, %d, %d, %.2f\n", r_1, r_2, r_3, range_float);
+    D = sqrt(D);
+    x1 = -(b + D) / (2.0 * a);
+    x2 = -(b - D) / (2.0 * a);
+    printf("x1 = %.2f, x2 = %.2f\n", x1, x2);
 
     return 0;
 }
