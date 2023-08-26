@@ -93,12 +93,15 @@ int main(void)
     y = -128;                // 1000 0000;
     y >>= 1;                 // 1100 0000 (num -64) (-128 // (2 ** 1));
     printf("y = %d\n", y);
+    
+/*!The priorety of bit shift operations are equal, but higher than 
+compar operations and lower than math opetrations!*/
 
     return 0;
 }
 
 // Opetations priorety:
-// 1. ~ (not) unary;
+// 1. ~ (not) so is ia an unary oparation;
 // 2. & (and) binary;
 // 3. ^ (XOR) binary;
 // 4. | (or)  binary;
