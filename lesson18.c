@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#define FDIVE    5
-#define ten      2 * FIVE
+#define FIVE    5
+#define TEN      2 * FIVE
 #define TEXT     "Text mesage in one line"
 #define TEXT2    "Text mesage in \
 one line"
