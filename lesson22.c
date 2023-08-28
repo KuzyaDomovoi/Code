@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int mein(void)
+int main(void)
 {
     //int n;
     //int s = 0;
@@ -24,9 +24,12 @@ int mein(void)
     int s = 0;
     int x;
 
+    //while(scanf("%d", &x) == 1 && x != 0)
+    //    s += x;
+
     while(scanf("%d", &x) == 1 && x != 0) {
-            int res = x % 2;
-            if(res % 2 == 0)
+        int res = x % 2;
+        if(res % 2 == 0)
             s += x;
     }
     printf("s = %d\n", s);
