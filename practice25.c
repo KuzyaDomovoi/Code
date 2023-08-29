@@ -12,7 +12,6 @@ int main(void)
             for(int k = 2; k <= k_max; ++k) {
                 S += (i + j - k) * (i + j - k);
             }    
-
     printf("S = %d\n", S);
 
     return 0;
