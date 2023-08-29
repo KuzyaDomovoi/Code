@@ -1,11 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
 int main(void)
 {
-    srand(time(NULL));
-    int pass_code = rand() % 10;
+    int pass_code = 3;
     int enter_code;
     int c;
 
@@ -21,9 +18,9 @@ int main(void)
     int total_boxes = 3;
     int total_files = 6;
 
-    for(int i = 0; i < total_boxes; ++i)
-        for( int j = 0; j < total_files; ++j)
-            printf("Box %d, file %d\n", i + 1, j + 1);
+    for(int i = 1; i <= total_boxes; ++i)
+        for( int j = 1; j <= total_files; ++j)
+            printf("Box %d, file %d\n", i, j);
 
     return 0;
 }
