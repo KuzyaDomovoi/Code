@@ -16,13 +16,13 @@ int main(void)
         printf("Incorrect input\n");
         return 0;
     }
-    for(y; x > 0; --x)
-        y *= x;
+    for(y; x > 0; y *= x, --x)
+        { }
     
-//int n = 5, i, p;
-//for(i = 1, p = 1; i <= n; p = p * i, ++i)
-//  { }
-//printf("p = %d\n", p);
+    /*int n = 5, i, p;
+    for(i = 1, p = 1; i <= n; p = p * i, ++i)
+        { }
+    printf("p = %d\n", p);*/
 
     printf("y = %d\n", y);
 
