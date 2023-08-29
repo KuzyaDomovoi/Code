@@ -19,6 +19,11 @@ int main(void)
     for(y; x > 0; --x)
         y *= x;
     
+//int n = 5, i, p;
+//for(i = 1, p = 1; i <= n; p = p * i, ++i)
+//  { }
+//printf("p = %d\n", p);
+
     printf("y = %d\n", y);
 
     return 0;
