@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    int I, J, K, S;
+    int I = 0, J = 0, K = 0, S;
     
     for(int i = -3; i <= 7; I += i, ++i)
         { }
