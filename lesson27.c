@@ -12,12 +12,12 @@ They are denotet witn the sign '*', for example, as
 The pointers in x86 - 4 bytes of memory;
              in x64 - 8 bytes of memory.
 Pointer notation construction:
-    char d = *gpt;  means reading a value from a memory cell;
-    *gpt = 100;     means writing a value to a memory cell;
-    gpt = &d;       means assigning the address of a memory cell.*/
+    char d = *gpt;  means a value read operation from a memory cell;
+    *gpt = 100;     means a value write operation to a memory cell;
+    gpt = &d;       means an assignment operation an address of a memory cell to the variable.*/
 
     char d = 10; // for data type 'char': 10 (is an assignment operation the value '10' to the variable 'd' and it is written to one memory cell only (1 byte));
-    char *gpt = &d; // gpt = &d is an initialization not assignment operation!;
+    char *gpt = &d; // gpt = &d is an initialization not assignment !;
 
     printf("gpt = %p, *gpt = %d, d = %d\n", gpt, *gpt, d);
 
