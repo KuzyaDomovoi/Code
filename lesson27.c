@@ -6,10 +6,13 @@ int main(void)
 mamory cells and store the addresses of cells with data.
 They are denotet witn the sign '*', for example, as 
 'char *gpt' and divided into the following variable types: 
-char d; (memory area is 1 byte),
-int f; (memory area is 4 bytes),
-double t; (memory area is 8 bytes).
-The pointers in x86 - 4 bytes of memory, in x64 - 8 bytes.*/
+    char *gpt; (memory area is 1 byte),
+    int *gpt; (memory area is 4 bytes),
+    double *gpt; (memory area is 8 bytes).
+The pointers in x86 - 4 bytes of memory, in x64 - 8 bytes.
+Pointer notation construction:
+    char d = *gpt;  means reading a value from a memory cell;
+    *gpt = 100;     means writting a value to a memory cell.*/
 
     char d = 10; // for data type 'char': 10 (is an assignment operation the value '10' to the variable 'd' and it is written to one memory cell only (1 byte));
     char *gpt = &d; // gpt = &d is an initialization not assignment operation!;
