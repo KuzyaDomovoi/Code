@@ -8,13 +8,12 @@ int main(void)
     while(scanf("%lf", &x) == 1 && x > 0) {
     //    if(x < 0)
     //        break; 
-    /*The statment 'break' is used to prematurely 
-    termination only the current loop and transfers to 
+    /*The 'break' statement is used to prematurely 
+    breaking only current loop statement and transfer to
     the next statment within the current function ('main').
-    The statement 'return' is used to terminate 
-    the call to the current function. That is it can 
-    interrupt any subsequent statment within the current 
-    function.*/
+    The 'return' statement is used to break the call 
+    to the current function. That is it can break any
+    subsequent statment within the current function.*/
         sum_1 += x;
     }
     printf("sum_1 = %.2f\n", sum_1);
@@ -25,8 +24,8 @@ int main(void)
     while(scanf("%d", &y) == 1 && y != 0) {
         if(y % 2 == 0)
             continue;
-    /*The statement 'continue' is used to skip the all
-    subsequent oparations within the current iteration and 
+    /*The statement 'continue' is used to skip all
+    subsequent operations within the current iteration and 
     transfer to top of the current loop.*/
         sum_2 += y;
     }
@@ -48,11 +47,16 @@ int main(void)
     for(int i = 1; i <= 10; ++i)
         for(int j = 7; j >= 5; --j) {
             if( i - j > 0)
-                goto exit_sum;
+                goto exit_sum; //break;
+    /*The 'goto' statement is used to break all nested
+    loop statements ('for') and transfer to the specified
+    lable.
+    Using the 'break' statement hier allows to break only 
+    internal loop statement and all external loop 
+    tatements remain in operation.*/
+            s += i - j;
         }
-    exit_sum: 
-
-    printf("")
+    exit_sum: printf("s = %d\n", s);
 
     return 0;
 }
