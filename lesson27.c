@@ -2,6 +2,15 @@
 
 int main(void)
 {
+/* Pointers are designed to write and read data from any
+mamory cells and store the addresses of cells with data.
+They are denotet witn the sign '*', for example, as '*gpt'
+and divided into the following variable types: 
+char d; (memory area is 1 byte),
+int f; (memory area is 4 bytes),
+double t; (memory area is 8 bytes).
+The pointers in x86 - 4 bytes of memory, in x64 - 8 bytes.*/
+
     char d = 10; // for data type 'char': 10 (is an assignment operation the value '10' to the variable 'd' and it is written to one memory cell only (1 byte));
     char *gpt = &d; // gpt = &d is an initialization not assignment operation!;
 
