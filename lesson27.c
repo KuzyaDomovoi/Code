@@ -4,8 +4,8 @@ int main(void)
 {
 /* Pointers are designed to write and read data from any
 mamory cells and store the addresses of cells with data.
-They are denotet witn the sign '*', for example, as '*gpt'
-and divided into the following variable types: 
+They are denotet witn the sign '*', for example, as 
+'char *gpt' and divided into the following variable types: 
 char d; (memory area is 1 byte),
 int f; (memory area is 4 bytes),
 double t; (memory area is 8 bytes).
