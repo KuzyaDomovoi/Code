@@ -7,13 +7,12 @@ int main(void)
     //    if(x < 0)
     //        break; 
     /*The statment 'break' is used to prematurely 
-    termination only the current loop 'while' and
-    transfers to the next statment within the current 
-    function 'main'.
-    But the statement 'return' is used to terminate 
-    the call to the current funktion 'main'. That is 
-    it can interrupt any subsequent statment within the 
-    current function.*/
+    termination only the current loop and transfers to 
+    the next statment within the current function ('main').
+    The statement 'return' is used to terminate 
+    the call to the current function. That is it can 
+    interrupt any subsequent statment within the current 
+    function.*/
         sum_1 += x;
     }
     printf("sum_1 = %.2f\n", sum_1);
