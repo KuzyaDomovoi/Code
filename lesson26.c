@@ -28,10 +28,15 @@ int main(void)
     }
     printf("sum_2 = %d\n", sum_2);
 
+    //for(int i = 1; i <= 100; ++i) {
+    //    if(i % 3 != 0 || i % 5 != 0)
+    //        continue;
+    //    printf("%d ", i); // 15 30 45 60 75 90;
+    //}
     for(int i = 1; i <= 100; ++i) {
-        if(i % 3 != 0 || i % 5 != 0)
-            continue;
-        printf("%d ", i);
+        if(i % 3 == 0 && i % 5 == 0)
+            printf("%d ", i);
     }
+
     return 0;
 }
