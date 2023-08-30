@@ -7,7 +7,7 @@ int main(void)
     //    if(x < 0)
     //        break; 
     /*The statment 'break' is used to prematurely 
-    terminatation only the current loop 'while' and
+    termination only the current loop 'while' and
     transfers to the next statment within the current 
     function 'main'.
     But the statement 'return' is used to terminate 
