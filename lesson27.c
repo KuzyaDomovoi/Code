@@ -20,6 +20,5 @@ int main(void)
     //*gpt = 1; // int: 1 = 1 + 256^1 * 0 + 256^2 * 0 + 256^3 * 0;
     printf("gpt = %p, *gpt = %d, d = %d\n", gpt, *gpt, d);
 
-    
     return 0;
 }
