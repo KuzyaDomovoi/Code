@@ -12,7 +12,7 @@ int main(void)
             for(int k = 2; k <= k_max; ++k) {
                 S += (i + j - k) * (i + j - k);
             }    
-    printf("S = %d\n", S);
+    printf("S = %d\n", S); //2750
 
     return 0;
 }
