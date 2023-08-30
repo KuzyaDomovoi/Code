@@ -2,6 +2,8 @@
 
 int main(void)
 {
+// Statement 'break':
+
     double x, sum_1 = 0.0;
     while(scanf("%lf", &x) == 1 && x > 0) {
     //    if(x < 0)
@@ -16,6 +18,8 @@ int main(void)
         sum_1 += x;
     }
     printf("sum_1 = %.2f\n", sum_1);
+
+// Statment 'continue':
 
     int y, sum_2 = 0;
     while(scanf("%d", &y) == 1 && y != 0) {
@@ -37,6 +41,18 @@ int main(void)
         if(i % 3 == 0 && i % 5 == 0)
             printf("%d ", i);
     }
+
+// Statement 'goto':
+
+    int s = 0;
+    for(int i = 1; i <= 10; ++i)
+        for(int j = 7; j >= 5; --j) {
+            if( i - j > 0)
+                goto exit_sum;
+        }
+    exit_sum: 
+
+    printf("")
 
     return 0;
 }
