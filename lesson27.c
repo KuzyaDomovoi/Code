@@ -3,7 +3,7 @@
 int main(void)
 {
     char d = 10; // for data type 'char': 10 (is recorded only to one memory cell (1 byte));
-    char *gpt = &d; //gpt = &d is an operation of initialization, not assignment operation!;
+    char *gpt = &d; // gpt = &d is an operation of initialization, not assignment operation!;
 
     printf("gpt = %p, *gpt = %d, d = %d\n", gpt, *gpt, d);
 
