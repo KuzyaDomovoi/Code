@@ -7,9 +7,11 @@ int main(void)
     char *ptr; // ! warning: assignment to 'char *' from incompatible type 'int *';
 
     ptr_arg = &arg;
-    ptr = ptr_arg;
+    ptr = (char *)ptr_arg; // assigning the variable 'ptr_arg' to compatible type 'char *'; 
 
     *ptr = 1; // 1 + 256^1 * 3 = 769; the value '1' is writted to the first of four memory cells only and and changes the 'arg' value 777 to 769;
+    
+    printf("* ptr_arg = %d, *ptr = %d, arg = %d\n", *ptr_arg, *ptr, arg);
     
     return 0;
 }
