@@ -22,4 +22,4 @@ int main(void)
 - when pointer refers to an unallocated memory area and
 some value is bieng written.
 - when memory is in a program dynamically allocated
-(using the 'malloc'function) and not freed (memory leak).*/
+(by using 'malloc'function) and not freed (memory leak).*/
