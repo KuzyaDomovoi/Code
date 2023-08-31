@@ -12,7 +12,7 @@ int main(void)
     p = ptr;
     ptr_arg = p;
 
-    *ptr = 1; // 1 + 256^1 * 3 = 769; the value '1' is writted to the first of four memory cells only and and changes the 'arg' value 777 to 769;
+    *ptr = 1; // 1 + 256^1 * 3 = 769; the value '1' is writted to the first of four memory cells only and changes the 'arg' value 777 to 769;
     
     printf("* ptr_arg = %d, *ptr = %d, arg = %d\n", *ptr_arg, *ptr, arg);
     
