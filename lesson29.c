@@ -19,6 +19,7 @@ int main(void)
     return 0;
 }
 /* Pointers. Practice problems:
-- the pointer refers to an unallocated memory area and some value is bieng written.
-- when memory is in a program dynamically allocated (using the 'malloc'
-function) and not freed (memory leak).*/
+- when pointer refers to unallocated memory area and
+some value is bieng written.
+- when memory is in a program dynamically allocated
+(using the 'malloc'function) and not freed (memory leak).*/
