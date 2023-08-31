@@ -2,7 +2,7 @@
 
 int main(void)
 {
-// Adress arithmetic:
+// Address arithmetic:
 
 /*The pointer value is changed to data type size 
 for which it is defined.*/
