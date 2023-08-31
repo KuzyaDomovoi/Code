@@ -9,7 +9,7 @@ int main(void)
     printf("ptr = %u, p = %u\n", ptr, p);
     // ptr = 34758224, p = 34758226;
 
-    /*Pointers can't be multiplied, divided or added 
+    /*Pointers can not be multiplied, divided or added 
     (ptr += p; : error: invalid operands to binary +...),
     but they can be subtracted only:*/
 
