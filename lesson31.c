@@ -14,6 +14,11 @@ int main(void)
     but they can be subtracted only:*/
 
     int res = ptr - p; // res = -1;
+    /* is sutract result of two memory
+    cells and division by number of memory cells occuped
+    by the variable (number of bytes (in this case = 2));
+    res = (34758224 - 34758226) / 2 = -1; 
+    '1' - is an amount of elements between the ointers;*/
 
     printf("res = %d\n", res);
     
