@@ -4,7 +4,7 @@ int main(void)
 {
     int arg = 777; // 777 = 9 + 256^1 * 3;
     int *ptr_arg;
-    char *ptr; // ! warning: assignment to 'char *' from incompatible type 'int *';
+    char *ptr; // !warning: assignment to 'char *' from incompatible type 'int *';
     void *p; // general type 'void *' is used to save adresses of variables, but it is not to use with memory cells (*p = 10; : error: invalid use of void expression);
 
     ptr_arg = &arg;
