@@ -24,7 +24,7 @@ for which it is defined.*/
     ptr = ptr + 10;
     ptr = ptr - 9;
 
-    /*Pointers can't be multiplied or divided by any value, only added or subtracted! */
+    /*Pointers can not be multiplied or divided by any value, only added or subtracted by someone! */
 
     printf("ptr = %u\n", ptr); //4294957008
     
