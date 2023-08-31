@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    /* Pointers are designed to write and read data from any
+    /*Pointers are designed to write and read data from any
     memory cells and store theirs addresses with data.
     They are denoted witn the sign '*', for example, as
     'char *gpt' and divided into the following variable types:
@@ -12,11 +12,12 @@ int main(void)
     The pointers in OSx86 - is allocated 4 bytes of memory;
                  in OSx64 - is allocated 8 bytes of memory.
     Pointer notation construction:
-        chat d = 10;    memory allocation operation for the variable 'd';
-        char *gpt;      declaration of pointer for working with data type 'char';
-        gpt = &d;       assignment operation of value 'd' to pointer 'gpt';
-        char x = *gpt;  value read operation from memory cell of variable 'd';
-        *gpt = 100;     value write operation to memory cell of variable 'd'.*/
+        chat d = 10;        memory allocation operation for the variable 'd';
+        char *gpt;          declaration of pointer for working with data type 'char';
+        gpt = &d;           assignment operation of value 'd' to pointer 'gpt';
+        char x = *gpt;      value read operation from memory cell of variable 'd';
+        *gpt = 100;         value write operation to memory cell of variable 'd';
+        short *a, *b, *c;   declaration of 3 pointers in one data type.*/
 
     char d = 10;    // for data type 'char': 10 (is an assignment operation the value '10' to the variable 'd' and it is written to one memory cell only (1 byte));
     char *gpt = &d; // gpt = &d is an initialization not assignment !;
