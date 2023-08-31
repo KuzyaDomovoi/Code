@@ -18,7 +18,7 @@ int main(void)
     cells and division by number of memory cells occuped
     by the variable (number of bytes (in this case = 2));
     res = (34758224 - 34758226) / 2 = -1; 
-    '1' - is an amount of elements between the ointers;*/
+    '1' - is an amount of elements between the pointers;*/
 
     printf("res = %d\n", res);
     
