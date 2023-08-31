@@ -9,7 +9,7 @@ int main(void)
     ptr_arg = &arg;
     ptr = ptr_arg;
 
-    *ptr = 1;      // 1 + 256^1 * 3 = 769;
-
+    *ptr = 1; // 1 + 256^1 * 3 = 769; the value '1' is writted to the first of four memory cells only and and changes the 'arg' value 777 to 769;
+    
     return 0;
 }
