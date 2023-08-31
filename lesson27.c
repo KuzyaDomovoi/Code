@@ -9,12 +9,14 @@ They are denoted witn the sign '*', for example, as
     char *gpt;   (memory area is 1 byte),
     int *gpt;    (memory area is 4 bytes),
     double *gpt; (memory area is 8 bytes).
-The pointers in x86 - 4 bytes of memory;
-             in x64 - 8 bytes of memory.
+The pointers in OSx86 - 4 bytes of memory;
+             in OSx64 - 8 bytes of memory.
 Pointer notation construction:
-    char d = *gpt;  means a value read operation from a memory cell;
-    *gpt = 100;     means a value write operation to a memory cell;
-    gpt = &d;       means an memory cell address assignment operation to the variable.*/
+    chat d = 10;
+    char *gpt;      declaration of pointer for working with data type 'char';
+    gpt = &d;       assignment operation of value 'd' to pointer 'gpt';
+    char x = *gpt;  value read operation from memory cell of variable 'd';
+    *gpt = 100;     value write operation to memory cell of variable 'd'.*/
 
     char d = 10; // for data type 'char': 10 (is an assignment operation the value '10' to the variable 'd' and it is written to one memory cell only (1 byte));
     char *gpt = &d; // gpt = &d is an initialization not assignment !;
