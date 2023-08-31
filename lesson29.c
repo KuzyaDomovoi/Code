@@ -23,3 +23,9 @@ int main(void)
 some value is bieng written.
 - when memory is in a program dynamically allocated
 (by using 'malloc'function) and not freed (memory leak).*/
+    //Example:
+    //int arg = 5;
+    //int *ptr = NULL; //NULL is equivalent to &arg, int *ptr = &arg;
+    //If(ptr != NULL)
+    //  *ptr = 1;
+    
