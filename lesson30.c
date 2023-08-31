@@ -2,9 +2,9 @@
 
 int main(void)
 {
-/* Adress arithmetic.
+// Adress arithmetic:
 
-The pointer value is changed to data type size 
+/*The pointer value is changed to data type size 
 for which it is defined.*/
 
     int g = 4;
