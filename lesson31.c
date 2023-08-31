@@ -3,19 +3,14 @@
 int main(void)
 {
     short g = 4, d = 1;
-    int *ptr = &g;
+    short *ptr = &g;
+    short *p = &d;
+    
+    printf("ptr = %u, p = %u\n", ptr, p);
 
-    printf("ptr = %u\n", ptr);
+    int res = ptr - p; // 
 
-    --ptr;
-    ++ptr;
-
-    ptr += 3;
-    ptr -= 4;
-    ptr = ptr + 10;
-    ptr = ptr - 9;
-
-    printf("ptr = %u\n", ptr);
+    printf("res = %d\n", res);
     
     return 0;
 }
