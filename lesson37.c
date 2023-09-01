@@ -12,7 +12,7 @@ inserted before their directly.*/
     const short *ptr_1 = ar; // !array address (the first cell) is const (not changeable) at pointer level only (not at cell level), and can be read-only;
     short *const ptr_ar = ar; // !address of element 'ptr_ar' is const (not changeable) at pointer level only, and can be read-only; 
     //ptr_ar = ar; // can not change;
-    //ptr_ar[0] = 10; // const! error!
+    //ptr_ar[0] = 10; // !error, becouse 'ptr_ar' is declared as constanta!;
     short x = ptr_1[0]; // 4;
     ptr_1++; // 3;
     short *ptr_2 = ar; // !short *ptr_2 = ptr_1 is not avalable;
