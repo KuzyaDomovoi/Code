@@ -22,8 +22,8 @@ running.*/
 
     short *ptr_ar;
     ptr_ar = ar; // ptr _ar = &ar[0];
-    short x = *ptr_ar; // 4
-    *(ptr_ar + 1) = -3; // -3
+    short x = *ptr_ar; // 4;
+    *(ptr_ar + 1) = -3; // -3;
     //printf("x1 = %d , x2 = %d\n", x, *(ptr_ar +1));
 
     size_t len_1 = sizeof(ar); // variable len_ 1 stores the size of all array elements;
@@ -34,7 +34,7 @@ running.*/
 
     short z = ptr_ar[2]; // ar[index] = *(ar + index);
     //short c = 2[ptr_ar]; // is equal to 'ptr_ar[2]', but the '2[ptr_ar]' construction is not to use in C-language;
-    printf("z = %d\n", z);
+    printf("z = %d\n", z); // 2;
 
     return 0;
 }
