@@ -30,9 +30,11 @@ running.*/
     size_t len_2 = sizeof(ptr_ar); // variable len_ 3 stores the size of element 'ptr_ar' in array only;
 
     // ar++; // the address of pointer 'ar' is not changeable;
-    ptr_ar++; // but the address of pointer 'ptr_ar' only is changeable;
+    //ptr_ar++; // but the address of pointer 'ptr_ar' only is changeable;
 
-    
+    short z = ptr_ar[2]; // ar[index] = *(ar + index);
+    //short c = 2[ptr_ar]; // is equal to ptr_ar[2];
+    printf("z = %d\n", z);
 
     return 0;
 }
