@@ -5,11 +5,11 @@
 int main(void)
 {
 /*Keyword 'const' blocks variable or element of arrey
-or pointer's address or arrey completely when it is 
+or pointer's address or array completely when it is 
 inserted before their directly.*/
     short ar[] = {4, 3, 2, 1, 5, 6, 7};
     //const short ar[] = {4, 3, 2, 1, 5, 6, 7};
-    const short *ptr_1 = ar; // !arrey address (the first cell) is const (not changeable) at pointer level only (not at cell level), and can be read-only;
+    const short *ptr_1 = ar; // !array address (the first cell) is const (not changeable) at pointer level only (not at cell level), and can be read-only;
     short *const ptr_ar = ar; // !address of element 'ptr_ar' is const (not changeable) at pointer level only, and can be read-only; 
     //ptr_ar = ar; // can not change;
     //ptr_ar[0] = 10; // const! error!
