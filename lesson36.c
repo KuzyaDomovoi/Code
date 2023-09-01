@@ -6,7 +6,7 @@ int main(void)
 
     short a_1 = *ar; // 4
     short a_4 = *(ar + 3); // 1
-    printf("a_1 = %d, a_4 = %d\n", a_1, a_4);
+    //printf("a_1 = %d, a_4 = %d\n", a_1, a_4);
 
     for(int i = 0; i < sizeof(ar) / sizeof(*ar); ++i)
         printf("%d ", *(ar + i)); // 4 3 2 1 5 6 7;
@@ -22,18 +22,18 @@ running.*/
 
     short *ptr_ar;
     ptr_ar = ar; // ptr _ar = &ar[0];
-    short x = *ptr_ar;
-    *(ptr_ar + 1) = -3;
-    printf("x1 = %d , x2 = %d\n", x, *(ptr_ar +1));
+    short x = *ptr_ar; // 4
+    *(ptr_ar + 1) = -3; // -3
+    //printf("x1 = %d , x2 = %d\n", x, *(ptr_ar +1));
 
     size_t len_1 = sizeof(ar); // variable len_ 1 stores the size of all array elements;
     size_t len_2 = sizeof(ptr_ar); // variable len_ 3 stores the size of element 'ptr_ar' in array only;
 
-    // ar++; // the address of pointer 'ar' is not changeable;
+    // ar++; // !the address of pointer 'ar' is not changeable;
     //ptr_ar++; // but the address of pointer 'ptr_ar' only is changeable;
 
     short z = ptr_ar[2]; // ar[index] = *(ar + index);
-    //short c = 2[ptr_ar]; // is equal to ptr_ar[2];
+    //short c = 2[ptr_ar]; // is equal to 'ptr_ar[2]', but the '2[ptr_ar]' construction is not to use in C-language;
     printf("z = %d\n", z);
 
     return 0;
