@@ -16,7 +16,7 @@ int main(void)
                 int t = a[i]; // variable 'i' (-3) is saved to temporary variable 't',
                 a[i] = a[pos]; // the minimal value (-8) from variable 'pos' is saved to the variable 'i' and
                 a[pos] = t; // than the value '-3' (from temporary variable 't') is saved to the variable 'pos' (array index instead of the value '-8');
-        }
+            }
     }
     for(int i = 0; i < size; ++i) // iterete (read) the elements in the array and
         printf("%d ", a[i]); // output the new array values in ascending order ;

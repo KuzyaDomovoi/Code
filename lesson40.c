@@ -12,8 +12,8 @@ int main(void)
         printf("marks[%d] = marks[%d]\n", i, i + 1);
     }
 
-        for(int i = 0; i < TOTAL_MARKS; ++i)
-        printf("%d ", marks[i]);
+    for(int i = 0; i < TOTAL_MARKS; ++i)
+    printf("%d ", marks[i]); // 3 2 4 2 4 0 0 0 0 0;
 
     return 0;
 }
