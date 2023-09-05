@@ -22,18 +22,30 @@ completely loaded the each string literal has its own
 unique address which can be used by operation with the
 corresponding string.*/
 
-    char str[] = {'B', 'a', 'l', 'a', 'k', 'i', 'r', 'e', 'v', '\0'};
-    char s[] = "Sergey Balakirev";
-    char buffer[512] = "Hello, World";
+    //char str[] = {'B', 'a', 'l', 'a', 'k', 'i', 'r', 'e', 'v', '\0'};
+    //char s[] = "Sergey Balakirev";
+    //char buffer[512] = "Hello, World";
 
-    char b[] = "Hel" "lo"
-                ", World";
+    //char b[] = "Hel" "lo"
+    //            ", World";
 
-    char sp[] = "Hello, \
-World";
+    //char sp[] = "Hello, \
+//World";
 
-    char string[] = "a"; // is a string, not a symbol, becouse is used here double quotes;
+    char string[] = "a"; // is a string, not a symbol, because is used here double quotes;
     char sym = 'a'; // is a symbol only, because - single quotes;
+
+    const char* str = "Balakirev"; /* by using the pointer
+    '*str' the characters in a string can be read only.
+    And it is recommended to use this with the keyword 'const'.*/
+    char ss[] = "Balakirev"; // by using the array 'ss' hier can be performed the all operations;
+
+    //str[0] = 'A'; // exit with error code. An immutable memory section can not be changed;
+    //s[0] = 'A'; // exit with error code;
+
+    char s[] = "I like programming in \"C\" language."; // characters escaping mechanism with symbol '\';
+    puts(s); // I like programming in "C" language.
+
 
     return 0;
 }
