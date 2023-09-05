@@ -46,6 +46,8 @@ corresponding string.*/
     char s[] = "I like programming in \"C\" language."; // characters escaping mechanism with symbol '\';
     puts(s); // I like programming in "C" language.
 
+    char str_1[] = "\x61 \x4f";
+    puts(str_1);
 
     return 0;
 }
