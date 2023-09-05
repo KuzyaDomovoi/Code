@@ -20,17 +20,19 @@ are located in an immutable memory section
 (in section .text usually). As a result when a prorramm is
 completely loaded the each string literal has its own 
 unique address which can be used by operations with the
-corresponding string.*/
+corresponding string.
 
-    //char str[] = {'B', 'a', 'l', 'a', 'k', 'i', 'r', 'e', 'v', '\0'};
-    //char s[] = "Sergey Balakirev";
-    //char buffer[512] = "Hello, World";
+Syntax construction:
 
-    //char b[] = "Hel" "lo"
+    char str[] = {'B', 'a', 'l', 'a', 'k', 'i', 'r', 'e', 'v', '\0'};
+    char s[] = "Sergey Balakirev";
+    char buffer[512] = "Hello, World";
+
+    char b[] = "Hel" "lo"
     //            ", World";
 
-    //char sp[] = "Hello, \
-//World";
+    char sp[] = "Hello, \
+World";*/
 
     char string[] = "a"; // is a string, not a character, because is used here double quotes;
     char sym = 'a'; // is a character only, because - single quotes;
