@@ -32,8 +32,8 @@ corresponding string.*/
     //char sp[] = "Hello, \
 //World";
 
-    char string[] = "a"; // is a string, not a symbol, because is used here double quotes;
-    char sym = 'a'; // is a symbol only, because - single quotes;
+    char string[] = "a"; // is a string, not a character, because is used here double quotes;
+    char sym = 'a'; // is a character only, because - single quotes;
 
     const char* str = "Balakirev"; /* by using the pointer
     '*str' the characters in a string can be read only.
