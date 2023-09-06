@@ -31,7 +31,7 @@ int main(void)
                      reading from input data stream.
         'stdin'      is a input data (file) stream.*/
 
-//safe strings input:
+// safe strings input:
 
     /*int getchar(void) is a function that reads single
     characters from input data stream inside a loop 'while'.*/
@@ -43,5 +43,8 @@ int main(void)
     ptr[i] = '\0'; // at the end of string inserts EOF;
     puts(bf);
 
+/* C++ Language have the new functions: scanf_s() and
+gets_s() where can be pointed the max lenght of data read.*/
+    
     return 0;
 }
