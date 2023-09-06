@@ -35,7 +35,7 @@ Syntax construction:
 World";*/
 
     char string[] = "a"; // is a string, not a character, because is used here double quotes;
-    char sym = 'a'; // is a character only, because - single quotes;
+    char sym = 'a'; // is a character, because is used here single quotes;
 
     const char* str = "Balakirev"; /* by using the pointer
     '*str' the characters in a string can be read only.
