@@ -37,13 +37,12 @@ World";*/
     char string[] = "a"; // is a string, not a character, because is used here double quotes;
     char sym = 'a'; // is a character, because is used here single quotes;
 
-    const char* str = "Balakirev"; /* by using the pointer
-    '*str' the characters in a string can be read only.
+    const char* str = "Balakirev"; /* by using the pointer the characters in a string can be read only. 
     And it is recommended to use this with the keyword 'const'.*/
-    char ss[] = "Balakirev"; // by using the array 'ss' hier can be performed the all operations;
+    char ss[] = "Balakirev"; // by using the array hier can be performed the all operations;
 
     //str[0] = 'A'; // exit with error code. An immutable memory section can not be changed;
-    //s[0] = 'A'; // exit with error code;
+    //ss[0] = 'A'; // no error;
 
     char s[] = "I like programming in \"C\" language."; // characters escaping mechanism with symbol '\';
     puts(s); // I like programming in "C" language.
