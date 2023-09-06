@@ -7,7 +7,7 @@ int main(void)
     
     char sp[] = "Hello, World";
     printf("%s, sp = %s\n", "Balakirev", sp);
-    puts(sp);
+    puts(sp); // the function  added automatically a symbol '\n' at the end of sting;
     puts(sp);
 
     //char* gets(char* buf); // function 'gets' is not recomended to use!;
@@ -22,11 +22,11 @@ int main(void)
 
 //safe strings input:
 
-    int max_len = sizeof(bf), i = 0; // var I is a counter;
+    int max_len = sizeof(bf), i = 0; // var 'i' is a symbol counter of max len read;
     char *ptr = bf, ch; // variable 'ch' is used to reading a current character from input data stream;
 
     while((ch = getchar()) != '\n' && ch != EOF && i < max_len - 1)
-        ptr[i++] = ch;
+        ptr[i++] = ch; // 
 
     ptr[i] = '\0';
 
