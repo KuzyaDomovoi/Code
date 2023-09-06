@@ -9,7 +9,7 @@ in load process.*/
 
 int main(void)
 {
-// Strings:
+// Data type 'string':
 
 /* in C language is no data type 'string' therefor
 an array of type 'char' is used here to store a sequence
