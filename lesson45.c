@@ -14,9 +14,9 @@ int main(void)
 /* in C language is no data type 'string' therefor
 an array of type 'char' is used here to store a sequence
 of characters.
-The string data are stored in output executable and than
-while a programm is in load proccess all these strings
-are located in an immutable memory section
+The  data type 'string' are stored in output executable
+and than while a programm is in load proccess all these
+strings are located in an immutable memory section
 (in section .text usually). As a result when a prorramm is
 completely loaded the each string literal has its own 
 unique address which can be used by operations with the
