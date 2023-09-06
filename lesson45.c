@@ -11,7 +11,7 @@ int main(void)
 {
 // Strings:
 
-/* in C language is no data of type 'string' therefor
+/* in C language is no data type 'string' therefor
 an array of type 'char' is used here to store a sequence
 of characters.
 The string data are stored in output executable and than
