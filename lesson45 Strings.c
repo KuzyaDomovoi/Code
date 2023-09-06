@@ -38,7 +38,7 @@ World";*/
     char string[] = "a"; // is a string, not a character, because is used here double quotes;
     char sym = 'a'; // is a character, because is used here single quotes;
 
-    const char* str = "Balakirev"; /* by using the pointer the characters in a string can be read only. 
+    const char* str = "Balakirev"; /* by using a pointer the characters in a string can be read only. 
     And it is recommended to use this with the keyword 'const'.*/
     char ss[] = "Balakirev"; // by using the array hier can be performed the all operations;
 

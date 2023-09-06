@@ -33,6 +33,9 @@ int main(void)
 
 // safe strings input:
 
+    /* There are no standard full_fledged functions for
+    reading strings in C language.
+
     /*int getchar(void) is a function that reads single
     characters from input data stream inside a loop 'while'.*/
 
@@ -43,9 +46,7 @@ int main(void)
     ptr[i] = '\0'; // at the end of string inserts EOF;
     puts(bf);
 
-/* There are no standard full_fledged functions for reading
-strings in C language.
-But there are two new functions in C++ Language: scanf_s()
+/*There are two new functions in C++ Language: scanf_s()
 and gets_s() where can be pointed the max lenght of data
 read.*/
     
