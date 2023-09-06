@@ -22,18 +22,25 @@ int main(void)
     max read lenght in the function is not convenient and
     can be as a source of software vulnerability.*/
     
-    fgets(bf, sizeof(bf), stdin); /**/
+    fgets(bf, sizeof(bf), stdin); /*the function  is
+    designed to read a string from arbitrary streams,
+    usually from files and inserts the last symbol '\0'
+    (EOF) automatically. Where: 
+        'bf'         is an array's address;
+        'sizeof(bf)' is a max lenght of bytes wich is
+                     reading from input data stream.
+        'stdin'      is a input data (file) stream.*/
 
 //safe strings input:
 
+    /*int getchar(void) is a function that reads single
+    characters from input data stream inside a loop 'while'.*/
+
     int max_len = sizeof(bf), i = 0; // var 'i' is a symbol counter of max len read;
     char *ptr = bf, ch; // variable 'ch' is used to reading a current character from input data stream;
-
     while((ch = getchar()) != '\n' && ch != EOF && i < max_len - 1)
-        ptr[i++] = ch; // 
-
-    ptr[i] = '\0';
-
+        ptr[i++] = ch; // the pointer 'ptr' saves a current value;
+    ptr[i] = '\0'; // at the end of string inserts EOF;
     puts(bf);
 
     return 0;
