@@ -20,10 +20,9 @@ int main(void)
     case MENU_EXIT:
         printf("exit\n");
         break;
-    
     default:
         printf("incorrect symbol\n");
         return 0; 
-
+    }
     return 0;
 }

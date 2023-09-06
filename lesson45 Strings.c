@@ -9,6 +9,7 @@ in load process.*/
 
 int main(void)
 {
+    
 // Data type 'string':
 
 /* in C language is no data type 'string' therefor
@@ -42,7 +43,7 @@ World";*/
     char ss[] = "Balakirev"; // by using the array hier can be performed the all operations;
 
     //str[0] = 'A'; // exit with error code. An immutable memory section can not be changed;
-    //ss[0] = 'A'; // no error;
+    ss[0] = 'A'; // no error;
 
     char s[] = "I like programming in \"C\" language."; // characters escaping mechanism with symbol '\';
     puts(s); // I like programming in "C" language.
