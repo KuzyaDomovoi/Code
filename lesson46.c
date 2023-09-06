@@ -3,22 +3,26 @@
 int main(void)
 {
 // strings input/output to stdandard streams.
-
     
     char sp[] = "Hello, World";
     printf("%s, sp = %s\n", "Balakirev", sp);
-    puts(sp); // the function  added automatically a symbol '\n' at the end of sting;
+    puts(sp); /* the function  added automatically a
+    symbol '\n' at the end of sting.*/
     puts(sp);
 
     //char* gets(char* buf); // function 'gets' is not recomended to use!;
     
     char bf[10]; // 10 is lenght of array;
-    /*scanf("%9s", bf); /* value '9' is the maximum lenght
-    to reading array data and plus the last symbol must
-    be '\0' (EOF), which is added automatically (9+1);
-    But the using in practice the value of max read lenght
-    in the function 'scanf' is not convenient.*/
-    //fgets(bf, sizeof(bf), stdin);
+
+    scanf("%9s", bf); /* the function read strings up
+    to whiterspace only (the first 9 chararcters), and
+    inserts the last symbol '\0' (EOF) automatically (9+1).
+    The value '9' is the maximum lenght to reading an
+    array's data. But the using in practice the value of
+    max read lenght in the function is not convenient and
+    can be as a source of software vulnerability.*/
+    
+    fgets(bf, sizeof(bf), stdin); /**/
 
 //safe strings input:
 
