@@ -34,7 +34,7 @@ int main(void)
 // safe strings input:
 
     /* There are no standard full_fledged functions for
-    reading strings in C language.
+    reading strings in C language.*/
 
     /*int getchar(void) is a function that reads single
     characters from input data stream inside a loop 'while'.*/
