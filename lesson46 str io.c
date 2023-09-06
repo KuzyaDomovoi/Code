@@ -12,14 +12,14 @@ int main(void)
 
     //char* gets(char* buf); // function 'gets' is not recomended to use!;
     
-    char bf[10]; // 10 is lenght of array;
+    char bf[10]; // 10 is length of array;
 
     scanf("%9s", bf); /* the function read strings up
     to whiterspace only (the first 9 chararcters), and
     inserts the last symbol '\0' (EOF) automatically (9+1).
-    The value '9' is the maximum lenght to reading an
+    The value '9' is the maximum length to reading an
     array's data. But the using in practice the value of
-    max read lenght in the function is not convenient and
+    max read length in the function is not convenient and
     can be as a source of software vulnerability.*/
     
     fgets(bf, sizeof(bf), stdin); /*the function  is
@@ -27,7 +27,7 @@ int main(void)
     usually from files and inserts the last symbol '\0'
     (EOF) automatically. Where: 
         'bf'         is an array's address;
-        'sizeof(bf)' is a max lenght of bytes wich is
+        'sizeof(bf)' is a max length of bytes wich is
                      reading from input data stream.
         'stdin'      is a input data (file) stream.*/
 
