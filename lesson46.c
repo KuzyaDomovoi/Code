@@ -43,8 +43,11 @@ int main(void)
     ptr[i] = '\0'; // at the end of string inserts EOF;
     puts(bf);
 
-/* C++ Language have the new functions: scanf_s() and
-gets_s() where can be pointed the max lenght of data read.*/
+/* There are no standard full_fledged functions for reading
+strings in C language.
+But there are two new functions in C++ Language: scanf_s()
+and gets_s() where can be pointed the max lenght of data
+read.*/
     
     return 0;
 }
