@@ -5,7 +5,7 @@ strchr(), strrchr(), strstr(), strpbrk()*/
 int main(void)
 {
     
-// String comparasion functions:
+// String comparasion:
 
     char s1[12] = "Hello"; // string 1 for comparison;
     char s2[10] = "Hello"; // string 2 for comparison;
@@ -14,16 +14,18 @@ int main(void)
     const char *str2 = s2; // condtable auxiliary pointer for operation with a string 's2';
 
     int i = 0; // auxiliary loop's counter;
-    for(; str1[i] != '\0' && str2[i] != '\0'; ++i) // iterate the characters of strings (str1 and str2) until one of them will be != '\0';
+    for(; str1[i] != '\0' && str2[i] != '\0'; ++i) // iterate characters of strings (str1 and str2) until one of them will be != '\0';
         if(str1[i] != str2[i]) { // checking if a current char of str1 is not equal a current char of str2;
             puts("Strings are not equal!");
             return 0;
         }
-    if(str1[i] != str2[i]) { // checking current chars of two strings and they lengths are not equal;
-        puts("Srting length are not equal!");
+    if(str1[i] != str2[i]) { // comparing current chars of two strings to check they lengths are not equal;
+        puts("Srting are not equal!");
         return 0;
     }
     puts("Strings are equal!");
+
+// String comparesion functions:
 
     if(strcmp(s1, s2) == 0) // if == 0 than strs are equal, if < 0 than s1 < s2 and if > 0 than s1 > s2;
         puts("Strings are equal!");
