@@ -26,7 +26,7 @@ int main(void)
 
     printf("\n");
 
-    size_t max_add = sizeof(str) - strlen(str) - 1; // define max free size position in array 'str' and '- 1' is a place for '\0' (EOF) /= 5;
+    size_t max_add = sizeof(str) - strlen(str) - 1; // define max free size position in array 'str' and '- 1' is a place for '\0' (EOF) /= 6 - 1;
     strncat(str, str_cat, max_add); // copy to array 'str' by max size position of free size in array 'str';
     str[sizeof(str) - 1] = '\0'; // add EOF;
 
