@@ -56,7 +56,7 @@ int main(void)
         printf("ptr = %s\n", ptr); 
 
     char pass[] = "dfdfg90!#$$A";
-    char *ptr_3 = strpbrk(pass, "@!#$^&?"); // the func 'strpbrk()' find any chars of @!#$^&? (*ptr = @!#$^&?) in the string 'str';
+    char *ptr_3 = strpbrk(pass, "@!#$^&?"); // the func 'strpbrk()' find any chars of @!#$^&? (*ptr = @!#$^&?) in the string 'str' from rigth to left;
     printf("pass = %p\nptr_3 = %p\n", pass, ptr_3); // output of the addresses of strings: str and ptr;
     if(ptr_3 != NULL) 
         printf("ptr_3 = %s\n", ptr_3);
