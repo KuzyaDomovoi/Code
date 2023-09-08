@@ -29,8 +29,8 @@ int main(void)
 
     int a = atoi("123"); // str for trans to int num and assign to var a;
     long b = atol("-234235346"); // str trans to long int num anr assign to var b;
-    long long c = atoll("234235535456456"); // to long long num and to var c;
-    double d = atof("4564.4545"); // to double num and to var d;
+    long long c = atoll("234235535456456"); // str trans to long long num and assign to var c;
+    double d = atof("4564.4545"); // str trans to double num and assign to var d;
 
     printf("a = %d\nb = %ld\nc = %lld\nd = %f\n", a, b, c, d);
 
