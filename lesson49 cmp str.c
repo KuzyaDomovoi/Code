@@ -19,8 +19,8 @@ int main(void)
             puts("Strings are not equal!");
             return 0;
         }
-    if(str1[i] != str2[i]) { // comparing current chars of two strings to check they lengths are not equal;
-        puts("Srting are not equal!");
+    if(str1[i] != str2[i]) { // checking the current quantity (until == '\0') of chars of two strings to check they lengths are not equal;
+        puts("Srting lengths are not equal!");
         return 0;
     }
     puts("Strings are equal!");
