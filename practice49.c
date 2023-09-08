@@ -2,8 +2,8 @@
 
 int main(void)
 {
-    char s1[] = "Hello World";
-    char s2[] = "Hello Worl";
+    char s1[12] = "Hello World";
+    char s2[10] = "Hello Worl";
 
     const char *str1 = s1;
     const char *str2 = s2;
