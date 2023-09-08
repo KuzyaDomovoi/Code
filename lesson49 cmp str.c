@@ -52,7 +52,7 @@ int main(void)
     if(ptr_2 != NULL)
         printf("*ptr_2 = %c\n", *ptr_2); // output of the string;
 
-    char *ptr = strstr(str_0, "ra"); // the func 'strstr()' find the fragment "ra....ra" (*ptr = ra) in the string 'str';
+    char *ptr = strstr(str_0, "ra"); // the func 'strstr()' find the fragment "ra....ra" (*ptr = ra (in double quotes) in the string 'str';
     printf("str_0 = %p\nptr = %p\n", str_0, ptr); // output of the addresses of strings: str and ptr;
     if(ptr != NULL)
         printf("ptr = %s\n", ptr); 
