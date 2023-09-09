@@ -26,8 +26,8 @@ int main(void)
     
     //double res_7 = min_2(++x, x);
     //double res_8 = min_2(x, ++x);
-    //double res_9 = min_2(y, x++);
-    double res_10 = min_2(y, ++x);
+    //double res_9 = min_2(y, x++); // x = 1 get to fun and than x++ (x = 3) for next operation;
+    double res_10 = min_2(y, ++x); // x++ (x = 3) and than x = 3 get to fun;
 
     printf("res_1 = %.2f, res_2 = %.2f, res_3 = %.2f, res_4 = %.2f\n", 
             res_1, res_2, res_3, res_4);
