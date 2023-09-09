@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <math.h> // to use func pow();
+#include <math.h> // to use funcs: pow() and NAN;
 
 // continuation of topic Functions:
 
