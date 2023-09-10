@@ -8,10 +8,9 @@ int main(void)
     int res3 = 10 % -4;
 
     int digit;
-    if(scanf("%d", &digit) % 2 == 0)
-        printf("digit %d is even\n", digit);
-    else
-        printf("digit %d is odd\n", digit);
+    scanf("%d", &digit);
+    printf("digit %d is %s\n", digit, (digit % 2) == 0 ? "even" : "odd");
+
     int res4 = digit % 2;
 
     int range = 10; //[0; range-1];
