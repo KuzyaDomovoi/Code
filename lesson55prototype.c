@@ -1,4 +1,4 @@
-# include <stdio.h>
+#include <stdio.h>
 #include "func.h" // to connecting an own head-file is used the double quotes;
 
 //double per_sq(double, double); // func prototype (func.c) names of params can be omitted;
