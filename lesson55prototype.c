@@ -1,7 +1,14 @@
 #include <stdio.h>
-#include "func.h" // to connecting an own head-file is used the double quotes;
+#include "func.h" /* to connecting an own head-file is 
+used here the double quotes;*/
 
-//double per_sq(double, double); // func prototype (func.c) names of params can be omitted;
+//double per_sq(double, double); 
+//int abs_int(int x);
+//int sq_to_int(double x);
+
+/* the func prototypes are inserted in extra file 'func.h',
+witch bodies are registred in extra file 'func.c';
+their params names can be omitted;*/
 
 int main(void)
 {
