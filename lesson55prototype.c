@@ -12,8 +12,9 @@ their params names can be omitted;*/
 
 int main(void)
 {
-    printf("abs = %d\n", abs_int(-5));
-    printf("sq = %lf\n", sq_to_int(-5.5));    
     printf("per = %.2f\n", per_sq(2.5, 3.5));
+    printf("abs = %d\n", abs_int(-5));
+    printf("sq = %d\n", sq_to_int(-5.5));    
+    
     return 0;
 }
