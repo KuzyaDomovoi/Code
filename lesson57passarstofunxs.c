@@ -29,7 +29,7 @@ void show_ar2D(const short (*ar_1)[COLS], int rows)
     }
 }
 
-void show_ar1Dto2D(const short (*ar_2), int rows)
+void show_ar1Dto2D(const short (*ar_2))
 {
     int res_ij[ROWS][COLS];
     for(int i = 0; i < ROWS; ++i) { 
@@ -62,7 +62,7 @@ fragment, where its elements are stored;
     show_ar2D(ar_1, sizeof(ar_1) / sizeof(*ar_1));
 
     short ar_2[] = {1, 2, 3, 4, 5, 6};
-    show_ar1Dto2D(ar_2, sizeof(ar_2) / sizeof(*ar_2));
+    show_ar1Dto2D(ar_2);
 
     return 0;
 }
