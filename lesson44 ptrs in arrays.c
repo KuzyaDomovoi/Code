@@ -10,7 +10,8 @@ int main(void)
     printf("%d\n", *(p_row - 2)); // 2 ('-' is a shift by two elements to the left);
 
     char (*p_ar)[3] = game_pole; // parentheses are required here, because it is the pointer to an element with index '[3]' of 2d array (game_pole);
-    //char *ptr[3]; // is not 2d array pointer! If no parentheses hier it is the array of three ([3]) pointers, because priority of index '[3]' is higher than priority of '*'; 
+    /* char *ptr[3]; // is not 2d array pointer! If no parentheses hier it is the array of three ([3]) pointers, because priority of index '[3]' is
+    higher than priority of '*'; */
 
     char x = p_ar[0][1]; 
     printf("x = %d\n", x); // x = 2, the variable x saves a value '2' (the second element of first array row '1, 2, 3' (1d array));
