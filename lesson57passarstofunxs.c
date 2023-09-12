@@ -31,7 +31,7 @@ void show_ar2D(const short (*ar_1)[COLS], int rows)
 
 void show_ar1Dto2D(const short (*ar_2))
 {
-    int res_ij[ROWS][COLS];
+    short res_ij[ROWS][COLS];
     for(int i = 0; i < ROWS; ++i) { 
         for(int j = 0; j < COLS; ++j) {
             res_ij[i][j] = ar_2[i * COLS + j];
