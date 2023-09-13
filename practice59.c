@@ -36,12 +36,12 @@ int main(void)
 {
     int item;
     int select_id;
-
-    printf("1. select_even_values\n"
-           "2. select_odd_values\n"
-           "3. select_positive_values\n"
-           "4. select_negative_values\n"
-           "5. exit\n");
+    printf("Hier is an array: -3, 4, 10, 11, -5, 3, 7, 8, -9, -6, 5, 6, -4;\n");
+    printf("1. select_even_values;\n"
+           "2. select_odd_values;\n"
+           "3. select_positive_values;\n"
+           "4. select_negative_values;\n"
+           "5. exit.\n");
 
     if(scanf("%d", &item) != 1) {
         printf("Error input!\n");
