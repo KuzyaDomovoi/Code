@@ -71,13 +71,27 @@ int main(void)
     }
 
     int digits[] = {-3, 4, 10, 11, -5, 3, 7, 8, -9, -6, 5, 6, -4};
+    int position; // variable for saving the index of a minimal value;
+    for(int i = 0; i < SIZE - 1; ++i) { // irerate array elements from '0' to 'SIZE-1';
+        position = i; // definition of the position of the first value;
+        for(int j = i + 1; j < SIZE; ++j) { // iterate array elements from 'i+1' to 'SIZE' and
+            if(digits[position] > digits[j]) // search of a minimal value within the array from 'i+1' to 'SIZE' (to get a values in ascending order; if '>' change to '<' than get a values in descending order);
+                position = j; // saving the index of minimal value to the variable 'pos';
+        }
+            if(position != i) { // in case when variable 'pos' is different from variable 'i' (-3, the first element of array) than
+                int t = digits[i]; // variable 'i' is saved to temporary variable 't',
+                digits[i] = digits[position]; // the minimal value from variable 'pos' is saved to the variable 'i' and
+                digits[position] = t; // than the value '-3' (from temporary variable 't') is saved to the variable 'pos' (array index instead of minimal value);
+            }
+    }
+    for(int i = 0; i < SIZE; ++i)
+        printf("%d ", digits[i]);
+    printf("\n");
+
     int (*criterials[])(int) = {is_even, is_odd, is_positive, is_negative};
     int result[SIZE];
     int index = item -1;
     filter(result, SIZE, digits, sizeof(digits) / sizeof(*digits), criterials[index]);
-    //for(int i = 0; i < SIZE; ++i)
-        //printf("%d ", result[i]);
-    
     int pos; // variable for saving the index of a minimal value;
     for(int i = 0; i < SIZE - 1; ++i) { // irerate array elements from '0' to 'SIZE-1';
         pos = i; // definition of the position of the first value;
@@ -91,8 +105,9 @@ int main(void)
                 result[pos] = t; // than the value '-3' (from temporary variable 't') is saved to the variable 'pos' (array index instead of minimal value);
             }
     }
-    for(int i = 0; i < SIZE; ++i) // iterate (read) the elements in the array and
-        printf("%d ", result[i]); // output the new array values in ascending order ;
+    printf("From in ascending ordered array are selected next values:\n");
+    for(int i = 0; i < SIZE; ++i)
+        printf("%d ", result[i]);
 
     return 0;
 }
