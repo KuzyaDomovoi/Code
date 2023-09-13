@@ -63,7 +63,7 @@ int main(void)
         printf("select negative values from:\n");
         break;
     case 5:
-        printf("select exit\n");
+        printf("selected exit\n");
         return 0;
     default:
         printf("incorrect symbol!\n");
@@ -72,10 +72,10 @@ int main(void)
 
     int digits[] = {-3, 4, 10, 11, -5, 3, 7, 8, -9, -6, 5, 6, -4};
     int position; // variable for saving the index of a minimal value;
-    for(int i = 0; i < SIZE - 1; ++i) { // irerate array elements from '0' to 'SIZE-1';
+    for(int i = 0; i < sizeof(digits) / sizeof(*digits) - 1; ++i) { // irerate array elements from '0' to 'sizeof(digits) / sizeof(*digits)-1';
         position = i; // definition of the position of the first value;
-        for(int j = i + 1; j < SIZE; ++j) { // iterate array elements from 'i+1' to 'SIZE' and
-            if(digits[position] > digits[j]) // search of a minimal value within the array from 'i+1' to 'SIZE' (to get a values in ascending order; if '>' change to '<' than get a values in descending order);
+        for(int j = i + 1; j < sizeof(digits) / sizeof(*digits); ++j) { // iterate array elements from 'i+1' to 'sizeof(digits) / sizeof(*digits)' and
+            if(digits[position] > digits[j]) // search of a minimal value within the array from 'i+1' to 'sizeof(digits) / sizeof(*digits)' (to get a values in ascending order; if '>' change to '<' than get a values in descending order);
                 position = j; // saving the index of minimal value to the variable 'pos';
         }
             if(position != i) { // in case when variable 'pos' is different from variable 'i' (-3, the first element of array) than
