@@ -92,17 +92,17 @@ int main(void)
     int result[SIZE];
     int index = item -1;
     filter(result, SIZE, digits, sizeof(digits) / sizeof(*digits), criterials[index]);
-    int pos; // variable for saving the index of a minimal value;
-    for(int i = 0; i < SIZE - 1; ++i) { // irerate array elements from '0' to 'SIZE-1';
-        pos = i; // definition of the position of the first value;
-        for(int j = i + 1; j < SIZE; ++j) { // iterate array elements from 'i+1' to 'SIZE' and
-            if(result[pos] > result[j]) // search of a minimal value within the array from 'i+1' to 'SIZE' (to get a values in ascending order; if '>' change to '<' than get a values in descending order);
-                pos = j; // saving the index of minimal value to the variable 'pos';
+    int pos; 
+    for(int i = 0; i < SIZE - 1; ++i) { 
+        pos = i; 
+        for(int j = i + 1; j < SIZE; ++j) { 
+            if(result[pos] > result[j]) 
+                pos = j; 
         }
-            if(pos != i) { // in case when variable 'pos' is different from variable 'i' (-3, the first element of array) than
-                int t = result[i]; // variable 'i' is saved to temporary variable 't',
-                result[i] = result[pos]; // the minimal value from variable 'pos' is saved to the variable 'i' and
-                result[pos] = t; // than the value '-3' (from temporary variable 't') is saved to the variable 'pos' (array index instead of minimal value);
+            if(pos != i) { 
+                int t = result[i]; 
+                result[i] = result[pos];
+                result[pos] = t;
             }
     }
     printf("From in ascending ordered array are selected next values:\n");
