@@ -51,19 +51,19 @@ int main(void)
     switch(item) 
     {
     case 1: '1';
-        printf("selected even values:\n");
+        printf("select even values from:\n");
         break;
     case 2: '2';
-        printf("selected odd values:\n");
+        printf("select odd values from:\n");
         break;
     case 3: '3';
-        printf("selected positive values:\n");
+        printf("select positive values from:\n");
         break;
     case 4: '4';
-        printf("selected negative values:\n");
+        printf("select negative values from:\n");
         break;
     case 5:
-        printf("selected exit\n");
+        printf("select exit\n");
         return 0;
     default:
         printf("incorrect symbol!\n");
