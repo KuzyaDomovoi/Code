@@ -65,7 +65,7 @@ int main(void)
         printf("selected exit\n");
         return 0;
     default:
-        printf("incorrect symbol!\n");
+        printf("Incorrect symbol!\n");
         return 0;
     }
 
