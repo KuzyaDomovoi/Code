@@ -37,10 +37,10 @@ int main(void)
     int item;
     int select_id;
     printf("Hier is an array of 13 elements: -3, 4, 10, 11, -5, 3, 7, 8, -9, -6, 5, 6, -4;\n");
-    printf("1. select_even_values;\n"
-           "2. select_odd_values;\n"
-           "3. select_positive_values;\n"
-           "4. select_negative_values;\n"
+    printf("1. select even values;\n"
+           "2. select odd values;\n"
+           "3. select positive values;\n"
+           "4. select negative values;\n"
            "5. exit.\n");
 
     if(scanf("%d", &item) != 1) {
@@ -51,19 +51,19 @@ int main(void)
     switch(item) 
     {
     case 1: '1';
-        printf("select_even_values:\n");
+        printf("selected even values:\n");
         break;
     case 2: '2';
-        printf("select_odd_values:\n");
+        printf("selected odd values:\n");
         break;
     case 3: '3';
-        printf("select_positive_values:\n");
+        printf("selected positive values:\n");
         break;
     case 4: '4';
-        printf("select_negative_values:\n");
+        printf("selected negative values:\n");
         break;
     case 5:
-        printf("exit\n");
+        printf("selected exit\n");
         return 0;
     default:
         printf("incorrect symbol!\n");
@@ -73,11 +73,26 @@ int main(void)
     int digits[] = {-3, 4, 10, 11, -5, 3, 7, 8, -9, -6, 5, 6, -4};
     int (*criterials[])(int) = {is_even, is_odd, is_positive, is_negative};
     int result[SIZE];
-    select_id = item;
-    int index = select_id -1;
+    int index = item -1;
     filter(result, SIZE, digits, sizeof(digits) / sizeof(*digits), criterials[index]);
-    for(int i = 0; i < SIZE; ++i)
-        printf("%d ", result[i]);
+    //for(int i = 0; i < SIZE; ++i)
+        //printf("%d ", result[i]);
+    
+    int pos; // variable for saving the index of a minimal value;
+    for(int i = 0; i < SIZE - 1; ++i) { // irerate array elements from '0' to 'size-1';
+        pos = i; // definition of the position of the first value;
+        for(int j = i + 1; j < SIZE; ++j) { // iterate array elements from 'i+1' to 'size' and
+            if(result[pos] > result[j]) // search of a minimal value within the array from 'i+1' to 'size' (to get a values in ascending order; if '>' change to '<' than get a values in descending order);
+                pos = j; // saving the index of minimal value (-8) to the variable 'pos';
+        }
+            if(pos != i) { // in case when variable 'pos' (-8) is different from variable 'i' (-3, the first element of array) than
+                int t = result[i]; // variable 'i' (-3) is saved to temporary variable 't',
+                result[i] = result[pos]; // the minimal value (-8) from variable 'pos' is saved to the variable 'i' and
+                result[pos] = t; // than the value '-3' (from temporary variable 't') is saved to the variable 'pos' (array index instead of the value '-8');
+            }
+    }
+    for(int i = 0; i < SIZE; ++i) // iterete (read) the elements in the array and
+        printf("%d ", result[i]); // output the new array values in ascending order ;
 
     return 0;
 }
