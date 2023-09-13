@@ -5,9 +5,9 @@ void filter(int dst[], size_t size_dst,
             const int src[], size_t size_src,
             int (*is_correct)(int))
 {
-    for(int i = 0; i < size_dst; ++i) 
+    for(long unsigned int i = 0; i < size_dst; ++i) 
         dst[i] = 0; 
-    for(int i = 0, j = 0; i < size_src; ++i)
+    for(long unsigned int  i = 0, j = 0; i < size_src; ++i)
         if(is_correct(src[i]))
             dst[j++] = src[i];
 }
@@ -71,9 +71,9 @@ int main(void)
 
     int digits[] = {-3, 4, 10, 11, -5, 3, 7, 8, -9, -6, 5, 6, -4};
     int position; // variable for saving the index of a minimal value;
-    for(int i = 0; i < sizeof(digits) / sizeof(*digits) - 1; ++i) { // irerate array elements from '0' to 'sizeof(digits) / sizeof(*digits)-1';
+    for(int i = 0; i < (int)(sizeof(digits) / sizeof(*digits)) - 1; ++i) { // irerate array elements from '0' to 'sizeof(digits) / sizeof(*digits)-1';
         position = i; // definition of the position of the first value;
-        for(int j = i + 1; j < sizeof(digits) / sizeof(*digits); ++j) { // iterate array elements from 'i+1' to 'sizeof(digits) / sizeof(*digits)' and
+        for(int j = i + 1; j < (int)(sizeof(digits) / sizeof(*digits)); ++j) { // iterate array elements from 'i+1' to 'sizeof(digits) / sizeof(*digits)' and
             if(digits[position] > digits[j]) // search of a minimal value within the array from 'i+1' to 'sizeof(digits) / sizeof(*digits)' (to get a values in ascending order; if '>' change to '<' than get a values in descending order);
                 position = j; // saving the index of minimal value to the variable 'pos';
         }
