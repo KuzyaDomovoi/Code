@@ -35,7 +35,6 @@ int is_negative(int x)
 int main(void)
 {
     int item;
-    int select_id;
     printf("Hier is an array of 13 elements: -3, 4, 10, 11, -5, 3, 7, 8, -9, -6, 5, 6, -4;\n");
     printf("1. select even values;\n"
            "2. select odd values;\n"
@@ -50,16 +49,16 @@ int main(void)
     
     switch(item) 
     {
-    case 1: '1';
+    case 1:
         printf("select even values from:\n");
         break;
-    case 2: '2';
+    case 2:
         printf("select odd values from:\n");
         break;
-    case 3: '3';
+    case 3:
         printf("select positive values from:\n");
         break;
-    case 4: '4';
+    case 4:
         printf("select negative values from:\n");
         break;
     case 5:
