@@ -62,9 +62,9 @@ int main(void)
     case 4: '4';
         printf("select_negative_values:\n");
         break;
-    case 5: '5';
+    case 5:
         printf("exit\n");
-        break;
+        return 0;
     default:
         printf("incorrect symbol!\n");
         return 0;
