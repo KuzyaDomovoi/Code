@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define SIZE 15
+#define SIZE 13
 
 void filter(int dst[], size_t size_dst, 
             const int src[], size_t size_src,
@@ -36,7 +36,7 @@ int main(void)
 {
     int item;
     int select_id;
-    printf("Hier is an array: -3, 4, 10, 11, -5, 3, 7, 8, -9, -6, 5, 6, -4;\n");
+    printf("Hier is an array of 13 elements: -3, 4, 10, 11, -5, 3, 7, 8, -9, -6, 5, 6, -4;\n");
     printf("1. select_even_values;\n"
            "2. select_odd_values;\n"
            "3. select_positive_values;\n"
