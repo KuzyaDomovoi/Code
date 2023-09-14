@@ -34,7 +34,7 @@ int main(void)
 
     char pfeld[N][N] = {0}; // the array determines whethe the cell is open or cloused; 
     show_feld(pfeld); // call the func with all closed cells in game feld initially;
-    open_zeros(game_feld, pfeld, 2, 2);
+    open_zeros(game_feld, pfeld, 2, 2); // 2, 2 are indexes of cell which will be opened firstly;
     puts("---------------"); // delimeter;
     show_feld(pfeld); // show the game feld after recursive check of cells of game feld;
 
