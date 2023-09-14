@@ -24,7 +24,7 @@ void open_zeros(const char (*f)[N], char (*pf)[N], int i, int j) // is rcs func 
 
 int main(void)
 {
-    char game_feld[N][N] = {                 // the array determines the game feld by size N x N;
+    char game_feld[N][N] = { // the array define a situation on the game feld by size N x N;
                             {1, 1, 1, 1, 1},
                             {1, 1, 0, 1, 1},
                             {0, 0, 0, 0, 1},
