@@ -13,7 +13,7 @@ void show_feld(const char (*f)[N]) // auxiliary func represented as 2D-array to 
 
 void open_zeros(const char (*f)[N], char (*pf)[N], int i, int j) // is rcs func and it opens cells ([i], [j]) of game feld which have value 0;
 {
-    if(f[i][j] != 0 || pf[i][j] == 1) // if current cell is not zero or is already open than return (no action);
+    if(f[i][j] != 0 || pf[i][j] == 1) // if current cell is not zero or is already opened than return (no action);
         return;
     pf[i][j] = 1; // else if current cell is zero and is closed now then it shold be open by rcs func:
     if(i - 1 >= 0 && f[i - 1][j] == 0) open_zeros(f, pf, i - 1, j); // check neighboring cells to 1 cell left direction for value zero and it to open;
