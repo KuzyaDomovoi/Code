@@ -65,12 +65,12 @@ int main(void)
     char play_feld[N][N] = {0}; // the array define whether cells are opened (1) or cloused (0), in this case ( = {0}) all cells are closed to show; 
     show_feld_0(play_feld); // call the func with all closed cells in game feld initially, that is with symb '#';
     open_zeros(game_feld, play_feld, 3, 3); // 2, 2 are indexes of cell which will be opened firstly;
-    puts("---------------"); // delimeter;
+    puts("---------"); // delimeter;
     show_feld_0(play_feld); // show the game feld after recursive check of cells of game feld;
     open_ones(game_feld, play_feld, 2, 2);
-    puts("---------------");
+    puts("---------");
     show_feld_1(play_feld);
-    puts("---------------");
+    puts("---------");
     show_all(game_feld);
 
     return 0;
