@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-double big_ar[10000000]; // exit code 0 because the array 'big_ar' is located outside the func main that is, in main memory section;
+double big_ar[10000000]; // exit code = 0 because the array 'big_ar' is located outside the func main that is, in main memory section;
 
 int main(void)
 {
