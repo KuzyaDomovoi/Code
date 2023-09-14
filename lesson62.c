@@ -16,10 +16,10 @@ void open_zeros(const char (*gf)[N], char (*pf)[N], int i, int j) // is rcs func
     if(gf[i][j] != 0 || pf[i][j] == 1) // if current cell is not zero or (||) is already opened than return (no action);
         return;
     pf[i][j] = 1; // else if current cell is zero and is closed now then it shold be open by rcs func:
-    if(i - 1 >= 0 && f[i - 1][j] == 0) open_zeros(gf, pf, i - 1, j); // check neighboring cells to 1 cell left direction for value zero and it to open;
-    if(i + 1 <  N && f[i + 1][j] == 0) open_zeros(gf, pf, i + 1, j); // check neighboring cells to 1 cell right direction for value zero and it to open;
-    if(j - 1 >= 0 && f[i][j - 1] == 0) open_zeros(gf, pf, i, j - 1); // check neighboring cells to 1 cell up direction for value zero and it to open;
-    if(j + 1 <  N && f[i][j + 1] == 0) open_zeros(gf, pf, i, j + 1); // check neighboring cells to 1 cell down direction for value zero and it to open;
+    if(i - 1 >= 0 && gf[i - 1][j] == 0) open_zeros(gf, pf, i - 1, j); // check neighboring cells to 1 cell left direction for value zero and it to open;
+    if(i + 1 <  N && gf[i + 1][j] == 0) open_zeros(gf, pf, i + 1, j); // check neighboring cells to 1 cell right direction for value zero and it to open;
+    if(j - 1 >= 0 && gf[i][j - 1] == 0) open_zeros(gf, pf, i, j - 1); // check neighboring cells to 1 cell up direction for value zero and it to open;
+    if(j + 1 <  N && gf[i][j + 1] == 0) open_zeros(gf, pf, i, j + 1); // check neighboring cells to 1 cell down direction for value zero and it to open;
 }
 
 void show_feld_1(const char (*gf)[N])
