@@ -32,7 +32,7 @@ int main(void)
                     {1, 1, 0, 1, 1},
     };
 
-    char pfeld[N][N] = {0}; // the array determines whethe the cell is open or cloused; 
+    char pfeld[N][N] = {0}; // the array define whether the cells are opened (1) or cloused (0), in this case = 0, are closed to show; 
     show_feld(pfeld); // call the func with all closed cells in game feld initially, that is with symb '#';
     open_zeros(game_feld, pfeld, 2, 2); // 2, 2 are indexes of cell which will be opened firstly;
     puts("---------------"); // delimeter;
