@@ -35,6 +35,9 @@ int is_odd(int x)
 
 int main(void)
 {
+
+// Pointer to funcs:
+
     int digits[] = {-3, 4, 10, 11, -5, 3};
     int (*criterials[])(int) = {is_even, is_odd, is_positive};
     int result[SIZE];
@@ -55,6 +58,8 @@ int main(void)
         printf("%d ", result[i]);
 
     putchar('\n');
+
+// Pointer to arrays:
 
     filter(result, SIZE, digits, sizeof(digits) / sizeof(*digits), criterials[1]);
     for(int i = 0; i < SIZE; ++i)
