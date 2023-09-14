@@ -31,6 +31,15 @@ void show_feld_1(const char (*gf)[N])
     }
 }
 
+void show_all(const char (*gf)[N])
+{
+    for(int i = 0; i < N; ++i) { 
+        for(int j = 0; j < N; ++j)
+            printf("%d ", (gf[i][j]));
+        putchar('\n');
+    }
+}
+
 void open_ones(const char (*gf)[N], char (*pf)[N], int i, int j) // is rcs func and it opens cells ([i], [j]) of game feld which have value 1;
 {
     if(gf[i][j] != 1 || pf[i][j] == 1) // if current cell is not one or (||) is already opened than return (no action);
@@ -61,6 +70,8 @@ int main(void)
     open_ones(game_feld, play_feld, 2, 2);
     puts("---------------");
     show_feld_1(play_feld);
+    puts("---------------");
+    show_all(game_feld);
 
     return 0;
 }
