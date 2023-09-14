@@ -25,14 +25,14 @@ void open_zeros(const char (*f)[N], char (*pf)[N], int i, int j) // is rcs func 
 int main(void)
 {
     char game_feld[N][N] = { // the array determines the game feld by size N x N;
-                    {1, 1, 1, 1, 1},
-                    {1, 1, 0, 1, 1},
-                    {0, 0, 0, 0, 1},
-                    {1, 1, 0, 0, 0},
-                    {1, 1, 0, 1, 1},
+                            {1, 1, 1, 1, 1},
+                            {1, 1, 0, 1, 1},
+                            {0, 0, 0, 0, 1},
+                            {1, 1, 0, 0, 0},
+                            {1, 1, 0, 1, 1},
     };
 
-    char pfeld[N][N] = {0}; // the array define whether the cells are opened (1) or cloused (0), in this case = 0, are closed to show; 
+    char pfeld[N][N] = {0}; // the array define whether cells are opened (1) or cloused (0), in this case ( = {0}) all cells are closed to show; 
     show_feld(pfeld); // call the func with all closed cells in game feld initially, that is with symb '#';
     open_zeros(game_feld, pfeld, 2, 2); // 2, 2 are indexes of cell which will be opened firstly;
     puts("---------------"); // delimeter;
