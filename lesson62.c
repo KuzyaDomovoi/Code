@@ -13,7 +13,7 @@ void show_feld_0(const char (*gf)[N]) // auxiliary func represented as 2D-array 
 
 void open_zeros(const char (*gf)[N], char (*pf)[N], int i, int j) // is rcs func and it opens cells ([i], [j]) of game feld which have value 0;
 {
-    if(gf[i][j] != 0 || pf[i][j] == 1) // if current cell is not zero or (||) is already opened than return (no action);
+    if(gf[i][j] != 0 || pf[i][j] == 1) // if current cell by game play is not zero or (||) is already opened by play_feld than return no action;
         return;
     pf[i][j] = 1; // else if current cell is zero and is closed now then it shold be open by rcs func:
     if(i - 1 >= 0 && gf[i - 1][j] == 0) open_zeros(gf, pf, i - 1, j); // check neighboring cells to 1 cell left direction for value zero and it to open;
@@ -31,6 +31,17 @@ void show_feld_1(const char (*gf)[N])
     }
 }
 
+void open_ones(const char (*gf)[N], char (*pf)[N], int i, int j)
+{
+    if(gf[i][j] != 1 || pf[i][j] == 1)
+        return;
+    pf[i][j] = 1; 
+    if(i - 1 >= 0 && gf[i - 1][j] == 1) open_ones(gf, pf, i - 1, j); 
+    if(i + 1 <  N && gf[i + 1][j] == 1) open_ones(gf, pf, i + 1, j); 
+    if(j - 1 >= 0 && gf[i][j - 1] == 1) open_ones(gf, pf, i, j - 1); 
+    if(j + 1 <  N && gf[i][j + 1] == 1) open_ones(gf, pf, i, j + 1); 
+}
+
 void show_all(const char (*gf)[N])
 {
     for(int i = 0; i < N; ++i) { 
@@ -39,18 +50,6 @@ void show_all(const char (*gf)[N])
         putchar('\n');
     }
 }
-
-void open_ones(const char (*gf)[N], char (*pf)[N], int i, int j) // is rcs func and it opens cells ([i], [j]) of game feld which have value 1;
-{
-    if(gf[i][j] != 1 || pf[i][j] == 1) // if current cell is not one or (||) is already opened than return (no action);
-        return;
-    pf[i][j] = 1; // else if current cell is one and is closed now then it shold be open by rcs func:
-    if(i - 1 >= 0 && gf[i - 1][j] == 1) open_ones(gf, pf, i - 1, j); // check neighboring cells to 1 cell left direction for value one and it to open;
-    if(i + 1 <  N && gf[i + 1][j] == 1) open_ones(gf, pf, i + 1, j); // check neighboring cells to 1 cell right direction for value one and it to open;
-    if(j - 1 >= 0 && gf[i][j - 1] == 1) open_ones(gf, pf, i, j - 1); // check neighboring cells to 1 cell up direction for value one and it to open;
-    if(j + 1 <  N && gf[i][j + 1] == 1) open_ones(gf, pf, i, j + 1); // check neighboring cells to 1 cell down direction for value one and it to open;
-}
-
 
 int main(void)
 {
