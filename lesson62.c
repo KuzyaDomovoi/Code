@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #define N 5
 
 void show_feld_0(const char (*gf)[N]) // auxiliary func represented as 2D-array to dysplaying the game feld;
