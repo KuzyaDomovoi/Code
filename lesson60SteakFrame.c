@@ -5,9 +5,12 @@ double big_ar[10000000]; // exit code = 0 because the array 'big_ar' is located 
 int main(void)
 {
 
-//funcs calling. Steak frame (has a size of some megabytes):
-// "Steack Overlow"
+//funcs calling. Steak frame:
+
+// local vars and argument's values of funcs are located in Steak Fream memory section which has a size of some megabytes only; 
+//"Steack Overlow"
 // funcs: malloc() and free() are used to locating dynamically created data in main memory section when func is called, ; 
+    
     int var;
     printf("var = %d\n", var);
 
