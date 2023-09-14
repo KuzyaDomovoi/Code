@@ -5,7 +5,7 @@
 void show_feld(const char (*f)[N]) // auxiliary func represented as 2D-array to dysplaying the game feld;
 {
     for(int i = 0; i < N; ++i) { // iterate the rows of game feld;
-        for(int j = 0; j < N; ++j) // terate the cols game feld;
+        for(int j = 0; j < N; ++j) // terate the cols of game feld;
             printf("%c ", (f[i][j] == 0) ? '#' : '0'); // output sing '#' if current value is '0' (close) or sign '0' if current value is '1' (open);
         putchar('\n'); // transfer the current char in loop to next row;
     }
