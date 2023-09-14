@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define N 5
 
-void show_feld_0(const char (*gf)[N]) // auxiliary func represented as 2D-array to dysplaying the game feld;
+void show_feld_0(const char (*gf)[N]) // represented as 2D-array auxiliary func dysplays the game feld;
 {
     for(int i = 0; i < N; ++i) { // iterate the rows of game feld;
         for(int j = 0; j < N; ++j) // terate the cols of game feld;
