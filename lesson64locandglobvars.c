@@ -47,8 +47,8 @@ They are automatical and have scope within a func.*/
     printf("var_main = %d\n", var_main);
 
 /* Hier can be used both local and global vars with help
-of funcs malloc() and free();It is better not to use
-regular vars for big data!;*/
+of funcs malloc() and free();
+But it is better not to use regular vars for big data!;*/
 
     return 0;
 }
