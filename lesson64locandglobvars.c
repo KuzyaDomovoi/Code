@@ -27,6 +27,7 @@ int main(void)
 {
 // internal code block;
 // All vars with a limited scope are called the local vars;
+// Hier can be used both local and global vars;
 
     int var_main; // the vars should be in enternal code block as auxiliary not as database!;
 
