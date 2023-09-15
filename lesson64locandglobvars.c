@@ -32,11 +32,13 @@ int main(void)
 
     //double big_ar[10000000]; // exit with code !=0 because the array has a big var and it is not passed in steak frame memory section;
 
-/* in the internal code block the vars and their values
-are created in steak frame memory section and when a func
-is completed they (vars and their vals) disappear from the
-steak frame;
-They are automatical and have scope within a func;*/
+/* In the internal code block the vars and their values
+are created in the steak frame memory section during the
+program is in opetate and so their initial values can
+be defined by any expressions allowed in the C-language;
+When the func is completed the vars and their values 
+disappear from the steak frame;
+They are automatical and have scope within a func.*/
 
     int a = 1;
     int b = a * 2 + global_var_2;
