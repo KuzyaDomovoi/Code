@@ -27,7 +27,6 @@ int main(void)
 {
 // internal code block;
 // All vars with a limited scope are called the local vars;
-// Hier can be used both local and global vars;
 
     int var_main; // the vars should be in enternal code block as auxiliary not as database!;
 
@@ -46,6 +45,10 @@ They are automatical and have scope within a func.*/
     int size = global_var_3 * 10;
 
     printf("var_main = %d\n", var_main);
+
+/* Hier can be used both local and global vars with help
+of funcs malloc() and free();It is better not to use
+regular vars for big data!;*/
 
     return 0;
 }
