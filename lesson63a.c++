@@ -11,6 +11,8 @@ double modul(double x) // the func names can be the same but the datatypes are d
 }
 
 void show_args(short a = 10, double b = 20.0, int c = 30) // here can be passed defoult values in func; 
+/*! params with default values should be listed at the end.*/
+// void show_args(short a, double b = 20.0, int c = 30)
 {
     printf( "s = %d, b = %.2f, c = %d\n", a, b, c);
 }
