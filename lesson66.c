@@ -18,8 +18,8 @@ int main(void)
 
     printf("main: z = %d\n", z); // z = 33;
 
-    int p = 1; // var for saving value of n!;
-    int n = 7; // var from which the factorial is calculated;
+    int p = 1; // var 'p' in which will be saved the result's value of n! calc;
+    int n = 7; // var 'n' from which the factorial is calculated;
     for(register int i = 2; i <= n; ++i) // keyword register allows to locate the values to the CPU;
         p *= i; // result of n!;
     printf("p = %d\n", p);
