@@ -4,6 +4,9 @@
 /* Variadic funcs are the funcs with an arbitrary number
 of stguments;*/
 
+// int printf(const char *format, ...);
+// int scanf(const char *format, ...);
+
 int sum(int count, ...) // '...' means that an arbitrary numb of args can be passed here;
 {
     int s = 0;
@@ -19,7 +22,9 @@ int sum(int count, ...) // '...' means that an arbitrary numb of args can be pas
 int main(void)
 {
     int res = sum(5, 1, 2, 3, 4, 5); // int count is 5 elements: 1, 2, 3, 4, 5;
+    int res1 = sum(3, 1, 2, 3, 4, 5);
     printf("res = %d\n", res);
+    printf("res1 = %d\n", res1);
 
     return 0;
 }
