@@ -16,8 +16,9 @@ and is an equivalent of keyword 'extern' for global vars;*/
 
 // Keyword 'static':
 
-/*it locates addresses of vars in RAM .data or .bss section
-and allows the vars to take up large volumes of memory;*/
+/*it locates addresses of local vars in RAM .data or .bss 
+section and allows the vars to take up large volumes of 
+memory;*/
 
 char name[] = "Variables"; // located in .data RAM section;
 double big_arg[10000000]; // located in .bss RAM section;
