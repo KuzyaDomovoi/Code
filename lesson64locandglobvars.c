@@ -12,7 +12,8 @@ The vars appear in the device's RAM when the program
 starts and remain in the memory unchangeble while the 
 program is running;
 Their scope is global and they can be used anywhere in
-the program, that is the vars are global.*/
+the program, that is the vars are global.
+They are static vars, that is the vars have their addresses as const*/
 
 char name[] = "Variables";
 double big_ar[10000000]; // exit code = 0;
