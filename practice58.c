@@ -2,18 +2,16 @@
 #define COLS 3
 #define ROWS 3
 
-void array_to_matrix(int *matrix, int *arr, int row, int col) {
-    int i, j;
-    for (i = 0; i < row; ++i) {
-        for (j = 0; j < col; ++j) {
-            arr[i * col + j] = *(matrix + i * col + j);
+void array_to_matrix(int *matrix, int *arr, int rows, int cols) {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            arr[i * cols + j] = *(matrix + i * cols + j);
         }
     }
 }
 
 void print_array(int *arr, int size) {
-    int i;
-    for (i = 0; i < size; ++i) { 
+    for (int i = 0; i < size; ++i) { 
         printf("%d %c", arr[i], (i + 1) % COLS ? '\t' : '\n');
     }
 }
