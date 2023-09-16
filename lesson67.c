@@ -14,12 +14,6 @@ int randint(int, int); /* only description of prototype func
 and is an equivalent of keyword 'extern' for global vars;*/
 //extern int randint(int, int); is equal int randint(int, int); 
 
-// Keyword 'static':
-
-/*it locates addresses of local vars in RAM .data or .bss 
-section and allows the vars to take up large volumes of 
-memory;*/
-
 char name[] = "Variables"; // located in .data RAM section;
 double big_arg[10000000]; // located in .bss RAM section;
 
@@ -31,6 +25,13 @@ unsigned int counter()
 
 int main(void)
 {
+    
+// Keyword 'static':
+
+/*it locates addresses of local vars in RAM .data or .bss 
+section and allows the vars to take up large volumes of 
+memory;*/
+
     int var_main; // automatic local var;
     static int var_st;
 
