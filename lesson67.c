@@ -3,12 +3,15 @@
 // Keyword 'extern':
 
 extern int global_var; // the var is declared in the file 'modul.c'
-/*'extern' is not a declaration but a description of var, which later will be declared both in the current file or in an another file (modul.c);*/
+/*'extern' is not a declaration but a description of var,
+which later will be declared both in the current file or
+in an another file (modul.c);*/
 
 extern char global_str[]; // only description of global var;
 extern int global_seed_randint;
 
-int randint(int, int); // only description of prototype func and is an equivalent of keyword 'extern' for global vars;
+int randint(int, int); /* only description of prototype func
+and is an equivalent of keyword 'extern' for global vars;*/
 //extern int randint(int, int); is equal int randint(int, int); 
 
 // Keyword 'static':
