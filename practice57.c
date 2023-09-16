@@ -4,8 +4,8 @@
 void show_ar1Dto2D(const short (*ar), int length)
 {
     int res_ij;
-    
-    for(int i = 0; i <= length / COLS; ++i) { //int rows = (length + (COLS - 1)) / COLS == (i <= length / COLS);
+    int rows = (length + (COLS - 1)) / COLS
+    for(int i = 0; i < length / COLS; ++i) { // (i <= length / COLS);
         for(int j = 0; j < COLS && i * COLS + j < length; ++j) {
             res_ij = ar[i * COLS + j];
             printf("%d ", res_ij);
