@@ -73,6 +73,6 @@ void* realloc(void *ptr, size_t length); // changes a size of previosly allocate
 string.h:
 
 void* memcpy(void* restrict dts, const void* restrict src, size_t length); // copies one string into the other, where keyword restrict defines the pointers 'dst' and 'src' as unique and each of them leads to an separate non-overlapping memory section in the Heap;
-void* memmove(void* dts, const void* src, size_t length); // transfera a fagment from one string into the other;
+void* memmove(void* dts, const void* src, size_t length); // transfers a fagment from one string into the other;
 
 */
