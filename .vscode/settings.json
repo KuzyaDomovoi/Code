@@ -56,7 +56,8 @@
     },
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "vector": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }
