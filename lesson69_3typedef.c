@@ -33,7 +33,9 @@ int main(void)
 /*
 void* malloc(size_t size);
 
-typedef unsigned int size_t; // for 32 bit OS;
+'size_t' is here a redefined name with typedef:
+
+typedef unsigned int size_t; // for 32 bit OS; 
 typedef unsigned long long size_t; // for 64 bit OS;
 
 the typedef statement can be used to simplify the writing of complex datatypes or multi-dimentional arrays;
