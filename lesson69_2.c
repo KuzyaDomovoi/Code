@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-enum colors {red, green, blue} wnd_colors;
+enum colors {red, green, blue} wnd_colors; // declaration a global var 'wnd_colors';
 enum keys {vk_enter = 27, vk_space, vk_del = 30};
 enum {
     go = 0x1f00,
@@ -8,11 +8,11 @@ enum {
     forward = go,
     run = 0x00a2,
     back = run - 1
-} actions, commands;
+} actions, commands; // declaration two global vars for enum;
 
 int main(void)
 {
-    enum keys k_var; // int;
+    enum keys k_var; // int; declaration a local var;
 
     return 0;
 }
