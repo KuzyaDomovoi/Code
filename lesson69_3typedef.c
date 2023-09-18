@@ -9,7 +9,7 @@
 
 typedef int* PTR; // declaration the pointer PTR in 'typedef' directive;
 
-typedef enum {
+typedef enum { // so it is a composite typedata than after the keyword 'enum' its name is not assigning;
     buffer_size = 2048,
     element_size = 12,
     window_size = 400
@@ -23,7 +23,7 @@ int main(void)
     PTR_INT a, b; // with using the '#define' directive are here pointer 'int* a' and var 'b' only (not 'int* b');
     PTR ptr_a, ptr_b; // with using the 'typedef' directive both vars are pointers: int *ptr_a and int *ptr_b;
     
-    SIZE_CONSTS sizes = window_size; // var 'sizes' has here the datatype enum;
+    SIZE_CONSTS sizes = window_size; // var 'sizes' has here the datatype enum {...};
     printf("%d\n", sizes);
     printf("%d\n", buffer_size);
 
