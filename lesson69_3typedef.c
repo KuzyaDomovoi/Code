@@ -13,7 +13,7 @@ typedef enum {
     buffer_size = 2048,
     element_size = 12,
     window_size = 400
-} SIZE_CONSTS;
+} SIZE_CONSTS; // name change for enum {...} with using the 'typedef' directive;
 
 int main(void)
 {
