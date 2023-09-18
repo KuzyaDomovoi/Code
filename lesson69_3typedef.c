@@ -17,8 +17,8 @@ typedef enum {
 
 int main(void)
 {
-    //BYTE byte;
-    //BYTE ch, var_ch = '\0';
+    //BYTE byte; // BYTE is define here as unsigned char datatype and refers to a var 'byte';
+    //BYTE ch, var_ch = '\0'; // is equal the unsigned char ch, var_ch = '\0', which is defined in the block above;
     
     PTR_INT a, b; // with using the '#define' directive are here pointer 'int* a' and var 'b' only (not 'int* b');
     PTR ptr_a, ptr_b; // with using the 'typedef' directive both vars are pointers: int *ptr_a and int *ptr_b;
