@@ -5,9 +5,9 @@
 //#define BYTE unsigned char // is processed by preprocessor;
 //typedef unsigned char BYTE; // unlike the '#define' directive the 'typedef' statement is processed by the complier itself;
 
-#define PTR_INT int* // directive define;
+#define PTR_INT int* // declaration the PTR in '#define' directive ;
 
-typedef int* PTR; // typedef statement;
+typedef int* PTR; // declaration the PTR in 'typedef' statement;
 
 typedef enum {
     buffer_size = 2048,
