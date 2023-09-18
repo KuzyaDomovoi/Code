@@ -8,6 +8,7 @@ int is_even(int x)
 }
 
 typedef int (*PTR_EVEN)(int);
+
 typedef char (*PTR_AR_2D)[4];
 
 int main(void)
