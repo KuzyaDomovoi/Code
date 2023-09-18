@@ -20,7 +20,7 @@ int main(void)
     //BYTE byte;
     //BYTE ch, var_ch = '\0';
     
-    PTR_INT a, b; // with using the '#define' sdirective are here pointer 'int* a' and var 'b' only (not 'int* b');
+    PTR_INT a, b; // with using the '#define' directive are here pointer 'int* a' and var 'b' only (not 'int* b');
     PTR ptr_a, ptr_b; // with using the 'typedef' statement both vars are pointers: int *ptr_a and int *ptr_b;
     
     SIZE_CONSTS sizes = window_size; // var 'sizes' has here the datatype enum;
