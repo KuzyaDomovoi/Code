@@ -9,8 +9,8 @@ is not required;*/
 {
     if(x < 0)
         return NAN; // is Not A Number;
-
-    return pow(x, 0.25); 
+    //return pow(x, 0.25);
+    return x;
     /* since the func has data type
     'double' the statement return is required, the func
     further ends and no more statements in the current
@@ -30,7 +30,7 @@ in not required;*/
 
 int main(void)
 {
-    printf("%f\n", sq4_x(-16));
+    printf("%f\n", sq4_x(-25));
     
     print_even_x(4);
     print_even_x(5);
