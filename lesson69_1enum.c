@@ -18,5 +18,20 @@ int main(void)
     
     enum keys k_var = vk_enter + 2 - vk_space; // the (int) 'k_var' is a var of 'enum keys' datatype and can take any value;
 
+    switch (k_var)
+    {
+    case vk_enter:
+        puts("vk_enter");
+        break;
+    case vk_space:
+        puts("vk_space");
+        break;
+    case vk_del:
+        puts("vk_del");
+        break;
+    default:
+        break;
+    }
+
     return 0;
 }
