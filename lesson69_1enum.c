@@ -2,7 +2,7 @@
 
 // Enumeration: 'enum'; The keyword enum is using to enumeration vars which are integer constants whlie the compilation is started;
 
-enum colors {red, green, blue}; // enum is a keyword; colors is a name of enum; red ,green and blue are integer constants of enum;
+enum colors {red, green, blue}; // enum is a keyword; colors is a name of enum; red, green and blue are integer constants of enum;
 enum keys {vk_enter = 27, vk_space, vk_del = 30};
 enum {
     go = 0x1f00,
