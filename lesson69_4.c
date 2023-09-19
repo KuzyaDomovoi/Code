@@ -15,8 +15,8 @@ int main(void)
 {
     PTR_EVEN func_even = is_even;
 
-    printf("%d\n", func_even(2)); // == 1; 2 is even;
-    printf("%d\n", func_even(3)); // == 0; 3 is odd;
+    printf("%d\n", func_even(2)); // == 1 (true) - is even;
+    printf("%d\n", func_even(3)); // == 0 (false) - is odd;
 
     char ar_2d[5][4] = {0};
     PTR_AR_2D ptr_2d = ar_2d;
