@@ -11,7 +11,7 @@ void *append(short *data, size_t *length, size_t *capacity, short value)
         (*capacity) *= 2;
 //      short *ar = malloc(sizeof(short) * *capacity); // creating new temp array 'ar', malloc for it and doubling it;
         
-        short *ar = realloc(data,  sizeof(short) * *capacity);
+        short *ar = realloc(data, sizeof(short) * *capacity);
 
         if(ar == NULL) // if malloc will not be performed than
             return data; // return value data;
@@ -35,6 +35,7 @@ void *append(short *data, size_t *length, size_t *capacity, short value)
 
 int main(void)
 {
+/*
     char *ar = malloc(10); // return NULL or memory allocating (malloc) for 10 bytes from Heap (main memory section);
     int *ptr_int = malloc(sizeof(int)); // return NULL or memory allocating (malloc) for size value of datatype 'int' (4 bytes) from Heap (main memory section);
     short * ptr_short = malloc(7 * (sizeof(short))); // return NULL or memory allocating  (malloc) for 7 elements of value of datatype short (2 bytes) = 14 bytes from Heap (main memory section);
@@ -42,7 +43,7 @@ int main(void)
     free(ar); // freeing up the Heap for *ar;
     free(ptr_int); // freeing up the Heap for *ptr_int;
     free(ptr_short); // freeing up the Heap for *ptr_short;
-
+*/
 // Memory leak;
 
 // Dynamical array:
