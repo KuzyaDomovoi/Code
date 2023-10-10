@@ -7,7 +7,6 @@ void* append(short* data, size_t *length, size_t *capacity, short value)
         short* ar = realloc(data, sizeof(short) * 2 * *capacity);
         if(ar == NULL)
             return data;
- 
         (*capacity) *= 2;
         data = ar;
     }
