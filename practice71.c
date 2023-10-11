@@ -28,9 +28,10 @@ int main(void)
     size_t length = 0;
  
     short* data = malloc(sizeof(short) * capacity);
- 
-    for(int i = 0; i < 11;++i)
-        data = append(data, &length, &capacity, rand() % 40 - 20);
+    short marks[] = {1, 2, 3, 4, 5, 6};
+
+    for(int i = 0; i < sizeof(marks) / sizeof(*marks);++i)
+        data = append(data, &length, &capacity, marks[i]);
  
     printf("length = %lu, capacity = %lu\n", length, capacity);
  
