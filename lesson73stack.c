@@ -17,7 +17,7 @@ OBJ* push(OBJ* top, int data) // the func push adds a new object in the stack
     return ptr; // via ptr returns the address of a new added object in the stack;
 }
 
-OBJ* pop(OBJ* top) // the func pop pulls the objects out the stack;
+OBJ* pop(OBJ* top) // the func pop pulls the current top object out the stack;
 {
     if(top == NULL)
         return top;
