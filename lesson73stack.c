@@ -5,7 +5,7 @@
 
 typedef struct tag_obj {
     int data; // stored data in stack;
-    struct tag_obj* next; // pointer *next refers to the next following it object in stack;
+    struct tag_obj* next; // pointer next refers to the next following object in the stack;
     } OBJ; // new datatype of struct tag_obj;
 
 OBJ* push(OBJ* top, int data) // the func push adds a new object in the stack))
