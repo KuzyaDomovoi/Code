@@ -33,9 +33,8 @@ void show(const OBJ* top) // the func shows the all objects in the stack;
     while (current != NULL) // loop while itarate the values until the current value will be equaled NULL;
     {
         printf("%d\n", current->data); // output the current object in the stack;
-        current = current->next; // go to the next lower object in the stack or to the value NULL (the loop will be end);
+        current = current->next; // go to the next lower object in the stack or to the value NULL (than the loop will be end);
     }
-    
 }
 
 int main(void)
