@@ -22,7 +22,7 @@ OBJ* pop(OBJ* top) // the func pop pulls the current top object out the stack;
     if(top == NULL)
         return top;
     printf("Deleted: %d\n", top->data); // for look up the currently pulled object out the stack;
-    OBJ* ptr_next = top->next; // assigning the address of the next lower object to the current (top) object;
+    OBJ* ptr_next = top->next; // assigning the address of the next lower object to the current top object;
     free(top); // makes free the allocated memory cells for the pulled object out the stack (deletes the current top object);
     return ptr_next; // returns the address of next lower object or the value NULL when no more object exist in the stack already;
 }
