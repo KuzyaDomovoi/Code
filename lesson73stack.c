@@ -8,10 +8,10 @@ typedef struct tag_obj {
     struct tag_obj* next; // pointer next refers to the next following object in the stack;
     } OBJ; // new datatype of struct tag_obj;
 
-OBJ* push(OBJ* top, int data) // the func push adds a new object in the stack))
+OBJ* push(OBJ* top, int data) // the func push adds a new object in the stack
 {
     OBJ* ptr = malloc(sizeof(OBJ)); // it is a temporary pointer referring to allocated in HEAP memory cells for a new object in stack;
-    ptr->data = data; // using the temp ptr copying a value of data;
+    ptr->data = data; // using the temporary pointer copying a value of current data;
     printf("Added: %d\n", data); // for look up the currently added object to the stack;
     ptr->next = top; // pointer next copies the address, that is, refers to next (top) object added via func push of the stack currently;
     return ptr; // to new added object in the stack via ptr;
