@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
+#define MARKS {4, 5, 5, 5, 5, 4, 5, 4, 5, 5, 5, 5, 5, 5, 5};
 
 enum {name_length = 50, b_length = 20};
 
@@ -15,9 +18,30 @@ struct tag_person {
     char birstday_date[b_length];
 };
 
-struct tag_array {
-    int marks[b_length];
-};
+//struct tag_array {
+    //int marks[b_length];
+//};
+
+void* append(short* data, size_t *length, size_t *capacity, short value)
+{
+    if(*length >= *capacity) {
+        short* ar = malloc(sizeof(short) * 2 * *capacity);
+        if(ar == NULL)
+            return data;
+            
+        (*capacity) *= 2;
+        for(int i = 0;i < *length;++i)
+            ar[i] = data[i];
+        
+        free(data);
+        data = ar;
+    }
+ 
+    data[*length] = value;
+    (*length)++;
+    
+    return data;
+}
 
 int main(void)
 {
@@ -34,15 +58,29 @@ int main(void)
     struct tag_person p;
     p = person;
 
-    printf("name: %s, last: %s\n", p.fio.name, p.fio.last);
-    printf("sex: %c, birstday_date: %s\n", p.sex, p.birstday_date);
+    printf("name: %s\nlast: %s\n", p.fio.name, p.fio.last);
+    printf("sex: %c\nbirstday_date: %s\n", p.sex, p.birstday_date);
     printf("old: %d\n", p.old);
+    printf("marks: ");
 
-    struct tag_array marks_1 = {4, 5, 5, 4, 5, 5};
-    struct tag_array marks_2;
-    marks_2 = marks_1;
-    for(int i = 0; i < sizeof(marks_2.marks) / sizeof(*marks_2.marks); ++i)
-        printf("%d", marks_2.marks[i]);
+    //struct tag_array marks_1 = {4, 5, 5, 4, 5, 5, 4, 5, 5, 5, 5, 4, 5, 5};
+    //struct tag_array marks_2;
+    //marks_2 = marks_1;
+    //for(int i = 0; i < sizeof(marks_2.marks) / sizeof(*marks_2.marks); ++i)
+        //printf("%d ", marks_2.marks[i]);
+
+    size_t capacity = 10;
+    size_t length = 0;
+ 
+    short* data = malloc(sizeof(short) * capacity);
+    short marks[] = MARKS;
+
+    for(int i = 0; i < sizeof(marks) / sizeof(*marks); ++i)
+        data = append(data, &length, &capacity, marks[i]);
+
+    for(int i = 0; i < length; ++i)
+        printf("%d ", data[i]);
+    free(data);
 
     return 0;
 }
