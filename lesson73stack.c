@@ -40,7 +40,7 @@ void show(const OBJ* top) // the func shows the all objects in the stack;
 
 int main(void)
 {
-    OBJ* top = NULL; // it is a initial (or top) object of pointer OBJ; if it equall NULL than stack is empty or it refers to the end of stack;
+    OBJ* top = NULL; // pointer OBJ refers to an initial (or top) object in the stack; if it is equall NULL than stack is empty or it refers to the end of the stack;
     top = push(top, 1); // assigning (adding) the address of new object; 
     top = push(top, 2);
     top = push(top, 3);
