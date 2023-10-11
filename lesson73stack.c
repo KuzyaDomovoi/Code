@@ -4,7 +4,7 @@
 // stack (LIFO - last in first out);
 
 typedef struct tag_obj {
-    int data; // stored data in stack;
+    int data; // stored data (objects) in stack;
     struct tag_obj* next; // pointer next refers to the next following object in the stack;
     } OBJ; // new datatype of struct tag_obj;
 
