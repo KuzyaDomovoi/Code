@@ -5,11 +5,11 @@
 //#define BYTE unsigned char // is processed by preprocessor;
 //typedef unsigned char BYTE; // unlike the '#define' directive the 'typedef' statement is processed by the complier itself;
 
-#define PTR_INT int* // declaration the pointer PTR in '#define' directive ;
+#define PTR_INT int* // declaration the pointer PTR in '#define' directive;
 
 typedef int* PTR; // declaration the pointer PTR in 'typedef' directive;
 
-typedef enum { // so it is a composite typedata than after the keyword 'enum' its name is not assigning;
+typedef enum { // so it is a composite typedata, that is after the keyword 'enum' its name is not to assign;
     buffer_size = 2048,
     element_size = 12,
     window_size = 400

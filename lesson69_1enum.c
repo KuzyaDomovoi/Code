@@ -17,6 +17,7 @@ int main(void)
     printf("red = %d, green = %d, blue = %d\n", red, green, blue);
     
     enum keys k_var = vk_enter + 2 - vk_space; // the (int) 'k_var' is a var of 'enum keys' datatype and can take any value;
+    printf("k_var = %d\n", k_var);
 
     switch (k_var)
     {
