@@ -13,7 +13,7 @@ typedef enum { // so it is a composite typedata, that is after the keyword 'enum
     buffer_size = 2048,
     element_size = 12,
     window_size = 400
-} SIZE_CONSTS; // name change for enum {...} with using the 'typedef' directive;
+} SIZE_CONSTS; // definition a new datatype; name change for enum {...} with using the 'typedef' directive;
 
 int main(void)
 {
