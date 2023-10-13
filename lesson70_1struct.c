@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// struct is a keyword used to storing coordinates of points in the thtee-dimentional space;
+// struct is a keyword used to storing coordinates of points in the thtee-dimentional space with different cell addresses;
 
 struct tag_point { // struct - is the keyword of a new datatype (composite), tag_point - is an optional name;
     int x; // 4 bytes;     int x; int y; int z; - are the set of vars;
