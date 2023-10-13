@@ -34,7 +34,7 @@ struct tag_point4 {
 
 int main(void)
 {
-    struct tag_point pt; // var pt ia a composite datatype of points x, y, z in the three-dim space 
+    struct tag_point pt; // var pt is a composite datatype of points x, y, z in the three-dim space 
     pt.x = 1; // is int x inside the struct tag_point;
     pt.y = 2; // is int y inside the struct tag_point;
     pt.z = 3; // is int z inside the struct tag_point;

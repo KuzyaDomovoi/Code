@@ -20,9 +20,9 @@ int main(void)
 
     char ar_2d[5][4] = {0};
     PTR_AR_2D ptr_2d = ar_2d;
-    ptr_2d[1][2] = 5;
+    ptr_2d[0][1] = 5;
    
-    printf("%d\n", ptr_2d[1][2]); // 5;
+    printf("%d\n", ptr_2d[0][1]); // 5;
 
     return 0;
 }
