@@ -35,11 +35,11 @@ struct tag_point4 {
 int main(void)
 {
     struct tag_point pt; // var pt is a composite datatype of points x, y, z in the three-dim space 
-    pt.x = 1; // is int x inside the struct tag_point;
-    pt.y = 2; // is int y inside the struct tag_point;
-    pt.z = 3; // is int z inside the struct tag_point;
+    pt.x = 1; // is int x inside the struct tag_point for var pt;
+    pt.y = 2; // is int y inside the struct tag_point for var pt;
+    pt.z = 3; // is int z inside the struct tag_point for var pt;
     size_t sz_pt = sizeof(pt);
-    size_t sz_st = sizeof(struct tag_point);
+    size_t sz_st = sizeof(struct tag_point); // so that is struct tag_point is decl as var pt;
     printf("x = %d, y = %d, z = %d\n", pt.x, pt.y, pt.z);    
     printf("sz_pt = %ld\nsz_st = %ld\n", sz_pt, sz_st);
 
