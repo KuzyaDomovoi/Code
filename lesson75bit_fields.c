@@ -6,9 +6,9 @@ struct date_time {
     unsigned int day : 5; // 5 bit
     unsigned mounth : 4;
     unsigned year : 12;
-    unsigned sec : 6;
-    unsigned min : 6;
     unsigned hour : 5;
+    unsigned min : 6;
+    unsigned sec : 6;
 };
 
 // 5 + 4 + 12 + 6 + 6 + 5 = 32 + 6 (bit) => 4 + 4 = 8 (byte);
@@ -16,7 +16,7 @@ struct date_time {
 int main(void)
 {
     struct date_time dt;
-    struct date_time dtime = {14, 10, 2023, 14, 35, 10};
+    struct date_time dtime = {14, 10, 2023, 14, 43, 18};
     char week[] = "sat";
 
     printf("%ld\n", sizeof(dtime));
