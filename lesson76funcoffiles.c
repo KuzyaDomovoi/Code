@@ -13,23 +13,23 @@ int main(void)
     FILE* fp = fopen("my_file.txt", "w"); // create a FILE my_file.txt with w-acces;
     if(fp == NULL) // checking fileopening for errors; 
         return 1; // off func;
-    for(int i = 0; i < str[i]; ++i) // iterate i-data(chars) to reading the str;
-        fputc(str[i], fp); // put the chars of str in FILE;
+    for(int i = 0; i < str[i]; ++i) // iterate i-data(chars) to reading the var str;
+        fputc(str[i], fp); // put the chars of the var str in the FILE 'fp';
     fclose(fp); // clouse the FILE 'fp' and store its data in file stream buffer;
     
-    FILE* in = fopen("my_file.txt", "r"); // read the FILE my_file.txt with r-acces;
+    FILE* in = fopen("my_file.txt", "r"); // read the FILE fp 'my_file.txt' with r-acces;
     if(in == NULL) // checking fileopening for errors;
         return 2; 
     
-    char ch; // decl a new tenmorary variable ch;
-    int i = 0; // decl a new temporary variable i = 0 (counter);
-    while((ch = fgetc(in)) != EOF) // byte reading FILE 'in' until EOF using temp var ch;
-        buff[i++] = ch; // put current char 'ch' of FILE 'in' to var buff[100];
-    buff[i] = '\0'; // put char EOF;
+    char ch; // declaration a new tenmorary variable ch;
+    int i = 0; // declaration a new temporary variable i = 0 (counter);
+    while((ch = fgetc(in)) != EOF) // byte reading the FILE 'in' until EOF using the temp var ch;
+        buff[i++] = ch; // put the current char 'ch' of the FILE 'in' to the var buff[100];
+    buff[i] = '\0'; // put the char EOF;
     
-    puts(buff); // output values of var buff[100];
+    puts(buff); // output values of the var buff[100];
 
-    fclose(in); // clouse the FILE 'in' and store its data in file stream buffer;
+    fclose(in); // clouse the FILE 'in' and store its date in file stream buffer;
     //fclose(fp);
     
     return 0;
