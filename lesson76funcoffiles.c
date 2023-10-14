@@ -24,7 +24,7 @@ int main(void)
     char ch; // decl a new tenmorary variable ch;
     int i = 0; // decl a new temporary variable i = 0 (counter);
     while((ch = fgetc(in)) != EOF) // byte reading FILE 'in' until EOF using temp var ch;
-        buff[i++] = ch; // put curent char 'ch' of FILE 'in' to var buff[100];
+        buff[i++] = ch; // put current char 'ch' of FILE 'in' to var buff[100];
     buff[i] = '\0'; // put char EOF;
     
     puts(buff); // output values of var buff[100];
