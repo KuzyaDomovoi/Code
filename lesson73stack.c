@@ -10,11 +10,11 @@ typedef struct tag_obj {
 
 OBJ* push(OBJ* top, int data) // the func push adds a new object in the stack
 {
-    OBJ* ptr = malloc(sizeof(OBJ)); // it is a temporary pointer referring to allocated in HEAP memory cells for a new object in stack;
+    OBJ* ptr = malloc(sizeof(OBJ)); // OBJ* ptr is a temporary pointer referring to allocated in HEAP the memory cells for a new object in stack;
     ptr->data = data; // using the temporary pointer copying a value of current data;
     printf("Added: %d\n", data); // for look up the currently added object to the stack;
-    ptr->next = top; // pointer next copies the address, that is, refers to next (top) object added via func push of the stack currently;
-    return ptr; // via ptr returns the address of a new added object in the stack;
+    ptr->next = top; // pointer 'next' copies the address, that is, refers to next (top) object added via func push of the stack currently;
+    return ptr; // via ptr is returned the address of a new added object in the stack;
 }
 
 OBJ* pop(OBJ* top) // the func pop pulls the current top object out the stack;
