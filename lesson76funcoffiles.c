@@ -15,7 +15,7 @@ int main(void)
         return 1; // off func;
     for(int i = 0; i < str[i]; ++i) // iterate i-data(chars) to reading the str;
         fputc(str[i], fp); // put the chars of str in FILE;
-    fclose(fp);
+    fclose(fp); // clouse the FILE 'fp' and store its data in file stream buffer;
     
     FILE* in = fopen("my_file.txt", "r"); // read the FILE my_file.txt with r-acces;
     if(in == NULL) // checking fileopening for errors;
@@ -29,8 +29,8 @@ int main(void)
     
     puts(buff); // output values of var buff[100];
 
-    fclose(in); // clouse the FILE and store its data in file stream buffer;
-    //fclose(fp); // clouse the FILE and store its data in file stream buffer;
+    fclose(in); // clouse the FILE 'in' and store its data in file stream buffer;
+    //fclose(fp);
     
     return 0;
 }
