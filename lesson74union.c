@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// union is a keyword for storing of only one last saved volume in the memory cells with single cell address for each var;
+// union is a keyword for storing of only the last saved volume in the memory cells with single cell's address for each variable;
 // the keyword allows to save memory space when the large volumes of vars are used;
 
 union tag_var {
