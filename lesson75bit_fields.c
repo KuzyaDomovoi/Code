@@ -16,7 +16,7 @@ struct date_time {
 int main(void)
 {
     struct date_time dt;
-    struct date_time dtime = {3, 5, 2023, 11, 7, 10};
+    struct date_time dtime = {14, 10, 2023, 14, 35, 10};
     char week[] = "sat";
 
     printf("%ld\n", sizeof(dtime));
