@@ -16,8 +16,8 @@ a+ 	Append and read (append or create). End of the file;
 
 int main(void)
 {
-    char str[] = "Function fputc() in action.";
-    char str_2[] = "\nFunction fputc() in action with a+-acces.";
+    char str[] = "Function fputc() in action. ";
+    char str_2[] = "Function fputc() in action with a-acces. ";
     char buff[100]; // decl var buff for 100 chars;
     
     FILE* fp = fopen("my_file.txt", "w"); // create a FILE my_file.txt with w-acces;
