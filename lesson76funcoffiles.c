@@ -29,7 +29,7 @@ int main(void)
         fputc(str_1[i], fp); // put the chars of the var str in the FILE 'fp';
     fclose(fp); // clouse the FILE 'fp' and store its data in file stream buffer;
 
-     FILE* fpp = fopen("my_file.txt", "w"); 
+     FILE* fpp = fopen("my_file.txt", "w+"); 
     if(fpp == NULL)
         return 2; 
     for(int i = 0; i < str_2[i]; ++i) 
@@ -52,7 +52,7 @@ int main(void)
 
     FILE* in = fopen("my_file.txt", "r"); // read the FILE 'my_file.txt' with r-acces;
     if(in == NULL) // checking fileopening for errors;
-        return 4;
+        return 5;
 
     char ch; // declaration a new tenmorary variable ch;
     int i = 0; // declaration a new temporary variable i = 0 (counter);
