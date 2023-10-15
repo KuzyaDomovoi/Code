@@ -5,16 +5,16 @@ void show_field_0(const char (*gf)[N]) // represented as 2D-array auxiliary func
 {
     for(int i = 0; i < N; ++i) { // iterate the rows of game field;
         for(int j = 0; j < N; ++j) // iterate the cols of game field;
-            printf("%c ", (gf[i][j] == 0) ? '#' : '0'); // output sing '#' if current value is '0' (closed) or sign '0' if current value is '1' (opened);
-        putchar('\n'); // transfer the current char in loop to next row;
+            printf("%c ", (gf[i][j] == 0) ? '#' : '0'); // output sing '#' if the urrent cell of game_field is closed(== 0) else - sign '0';
+        putchar('\n'); // transfers the current char in loop to next row;
     }
 }
 
-void open_zeros(const char (*gf)[N], char (*pf)[N], int i, int j) // is rcs func and it opens cells ([i], [j]) of game feld which have value 0;
+void open_zeros(const char (*gf)[N], char (*pf)[N], int i, int j) // the rcs func opens cells ([i], [j]) of game feld which have value '0';
 {
-    if(gf[i][j] != 0 || pf[i][j] == 1) // if current cell by game field (gf) has not value '0' or (||) is already opened (== 1) by play_field (pf) than return no action;
-        return;
-    pf[i][j] = 1; // else (taht is current cell is zero and closed now) it shold be open (1) by rcs func:
+    if(gf[i][j] != 0 || pf[i][j] == 1) 
+        return; // returns no action if current cell by game_field has not value '0' or it is already opened(== 1) by play_field;
+    pf[i][j] = 1; // else (taht is current cell has value '0' and closed(0) now) it shold be open(1) by rcs func:
     if(i - 1 >= 0 && gf[i - 1][j] == 0) open_zeros(gf, pf, i - 1, j); // check neighboring cells to 1 cell left direction for value zero and it to open;
     if(i + 1 <  N && gf[i + 1][j] == 0) open_zeros(gf, pf, i + 1, j); // check neighboring cells to 1 cell right direction for value zero and it to open;
     if(j - 1 >= 0 && gf[i][j - 1] == 0) open_zeros(gf, pf, i, j - 1); // check neighboring cells to 1 cell up direction for value zero and it to open;
@@ -25,16 +25,16 @@ void show_field_1(const char (*gf)[N])
 {
     for(int i = 0; i < N; ++i) { 
         for(int j = 0; j < N; ++j)
-            printf("%c ", (gf[i][j] == 1) ? '#' : '1');
+            printf("%c ", (gf[i][j] == 0) ? '#' : '1'); // output sing '#' if the urrent cell of game_field is closed(== 0) else - sign '1';
         putchar('\n');
     }
 }
 
-void open_ones(const char (*gf)[N], char (*pf)[N], int i, int j) // if current cell by game field (gf) has not value '1' or (||) is already opened (== 1) by play_field (pf) than return no action;
+void open_ones(const char (*gf)[N], char (*pf)[N], int i, int j) // the rcs func opens cells ([i], [j]) of game feld which have value '1';
 {
-    if(gf[i][j] != 1 || pf[i][j] == 1)
-        return;
-    pf[i][j] = 1; 
+    if(gf[i][j] != 1 || pf[i][j] == 1) 
+        return; // returns no action if current cell by game_field has not value '1' or it is already opened(== 1) by play_field;
+    pf[i][j] = 1; // else (taht is current cell has value '1' and closed(0) now) it shold be open(1) by rcs func:
     if(i - 1 >= 0 && gf[i - 1][j] == 1) open_ones(gf, pf, i - 1, j); 
     if(i + 1 <  N && gf[i + 1][j] == 1) open_ones(gf, pf, i + 1, j); 
     if(j - 1 >= 0 && gf[i][j - 1] == 1) open_ones(gf, pf, i, j - 1); 
