@@ -16,17 +16,17 @@ a+ 	Append and read (append or create). End of the file;
 
 int main(void)
 {
-    char str[] = "Function fputc() in action with w-acces.";
+    char str_1[] = "Function fputc() in action with w-acces.";
     char str_2[] = "Function fputc() in action with w+-acces.";
     char str_3[] = "Function fputc() in action with a-acces.";
     char str_4[] = "Function fputc() in action with a+-acces.";
-    char buff[200]; // decl var buff for 100 chars;
+    char buff[400]; // decl var buff for 100 chars;
     
     FILE* fp = fopen("my_file.txt", "w"); // create a FILE my_file.txt with w-acces;
     if(fp == NULL) // checking fileopening for errors; 
         return 1; // return if could not open the FILE;
-    for(int i = 0; i < str[i]; ++i) // iterate i-data(chars) to reading the var str;
-        fputc(str[i], fp); // put the chars of the var str in the FILE 'fp';
+    for(int i = 0; i < str_1[i]; ++i) // iterate i-data(chars) to reading the var str;
+        fputc(str_1[i], fp); // put the chars of the var str in the FILE 'fp';
     fclose(fp); // clouse the FILE 'fp' and store its data in file stream buffer;
 
      FILE* fpp = fopen("my_file.txt", "w"); 
