@@ -5,6 +5,15 @@
 // "r", "w", "a", "r+", "w+", "a+"; fopen() with acces to fileactions;
 // "rb", "wb", "ab", "rb+", "wb+", "ab+"; fopen() with (..b)binary acces to faleactions;
 
+/*
+r 	Read-only. Beginning of the file;
+r+ 	Read and write (updating). Beginning of the file;
+w 	Write-only (overwrite or create). Beginning of the file;
+w+ 	Write and read (overwrite or create). Beginning of the file;
+a 	Append-only (append or create). End of the file;
+a+ 	Append and read (append or create). End of the file;
+*/
+
 int main(void)
 {
     char str[] = "Function fputc() in action.";
