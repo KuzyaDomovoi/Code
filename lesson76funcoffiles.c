@@ -29,7 +29,7 @@ int main(void)
         fputc(str_1[i], fp); // put the chars of the var str in the FILE 'fp';
     fclose(fp); // clouse the FILE 'fp' and store its data in file stream buffer;
 
-     FILE* fpp = fopen("my_file.txt", "w+"); 
+    FILE* fpp = fopen("my_file.txt", "w+"); 
     if(fpp == NULL)
         return 2; 
     for(int i = 0; i < str_2[i]; ++i) 
@@ -63,7 +63,6 @@ int main(void)
     puts(buff); // output values of the var buff[100];
     
     fclose(in); // clouse the FILE 'in' and store its date in file stream buffer;
-    //fclose(fp);
-    
+        
     return 0;
 }
