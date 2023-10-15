@@ -1,10 +1,10 @@
 #include <stdio.h>
 #define N 5
 
-void show_feld_0(const char (*gf)[N]) // represented as 2D-array auxiliary func dysplays the game feld;
+void show_field_0(const char (*gf)[N]) // represented as 2D-array auxiliary func dysplays the game field;
 {
-    for(int i = 0; i < N; ++i) { // iterate the rows of game feld;
-        for(int j = 0; j < N; ++j) // terate the cols of game feld;
+    for(int i = 0; i < N; ++i) { // iterate the rows of game field;
+        for(int j = 0; j < N; ++j) // iterate the cols of game field;
             printf("%c ", (gf[i][j] == 0) ? '#' : '0'); // output sing '#' if current value is '0' (closed) or sign '0' if current value is '1' (opened);
         putchar('\n'); // transfer the current char in loop to next row;
     }
@@ -12,16 +12,16 @@ void show_feld_0(const char (*gf)[N]) // represented as 2D-array auxiliary func 
 
 void open_zeros(const char (*gf)[N], char (*pf)[N], int i, int j) // is rcs func and it opens cells ([i], [j]) of game feld which have value 0;
 {
-    if(gf[i][j] != 0 || pf[i][j] == 1) // if current cell by game play is not zero or (||) is already opened by play_feld than return no action;
+    if(gf[i][j] != 0 || pf[i][j] == 1) // if current cell by game field (gf) is not zero or (||) is already opened by play_field (pf) than return no action;
         return;
-    pf[i][j] = 1; // else if current cell is zero and is closed now then it shold be open by rcs func:
+    pf[i][j] = 1; // else if current cell is zero and closed now it shold be open by rcs func:
     if(i - 1 >= 0 && gf[i - 1][j] == 0) open_zeros(gf, pf, i - 1, j); // check neighboring cells to 1 cell left direction for value zero and it to open;
     if(i + 1 <  N && gf[i + 1][j] == 0) open_zeros(gf, pf, i + 1, j); // check neighboring cells to 1 cell right direction for value zero and it to open;
     if(j - 1 >= 0 && gf[i][j - 1] == 0) open_zeros(gf, pf, i, j - 1); // check neighboring cells to 1 cell up direction for value zero and it to open;
     if(j + 1 <  N && gf[i][j + 1] == 0) open_zeros(gf, pf, i, j + 1); // check neighboring cells to 1 cell down direction for value zero and it to open;
 }
 
-void show_feld_1(const char (*gf)[N])
+void show_field_1(const char (*gf)[N])
 {
     for(int i = 0; i < N; ++i) { 
         for(int j = 0; j < N; ++j)
@@ -52,7 +52,7 @@ void show_all(const char (*gf)[N])
 
 int main(void)
 {
-    char game_feld[N][N] = { // the array define a situation on the game feld by size N x N;
+    char game_field[N][N] = { // the array define a situation on the game field by size N x N;
                             {1, 1, 1, 1, 1},
                             {1, 1, 0, 1, 1},
                             {0, 0, 0, 0, 1},
@@ -60,16 +60,16 @@ int main(void)
                             {1, 1, 0, 1, 1},
     };
 
-    char play_feld[N][N] = {0}; // the array define whether cells are opened (1) or cloused (0), in this case ( = {0}) all cells are closed to show; 
-    show_feld_0(play_feld); // call the func with all closed cells in game feld initially, that is with symb '#';
-    open_zeros(game_feld, play_feld, 3, 3); // 2, 2 are indexes of cell which will be opened firstly;
+    char play_field[N][N] = {0}; // the array define whether cells are opened (1) or cloused (0), in this case ( = {0}) all cells are closed to show; 
+    show_field_0(play_field); // call the func with all closed cells in game feld initially, that is with symb '#';
+    open_zeros(game_field, play_field, 3, 3); // 2, 2 are indexes of cell which will be opened firstly;
     puts("---------"); // delimeter;
-    show_feld_0(play_feld); // show the game feld after recursive check of cells of game feld;
-    open_ones(game_feld, play_feld, 2, 2);
+    show_field_0(play_field); // show the game field after recursive check of cells of game feld;
+    open_ones(game_field, play_field, 2, 2);
     puts("---------");
-    show_feld_1(play_feld);
+    show_field_1(play_field);
     puts("---------");
-    show_all(game_feld);
+    show_all(game_field);
 
     return 0;
 }
