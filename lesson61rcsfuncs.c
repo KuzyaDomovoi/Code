@@ -4,7 +4,7 @@ int rcs(int x)
 {
 
 // (void rcs(int x));
-/* Recursive funcs is the funcs which are called themselves
+/* Recursive funcs are the funcs which are called themselves
 and is used to iterate some hierarhical binary data or
 directories and files which have complex structure or when
 the use of loops is very difficult;
