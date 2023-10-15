@@ -17,8 +17,9 @@ a+ 	Append and read (append or create). End of the file;
 int main(void)
 {
     char str[] = "Function fputc() in action.";
+    char str_2[] = "\nFunction fputc() in action with a+-acces.";
     char buff[100]; // decl var buff for 100 chars;
-
+    
     FILE* fp = fopen("my_file.txt", "w"); // create a FILE my_file.txt with w-acces;
     if(fp == NULL) // checking fileopening for errors; 
         return 1; // off func;
@@ -26,18 +27,25 @@ int main(void)
         fputc(str[i], fp); // put the chars of the var str in the FILE 'fp';
     fclose(fp); // clouse the FILE 'fp' and store its data in file stream buffer;
     
-    FILE* in = fopen("my_file.txt", "r"); // read the FILE fp 'my_file.txt' with r-acces;
+    FILE* fa = fopen("my_file.txt", "a");
+    if(fa == NULL)
+        return 2;
+    for(int i = 0; i < str_2[i]; ++i)
+        fputc(str_2[i], fa);
+    fclose(fa);
+
+    FILE* in = fopen("my_file.txt", "r"); // read the FILE 'my_file.txt' with r-acces;
     if(in == NULL) // checking fileopening for errors;
-        return 2; 
-    
+        return 3;
+
     char ch; // declaration a new tenmorary variable ch;
     int i = 0; // declaration a new temporary variable i = 0 (counter);
     while((ch = fgetc(in)) != EOF) // byte reading the FILE 'in' until EOF using the temp var ch;
-        buff[i++] = ch; // put the current char 'ch' of the FILE 'in' to the var buff[100];
+        buff[i++] = ch; // put the current char 'ch' of the FILE 'in' in the var buff[100];
     buff[i] = '\0'; // put the char EOF;
     
     puts(buff); // output values of the var buff[100];
-
+    
     fclose(in); // clouse the FILE 'in' and store its date in file stream buffer;
     //fclose(fp);
     
