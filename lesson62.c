@@ -45,7 +45,7 @@ void show_all(const char (*gf)[N])
 {
     for(int i = 0; i < N; ++i) { 
         for(int j = 0; j < N; ++j)
-            printf("%d ", (gf[i][j])); // outputs values of the current cell of the game_field;
+            printf("%d ", (gf[i][j])); // outputs a value of the current cell of the game_field;
         putchar('\n');
     }
 }
