@@ -8,7 +8,7 @@ int main(void)
     FILE* in = fopen("my_file2.txt", "w"); 
     if(in == NULL) { 
         printf("errno: %d\n", errno);
-        perror("my_file.txt");
+        perror("my_file2.txt");
         return 1;
     }
     

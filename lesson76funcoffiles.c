@@ -32,7 +32,7 @@ int main(void)
         return 5;
     }
     
-    char ch; // declaration a new tenmorary variable ch;
+    char ch; // declaration a new temporary variable ch;
     int i = 0; // declaration a new temporary variable i = 0 (counter);
     while((ch = fgetc(in)) != EOF) // byte reading the FILE 'in' until EOF using the temp var ch;
         buff[i++] = ch; // put the current char 'ch' of the FILE 'in' in the var buff[100];
