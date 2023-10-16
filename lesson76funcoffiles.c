@@ -51,13 +51,15 @@ int main(void)
     fclose(faa);
 
     FILE* in = fopen("my_file.txt", "r"); // read the FILE 'my_file.txt' with r-acces;
-    if(in == NULL) // checking fileopening for errors;
+    if(in == NULL){ // checking fileopening for errors;
+        puts("File open error"); 
         return 5;
-
+    }
+    
     char ch; // declaration a new tenmorary variable ch;
     int i = 0; // declaration a new temporary variable i = 0 (counter);
     while((ch = fgetc(in)) != EOF) // byte reading the FILE 'in' until EOF using the temp var ch;
-        buff[i++] = ch; // put the current char 'ch' of the FILE 'in' in the var buff[100];
+        buff[i++] = ch; // put the current char 'ch' of the FILE 'in' in the var buff[400];
     buff[i] = '\0'; // put the char EOF;
     
     puts(buff); // output values of the var buff[100];
