@@ -3,6 +3,7 @@
 
 int main(void)
 {
+    /*
     char str[] = "Function fputc with a-acces in action.\n";
     FILE* fw = fopen("/home/kuzya/Documents/k/file_1.txt", "a");
     if(fw == NULL) {
@@ -13,6 +14,7 @@ int main(void)
     for(int i = 0; i < str[i]; ++i)
         fputc(str[i], fw);
     fclose(fw);
+    */
 
     FILE* fr = fopen("/home/kuzya/Documents/k/file_1.txt", "r");
     if(fr == NULL) {
