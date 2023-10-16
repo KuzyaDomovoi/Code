@@ -5,7 +5,7 @@ int main(void)
 {
     char str[] = "Function fputc() in action."; 
 
-    FILE* in = fopen("my_file.txt", "w"); 
+    FILE* in = fopen("my_file2.txt", "w"); 
     if(in == NULL) { 
         printf("errno: %d\n", errno);
         perror("my_file.txt");
