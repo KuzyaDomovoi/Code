@@ -12,7 +12,7 @@ int main(void)
         return 1;
     }
     
-    fseek(in, 0, SEEK_END); // seeks to a certain position on stream;
+    fseek(in, 0, SEEK_END); // the func seeks to a certain(SEEK_END) position on stream;
     int length = ftell(in); // returns current file-position of stream from whence(SEEK_END);
 
     for(int i = 1; i <= length; ++i) { // read all bytes from stream(file 'in');
