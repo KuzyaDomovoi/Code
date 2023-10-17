@@ -2,22 +2,21 @@
 
 int main(void)
 {
-    char google[5000]; 
-    unsigned length = 0; 
+    char buff[30000] = {0};
+    unsigned length = 0;
 
-    FILE* fp = fopen("/home/kuzya/Documents/k/google.csv", "r");
+    FILE* fp = fopen("data_rubusd.csv", "r");
     if(fp == NULL) {
-        perror("google.csv.csv");
+        perror("data_rubusd.csv");
         return 1;
     }
-
-    while(fscanf(fp, "%c", &google[length]) == 1)
+    while(fscanf(fp, "%c", &buff[length]) == 1) 
         length++;
 
-    fclose(fp);
-
     for(int i = 0; i < length; ++i)
-        puts(google);
-
+        printf("%c", buff[i]);
+ 
+    fclose(fp);
+ 
     return 0;
 }
