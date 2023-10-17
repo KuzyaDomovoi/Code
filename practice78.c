@@ -12,11 +12,11 @@ int main(void)
     }
     while(fscanf(fp, "%c", &buff[length]) == 1) 
         length++;
-
+    
+    fclose(fp);
+    
     for(int i = 0; i < length; ++i)
         printf("%c", buff[i]);
- 
-    fclose(fp);
  
     return 0;
 }
