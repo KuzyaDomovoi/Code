@@ -2,7 +2,6 @@
 
 // func fprintf() - performs a formatted read of data from the specified stream;
 
-
 enum {max_length = 1024}; // decl of constanta 'max_length' that is the size of an array;
 
 int main(void)
