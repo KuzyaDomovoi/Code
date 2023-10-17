@@ -16,7 +16,7 @@ int main(void)
     int length = ftell(in); 
 
     for(int i = 0; str[i]; ++i) { 
-        fseek(in, 0, SEEK_SET); 
+        fseek(in, 0, SEEK_SET);
         fputc(str[i], in);
     }
     

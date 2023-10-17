@@ -33,10 +33,10 @@ int main(void)
     }
 
     while(fgets(buffer, sizeof(buffer), fp)) { // the func fgets() reads data from the 'buffer' correctly until 'sizeof(buffer) - 1' in the stream 'fp' because it appends the symbol '\n' to the end of the string automatically and returns the NULL at the end of reading;
-        char *ptr = strchr(buffer, '\n'); // finds and changes the char '\n'(str brake) which was been added by the func 'fgets()' to char '\0'(EOF) in the 'buffer' in each string read;
+        char *ptr = strchr(buffer, '\n'); // the func strchr() finds and changes the char '\n'(str brake) which was been added by the func 'fgets()' to char '\0'(EOF) in the 'buffer' in each string read;
         if(ptr != NULL) // checking when the pointer will be not equaled the NULL at the end of each current string;
             *ptr = '\0'; // than to pointer is assigned the char '\0';
-        puts(buffer); // puts on display the string from the 'buffer' without empty strings;
+        puts(buffer); // puts on display the string from the 'buffer' without empty strings finally;
     }
 
     fclose(fp);
