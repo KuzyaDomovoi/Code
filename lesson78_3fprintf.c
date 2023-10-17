@@ -16,7 +16,7 @@ int main(void)
         perror("my_file4.txt");
         return 1;
     }
- 
+
     for(int i = 0; i < sizeof(phones) / sizeof(*phones); ++i)
         fprintf(fp,"%s(%s)%s-%s-%s\n", 
         phones[i][0], phones[i][1], phones[i][2], 
