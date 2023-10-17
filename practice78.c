@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    char buff[30000] = {0};
+    char buff[1000] = {0};
     unsigned length = 0;
 
     FILE* fp = fopen("data_rubusd.csv", "r");
