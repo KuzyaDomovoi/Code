@@ -23,7 +23,7 @@ int main(void)
     fclose(fp);
 
     for(int i = 0; i < length; ++i)
-        printf("%.3f ", rub_usd[i]);
+        printf("%.2f; ", rub_usd[i]);
 
     return 0;
 }
