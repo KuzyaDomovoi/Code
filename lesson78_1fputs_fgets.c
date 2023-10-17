@@ -1,0 +1,45 @@
+#include <stdio.h> // fputs(), fgets();
+#include <string.h> // strchr();
+
+int main(void)
+{
+    /*
+    const char* str[] = {
+        "- Скажи-ка, дядя, ведь не даром",
+        "Я Python, Си учил с каналом",
+        "Балакирев что раздавал?"
+    };
+    */
+
+   char buffer[100];
+
+    /*
+    FILE* fp = fopen("my_file3.txt", "w");
+    if(fp == NULL) {
+        perror("my_file3.txt");
+        return 1;
+    }
+
+    for(int i = 0; i < sizeof(str) / sizeof(*str); ++i) {
+        fputs(str[i], fp);
+        fputc('\n', fp);
+    }
+    */
+
+    FILE* fp = fopen("my_file3.txt", "r");
+    if(fp == NULL) {
+        perror("my_file3.txt");
+        return 1;
+    }
+
+    while(fgets(buffer, sizeof(buffer), fp)) { // the func fgets()  reads date from the 'buffer' correct until 'sizeof(buffer) - 1' in the stream 'fp' because it appends the symbol '\n' to the end of stream automatically and returns the NULL at the end of reading;
+        char *ptr = strchr(buffer, '\n'); // finds and changes the char '\n'(str brake) which was been added by the func 'fgets()' to char '\0'(EOF) in the 'buffer' in each string read;
+        if(ptr != NULL) // checking when the pointer will be not equaled the NULL at the end of each current string;
+            *ptr = '\0'; // than to pointer is assigned the char '\0';
+        puts(buffer); // puts on display the string from 'buffer' without empty strings;
+    }
+
+    fclose(fp);
+
+    return 0;
+}
