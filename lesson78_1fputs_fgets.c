@@ -3,17 +3,14 @@
 
 int main(void)
 {
-    /*
     const char* str[] = {
         "- Скажи-ка, дядя, ведь не даром",
         "Я Python, Си учил с каналом",
         "Балакирев что раздавал?"
     };
-    */
+    
+    char buffer[100];
 
-   char buffer[100];
-
-    /*
     FILE* fp = fopen("my_file3.txt", "w");
     if(fp == NULL) {
         perror("my_file3.txt");
@@ -24,22 +21,23 @@ int main(void)
         fputs(str[i], fp);
         fputc('\n', fp);
     }
-    */
+    
+    fclose(fp);
 
-    FILE* fp = fopen("my_file3.txt", "r");
-    if(fp == NULL) {
+    FILE* fr = fopen("my_file3.txt", "r");
+    if(fr == NULL) {
         perror("my_file3.txt");
         return 1;
     }
 
-    while(fgets(buffer, sizeof(buffer), fp)) { // the func fgets() reads data from the 'buffer' correctly until 'sizeof(buffer) - 1' in the stream 'fp' because it appends the symbol '\n' to the end of the string automatically and returns the NULL at the end of reading;
+    while(fgets(buffer, sizeof(buffer), fr)) { // the func fgets() reads data from the 'buffer' correctly until 'sizeof(buffer) - 1' in the stream 'fr' because it appends the symbol '\n' to the end of the string automatically and returns the NULL at the end of reading;
         char *ptr = strchr(buffer, '\n'); // the func strchr() finds and changes the char '\n'(str brake) which was been added by the func 'fgets()' to char '\0'(EOF) in the 'buffer' in each string read;
-        if(ptr != NULL) // checking when the pointer will be not equaled the NULL at the end of each current string;
+        if(ptr != NULL) // checking when the pointer will be not equaled the NULL (that is the end of each current string);
             *ptr = '\0'; // than to pointer is assigned the char '\0';
         puts(buffer); // puts on display the string from the 'buffer' without empty strings finally;
     }
 
-    fclose(fp);
+    fclose(fr);
 
     return 0;
 }
