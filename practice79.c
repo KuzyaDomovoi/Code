@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-enum{max_length = 5000};
+enum{max_length = 10000};
 
 int main(void)
 {
