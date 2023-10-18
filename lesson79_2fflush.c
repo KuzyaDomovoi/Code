@@ -17,8 +17,9 @@ int main(void)
     for(int i = 0; i < length; ++i) // iterate the array data;
         fprintf(fp, "%d ", data[i]); // write formatted data from array data to the file 'fp';
  
-    fflush(fp); // transfer data read to file 'fp' and cleaning output stream after data write in file 'fp'; 
- 
+    fflush(fp); // transfers data read to file 'fp' and cleans output stream after data write in file 'fp'; 
+    //fclose(fp);
+    
     int value; // decl a new temporary var for loop 'for' to data read from file 'in';
     for(int i = 0; i < length; ++i)
         if(fscanf(in, "%d ", &value) == 1) // conditions for data read from file 'in' in the var value;
