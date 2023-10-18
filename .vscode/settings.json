@@ -58,7 +58,8 @@
     "files.associations": {
         "stdio.h": "c",
         "vector": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "practice79": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }
