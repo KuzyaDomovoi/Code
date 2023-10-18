@@ -19,10 +19,10 @@ int main(void)
  
     fflush(fp); // transfers data read to file 'fp' and cleans output stream after data write in file 'fp'; 
     //fclose(fp);
-    
+
     int value; // decl a new temporary var for loop 'for' to data read from file 'in';
     for(int i = 0; i < length; ++i)
-        if(fscanf(in, "%d ", &value) == 1) // conditions for data read from file 'in' in the var value;
+        if(fscanf(in, "%d ", &value) == 1) // conditions for data writting from file 'in' to the 'value';
             printf("%d ",value); // output data from var value;
  
     fclose(fp);
