@@ -24,7 +24,7 @@ int main(void)
         puts(buffer); 
 
         for(int i = 0; i < length; ++i)
-            printf("%d", data[i]); 
+            printf("%c", data[i]); 
         putchar('\n');
     }
  
