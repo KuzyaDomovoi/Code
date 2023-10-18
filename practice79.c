@@ -4,7 +4,7 @@ enum{max_length = 5000};
 
 int main(void)
 {
-    char data[max_length];
+    int data[max_length];
     char buffer[max_length];
     int length = 0;
  
@@ -18,13 +18,13 @@ int main(void)
         fgets(buffer, sizeof(buffer), fp);
  
         length = 0;
-        while(fscanf(fp, "%c", &data[length]) == 1)
+        while(fscanf(fp, "%d", &data[length]) == 1)
             length++;
  
         puts(buffer); 
 
         for(int i = 0; i < length; ++i)
-            printf("%c", data[i]); 
+            printf("%d", data[i]); 
         putchar('\n');
     }
  
