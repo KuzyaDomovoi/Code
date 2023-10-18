@@ -30,16 +30,16 @@ int main(void)
         return 1;
     }
 
-    if(setvbuf(fp, buffer, _IOFBF, buffer_size) != 0) {
-        puts("Incorrect type or size of buffer");
+    if(setvbuf(fp, buffer, _IOFBF, buffer_size) != 0) { // condition for errors: if the func 'setvbuf()' return 1 (!= 0) then
+        puts("Incorrect type or size of buffer"); // output a message about error; else transfer to the next statement;
         return 2;
     }
  
-    fgets(data, sizeof(data), fp);
-    puts(buffer);
-    puts("----------------");
-    puts(data);
+    fgets(data, sizeof(data), fp); // reading a current string from file 'fp' by the func 'fgets()';
+    puts(buffer); // output all data currently contained in the buffer;
+    puts("----------------"); // sepatate line;
+    puts(data); // output the current string from the file 'fp') read by the func 'fgets()';
  
-    fclose(fp);
+    fclose(fp); 
     return 0;
 }
