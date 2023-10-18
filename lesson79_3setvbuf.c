@@ -30,8 +30,8 @@ int main(void)
         return 1;
     }
 
-    if(setvbuf(fp, buffer, _IOFBF, buffer_size) != 0) { // condition for errors: if the func 'setvbuf()' return 1 (!= 0) then
-        puts("Incorrect type or size of buffer"); // output a message about error; else transfer to the next statement;
+    if(setvbuf(fp, buffer, _IOFBF, buffer_size) != 0) { // if the func 'setvbuf()' return 1 (!= 0) then is performed
+        puts("Incorrect type or size of buffer"); // an output a message about error; else - transfer to the next statement;
         return 2;
     }
  
