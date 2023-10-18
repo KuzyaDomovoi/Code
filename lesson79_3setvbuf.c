@@ -14,8 +14,8 @@ Buffer operating modes are defined by the fillowing constants:
     _IOLBF – line buffering (cleaning by line break);
     _IONBF – no buffering;
 
-Функция setvbuf() должна вызываться после создания потока, но перед 
-использованием какой-либо операции записи/чтения данных из этого потока;*/
+The func setvbuf() must be called after creating a stream but befor
+using any write/read data opetation from this stream;*/
 
 enum {buffer_size = 512, data_size = 100};
  
