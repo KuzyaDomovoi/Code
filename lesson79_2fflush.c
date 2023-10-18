@@ -15,7 +15,7 @@ int main(void)
     }
  
     for(int i = 0; i < length; ++i) // iterate the array data;
-        fprintf(fp, "%d ", data[i]); // write formatted data from array data to the file 'fp';
+        fprintf(fp, "%d ", data[i]); // write formatted data from array to the file 'fp';
  
     fflush(fp); // transfers data read to file 'fp' and cleans output stream after data write in file 'fp'; 
     //fclose(fp);
