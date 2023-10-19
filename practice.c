@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-enum {str_size = 70, max_rows = 30};
+enum {str_size = 1000, max_rows = 100};
 
 typedef struct
 {
@@ -10,11 +10,11 @@ typedef struct
 int main(void)
 {
     ROW w_string[] = { 
-        {"Srting 1 0.0, 0.0"}, 
-        {"Srting 2 4.23, -21.0"},
-        {"Srting 3 6.65, -31.34"},
-        {"Srting 4 3.2, -44.62"},
-        {"Srting 5 -1.65, 1.0"},
+        {"1 Srting 10 0\n"}, 
+        {"2 Srting 23 21\n"},
+        {"3 Srting 65 31\n"},
+        {"4 Srting 30 44 62\n"},
+        {"5 Srting 65 31\n"},
     };
 
     FILE* fp = fopen("/home/kuzya/Documents/k/2023.xlsx", "wb");
