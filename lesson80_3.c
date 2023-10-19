@@ -1,6 +1,6 @@
 #include <stdio.h>
  
-enum {name_size=10};
+enum {name_size = 10};
  
 typedef struct
 {
@@ -20,7 +20,7 @@ int main(void)
  
     FILE* fp = fopen("my_file6.txt", "wb");
     if(fp == NULL) {
-        perror("my_file.txt");
+        perror("my_file6.txt");
         return 1;
     }
  
