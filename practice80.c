@@ -49,7 +49,7 @@ int main(void)
     
     fclose(fp);
  
-    printf("res = %d\n", res);
+    printf("contacts_number = %d\n", res);
 
     ROW r_contact[max_rows];
     int length = 0; 
