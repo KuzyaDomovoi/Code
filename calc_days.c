@@ -6,7 +6,7 @@ int main(void)
     time_t rawtime, then, now;
     struct tm* timeinfo;
     int year, month, day, hour;
-    double dif;
+    int dif;
  
     printf("Enter year: "); 
     scanf("%d", &year);
@@ -28,11 +28,11 @@ int main(void)
     then = mktime(timeinfo);
     dif = difftime(now, rawtime) + difftime(rawtime, then); // in seconds;
  
-    dif = dif / 3600.0; // in hours;
-    printf("\n %10.1lf hours have passed by since\n",dif);
+    dif = dif / 3600; // in hours;
+    printf("\n %d hours have passed by since\n",dif);
  
     dif = dif / 24; // in days;
-    printf("\n %10.1lf days have passed by since\n",dif);
+    printf("\n %d days have passed by since\n",dif);
  
     getchar();
 
