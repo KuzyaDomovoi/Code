@@ -17,8 +17,8 @@ int main(void)
     printf("Enter hour: "); 
     scanf("%d", &hour);
  
-    time(&rawtime );
-    timeinfo = localtime(&rawtime );
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
     timeinfo->tm_year = year - 1900;
     timeinfo->tm_mon = month - 1;
     timeinfo->tm_mday = day;
