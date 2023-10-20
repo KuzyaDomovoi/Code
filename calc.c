@@ -9,49 +9,47 @@ int main(void)
 {
     int calc_mode;
     double a, b;
-
+    
     printf("Input the first number for calculation: ");
     while(scanf("%lf", &a) != 1) {
-            printf("Error input\n");
+            printf("\nError input!\n");
             return 0;
         }
-
     printf("Input the second number for calculation: ");
     while(scanf("%lf", &b) != 1) {
-            printf("Error input\n");
+            printf("\nError input!\n");
             return 0; 
         }
-    
-    printf("1. addition\n"
-           "2. substraction\n"
-           "3. multiplication\n"
-           "4. division\n"
-           "5. exit\n");
+
+    printf("\n1. addition\n"
+             "2. substraction\n"
+             "3. multiplication\n"
+             "4. division\n"
+             "5. exit\n");
     printf("Select the mode of calculation: ");
 
     if(scanf("%d", &calc_mode) != 1) {
-        printf("\nError input\n");
+        printf("\nError input!\n");
         return 0;
     }
-
     switch(calc_mode) {
     case 1:
-        printf("\nAddition\n");
+        printf("\nAddition:\n");
         double res_add = ADD(a, b);
         printf("%f + %f = %f\n", a, b, res_add);
         return 0;
     case 2:
-        printf("\nSubstraction\n");
+        printf("\nSubstraction:\n");
         double res_sub = SUB(a, b);
         printf("%f - %f = %f\n", a, b, res_sub);
         return 0;
     case 3:
-        printf("\nMultiplication\n");
+        printf("\nMultiplication:\n");
         double res_mul = MUL(a, b);
         printf("%f * %f = %f\n", a, b, res_mul);
         return 0;
     case 4:
-        printf("\nDivision\n");
+        printf("\nDivision:\n");
         if(b == 0) {
             printf("\nError! Division to '0'.\n");
             return 0;
@@ -60,10 +58,10 @@ int main(void)
         printf("%f / %f = %f\n", a, b, res_div);
         return 0;
     case 5:
-        printf("\nExit\n");
+        printf("\nExit.\n");
         return 0;
     default:
-        printf("\nIncorrect symbol\n");
+        printf("\nIncorrect symbol!\n");
         return 0;
     }
 
