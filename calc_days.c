@@ -26,12 +26,12 @@ int main(void)
  
     time(&now);
     then = mktime(timeinfo);
-    dif = difftime(now, rawtime) + difftime(rawtime, then); // in seconds
+    dif = difftime(now, rawtime) + difftime(rawtime, then); // in seconds;
  
-    dif = dif / 3600.0;// in hours
+    dif = dif / 3600.0;// in hours;
     printf("\n %10.1lf hours have passed by since\n",dif);
  
-    dif = dif / 24; // in days
+    dif = dif / 24; // in days;
     printf("\n %10.1lf days have passed by since\n",dif);
  
     getchar();
