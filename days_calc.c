@@ -26,7 +26,7 @@ int main(void)
     dif = difftime(now, rawtime) + difftime(rawtime, then); // in seconds;
  
     dif = dif / 3600 / 24; // in days;
-    printf("\n %d days have passed by since\n",dif);
+    printf("\n%d days have passed by since.\n",dif);
  
     getchar();
 
