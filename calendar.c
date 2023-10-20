@@ -11,7 +11,7 @@ int main()
     scanf("%d", &year);
     time(&now); // get current timeinfo and modify it to the user's choice;
     timeinfo = localtime(&now);
-    timeinfo->tm_year = year - 1900; // years numerated from 1900;
+    timeinfo->tm_year = year - 1900; // years numeration from 1900;
     timeinfo->tm_mon = 0;
  
     int m = -1;
