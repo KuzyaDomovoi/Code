@@ -7,7 +7,7 @@ int main()
     int year;
     char* month[] = {"January", "February", "March", "April", "May", "June", 
                      "July", "August", "September", "October", "November", "December"};
-    printf("YEAR: ");
+    printf("Input needed Year: ");
     scanf("%d", &year);
     time(&now); // get current timeinfo and modify it to the user's choice;
     timeinfo = localtime(&now);
