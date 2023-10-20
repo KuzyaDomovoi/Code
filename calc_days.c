@@ -28,7 +28,7 @@ int main(void)
     then = mktime(timeinfo);
     dif = difftime(now, rawtime) + difftime(rawtime, then); // in seconds;
  
-    dif = dif / 3600.0;// in hours;
+    dif = dif / 3600.0; // in hours;
     printf("\n %10.1lf hours have passed by since\n",dif);
  
     dif = dif / 24; // in days;
