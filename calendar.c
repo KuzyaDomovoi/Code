@@ -30,13 +30,13 @@ int main()
                 m++;
                 break;
             }
-            if(m == 11 && timeinfo->tm_mon == 0) { // "end year" event;
+            if(m == 11 && timeinfo->tm_mon == 0) { // "end of year";
                 m++;
                 break;
             }
             printf("%4d", timeinfo->tm_mday); // routine;
             
-            if(timeinfo->tm_wday == 6) // "end week" event;
+            if(timeinfo->tm_wday == 6) // "end of week";
                 printf("\n");
         }
     }
