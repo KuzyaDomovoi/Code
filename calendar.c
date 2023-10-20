@@ -3,15 +3,16 @@
  
 int main()
 {   time_t now;
-    struct tm * timeinfo;
+    struct tm* timeinfo;
     int year;
     char* month[] = {"January", "February", "March", "April", "May", "June", 
                      "July", "August", "September", "October", "November", "December"};
     
-    printf("YEAR: "); scanf("%d", &year);
+    printf("YEAR: ");
+    scanf("%d", &year);
     time(&now); // get current timeinfo and modify it to the user's choice
     timeinfo = localtime(&now);
-    timeinfo->tm_year = year -1900; // years numerated from 1900;
+    timeinfo->tm_year = year - 1900; // years numerated from 1900;
     timeinfo->tm_mon = 0;
  
     int m = -1;
