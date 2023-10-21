@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <time.h>
- 
+
 int main(void)
-{   time_t now;
+{   
+    time_t now;
     struct tm* timeinfo;
     int year;
     char* month[] = {"January", "February", "March", "April", "May", "June", 
