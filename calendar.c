@@ -19,9 +19,8 @@ int main()
         for(int i = 1; i < 33; i++) { // year days with "overload";
             timeinfo->tm_mday = i;
             mktime(timeinfo); // call mktime: the whole timeinfo for the day will be set;
-    
             if(timeinfo->tm_mon > m) { // "end month" and "overload" processing;
-                printf("\n%28s\n", month[timeinfo->tm_mon]);
+                printf("\n\n%28s\n", month[timeinfo->tm_mon]);
                 printf("  __________________________\n");
                 printf("  Su  Mo  Tu  We  Th  Fr  Sa\n");
                 printf("  __________________________\n");
