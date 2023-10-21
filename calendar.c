@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
  
-int main()
+int main(void)
 {   time_t now;
     struct tm* timeinfo;
     int year;
