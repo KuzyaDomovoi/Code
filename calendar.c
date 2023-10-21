@@ -21,9 +21,9 @@ int main()
             mktime(timeinfo); // call mktime: the whole timeinfo for the day will be set;
     
             if(timeinfo->tm_mon > m) { // "end month" and "overload" processing;
-                printf("\n");
                 printf("\n%28s\n", month[timeinfo->tm_mon]);
-                printf("  Mo  Tu  We  Th  Fr  Sa  Su\n");
+                printf("  __________________________\n");
+                printf("  Su  Mo  Tu  We  Th  Fr  Sa\n");
                 printf("  __________________________\n");
                 for(int j = 0; j < (timeinfo->tm_wday); j++)
                     printf("    ");
