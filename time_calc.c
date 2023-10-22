@@ -6,15 +6,15 @@
 int main(void)
 {
     int calc_mode;
-    unsigned int time_1, time_2;
+    unsigned time_1, time_2;
 
-    unsigned int hour_1 = time_1 / 3600;
-    unsigned int min_1 = (time_1 / 60) % 60;
-    unsigned int sec_1 = time_1 % 60;
+    unsigned hour_1 = time_1 / 3600;
+    unsigned min_1 = (time_1 / 60) % 60;
+    unsigned sec_1 = time_1 % 60;
     
-    unsigned int hour_2 = time_2 / 3600;
-    unsigned int min_2 = (time_2 / 60) % 60;
-    unsigned int sec_2 = time_2 % 60;
+    unsigned hour_2 = time_2 / 3600;
+    unsigned min_2 = (time_2 / 60) % 60;
+    unsigned sec_2 = time_2 % 60;
     
     printf("Input the first data in the format: 'hour.min.sec' for calculation: ");
     while(scanf("%d.%d.%d", &hour_1, &min_1, &sec_1) != 3) {
