@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <time.h>
 
+static inline int get_RUSSIAN_wday(struct tm* tm)
+{
+    return(tm->tm_wday + 6) % 7;
+};
+//:%s/tm->tm_wday/get_RUSSIAN_wday(tm)/g
+
 int main(void)
 {   
     time_t now;
@@ -23,9 +29,9 @@ int main(void)
             if(timeinfo->tm_mon > m) { // "end month" and "overload" processing;
                 printf("\n\n%28s\n", month[timeinfo->tm_mon]);
                 printf("  __________________________\n");
-                printf("  Su  Mo  Tu  We  Th  Fr  Sa\n");
+                printf("  Mo  Tu  We  Th  Fr  Sa  Su\n");
                 printf("  __________________________\n");
-                for(int j = 0; j < (timeinfo->tm_wday); j++)
+                for(int j = 0; j < (get_RUSSIAN_wday(timeinfo)); j++)
                     printf("    ");
                 m++;
                 break;
@@ -36,7 +42,7 @@ int main(void)
             }
             printf("%4d", timeinfo->tm_mday); // routine;
             
-            if(timeinfo->tm_wday == 6) // "end of week";
+            if(get_RUSSIAN_wday(timeinfo) == 6) // "end of week";
                 printf("\n");
         }
     }
