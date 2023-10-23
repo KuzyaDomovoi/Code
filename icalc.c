@@ -34,7 +34,7 @@ int get_op(char op[]) { // the func reads operators or operands;
         op[i] = c; // write the current number to str:
         while(isdigit(op[++i] = (c = getchar()))) // while the each next var 'c' is a number the loop is continue and the number is writted to the string op[];
             ;
-        remember = c; // a value of the var 'c' is assigned to the var 'remember' ;
+        remember = c; // a value of the var 'c' is assigned to the var 'remember';
         op[i] = '\0'; // and 'no terminated sign' is writted at the end; 
         
         return NUMBER; // return the number in thr string op[];
