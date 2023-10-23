@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #define NUMBER 1000
-#define STEAKSIZE 1000
+#define STEAKSIZE 100
 #define SIZE 100
 
 int str_to_int(char str[]){ // the func converts the string to a number;
@@ -16,15 +16,13 @@ int str_to_int(char str[]){ // the func converts the string to a number;
 
 int get_op(char op[]) { // the func reads operators or operands;
     int c = 0; // var for the symbol storing;
-    int i = 0; // the counter for the string op[];
     static int remember = 0; // the var 'remember' is set to '0' initially and then stores a current value entered by the func get_op();
+    int i = 0; // the counter for the string op[];
     if(remember != 0) { // checking if the var 'remember' receives some value (not 0) then
         c = remember; // to the var 'c' is assigned a value of the var 'remember';
         remember = 0; // and then the var 'remember' will be reset to 0 again;
-    }
-    else
+    }else
         c = getchar(); // if the var 'remember' is '0' then to the var 'c' is assigned a symbol read by the func getchar();
-    
     while(c == ' ' || c == '\t') { // the loop skips the indentation or tabulation at beginn incase the var 'c' is a spacesymbol;
         c = getchar();
     }
@@ -61,10 +59,9 @@ int get(void) { // returns the last saved number from the steak;
 
 int main(void)
 {
-    char oper[SIZE]; // the string for operands or operators and is an argument for the func get_op();
-    int op; // the var for the first operand or for an operator;
-    int op2; // the var for the second operand;
-    while((op = get_op(oper)) != 'x') { // if the char 'x' is entered the loop will end;
+    char oper[SIZE]; // the string for operators and is an argument for the func get_op();
+    int op, op2; // the vars for the operands;
+    while((op = get_op(oper)) == 1) { 
         switch(op) { // cheking the var op;
         case NUMBER: // if 'op' is a number
             push(str_to_int(oper)); // then push the number in steak;
@@ -79,31 +76,31 @@ int main(void)
             push(get() + op2); // the operands will be calculated and pushed in the steak initially;
             break;
         case '-':
-            if((op2 = get_op(oper)) == NUMBER) // if the func get_op() returns a number
-                op2 = str_to_int(oper); // to the var op2 is assigned the second operand(number) from the func str_to_int();
+            if((op2 = get_op(oper)) == NUMBER) 
+                op2 = str_to_int(oper); 
             else {
                 printf("There must be a number\n");
-                exit(1); // returns 1 (in stdlib.h) and exit;
+                exit(1); 
             }
-            push(get() - op2); // the operands will be calculated and pushed in the steak initially;
+            push(get() - op2);
             break;
         case '*':
-            if((op2 = get_op(oper)) == NUMBER) // if the func get_op() returns a number
-                op2 = str_to_int(oper); // to the var op2 is assigned the second operand(number) from the func str_to_int();
+            if((op2 = get_op(oper)) == NUMBER) 
+                op2 = str_to_int(oper); 
             else {
                 printf("There must be a number\n");
-                exit(1); // returns 1 (in stdlib.h) and exit;
+                exit(1);
             }
-            push(get() * op2); // the operands will be calculated and pushed in the steak initially;
+            push(get() * op2);
             break;
         case '/':
-            if((op2 = get_op(oper)) == NUMBER) // if the func get_op() returns a number
-                op2 = str_to_int(oper); // to the var op2 is assigned the second operand(number) from the func str_to_int();
+            if((op2 = get_op(oper)) == NUMBER) 
+                op2 = str_to_int(oper);
             else {
                 printf("There must be a number\n");
-                exit(1); // returns 1 (in stdlib.h) and exit;
+                exit(1);
             }
-            push(get() / op2); // the operands will be calculated and pushed in the steak initially;
+            push(get() / op2);
             break;
         default:    
             printf("Unknown an operator or an operand\n");
@@ -111,6 +108,6 @@ int main(void)
             break;
         }
     }
-    
+
     return 0;
 }
