@@ -23,6 +23,7 @@ int get_op(char op[]) { // the func reads operators or operands;
         remember = 0; // and then the var 'remember' will be reset to 0 again;
     }else
         c = getchar(); // if the var 'remember' is '0' then to the var 'c' is assigned a symbol read by the func getchar();
+
     while(c == ' ' || c == '\t') { // the loop skips the indentation or tabulation at beginn incase the var 'c' is a spacesymbol;
         c = getchar();
     }
@@ -33,7 +34,7 @@ int get_op(char op[]) { // the func reads operators or operands;
         op[i] = c; // write the current number to str:
         while(isdigit(op[++i] = (c = getchar()))) // while the each next var 'c' is a number the loop is continue and the number is writted to the string op[];
             ;
-        remember = c; // if the var 'c' has not digit(char) then to var 'remember' is assigned this symbol(char);
+        remember = c; // a value of the var 'c' is assigned to the var 'remember' ;
         op[i] = '\0'; // and 'no terminated sign' is writted at the end; 
         
         return NUMBER; // return the number in thr string op[];
@@ -61,7 +62,7 @@ int main(void)
 {
     char oper[SIZE]; // the string for operators and is an argument for the func get_op();
     int op, op2; // the vars for the operands;
-    while((op = get_op(oper)) == 1) { 
+    while((op = get_op(oper)) != 'x') { // if 'x' - exit program;
         switch(op) { // cheking the var op;
         case NUMBER: // if 'op' is a number
             push(str_to_int(oper)); // then push the number in steak;
