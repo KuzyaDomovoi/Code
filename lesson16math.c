@@ -29,6 +29,7 @@ int main(void)
         printf("D = %.2f < 0\n", D);
         return 0;
     }
+
     D = sqrt(D);
     x1 = -(b + D) / (2.0 * a);
     x2 = -(b - D) / (2.0 * a);
