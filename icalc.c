@@ -51,7 +51,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
     }
     if(ch >= 97 && ch <= 122) { // from the table ASCI the numbers 65 and 90 are for uppercase letters and 97 and 122 for the lowercase letters;
         symb[i++] = ch;
-        for( ; i < SIZE && (ch = getchar()) != ' ' && ch != '\n' && !isdigit(ch); i++)
+        for(; i < SIZE && (ch = getchar()) != ' ' && ch != '\n' && !isdigit(ch); i++)
             symb[i] = ch; // filling the string symb[] with current chars;
             symb[i] = '\0';
         if(sin_check(symb)) // check if is called the comman SIN;
