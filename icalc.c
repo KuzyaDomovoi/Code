@@ -36,7 +36,7 @@ int clean_check(char s[]) {
 }
 
 void clean_steak_command(void) { // cleaning of the steak;
-    char free_si = 0;
+    int free_si = 0;
     printf("Steak is cleaned\n");
     return;
 }
