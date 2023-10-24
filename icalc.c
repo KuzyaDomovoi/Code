@@ -44,14 +44,13 @@ void clean_steak_command(void) { // cleaning of the steak;
 // convertation string to number:
 int str_to_int(char str[]) { // the func converts the string to a number;
     int num = 0;
-    int sign;
     int i = 0;
 
-    sign = (str[i] == '-') ? -1 : 1; // if char str has sing minus ('-') then it is equal as '-1' esle as '1';
-    if(str[i] == '-') // if the sing is a negative then
+    int sign = (str[i] == '-') ? -1 : 1; // if char str has sing minus ('-') then it is equal as '-1' esle as '1';
+    if(str[i] == '-') // if the sign is a negative then
         i++; // go to next str[i];
     for( ; str[i] != '\0'; i++) // if the current 'i' is not EOF
-        num = num * 10 + (str[i] - '0'); // then string to number
+        num = num * 10 + (str[i] - '0'); // then transfers a char to the number
     return num * sign; // else returns the negative sign (num * (-1) = -num);
 }
 // users input of stream of symbols:
