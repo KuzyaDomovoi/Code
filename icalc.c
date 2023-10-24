@@ -53,13 +53,15 @@ int get_symb(char symb[]) { // the func reads operators or operands;
         symb[i++] = ch;
         for(; i < SIZE && (ch = getchar()) != ' ' && ch != '\n' && !isdigit(ch); i++)
             symb[i] = ch; // filling the string symb[] with current chars;
-            symb[i] = '\0';
+        symb[i] = '\0';
         if(sin_check(symb)) // check if is called the comman SIN;
             return SIN;
         if(cos_check(symb)) // check if is called the comman COS;
             return COS;
         if(sqrt_check(symb)) // check if is called the comman SQRT;
             return SQRT;
+        if(pow_check(symb)) // check if is called the comman POW;
+            return POW;
         if(clean_check(symb)) // check if is called the comman CLEAN;
             return CLEAN;
     }
