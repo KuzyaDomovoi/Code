@@ -62,7 +62,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
             return SQRT;
         if(clean_check(symb)) // check if is called the comman CLEAN;
             return CLEAN;
-        }
+    }
     if(isdigit(ch)) { // check if var 'ch' is a number;
         symb[i] = ch; // write the current number to the string symb[]:
         while(isdigit(symb[++i] = (ch = getchar()))) // while the current var 'ch' is a number the loop is continue and the number is writted to the string symb[];
