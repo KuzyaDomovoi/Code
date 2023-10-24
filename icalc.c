@@ -20,8 +20,8 @@ int str_to_int(char str[]) { // the func converts the string to a number;
     if(str[i] == '-') // if the sign is negative then
         i++; // go to next char in the str[];
     for(; str[i] != '\0'; i++) // incase the current char is not EOF
-        num = num * 10 + (str[i] - '0'); // transfers the char to the number;
-        return num * sign; // returns the negative sign (num * (-1) = -num);
+        num = num * 10 + (str[i] - '0'); // transfers a char to a number;
+        return num * sign; // returns the sign to number (num * (-1) = -num);
 }
 
 // users input of stream of symbols:
