@@ -184,10 +184,8 @@ int main(void)
             }
             if(op2 == 0)
                 printf("ZeroDivisionError!\n");
-                exit(1);
-            else
-                push(get() / op2);
-                break;
+            push(get() / op2);
+            break;
         case '\n':
             printf("Result = %d\n", get());
             break;
