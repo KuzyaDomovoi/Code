@@ -39,7 +39,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
         ch = getchar();
         if(ch == '-') {
             symb[i] = ch; // incase the first symb is minus then it will be writted in the string symb[] as '-';
-            if(isdigit(symb[i++] = (ch = getchar()))) { // if the next char is number then it is a negative number supposedly and is assigned to ch;
+            if(isdigit(symb[++i] = (ch = getchar()))) { // if the next char is number then it is a negative number supposedly and is assigned to ch;
                 while(isdigit(symb[++i] = (ch = getchar()))) // while the current var 'ch' is a number the loop is continue and the number is writted to the string symb[];
                     ;
                 remember = ch; // a value of the var 'ch' is assigned to the var 'remember';
