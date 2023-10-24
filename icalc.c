@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define NUMBER 1000
 #define STEAKSIZE 100
