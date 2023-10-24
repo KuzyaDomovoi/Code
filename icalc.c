@@ -46,7 +46,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
                 symb[i] = '\0'; // and 'no terminated sign' is writted at the end of the srting symb[]; 
                 return NUMBER; // return a negative number in the string symb[];
             } else // if the var 'ch' is no minus
-                return '-'; // then it will be return as an operator '-'(arithmetic sign);
+                return ch; // then var 'ch' will be return as an operator '-'(arithmetic sign);
         }
     }
     if(ch >= 97 && ch <= 122) { // from the table ASCI the numbers 65 and 90 are for uppercase letters and 97 and 122 for the lowercase letters;
