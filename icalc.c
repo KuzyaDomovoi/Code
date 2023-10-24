@@ -31,7 +31,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
         return ch; // is returned a symbol or the '\n' from var 'ch';
     
     if(isdigit(ch)) { // check if var 'ch' is a number;
-        symb[i] = ch; // write the current number to str:
+        symb[i] = ch; // write the current number to the string symb[]:
         while(isdigit(symb[++i] = (ch = getchar()))) // while the each next var 'ch' is a number the loop is continue and the number is writted to the string symb[];
             ;
         remember = ch; // a value of the var 'ch' is assigned to the var 'remember';
