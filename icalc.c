@@ -48,7 +48,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
                 return '-'; // then it will be return as an operator '-'(arithmetic sign);
         }
     }
-    if(ch >= 97 && ch >= 122) { // from the table ASCI the numbers 65 and 90 are for uppercase letters and 97 and 122 for the lowercase letters;
+    if(ch >= 97 && ch <= 122) { // from the table ASCI the numbers 65 and 90 are for uppercase letters and 97 and 122 for the lowercase letters;
         symb[i++] = ch;
         for( ; i < SIZE && (ch = getchar()) != ' ' && ch != '\n' && !isdigit(ch); i++)
             symb[i] = ch; // filling the string symb[] with current chars;
@@ -193,7 +193,7 @@ int main(void)
                 printf("There must be a number\n");
                 exit(1);
             }
-            printf("Result = %f", sin(op));
+            printf("Result = %f\n", sin(op));
             exit(0);
             break;
         case COS:
@@ -203,7 +203,7 @@ int main(void)
                 printf("There must be a number\n");
                 exit(1);
             }
-            printf("Result = %f", cos(op));
+            printf("Result = %f\n", cos(op));
             exit(0);
             break;
         case SQRT:
@@ -213,7 +213,7 @@ int main(void)
                 printf("There must be a number\n");
                 exit(1);
             }
-            printf("Result = %f", sqrt(op));
+            printf("Result = %f\n", sqrt(op));
             exit(0);
             break;
         case POW:
