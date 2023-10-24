@@ -177,9 +177,9 @@ int main(void)
             break;
         case '/':
             if((op2 = get_symb(oper)) == NUMBER)
-                op2 = str_to_int(oper);
+                if((op2 = str_to_int(oper)) != 0);
             else {
-                printf("There must be a number\n");
+                printf("There must be a number or it is the ZeroDevisionError!\n");
                 exit(1);
             }
             if(op2 == 0)
