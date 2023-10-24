@@ -182,8 +182,12 @@ int main(void)
                 printf("There must be a number\n");
                 exit(1);
             }
-            push(get() / op2);
-            break;
+            if(op2 == 0)
+                printf("ZeroDivisionError!\n");
+                exit(1);
+            else
+                push(get() / op2);
+                break;
         case '\n':
             printf("Result = %d\n", get());
             break;
