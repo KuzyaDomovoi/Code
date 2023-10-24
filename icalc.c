@@ -67,9 +67,9 @@ int get_symb(char symb[]) { // the func reads operators or operands;
         ch = getchar();
     }
     if(ch == '-') {
-        symb[i] = ch; // incase the first symb is minus then it will be writted in the string symb[];
+        symb[i] = ch; // incase the first symb is minus then it will be writted in the string symb[] as '-';
         if(isdigit(symb[i++] = (ch = getchar()))) { // if next symb is number then it is a negative number supposedly;
-            while(isdigit(symb[++i] = ch = getchar())) // while the each next var 'ch' is a number the loop is continue and the number is writted to the string symb[];
+            while(isdigit(symb[++i] = ch = getchar())) // while the current var 'ch' is a number the loop is continue and the number is writted to the string symb[];
                 ;
             remember = ch; // a value of the var 'ch' is assigned to the var 'remember';
             symb[i] = '\0'; // and 'no terminated sign' is writted at the end of the srting symb[]; 
@@ -94,7 +94,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
     }
     if(isdigit(ch)) { // check if var 'ch' is a number;
         symb[i] = ch; // write the current number to the string symb[]:
-        while(isdigit(symb[++i] = (ch = getchar()))) // while the each next var 'ch' is a number the loop is continue and the number is writted to the string symb[];
+        while(isdigit(symb[++i] = (ch = getchar()))) // while the current var 'ch' is a number the loop is continue and the number is writted to the string symb[];
             ;
         remember = ch; // a value of the var 'ch' is assigned to the var 'remember';
         symb[i] = '\0'; // and 'no terminated sign' is writted at the end of the srting symb[]; 
