@@ -19,7 +19,7 @@ int str_to_int(char str[]) { // the func converts the string to a number;
     int sign = (str[i] == '-') ? -1 : 1; // if a current char has the sign minus ('-') then it is equal as '-1' esle as '1';
     if(str[i] == '-') // if the sign is negative then
         i++; // go to next char in the str[];
-    for( ; str[i] != '\0'; i++) // incase the current char is not EOF
+    for(; str[i] != '\0'; i++) // incase the current char is not EOF
         num = num * 10 + (str[i] - '0'); // transfers the char to the number;
         return num * sign; // returns the negative sign (num * (-1) = -num);
 }
