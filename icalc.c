@@ -179,7 +179,7 @@ int main(void)
             if((op2 = get_symb(oper)) == NUMBER)
                 if((op2 = str_to_int(oper)) != 0);
             else {
-                printf("There must be a number or it is the ZeroDevisionError!\n");
+                printf("There must be a number or it is ZeroDevisionError!\n");
                 exit(1);
             }
             if(op2 == 0)
