@@ -176,10 +176,10 @@ int main(void)
             push(get() * op2);
             break;
         case '/':
-            if((op2 = get_symb(oper)) == NUMBER) 
+            if((op2 = get_symb(oper)) == NUMBER)
                 op2 = str_to_int(oper);
             else {
-                printf("There must be a number\n");
+                printf("There must be a number or it is ZeroDivisionError\n");
                 exit(1);
             }
             push(get() / op2);
