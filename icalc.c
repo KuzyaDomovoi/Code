@@ -11,6 +11,36 @@
 #define POW 40
 #define CLEAN 50
 
+//commands:
+char sin_symb[] = "sin";
+char cos_symb[] = "cos";
+char sqrt_symb[] = "sqrt";
+char pow_symb[] = "pow";
+char clean[] = "clean";
+
+// cheking the strings to their coincidence with commands:
+int sin_check(char s[]) {
+    return check_strings(sin_symb, s); // ... input str s with the command sin_symb;
+}
+int cos_check(char s[]) {
+    return check_strings(cos_symb, s); // ... input str s with the command cos_symb;
+}
+int sqrt_check(char s[]) {
+    return check_strings(sqrt_symb, s); // ... input str s with the command sqrt_symb;
+}
+int pow_check(char s[]) {
+    return check_strings(pow_symb, s); // ...  input str s with the command pow_symb;
+}
+int clean_check(char s[]) {
+    return check_strings(clean, s); // ... input str s with the command clean;
+}
+
+void clean_steak_command(void) { // cleaning of the steak;
+    char free_si = 0;
+    printf("Steak is cleaned\n");
+    return;
+}
+
 // convertation string to number:
 int str_to_int(char str[]) { // the func converts the string to a number;
     int num = 0;
@@ -106,35 +136,6 @@ int check_strings(char str_1[], char str_2[]) {
         return 0; // the strings are not equal by EOF only;
 
     return 1; // the strings are fully equal;
-}
-//commands:
-char sin_symb[] = "sin";
-char cos_symb[] = "cos";
-char sqrt_symb[] = "sqrt";
-char pow_symb[] = "pow";
-char clean[] = "clean";
-
-// cheking the strings to their coincidence with commands:
-int sin_check(char s[]) {
-    return check_strings(sin_symb, s); // ... input str s with the command sin_symb;
-}
-int cos_check(char s[]) {
-    return check_strings(cos_symb, s); // ... input str s with the command cos_symb;
-}
-int sqrt_check(char s[]) {
-    return check_strings(sqrt_symb, s); // ... input str s with the command sqrt_symb;
-}
-int pow_check(char s[]) {
-    return check_strings(pow_symb, s); // ...  input str s with the command pow_symb;
-}
-int clean_check(char s[]) {
-    return check_strings(clean, s); // ... input str s with the command clean;
-}
-
-void clean_steak_command(void) { // cleaning of the steak;
-    free_si = 0;
-    printf("Steak is cleaned\n");
-    return;
 }
 
 int main(void)
