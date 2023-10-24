@@ -67,7 +67,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
         ch = getchar();
     }
     if(ch == '-') {
-        symb[i] = ch; // if the first symb is minus then it will be writted in the string symb[];
+        symb[i] = ch; // incase the first symb is minus then it will be writted in the string symb[];
         if(isdigit(symb[i++] = (ch = getchar()))) { // if next symb is number then it is a negative number supposedly;
             while(isdigit(symb[++i] = ch = getchar())) // while the each next var 'ch' is a number the loop is continue and the number is writted to the string symb[];
                 ;
@@ -75,7 +75,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
             symb[i] = '\0'; // and 'no terminated sign' is writted at the end of the srting symb[]; 
             return NUMBER; // return a negative number in the string symb[];
         }
-        else // if ch is no minus
+        else // if the var 'ch' is no minus
             return '-'; // then it will be return as an operator '-'(arithmetic sign);
     }
     if(ch >= 97 && ch >= 122) { // from the table ASCI the numbers 65 and 90 are for uppercase letters and 97 and 122 for the lowercase letters;
