@@ -28,7 +28,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
         ch = getchar();
     }
     if(!isdigit(ch)) // if the var 'ch' is not a digit then 
-        return ch; // is returned a symbol or the '\n' from var 'ch';
+        return ch; // is returned a symbol or the '\n'(when 'enter' is pushed by user) from var 'ch';
     
     if(isdigit(ch)) { // check if var 'ch' is a number;
         symb[i] = ch; // write the current number to the string symb[]:
