@@ -37,7 +37,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
         remember = ch; // a value of the var 'ch' is assigned to the var 'remember';
         symb[i] = '\0'; // and 'no terminated sign' is writted at the end; 
         
-        return NUMBER; // return the number in thr string symb[];
+        return NUMBER; // return the number in the string symb[];
     }
 }
 
