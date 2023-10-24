@@ -213,7 +213,7 @@ int main(void)
                 printf("There must be a number\n");
                 exit(1);
             }
-            push(sqrtget(op));
+            push(sqrt(op));
             break;
         case POW:
             if((op2 = get_symb(oper)) == NUMBER)
