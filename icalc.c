@@ -16,8 +16,8 @@ int str_to_int(char str[]) { // the func converts the string to a number;
 
 int get_symb(char symb[]) { // the func reads operators or operands;
     int ch = 0; // var for the symbol storing;
-    static int remember = 0; // the var 'remember' is set to '0' initially and then stores a current value entered by the func get_op();
-    int i = 0; // the counter for the string op[];
+    static int remember = 0; // the var 'remember' is set to '0' initially and then stores a current value entered by the func get_symb();
+    int i = 0; // the counter for the string symb[];
     if(remember != 0) { // checking if the var 'remember' receives some value (not 0) then
         ch = remember; // to the var 'ch' is assigned a value of the var 'remember';
         remember = 0; // and then the var 'remember' will be reset to 0 again;
