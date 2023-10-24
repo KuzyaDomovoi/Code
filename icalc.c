@@ -18,6 +18,19 @@ char sqrt_symb[] = "sqrt";
 char pow_symb[] = "pow";
 char clean[] = "clean";
 
+// checking the string 1 and string 2 to coincidence:
+int check_strings(char str_1[], char str_2[]) {
+    int i, j;
+    for(i = 0, j = 0; str_1[i] != '\0' && str_2[j] != '\0'; i++, j++) {
+        if(str_1[i] != str_2[j]) 
+            return 0; // the strings are not equal;
+    }
+    if(str_1[i] != '\0' || str_2[j] != '\0') // if the stings are equal initially then go to check the EOF coincidence by the srtings:
+        return 0; // the strings are not equal by EOF only;
+
+    return 1; // the strings are fully equal;
+}
+
 // cheking the strings to their coincidence with commands:
 int sin_check(char s[]) {
     return check_strings(sin_symb, s); // ... input str s with the command sin_symb;
@@ -122,18 +135,6 @@ int get(void) { // returns the last saved number from the steak;
         printf("Error! Steak is empty!");
         exit(1);
     }
-}
-// checking the string 1 and string 2 to coincidence:
-int check_strings(char str_1[], char str_2[]) {
-    int i, j;
-    for(i = 0, j = 0; str_1[i] != '\0' && str_2[j] != '\0'; i++, j++) {
-        if(str_1[i] != str_2[j]) 
-            return 0; // the strings are not equal;
-    }
-    if(str_1[i] != '\0' || str_2[j] != '\0') // if the stings are equal initially then go to check the EOF coincidence by the srtings:
-        return 0; // the strings are not equal by EOF only;
-
-    return 1; // the strings are fully equal;
 }
 
 int main(void)
