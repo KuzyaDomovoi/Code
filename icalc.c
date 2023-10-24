@@ -22,6 +22,7 @@ int str_to_int(char str[]) { // the func converts the string to a number;
         num = num * 10 + (str[i] - '0'); // transfers the char to the number;
         return num * sign; // returns the negative sign (num * (-1) = -num);
 }
+
 // users input of stream of symbols:
 int get_symb(char symb[]) { // the func reads operators or operands;
     int ch = 0; // var for the symbol storing;
@@ -30,7 +31,8 @@ int get_symb(char symb[]) { // the func reads operators or operands;
     if(remember != 0) { // checking if the var 'remember' receives some value (not 0) then
         ch = remember; // to the var 'ch' is assigned a value of the var 'remember';
         remember = 0; // and then the var 'remember' will be reset to 0 again;
-    }else
+    }
+    else
         ch = getchar(); // if the var 'remember' is '0' then to the var 'ch' is assigned a symbol read by the func getchar();
     while(ch == ' ' || ch == '\t') { // the loop skips the indentation or tabulation at beginn incase the var 'ch' is a spacesymbol;
         ch = getchar();
@@ -43,15 +45,14 @@ int get_symb(char symb[]) { // the func reads operators or operands;
             remember = ch; // a value of the var 'ch' is assigned to the var 'remember';
             symb[i] = '\0'; // and 'no terminated sign' is writted at the end of the srting symb[]; 
             return NUMBER; // return a negative number in the string symb[];
-        }
-        else // if the var 'ch' is no minus
+        } else // if the var 'ch' is no minus
             return '-'; // then it will be return as an operator '-'(arithmetic sign);
     }
     if(ch >= 97 && ch >= 122) { // from the table ASCI the numbers 65 and 90 are for uppercase letters and 97 and 122 for the lowercase letters;
         symb[i++] = ch;
         for( ; i < SIZE && (ch = getchar()) != ' ' && ch != '\n' && !isdigit(ch); i++)
             symb[i] = ch; // filling the string symb[] with current chars;
-        symb[i] = '\0';
+            symb[i] = '\0';
         if(sin_check(symb)) // check if is called the comman SIN;
             return SIN;
         if(cos_check(symb)) // check if is called the comman COS;
@@ -60,7 +61,7 @@ int get_symb(char symb[]) { // the func reads operators or operands;
             return SQRT;
         if(clean_check(symb)) // check if is called the comman CLEAN;
             return CLEAN;
-    }
+        }
     if(isdigit(ch)) { // check if var 'ch' is a number;
         symb[i] = ch; // write the current number to the string symb[]:
         while(isdigit(symb[++i] = (ch = getchar()))) // while the current var 'ch' is a number the loop is continue and the number is writted to the string symb[];
@@ -69,10 +70,10 @@ int get_symb(char symb[]) { // the func reads operators or operands;
         symb[i] = '\0'; // and 'no terminated sign' is writted at the end of the srting symb[]; 
         
         return NUMBER; // return a positive number in the string symb[];
-    }
-    else 
+    } else 
         return ch; // returns others arithmetic signs;
 }
+
 // steak:
 int steak[STEAKSIZE]; // the array for the steak creating with a size 'STEAKSIZE 100';
 int free_si = 0; // checking a free memory cell in the steak;
