@@ -34,9 +34,11 @@ int main(void)
                 printf("\nError input!\n");
                 return 0; 
             }
-            printf("\n1. addition          4. division\n"
-                     "2. substraction      5. exit\n"
-                     "3. multiplication\n");
+            printf("\n1. addition\n"
+                     "2. substraction\n"
+                     "3. multiplication\n"
+                     "4. division\n"
+                     "5. exit\n");
             printf("   Select action of calculation: ");
 
             if(scanf("%d", &calc_action) != 1) {
@@ -72,18 +74,17 @@ int main(void)
                 return 0;
             }
         case 2:
-            printf("\nInput a number for calculation: ");
-            while(scanf("%d %d", &x, &y) >= 3) {
+            printf("\nInput numbers for calculation: ");
+            if(scanf("%d %d", &x, &y) <= 2 || y == '\r') {
+                printf("\n1. SIN\n"
+                         "2. COS\n"
+                         "3. SQRT\n"
+                         "4. POW\n"
+                         "5. Exit\n");
+                printf("   Select function for calculation: ");
+            } else
                 printf("\nError input!\n");
                 return 0;
-            }
-            //if(y = '\n')
-            //    return x;
-            printf("\n1. SIN     4. POW\n"
-                     "2. COS     5. exit\n"
-                     "3. SQRT\n");
-            printf("   Select function for calculation: ");
-        
             if(scanf("%d", &calc_func) != 1) {
                 printf("\nError input!\n");
                 return 0;
