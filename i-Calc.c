@@ -81,7 +81,7 @@ int main(void)
             //    return x;
             printf("\n1. SIN     4. POW\n"
                      "2. COS     5. exit\n"
-                     "3. SQRT\n);
+                     "3. SQRT\n");
             printf("   Select function for calculation: ");
         
             if(scanf("%d", &calc_func) != 1) {
