@@ -12,7 +12,7 @@ int main(void)
     int calc_action;
     int calc_func;
     double a, b;
-    int x, y;
+    int x;
     
         printf("\n1. simple calc\n"
                  "2. i_calc\n"
@@ -114,12 +114,12 @@ int main(void)
                 return 0;
             case 4:
                 printf("\nEnter a number and the value to raise it to POW separated by space: ");
-                while(scanf("%d %d", &x, &y) != 2 ) {
+                while(scanf("%lf %lf", &a, &b) != 2 ) {
                     printf("\nError input!\n");
                     return 0;
                 }
-                double res_pow = pow(x, y);
-                printf("\n%d pow%d = %f\n", x, y, res_pow);
+                double res_pow = pow(a, b);
+                printf("\n%f pow%f = %f\n", a, b, res_pow);
                 return 0;
             case 5:
                 printf("\nEnd of program.\n");
