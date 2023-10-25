@@ -75,16 +75,16 @@ int main(void)
             }
         case 2:
             printf("\nInput numbers for calculation: ");
-            if(scanf("%d %d", &x, &y) <= 2 || y == '\r') {
-                printf("\n1. SIN\n"
-                         "2. COS\n"
-                         "3. SQRT\n"
-                         "4. POW\n"
-                         "5. Exit\n");
-                printf("   Select function for calculation: ");
-            } else
+            while(scanf("%d %d", &x, &y) >= 3 || y == '\r') {
                 printf("\nError input!\n");
                 return 0;
+            }
+            printf("\n1. SIN\n"
+                     "2. COS\n"
+                     "3. SQRT\n"
+                     "4. POW\n"
+                     "5. Exit\n");
+            printf("   Select function for calculation: ");
             if(scanf("%d", &calc_func) != 1) {
                 printf("\nError input!\n");
                 return 0;
