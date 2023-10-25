@@ -105,7 +105,7 @@ char sqrt_symb[] = "sqrt";
 char pow_symb[] = "pow";
 char clean[] = "clean";
 
-// checking the string 1 and string 2 to coincidence:
+// checking the string 1 and string 2 to coincidence (string comparation(cmpstr)):
 int check_strings(char str_1[], char str_2[]) {
     int i, j;
     for(i = 0, j = 0; str_1[i] != '\0' && str_2[j] != '\0'; i++, j++) {
