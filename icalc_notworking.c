@@ -32,23 +32,24 @@ int get_symb(char symb[]) { // the func reads operators or operands;
     if(remember != 0) { // checking if the var 'remember' receives some value (not 0) then
         ch = remember; // to the var 'ch' is assigned a value of the var 'remember';
         remember = 0; // and then the var 'remember' will be reset to 0 again;
-    }
+    } 
     else
         ch = getchar(); // if the var 'remember' is '0' then to the var 'ch' is assigned a symbol read by the func getchar();
+    if(ch == '-') {
+        symb[i] = ch; // incase the first symb is minus then it will be writted in the string symb[] as '-';
+        if(isdigit(symb[++i] = (ch = getchar()))) { // if the next char is number then it is a negative number supposedly and is assigned to ch;
+            while(isdigit(symb[++i] = (ch = getchar()))) // while the current var 'ch' is a number the loop is continue and the number is writted to the string symb[];
+                ;
+            remember = ch; // a value of the var 'ch' is assigned to the var 'remember';
+            symb[i] = '\0'; // and 'no terminated sign' is writted at the end of the srting symb[]; 
+            return NUMBER; // return a negative number in the string symb[];
+        } 
+        else // if the var 'ch' is no digit
+            return ch; // then var 'ch' will be return as an operator '-'(arithmetic sign);
+    } 
     while(ch == ' ' || ch == '\t') { // the loop skips the indentation or tabulation at beginn incase the var 'ch' is a spacesymbol;
         ch = getchar();
-        if(ch == '-') {
-            symb[i] = ch; // incase the first symb is minus then it will be writted in the string symb[] as '-';
-            if(isdigit(symb[++i] = (ch = getchar()))) { // if the next char is number then it is a negative number supposedly and is assigned to ch;
-                while(isdigit(symb[++i] = (ch = getchar()))) // while the current var 'ch' is a number the loop is continue and the number is writted to the string symb[];
-                    ;
-                remember = ch; // a value of the var 'ch' is assigned to the var 'remember';
-                symb[i] = '\0'; // and 'no terminated sign' is writted at the end of the srting symb[]; 
-            return NUMBER; // return a negative number in the string symb[];
-            } else // if the var 'ch' is no minus
-                return ch; // then var 'ch' will be return as an operator '-'(arithmetic sign);
-        }
-    }
+    }        
     if(ch >= 97 && ch <= 122) { // from the table ASCI the numbers 65 and 90 are for uppercase letters and 97 and 122 for the lowercase letters;
         symb[i++] = ch;
         for(; i < SIZE && (ch = getchar()) != ' ' && ch != '\n' && !isdigit(ch); i++)
@@ -71,9 +72,9 @@ int get_symb(char symb[]) { // the func reads operators or operands;
             ;
         remember = ch; // a value of the var 'ch' is assigned to the var 'remember';
         symb[i] = '\0'; // and 'no terminated sign' is writted at the end of the srting symb[]; 
-        
         return NUMBER; // return a positive number in the string symb[];
-    } else 
+    }
+    else 
         return ch; // returns others arithmetic signs;
 }
 
