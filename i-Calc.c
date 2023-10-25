@@ -24,7 +24,7 @@ int main(void)
         }
         switch(calc_mode) {
         case 1:        
-            printf("Input the first number for calculation: ");
+            printf("\nInput the first number for calculation: ");
             while(scanf("%lf", &a) != 1) {
                 printf("\nError input!\n");
                 return 0;
@@ -74,7 +74,7 @@ int main(void)
                 return 0;
             }
         case 2:
-            printf("Input a number for calculation: ");
+            printf("\nInput a number for calculation: ");
             while(scanf("%d %d", &x, &y) >= 3) {
                 printf("\nError input!\n");
                 return 0;
