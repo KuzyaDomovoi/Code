@@ -6,7 +6,7 @@
 #define NUMBER 1000
 #define STEAKSIZE 100
 #define SIZE 100
-#define SIN 9 // because in according with the table ASCI the number '10' means the '\0';
+#define SIN 9 // because in according with the table ASCI number '10' means the '\0';
 #define COS 20
 #define SQRT 30
 #define POW 40
