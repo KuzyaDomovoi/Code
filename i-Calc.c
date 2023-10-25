@@ -104,7 +104,7 @@ int main(void)
                 printf("\nCos%d = %f\n", x, res_cos);
                 return 0;
             case 3:
-                printf("\nEnter a valie for SQRT: ");
+                printf("\nEnter a value for SQRT: ");
                 while(scanf("%d", &x) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
