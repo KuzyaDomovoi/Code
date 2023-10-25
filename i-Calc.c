@@ -14,7 +14,7 @@ int main(void)
     double a, b;
     int x, y;
 
-    while() {
+    while(scanf("%c", )) {
         printf("\n1. simple calc\n"
                  "2. i_calc\n");
         printf("Select mode of calculation: ");
@@ -122,6 +122,9 @@ int main(void)
                 printf("\nIncorrect symbol!\n");
                 return 0;
             }
+        default:
+            printf("\nIncorrect symbol!\n");
+            return 0;
         }
     }
         
