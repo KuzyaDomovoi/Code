@@ -14,7 +14,7 @@ int main(void)
     double a, b;
     int x, y;
 
-    while(scanf("%c", )) {
+    
         printf("\n1. simple calc\n"
                  "2. i_calc\n"
                  "3. exit\n");
@@ -130,7 +130,7 @@ int main(void)
             printf("\nIncorrect symbol!\n");
             return 0;
         }
-    }
+    
         
     return 0;
 }
