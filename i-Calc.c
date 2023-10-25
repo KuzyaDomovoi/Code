@@ -86,7 +86,7 @@ int main(void)
             }
             switch(calc_func) {
             case 1:
-                printf("\nInput numbers for calculation: ");
+                printf("\nInput a value for SIN: ");
                 while(scanf("%d", &x) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
@@ -95,7 +95,7 @@ int main(void)
                 printf("\nSin%d = %f\n", x, res_sin);
                 return 0;
             case 2:
-                printf("\nInput numbers for calculation: ");
+                printf("\nInput a value for COS: ");
                 while(scanf("%d", &x) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
@@ -104,7 +104,7 @@ int main(void)
                 printf("\nCos%d = %f\n", x, res_cos);
                 return 0;
             case 3:
-                printf("\nInput numbers for calculation: ");
+                printf("\nInput a valie for SQRT: ");
                 while(scanf("%d", &x) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
@@ -113,7 +113,7 @@ int main(void)
                 printf("\nSqrt%d = %f\n", x, res_sqrt);
                 return 0;
             case 4:
-                printf("\nInput numbers for calculation: ");
+                printf("\nInput two value for POW: ");
                 while(scanf("%d %d", &x, &y) != 2 ) {
                     printf("\nError input!\n");
                     return 0;
