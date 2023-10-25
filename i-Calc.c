@@ -47,28 +47,24 @@ int main(void)
             }
             switch(calc_action) {
             case 1:
-                printf("\nAddition:\n");
                 double res_add = ADD(a, b);
-                printf("%f + %f = %f\n", a, b, res_add);
+                printf("\n%f + %f = %f\n", a, b, res_add);
                 return 0;
             case 2:
-                printf("\nSubstraction:\n");
                 double res_sub = SUB(a, b);
-                printf("%f - %f = %f\n", a, b, res_sub);
+                printf("\n%f - %f = %f\n", a, b, res_sub);
                 return 0;
             case 3:
-                printf("\nMultiplication:\n");
                 double res_mul = MUL(a, b);
-                printf("%f * %f = %f\n", a, b, res_mul);
+                printf("\n%f * %f = %f\n", a, b, res_mul);
                 return 0;
             case 4:
-                printf("\nDivision:\n");
                 if(b == 0) {
                     printf("\nError! Division to '0'.\n");
                     return 0;
                 }
                 double res_div = DIV(a, b);
-                printf("%f / %f = %f\n", a, b, res_div);
+                printf("\n%f / %f = %f\n", a, b, res_div);
                 return 0;
             case 5:
                 printf("\nEnd of program.\n");
@@ -83,6 +79,8 @@ int main(void)
                 printf("\nError input!\n");
                 return 0;
             }
+            //if(y = '\n')
+            //    return x;
             printf("\n1. SIN\n"
                      "2. COS\n"
                      "3. SQRT\n"
@@ -96,24 +94,20 @@ int main(void)
             }
             switch(calc_func) {
             case 1:
-                printf("\nSIN:\n");
                 double res_sin= sin(x);
-                printf("sin%d = %f\n", x, res_sin);
+                printf("\nSin%d = %f\n", x, res_sin);
                 return 0;
             case 2:
-                printf("\nCOS:\n");
                 double res_cos = cos(x);
-                printf("cos%d = %f\n", x, res_cos);
+                printf("\nCos%d = %f\n", x, res_cos);
                 return 0;
             case 3:
-                printf("\nSQRT:\n");
                 double res_sqrt = sqrt(x);
-                printf("sqrt%d = %f\n", x, res_sqrt);
+                printf("\nSqrt%d = %f\n", x, res_sqrt);
                 return 0;
             case 4:
-                printf("\nPOW:\n");
                 double res_pow = pow(x, y);
-                printf("%d pow%d = %f\n", x, y, res_pow);
+                printf("\n%d pow%d = %f\n", x, y, res_pow);
                 return 0;
             case 5:
                 printf("\nEnd of program.\n");
