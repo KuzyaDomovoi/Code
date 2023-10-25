@@ -113,7 +113,7 @@ int main(void)
                 printf("\nSqrt%d = %f\n", x, res_sqrt);
                 return 0;
             case 4:
-                printf("\nInput two value for POW: ");
+                printf("\nInput a number and the value to raise it to POW: ");
                 while(scanf("%d %d", &x, &y) != 2 ) {
                     printf("\nError input!\n");
                     return 0;
