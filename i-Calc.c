@@ -112,7 +112,7 @@ int main(void)
         case 4:
             printf("\nPOW:\n");
             double res_pow = pow(x, y);
-            printf("%d pow%d = %f\n", x, y, res_pow);
+            printf("%d pow%d = %d\n", x, y, res_pow);
             return 0;
         case 5:
             printf("\nExit.\n");
