@@ -72,7 +72,7 @@ int main(void)
                 printf("%f / %f = %f\n", a, b, res_div);
                 break;
             case 5:
-                printf("\nExit.\n");
+                printf("\nEnd of program.\n");
                 return 0;
             default:
                 printf("\nIncorrect symbol!\n");
@@ -117,7 +117,7 @@ int main(void)
                 printf("%d pow%d = %f\n", x, y, res_pow);
                 break;
             case 5:
-                printf("\nExit.\n");
+                printf("\nEnd of program.\n");
                 return 0;
             default:
                 printf("\nIncorrect symbol!\n");
