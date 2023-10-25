@@ -18,7 +18,7 @@ int main(void)
         printf("\n1. simple calc\n"
                  "2. i_calc\n"
                  "3. exit\n");
-        printf("Select mode of calculation: ");
+        printf("   Select mode of calculation: ");
         if(scanf("%d", &calc_mode) != 1) {
             printf("\nError input!\n");
             return 0;
@@ -40,7 +40,7 @@ int main(void)
                      "3. multiplication\n"
                      "4. division\n"
                      "5. exit\n");
-            printf("Select action of calculation: ");
+            printf("   Select action of calculation: ");
 
             if(scanf("%d", &calc_action) != 1) {
                 printf("\nError input!\n");
@@ -89,7 +89,7 @@ int main(void)
                      "3. SQRT\n"
                      "4. POW\n"
                      "5. exit\n");
-            printf("Select function for calculation: ");
+            printf("   Select function for calculation: ");
         
             if(scanf("%d", &calc_func) != 1) {
                 printf("\nError input!\n");
