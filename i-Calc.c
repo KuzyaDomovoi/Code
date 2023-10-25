@@ -49,17 +49,17 @@ int main(void)
             printf("\nAddition:\n");
             double res_add = ADD(a, b);
             printf("%f + %f = %f\n", a, b, res_add);
-            return 0;
+            break;
         case 2:
             printf("\nSubstraction:\n");
             double res_sub = SUB(a, b);
             printf("%f - %f = %f\n", a, b, res_sub);
-            return 0;
+            break;
         case 3:
             printf("\nMultiplication:\n");
             double res_mul = MUL(a, b);
             printf("%f * %f = %f\n", a, b, res_mul);
-            return 0;
+            break;
         case 4:
             printf("\nDivision:\n");
             if(b == 0) {
@@ -68,7 +68,7 @@ int main(void)
             }
             double res_div = DIV(a, b);
             printf("%f / %f = %f\n", a, b, res_div);
-            return 0;
+            break;
         case 5:
             printf("\nExit.\n");
             return 0;
@@ -78,7 +78,7 @@ int main(void)
         }
     case 2:
         printf("Input a number for calculation: ");
-        while(scanf("%d %d", &x, &y) >= 3 ) {
+        while(scanf("%d %d", &x, &y) >=3 ) {
             printf("\nError input!\n");
             return 0;
         }
@@ -98,22 +98,22 @@ int main(void)
             printf("\nSIN:\n");
             double res_sin= sin(x);
             printf("sin%d = %f\n", x, res_sin);
-            return 0;
+            break;
         case 2:
             printf("\nCOS:\n");
             double res_cos = cos(x);
             printf("cos%d = %f\n", x, res_cos);
-            return 0;
+            break;
         case 3:
             printf("\nSQRT:\n");
             double res_sqrt = sqrt(x);
             printf("sqrt%d = %f\n", x, res_sqrt);
-            return 0;
+            break;
         case 4:
             printf("\nPOW:\n");
             double res_pow = pow(x, y);
             printf("%d pow%d = %f\n", x, y, res_pow);
-            return 0;
+            break;
         case 5:
             printf("\nExit.\n");
             return 0;
