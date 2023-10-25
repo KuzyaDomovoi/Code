@@ -77,8 +77,8 @@ int main(void)
             return 0;
         }
     case 2:
-        printf("Input two numbers for calculation: ");
-        while(scanf("%lf %lf", &a, &b) != 1) {
+        printf("Input a number for calculation: ");
+        while(scanf("%lf %lf", &x, &y) != 1) {
             printf("\nError input!\n");
             return 0;
         }
