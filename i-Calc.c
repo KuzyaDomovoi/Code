@@ -16,7 +16,8 @@ int main(void)
 
     while(scanf("%c", )) {
         printf("\n1. simple calc\n"
-                 "2. i_calc\n");
+                 "2. i_calc\n"
+                 "3. exit\n");
         printf("Select mode of calculation: ");
         if(scanf("%d", &calc_mode) != 1) {
             printf("\nError input!\n");
@@ -122,6 +123,9 @@ int main(void)
                 printf("\nIncorrect symbol!\n");
                 return 0;
             }
+        case 3:
+            printf("End of program.\n");
+            return 0;    
         default:
             printf("\nIncorrect symbol!\n");
             return 0;
