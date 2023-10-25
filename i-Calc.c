@@ -129,7 +129,6 @@ int main(void)
             printf("\nIncorrect symbol!\n");
             return 0;
         }
-    
         
     return 0;
 }
