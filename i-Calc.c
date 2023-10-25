@@ -60,7 +60,7 @@ int main(void)
                 return 0;
             case 4:
                 if(b == 0) {
-                    printf("\nError! Division to '0'.\n");
+                    printf("\nZeroDivisionError!\n");
                     return 0;
                 }
                 double res_div = DIV(a, b);
