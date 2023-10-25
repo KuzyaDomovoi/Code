@@ -79,7 +79,7 @@ int main(void)
             }
         case 2:
             printf("   Input a number for calculation: ");
-            while(scanf("%d %d", &x, &y) >=3 ) {
+            while(scanf("%d %d", &x, &y) >= 3) {
                 printf("\nError input!\n");
                 return 0;
             }
