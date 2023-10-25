@@ -75,7 +75,7 @@ int main(void)
             }
         case 2:
             printf("\nInput numbers for calculation: ");
-            while(scanf("%d %d", &x, &y) >= 3 || y == '\r') {
+            while(scanf("%d %d", &x, &y) >= 3) {
                 printf("\nError input!\n");
                 return 0;
             }
