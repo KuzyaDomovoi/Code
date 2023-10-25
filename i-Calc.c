@@ -12,6 +12,7 @@ int main(void)
     int calc_action;
     int calc_func;
     double a, b;
+    int x, y;
 
     printf("\n1. simple calc\n"
              "2. i_calc\n");
@@ -77,14 +78,9 @@ int main(void)
         }
     case 2:
         printf("Input the first number for calculation: ");
-        while(scanf("%lf", &a) != 1) {
+        while(scanf("%lf %lf", &a, &b) != 1) {
             printf("\nError input!\n");
             return 0;
-        }
-        printf("Input the second number for calculation: ");
-        while(scanf("%lf", &b) != 1) {
-            printf("\nError input!\n");
-            return 0; 
         }
         printf("\n1. SIN\n"
                  "2. COS\n"
@@ -100,23 +96,23 @@ int main(void)
         switch(calc_func) {
         case 1:
             printf("\nSIN:\n");
-            double res_sin= sin(a);
-            printf("%f + %f = %f\n", a, b, res_sin);
+            double res_sin= sin(x);
+            printf("sin%d = %f\n", x, res_sin);
             return 0;
         case 2:
             printf("\nCOS:\n");
-            double res_cos = cos(a);
-            printf("%f - %f = %f\n", a, b, res_cos);
+            double res_cos = cos(x);
+            printf("cos%d = %f\n", x, res_cos);
             return 0;
         case 3:
             printf("\nSQRT:\n");
-            double res_sqrt = sqrt(a, b);
-            printf("%f * %f = %f\n", a, b, res_sqrt);
+            double res_sqrt = sqrt(x);
+            printf("sqrt%d = %f\n", x, res_sqrt);
             return 0;
         case 4:
             printf("\nPOW:\n");
-            double res_pow = pow(a, b);
-            printf("%f / %f = %f\n", a, b, res_pow);
+            double res_pow = pow(x, y);
+            printf("%d pow%d = %f\n", x, y, res_pow);
             return 0;
         case 5:
             printf("\nExit.\n");
@@ -125,6 +121,6 @@ int main(void)
             printf("\nIncorrect symbol!\n");
             return 0;
         }
-
+    }
     return 0;
 }
