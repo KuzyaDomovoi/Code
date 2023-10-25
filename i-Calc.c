@@ -13,7 +13,6 @@ int main(void)
     int calc_func;
     double a, b;
     int x, y;
-
     
         printf("\n1. simple calc\n"
                  "2. i_calc\n"
