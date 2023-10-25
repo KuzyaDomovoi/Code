@@ -51,17 +51,17 @@ int main(void)
                 printf("\nAddition:\n");
                 double res_add = ADD(a, b);
                 printf("%f + %f = %f\n", a, b, res_add);
-                break;
+                return 0;
             case 2:
                 printf("\nSubstraction:\n");
                 double res_sub = SUB(a, b);
                 printf("%f - %f = %f\n", a, b, res_sub);
-                break;
+                return 0;
             case 3:
                 printf("\nMultiplication:\n");
                 double res_mul = MUL(a, b);
                 printf("%f * %f = %f\n", a, b, res_mul);
-                break;
+                return 0;
             case 4:
                 printf("\nDivision:\n");
                 if(b == 0) {
@@ -70,7 +70,7 @@ int main(void)
                 }
                 double res_div = DIV(a, b);
                 printf("%f / %f = %f\n", a, b, res_div);
-                break;
+                return 0;
             case 5:
                 printf("\nEnd of program.\n");
                 return 0;
@@ -100,22 +100,22 @@ int main(void)
                 printf("\nSIN:\n");
                 double res_sin= sin(x);
                 printf("sin%d = %f\n", x, res_sin);
-                break;
+                return 0;
             case 2:
                 printf("\nCOS:\n");
                 double res_cos = cos(x);
                 printf("cos%d = %f\n", x, res_cos);
-                break;
+                return 0;
             case 3:
                 printf("\nSQRT:\n");
                 double res_sqrt = sqrt(x);
                 printf("sqrt%d = %f\n", x, res_sqrt);
-                break;
+                return 0;
             case 4:
                 printf("\nPOW:\n");
                 double res_pow = pow(x, y);
                 printf("%d pow%d = %f\n", x, y, res_pow);
-                break;
+                return 0;
             case 5:
                 printf("\nEnd of program.\n");
                 return 0;
