@@ -13,7 +13,7 @@
 #define CLEAN 50
 
 // convertation string to number:
-int str_to_int(char str[]) { // the func converts the string to a number;
+int str_to_int(char str[]) { // the func converts a string to a number;
     int num = 0;
     int i = 0;
     int sign = (str[i] == '-') ? -1 : 1; // if a current char has the sign minus ('-') then it is equal as '-1' esle as '1';
