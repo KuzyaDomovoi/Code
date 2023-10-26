@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
 
 #define ADD(A, B) ((A) + (B))
 #define SUB(A, B) ((A) - (B))
