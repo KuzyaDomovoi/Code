@@ -8,9 +8,7 @@
 
 int main(void)
 {
-    int calc_mode;
-    int calc_action;
-    int calc_func;
+    int calc_item;
     double a, b;
     int x;
     
@@ -18,11 +16,11 @@ int main(void)
                  "2. i-Calc\n"
                  "3. Exit\n");
         printf("   Select the mode of calculation: ");
-        if(scanf("%d", &calc_mode) != 1) {
+        if(scanf("%d", &calc_item) != 1) {
             printf("\nError input!\n");
             return 0;
         }
-        switch(calc_mode) {
+        switch(calc_item) {
         case 1:  
 
             printf("\nEnter the first number for calculation: ");
@@ -42,11 +40,11 @@ int main(void)
                      "5. Exit\n");
             printf("   Select action of calculation: ");
 
-            if(scanf("%d", &calc_action) != 1) {
+            if(scanf("%d", &calc_item) != 1) {
                 printf("\nError input!\n");
                 return 0;
             }
-            switch(calc_action) {
+            switch(calc_item) {
             case 1:
                 double res_add = ADD(a, b);
                 printf("\n%f + %f = %f\n", a, b, res_add);
@@ -81,11 +79,11 @@ int main(void)
                      "4. POW\n"
                      "5. Exit\n");
             printf("   Select function for calculation: ");
-            if(scanf("%d", &calc_func) != 1) {
+            if(scanf("%d", &calc_item) != 1) {
                 printf("\nError input!\n");
                 return 0;
             }
-            switch(calc_func) {
+            switch(calc_item) {
             case 1:
                 printf("\nEnter a value for SIN: ");
                 while(scanf("%d", &x) != 1 ) {
