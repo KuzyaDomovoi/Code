@@ -46,24 +46,20 @@ int main(void)
             }
             switch(calc_item) {
             case 1:
-                double res_add = ADD(a, b);
-                printf("\n%f + %f = %f\n", a, b, res_add);
+                printf("\n%f + %f = %f\n", a, b, ADD(a, b));
                 return 0;
             case 2:
-                double res_sub = SUB(a, b);
-                printf("\n%f - %f = %f\n", a, b, res_sub);
+                printf("\n%f - %f = %f\n", a, b, SUB(a, b));
                 return 0;
             case 3:
-                double res_mul = MUL(a, b);
-                printf("\n%f * %f = %f\n", a, b, res_mul);
+                printf("\n%f * %f = %f\n", a, b, MUL(a, b));
                 return 0;
             case 4:
                 if(b == 0) {
                     printf("\nZeroDivisionError!\n");
                     return 0;
                 }
-                double res_div = DIV(a, b);
-                printf("\n%f / %f = %f\n", a, b, res_div);
+                printf("\n%f / %f = %f\n", a, b, DIV(a, b));
                 return 0;
             case 5:
                 printf("\nEnd of program.\n");
@@ -90,8 +86,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                double res_sin= sin(x);
-                printf("\nSin%d = %f\n", x, res_sin);
+                printf("\nSin%d = %f\n", x, sin(x));
                 return 0;
             case 2:
                 printf("\nEnter a value for COS: ");
@@ -99,8 +94,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                double res_cos = cos(x);
-                printf("\nCos%d = %f\n", x, res_cos);
+                printf("\nCos%d = %f\n", x, cos(x));
                 return 0;
             case 3:
                 printf("\nEnter a value for SQRT: ");
@@ -108,8 +102,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                double res_sqrt = sqrt(x);
-                printf("\nSqrt%d = %f\n", x, res_sqrt);
+                printf("\nSqrt%d = %f\n", x, sqrt(x));
                 return 0;
             case 4:
                 printf("\nEnter a number and the value to raise it to POW separated by space: ");
@@ -117,8 +110,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                double res_pow = pow(a, b);
-                printf("\n%f pow%f = %f\n", a, b, res_pow);
+                printf("\n%f pow%f = %f\n", a, b, pow(a, b));
                 return 0;
             case 5:
                 printf("\nEnd of program.\n");
