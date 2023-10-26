@@ -110,7 +110,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\n%f pow%f = %f\n", a, b, pow(a, b));
+                printf("\n%fpow %f = %f\n", a, b, pow(a, b));
                 return 0;
             case 5:
                 printf("\nEnd of program.\n");
