@@ -13,6 +13,10 @@ int main(void)
     int calc_func;
     double a, b;
     int x;
+    double res_add;
+    double res_sub;
+    double res_mul;
+    double res_div;
     
         printf("\n1. Simple_calc\n"
                  "2. i-Calc\n"
@@ -23,7 +27,8 @@ int main(void)
             return 0;
         }
         switch(calc_mode) {
-        case 1:        
+        case 1:  
+              
             printf("\nEnter the first number for calculation: ");
             while(scanf("%lf", &a) != 1) {
                 printf("\nError input!\n");
@@ -47,15 +52,15 @@ int main(void)
             }
             switch(calc_action) {
             case 1:
-                double res_add = ADD(a, b);
+                res_add = ADD(a, b);
                 printf("\n%f + %f = %f\n", a, b, res_add);
                 return 0;
             case 2:
-                double res_sub = SUB(a, b);
+                res_sub = SUB(a, b);
                 printf("\n%f - %f = %f\n", a, b, res_sub);
                 return 0;
             case 3:
-                double res_mul = MUL(a, b);
+                res_mul = MUL(a, b);
                 printf("\n%f * %f = %f\n", a, b, res_mul);
                 return 0;
             case 4:
@@ -63,7 +68,7 @@ int main(void)
                     printf("\nZeroDivisionError!\n");
                     return 0;
                 }
-                double res_div = DIV(a, b);
+                res_div = DIV(a, b);
                 printf("\n%f / %f = %f\n", a, b, res_div);
                 return 0;
             case 5:
