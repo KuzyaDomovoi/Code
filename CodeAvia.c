@@ -5,14 +5,14 @@ int main(void)
     int item;
     double max_TOweigth, max_fuelreserve, cruisspeed, flrange_maxfuload, 
            flduration_maxfuload, flduration, req_engthrustcruise, engthrust_val,
-           average_climbspeed, climtime, airbornspeed, calc_flrang_clim,
-           calc_fucost_clim, calc_fucost_desc, avail_fures, full_fusupp,
+           average_climbspeed, climtime, airbornspeed, flrang_clim,
+           fucost_clim, fucost_desc, avail_fures, full_fusupp, midaverage_climbspeed,
            fucons_preTO, fucons_TO, fucons_clim, fusons_desc,
            fucons_final_Land_taxi, guarfusupp_unusfures, lcruise, 
            tcruise, mTcruise, flrange, Vdesc, tdesc, hcruise;
 
-    double nM = 0.84, cya = 0.47, cxa = 0.029, k = 15.79, p = 0.836,
-           spec_fuconscruise = 0.091, q = 11.10, v0 = 236, m, spec_fuconsclim = 0.103;
+    double nM = 0.84, cya = 0.47, cxa = 0.029, k = 15.79, engthrottdegree = 0.836,
+           spec_fuconscruise = 0.091, m, spec_fuconsclim = 0.103;
            
     printf("1. Расчет дальности и продолжительности\n"
               "полета на заданной скорости и высоте\n"
@@ -129,9 +129,9 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        average_climbspeed = 0.5 * (airbornspeed + cruisspeed);
-        calc_flrang_clim = average_climbspeed * ((60 * climtime) / 1000);
-        calc_fucost_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
+        midaverage_climbspeed = 0.5 * (airbornspeed + average_climbspeed);
+        flrang_clim = average_climbspeed * ((60 * climtime) / 1000);
+        fucost_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
         fucons_TO = spec_fuconsclim * engthrust_val * (climtime / 60);
         fucons_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60);
         avail_fures = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fusons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
@@ -140,7 +140,7 @@ int main(void)
         q = (spec_fuconscruise * req_engthrustcruise) / (3.6 * cruisspeed);
         lcruise = mTcruise / q;
         tcruise = lcruise / (3.6 * cruisspeed);
-        flrange = (average_climbspeed * climtime) + (cruisspeed * tcruise) + (Vdesc * tdesc);
+        flrange = (midaverage_climbspeed * climtime) + (cruisspeed * tcruise) + (Vdesc * tdesc);
         flduration = (climtime / 60) + tcruise + (tdesc / 60);
         //flduration_maxfuload = 
         //flrange_maxfuload = 
