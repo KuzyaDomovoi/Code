@@ -50,7 +50,7 @@ int main(void)
             return 0;
         }
         printf("\nРасчет располагаемого запаса топлива:\n\n");
-        printf("макс заправка топ, кг: ");
+        printf("  макс заправка топ, кг: ");
         while(scanf("%lf", &full_fusupp) != 1) {
             printf("\nError_input!\n");
             return 0;
