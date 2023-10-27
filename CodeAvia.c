@@ -14,9 +14,9 @@ int main(void)
     double nM = 0.84, cya = 0.47, cxa = 0.029, k = 15.79, engthrottdegree = 0.836,
            spec_fuconscruise = 0.091, m, q, spec_fuconsclim = 0.103;
            
-    printf("1. Расчет дальности и продолжительности\n"
-              "полета на заданной скорости и высоте\n"
-           "2. Выход\n");
+    printf("\n1. Расчет дальности и продолжительности\n"
+                "полета на заданной скорости и высоте\n"
+             "2. Выход\n");
     printf("   Выбери расчет или выход: ");
     if(scanf("%d", &item) != 1) {
         printf("\nError input!\n");
@@ -24,9 +24,7 @@ int main(void)
         }
     switch(item) {
     case 1:
-        printf("Расчет затрат топлива и дальности полета\n"
-              "на участкае набора высоты\n\n");
-        printf("Величина тяги для ТРДД при номинал ррд в наборе на средн выс, кН: ");
+        printf("\nВеличина тяги для ТРДД при номинал ррд в наборе на средн выс, кН: ");
         while(scanf("%lf", &engthrust_val) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -51,7 +49,7 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("\nРасчет располагаемого запаса топлива\n\n");
+        printf("\nРасчет располагаемого запаса топлива:\n\n");
         printf("макс заправка топ, кг: ");
         while(scanf("%lf", &full_fusupp) != 1) {
             printf("\nError_input!\n");
@@ -82,11 +80,6 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Макс запас топл, кг:  ");
-        while(scanf("%lf", &max_fuelreserve) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }        
         printf("Масса снаряж самолета, кг: ");
         while(scanf("%lf", &m) != 1) {
             printf("\nError_input!\n");
