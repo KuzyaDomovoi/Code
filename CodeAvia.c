@@ -110,8 +110,6 @@ int main(void)
         //flduration_maxfuload = 
         //flrange_maxfuload = 
 
-        printf("req_engthrustcruise = %.2f\n", req_engthrustcruise);
-        printf("fucons_clim = %.2f\n", fucons_clim);
         printf("q = %.2f\n", q);
         printf("\nРасполагаемый запас топлива = %.2f\n", fucons_cruise);
         printf("Дальность полета, км = %.2f\nПродолжительность полета, ч = %.2f\n", flrange, flduration);
