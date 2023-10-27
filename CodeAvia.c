@@ -120,7 +120,7 @@ int main(void)
             return 0;
         }
         midaverage_climspeed = 0.5 * (airbornspeed + average_climspeed);
-        flrang_clim = average_climbspeed * ((60 * climtime) / 1000);
+        flrang_clim = average_climspeed * ((60 * climtime) / 1000);
         fucost_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
         fucons_TO = spec_fuconsclim * engthrust_val * (climtime / 60);
         fucons_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60);
