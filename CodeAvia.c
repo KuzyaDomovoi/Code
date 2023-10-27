@@ -6,7 +6,7 @@ int main(void)
     double max_TOweigth, max_fuelreserve, cruisspeed, flrange_maxfuload, 
            flduration_maxfuload,flduration, engthrust, engthrust_val,
            average_climbspeed, climtime, airbornspeed, calc_flrang_clim,
-           calc_fucost_clim, calc_fucost_desc, fures, full_fusupp,
+           calc_fucost_clim, calc_fucost_desc, avail_fures, full_fusupp,
            fucons_preTO, fucons_TO, fucons_clim, fusons_desc,
            fucons_final_Land_taxi, guarfusupp_unusfures, lcruise, 
            tcruise, mTcruise, flrange, Vdesc, tdesc;
@@ -133,7 +133,7 @@ int main(void)
         calc_flrang_clim = average_climbspeed * ((60 * climtime) / 1000);
         calc_fucost_clim = (spec_fucons * engthrust_val) * (climtime / 60); 
         fucons_TO = spec_fucons * engthrust_val * climtime / 60;
-        fures = full_fusupp - fucons_TO - fucons_clim - fusons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
+        avail_fures = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fusons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
         //k = cya / cxa;
         pp = (m * 9.8) / k;
         q = (spec_fucons * pp) / (3.6 * cruisspeed);
@@ -144,8 +144,7 @@ int main(void)
         //flduration_maxfuload = 
         //flrange_maxfuload = 
 
-        printf("Дальн пол в наборе выс = %f\nРасход топл в наборе выс = %f\n", calc_flrang_clim, calc_fucost_clim);
-        printf("Располагаемый запас топлива = %f", fures);
+        printf("Располагаемый запас топлива = %f", avail_fures);
         printf("Дальность полета, км = %f\nПродолжительность полета, ч = %f\n", flrange, flduration);
         //printf("Дальн пол с макс заправкой топл, км = %f\n", flrange_maxfuload, flduration_maxfuload);
     case 2:
