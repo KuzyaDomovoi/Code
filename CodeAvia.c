@@ -9,7 +9,7 @@ int main(void)
            fucost_clim, fucost_desc, avail_fures, full_fusupp, midaverage_climspeed,
            fucons_preTO, fucons_TO, fucons_clim, fusons_desc,
            fucons_final_Land_taxi, guarfusupp_unusfures, lcruise, 
-           tcruise, mTcruise, flrange, Vdesc, tdesc, hcruise;
+           tcruise, mTcruise, flrange, Vdesc, tdesc;
 
     double nM = 0.84, cya = 0.47, cxa = 0.029, k = 15.79, engthrottdegree = 0.836,
            spec_fuconscruise = 0.091, m, q, spec_fuconsclim = 0.103;
@@ -51,7 +51,7 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Расчет располагаемого запаса топлива\n\n");
+        printf("\nРасчет располагаемого запаса топлива\n\n");
         printf("макс заправка топ, кг: ");
         while(scanf("%lf", &full_fusupp) != 1) {
             printf("\nError_input!\n");
@@ -62,22 +62,17 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("взлет, кг: ");
+        printf("на взлете, кг: ");
         while(scanf("%lf", &fucons_TO) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("высота гориз полета, м: ");
-        while(scanf("%lf", &hcruise) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("снижение, кг: ");
+        printf("на снижении, кг: ");
         while(scanf("%lf", &fusons_desc) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("круг посадка заруливание: ");
+        printf("на кругу посадке заруливании: ");
         while(scanf("%lf", &fucons_final_Land_taxi) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -87,7 +82,7 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Расчет дальности и продолжительности\n"
+        printf("\nРасчет дальности и продолжительности\n"
                   "полета на заданной скорости и высоте\n\n");    
         printf("Макс запас топл, кг:  ");
         while(scanf("%lf", &max_fuelreserve) != 1) {
