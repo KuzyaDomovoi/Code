@@ -72,20 +72,23 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("на кругу посадке заруливании: ");
+        printf("на кругу посадке заруливании, кг: ");
         while(scanf("%lf", &fucons_final_Land_taxi) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("гарант запас невыраб остаток: ");
+        printf("гарант запас невыраб остаток, кг: ");
         while(scanf("%lf", &guarfusupp_unusfures) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("\nРасчет дальности и продолжительности\n"
-                  "полета на заданной скорости и высоте\n\n");    
         printf("Макс запас топл, кг:  ");
         while(scanf("%lf", &max_fuelreserve) != 1) {
+            printf("\nError_input!\n");
+            return 0;
+        }        
+        printf("Масса снаряж самолета, кг: ");
+        while(scanf("%lf", &m) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
@@ -101,11 +104,6 @@ int main(void)
         }
         printf("Время набора выс, с: ");
         while(scanf("%lf", &climtime) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("Масса самолета, кг: ");
-        while(scanf("%lf", &m) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
