@@ -22,7 +22,6 @@ int main(void)
         }
         switch(calc_item) {
         case 1:  
-
             printf("\nEnter the first number for calculation: ");
             while(scanf("%lf", &a) != 1) {
                 printf("\nError input!\n");
