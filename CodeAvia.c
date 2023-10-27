@@ -46,8 +46,13 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Время набора выс пол, сек: ");
-        while(scanf("%lf", &climtime) != 1) {
+        printf("Скорость крес на выс пот, км/ч: ");
+        while(scanf("%lf", &cruisspeed) != 1) {
+            printf("\nError_input!\n");
+            return 0;
+        }
+        printf("Скорость на снижении, км/ч: ");
+        while(scanf("%lf", &Vdesc) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
@@ -89,16 +94,6 @@ int main(void)
         }        
         printf("Масса снаряж самолета, кг: ");
         while(scanf("%lf", &m) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("Скорость крес на выс пот, км/ч: ");
-        while(scanf("%lf", &cruisspeed) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("Скорость на снижении, км/ч: ");
-        while(scanf("%lf", &Vdesc) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
