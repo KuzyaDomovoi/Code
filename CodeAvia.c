@@ -5,14 +5,14 @@ int main(void)
     int item;
     double max_TOweigth, max_fuelreserve, cruisspeed, flrange_maxfuload, 
            flduration_maxfuload, flduration, req_engthrustcruise, engthrust_val,
-           average_climbspeed, climtime, airbornspeed, flrang_clim,
-           fucost_clim, fucost_desc, avail_fures, full_fusupp, midaverage_climbspeed,
+           average_climspeed, climtime, airbornspeed, flrang_clim,
+           fucost_clim, fucost_desc, avail_fures, full_fusupp, midaverage_climspeed,
            fucons_preTO, fucons_TO, fucons_clim, fusons_desc,
            fucons_final_Land_taxi, guarfusupp_unusfures, lcruise, 
            tcruise, mTcruise, flrange, Vdesc, tdesc, hcruise;
 
     double nM = 0.84, cya = 0.47, cxa = 0.029, k = 15.79, engthrottdegree = 0.836,
-           spec_fuconscruise = 0.091, m, spec_fuconsclim = 0.103;
+           spec_fuconscruise = 0.091, m, q, spec_fuconsclim = 0.103;
            
     printf("1. Расчет дальности и продолжительности\n"
               "полета на заданной скорости и высоте\n"
@@ -32,7 +32,7 @@ int main(void)
             return 0;
         }
         printf("Средн скор при наборе выс, км/ч: ");
-        while(scanf("%lf", &average_climbspeed) != 1) {
+        while(scanf("%lf", &average_climspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
@@ -94,16 +94,6 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Тяга двигателя, кН: ");
-        while(scanf("%lf", &engthrust) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("Скорость набора выс, км/ч: ");
-        while(scanf("%lf", &average_climbspeed) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
         printf("Скорость крес на выс пот, км/ч: ");
         while(scanf("%lf", &cruisspeed) != 1) {
             printf("\nError_input!\n");
@@ -129,7 +119,7 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        midaverage_climbspeed = 0.5 * (airbornspeed + average_climbspeed);
+        midaverage_climspeed = 0.5 * (airbornspeed + average_climspeed);
         flrang_clim = average_climbspeed * ((60 * climtime) / 1000);
         fucost_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
         fucons_TO = spec_fuconsclim * engthrust_val * (climtime / 60);
@@ -140,7 +130,7 @@ int main(void)
         q = (spec_fuconscruise * req_engthrustcruise) / (3.6 * cruisspeed);
         lcruise = mTcruise / q;
         tcruise = lcruise / (3.6 * cruisspeed);
-        flrange = (midaverage_climbspeed * climtime) + (cruisspeed * tcruise) + (Vdesc * tdesc);
+        flrange = (midaverage_climspeed * climtime) + (cruisspeed * tcruise) + (Vdesc * tdesc);
         flduration = (climtime / 60) + tcruise + (tdesc / 60);
         //flduration_maxfuload = 
         //flrange_maxfuload = 
