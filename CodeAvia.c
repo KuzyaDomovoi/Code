@@ -29,22 +29,22 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Средн скор при наборе выс, км/ч: ");
+        printf("  Средн скор при наборе выс, км/ч: ");
         while(scanf("%lf", &average_climspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Крейс скорость, км/ч: ");
+        printf("  Крейс скорость, км/ч: ");
         while(scanf("%lf", &cruisspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Скорость отрыва, км/ч: ");
+        printf("  Скорость отрыва, км/ч: ");
         while(scanf("%lf", &airbornspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Скорость на снижении, км/ч: ");
+        printf("  Скорость на снижении, км/ч: ");
         while(scanf("%lf", &Vdesc) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -55,42 +55,42 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("прогрев опроб двиг рул, кг: ");
+        printf("  прогрев опроб двиг рул, кг: ");
         while(scanf("%lf", &fucons_preTO) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("на взлете, кг: ");
+        printf("  на взлете, кг: ");
         while(scanf("%lf", &fucons_TO) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("на снижении, кг: ");
+        printf("  на снижении, кг: ");
         while(scanf("%lf", &fusons_desc) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("на кругу посадке заруливании, кг: ");
+        printf("  на кругу посадке заруливании, кг: ");
         while(scanf("%lf", &fucons_final_Land_taxi) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("гарант запас невыраб остаток, кг: ");
+        printf("  гарант запас невыраб остаток, кг: ");
         while(scanf("%lf", &guarfusupp_unusfures) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Масса снаряж самолета, кг: ");
+        printf("масса снаряж самолета, кг: ");
         while(scanf("%lf", &m) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Время набора выс, с: ");
+        printf("\nвремя набора выс, с: ");
         while(scanf("%lf", &climtime) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Время снижения, с: ");
+        printf("время снижения, с: ");
         while(scanf("%lf", &tdesc) != 1) {
             printf("\nError_input!\n");
             return 0;
