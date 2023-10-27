@@ -4,15 +4,15 @@ int main(void)
 {
     int item;
     double max_TOweigth, max_fuelreserve, cruisspeed, flrange_maxfuload, 
-           flduration_maxfuload,flduration, engthrust, engthrust_val,
+           flduration_maxfuload, flduration, req_engthrustcruise, engthrust_val,
            average_climbspeed, climtime, airbornspeed, calc_flrang_clim,
            calc_fucost_clim, calc_fucost_desc, avail_fures, full_fusupp,
            fucons_preTO, fucons_TO, fucons_clim, fusons_desc,
            fucons_final_Land_taxi, guarfusupp_unusfures, lcruise, 
-           tcruise, mTcruise, flrange, Vdesc, tdesc;
+           tcruise, mTcruise, flrange, Vdesc, tdesc, hcruise;
 
-    double M = 0.84, cya = 0.47, cxa = 0.029, k = 15.79, pp, p = 0.836,
-           spec_fucons = 0.091, q = 11.10, v0 = 236, m;
+    double nM = 0.84, cya = 0.47, cxa = 0.029, k = 15.79, p = 0.836,
+           spec_fuconscruise = 0.091, q = 11.10, v0 = 236, m, spec_fuconsclim = 0.103;
            
     printf("1. Расчет дальности и продолжительности\n"
               "полета на заданной скорости и высоте\n"
@@ -67,8 +67,8 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("набор крейс высоты, кг: ");
-        while(scanf("%lf", &fucons_clim) != 1) {
+        printf("высота гориз полета, м: ");
+        while(scanf("%lf", &hcruise) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
@@ -131,12 +131,13 @@ int main(void)
         }
         average_climbspeed = 0.5 * (airbornspeed + cruisspeed);
         calc_flrang_clim = average_climbspeed * ((60 * climtime) / 1000);
-        calc_fucost_clim = (spec_fucons * engthrust_val) * (climtime / 60); 
-        fucons_TO = spec_fucons * engthrust_val * climtime / 60;
+        calc_fucost_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
+        fucons_TO = spec_fuconsclim * engthrust_val * (climtime / 60);
+        fucons_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60);
         avail_fures = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fusons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
         //k = cya / cxa;
-        pp = (m * 9.8) / k;
-        q = (spec_fucons * pp) / (3.6 * cruisspeed);
+        req_engthrustcruise = (m * 9.8) / k;
+        q = (spec_fuconscruise * req_engthrustcruise) / (3.6 * cruisspeed);
         lcruise = mTcruise / q;
         tcruise = lcruise / (3.6 * cruisspeed);
         flrange = (average_climbspeed * climtime) + (cruisspeed * tcruise) + (Vdesc * tdesc);
