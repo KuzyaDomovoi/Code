@@ -6,10 +6,10 @@ int main(void)
     double max_TOweigth, max_fuelreserve, cruisspeed, flrange_maxfuload, 
            flduration_maxfuload, flduration, req_engthrustcruise, engthrust_val,
            average_climspeed, climtime, airbornspeed, flrang_clim,
-           fucost_clim, fucost_desc, avail_fures, full_fusupp, midaverage_climspeed,
+           fucost_clim, fucost_desc, full_fusupp, midaverage_climspeed,
            fucons_preTO, fucons_TO, fucons_clim, fusons_desc,
-           fucons_final_Land_taxi, guarfusupp_unusfures, lcruise, 
-           tcruise, mTcruise, flrange, Vdesc, tdesc;
+           fucons_final_Land_taxi, guarfusupp_unusfures, rangcruise, 
+           timecruise, fucons_cruise, flrange, Vdesc, tdesc;
 
     double nM = 0.84, cya = 0.47, cxa = 0.029, k = 15.79, engthrottdegree = 0.836,
            spec_fuconscruise = 0.091, m, q, spec_fuconsclim = 0.103;
@@ -99,18 +99,18 @@ int main(void)
         fucost_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
         fucons_TO = spec_fuconsclim * engthrust_val * (climtime / 60);
         fucons_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60);
-        avail_fures = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fusons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
+        fucons_cruise = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fusons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
         //k = cya / cxa;
         req_engthrustcruise = (m * 9.8) / k;
         q = (spec_fuconscruise * req_engthrustcruise) / (3.6 * cruisspeed);
-        lcruise = mTcruise / q;
-        tcruise = lcruise / (3.6 * cruisspeed);
-        flrange = (midaverage_climspeed * climtime) + (cruisspeed * tcruise) + (Vdesc * tdesc);
-        flduration = (climtime / 60) + tcruise + (tdesc / 60);
+        rangcruise = fucons_cruise / q;
+        timecruise = rangcruise / (3.6 * cruisspeed);
+        flrange = (midaverage_climspeed * climtime) + (cruisspeed * timecruise) + (Vdesc * tdesc);
+        flduration = (climtime / 60) + timecruise + (tdesc / 60);
         //flduration_maxfuload = 
         //flrange_maxfuload = 
 
-        printf("\nРасполагаемый запас топлива = %.2f\n", avail_fures);
+        printf("\nРасполагаемый запас топлива = %.2f\n", fucons_cruise);
         printf("Дальность полета, км = %.2f\nПродолжительность полета, ч = %.2f\n", flrange, flduration);
         //printf("Дальн пол с макс заправкой топл, км = %f\n", flrange_maxfuload, flduration_maxfuload);
     case 2:
