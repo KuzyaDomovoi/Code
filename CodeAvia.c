@@ -24,7 +24,7 @@ int main(void)
         }
     switch(item) {
     case 1:
-        printf("\nВеличина тяги для ТРДД при номинал ррд в наборе на средн выс, кН: ");
+        printf("\n  Величина тяги для ТРДД при номинал ррд в наборе на средн выс, кН: ");
         while(scanf("%lf", &engthrust_val) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -49,8 +49,7 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("\nРасчет располагаемого запаса топлива:\n\n");
-        printf("  макс заправка топ, кг: ");
+        printf("\n  макс заправка топ, кг: ");
         while(scanf("%lf", &full_fusupp) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -80,17 +79,17 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("масса снаряж самолета, кг: ");
+        printf("  масса снаряж самолета, кг: ");
         while(scanf("%lf", &m) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("\nвремя набора выс, с: ");
+        printf("\n\n  время набора выс, с: ");
         while(scanf("%lf", &climtime) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("время снижения, с: ");
+        printf("  время снижения, с: ");
         while(scanf("%lf", &tdesc) != 1) {
             printf("\nError_input!\n");
             return 0;
