@@ -111,8 +111,8 @@ int main(void)
         //flduration_maxfuload = 
         //flrange_maxfuload = 
 
-        printf("Располагаемый запас топлива = %f", avail_fures);
-        printf("Дальность полета, км = %f\nПродолжительность полета, ч = %f\n", flrange, flduration);
+        printf("Располагаемый запас топлива = %.2f\n", avail_fures);
+        printf("Дальность полета, км = %.2f\nПродолжительность полета, ч = %.2f\n", flrange, flduration);
         //printf("Дальн пол с макс заправкой топл, км = %f\n", flrange_maxfuload, flduration_maxfuload);
     case 2:
         printf("\nEnd of program\n");
