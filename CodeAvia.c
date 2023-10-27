@@ -46,11 +46,6 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("Скорость крес на выс пот, км/ч: ");
-        while(scanf("%lf", &cruisspeed) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
         printf("Скорость на снижении, км/ч: ");
         while(scanf("%lf", &Vdesc) != 1) {
             printf("\nError_input!\n");
