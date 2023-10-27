@@ -24,7 +24,7 @@ int main(void)
         }
     switch(item) {
     case 1:
-        printf("\n  Величина тяги для ТРДД при номинал ррд в наборе на средн выс, кН: ");
+        printf("\n  Величина тяги для ТРДД при номинал ррд в наборе на средн выс, H: ");
         while(scanf("%lf", &engthrust_val) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -84,12 +84,12 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("\n\n  время набора выс, с: ");
+        printf("\n\n  время набора выс, мин: ");
         while(scanf("%lf", &climtime) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  время снижения, с: ");
+        printf("  время снижения, мин: ");
         while(scanf("%lf", &tdesc) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -110,6 +110,9 @@ int main(void)
         //flduration_maxfuload = 
         //flrange_maxfuload = 
 
+        printf("req_engthrustcruise = %.2f\n", req_engthrustcruise);
+        printf("fucons_clim = %.2f\n", fucons_clim);
+        printf("q = %.2f\n", q);
         printf("\nРасполагаемый запас топлива = %.2f\n", fucons_cruise);
         printf("Дальность полета, км = %.2f\nПродолжительность полета, ч = %.2f\n", flrange, flduration);
         //printf("Дальн пол с макс заправкой топл, км = %f\n", flrange_maxfuload, flduration_maxfuload);
