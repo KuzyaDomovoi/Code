@@ -79,7 +79,7 @@ int main(void)
             return 0;
         }
         printf("  на снижении, кг: ");
-        while(scanf("%lf", &fusons_desc) != 1) {
+        while(scanf("%lf", &fucons_desc) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
@@ -97,7 +97,6 @@ int main(void)
         midaverage_climspeed = 0.5 * ((airbornspeed / 3.6) + (average_climspeed / 3.6));
         flrang_clim = (average_climspeed * 3.6) * ((60 * climtime) / 1000);
         fucons_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
-        fucons_TO = spec_fuconsclim * engthrust_val * (climtime / 60);
         fucons_cruise = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fucons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
         req_engthrustcruise = (m * 9.8) / k;
         q = (spec_fuconscruise * req_engthrustcruise) / cruisspeed;
