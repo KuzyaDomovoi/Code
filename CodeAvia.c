@@ -29,7 +29,7 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  Средн скор при наборе выс, м/с: ");
+        printf("  Средн скор при наборе выс, км/ч: ");
         while(scanf("%lf", &average_climspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -94,11 +94,10 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        midaverage_climspeed = 0.5 * (airbornspeed + average_climspeed);
-        flrang_clim = average_climspeed * ((60 * climtime) / 1000);
+        midaverage_climspeed = 0.5 * ((airbornspeed / 3.6) + (average_climspeed / 3.6));
+        flrang_clim = (average_climspeed * 3.6) * ((60 * climtime) / 1000);
         fucost_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
         fucons_TO = spec_fuconsclim * engthrust_val * (climtime / 60);
-        fucons_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60);
         fucons_cruise = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fusons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
         //k = cya / cxa;
         req_engthrustcruise = (m * 9.8) / k;
