@@ -106,7 +106,6 @@ int main(void)
         flrange = (midaverage_climspeed * climtime) + ((cruisspeed / 3.6) * timecruise / 3.6) + (descspeed * desctime);
         flduration = (climtime / 60) + timecruise + (desctime / 60);
         
-        printf("\n  q = %.2f\n", q);
         printf("\nРасполагаемый запас топлива = %.2f\n", fucons_cruise);
         printf("Дальность полета, км = %.2f\nПродолжительность полета, ч = %.2f\n", flrange, flduration);
         //printf("Дальн пол с макс заправкой топл, км = %f\n", flrange_maxfuload, flduration_maxfuload);
