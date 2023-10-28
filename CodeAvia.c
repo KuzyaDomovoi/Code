@@ -12,7 +12,7 @@ int main(void)
            timecruise, fucons_cruise, flrange, descspeed, desctime;
 
     double nM = 0.85, k = 11.7, engthrottdegree = 0.836,
-           spec_fuconscruise = 0.089, m, q, spec_fuconsclim = 0.103;
+           spec_fuconscruise = 0.077, m, q, spec_fuconsclim = 0.103;
            
     printf("\n1. Расчет дальности и продолжительности\n"
                 "полета на заданной скорости и высоте\n"
