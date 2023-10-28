@@ -29,8 +29,18 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
+        printf("  Скорость отрыва, км/ч: ");
+        while(scanf("%lf", &airbornspeed) != 1) {
+            printf("\nError_input!\n");
+            return 0;
+        }
         printf("  Средн скор набора выс, км/ч: ");
         while(scanf("%lf", &average_climspeed) != 1) {
+            printf("\nError_input!\n");
+            return 0;
+        }
+        printf("\n\n  время набора выс, мин: ");
+        while(scanf("%lf", &climtime) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
@@ -39,13 +49,18 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  Скорость отрыва, км/ч: ");
-        while(scanf("%lf", &airbornspeed) != 1) {
+        printf("  Скорость на снижении, км/ч: ");
+        while(scanf("%lf", &descspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  Скорость на снижении, км/ч: ");
-        while(scanf("%lf", &descspeed) != 1) {
+        printf("  время снижения, мин: ");
+        while(scanf("%lf", &desctime) != 1) {
+            printf("\nError_input!\n");
+            return 0;
+        }       
+        printf("  масса снаряж самолета, кг: ");
+        while(scanf("%lf", &m) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
@@ -79,21 +94,7 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  масса снаряж самолета, кг: ");
-        while(scanf("%lf", &m) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("\n\n  время набора выс, мин: ");
-        while(scanf("%lf", &climtime) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  время снижения, мин: ");
-        while(scanf("%lf", &desctime) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
+
         midaverage_climspeed = 0.5 * ((airbornspeed / 3.6) + (average_climspeed / 3.6));
         flrang_clim = (average_climspeed * 3.6) * ((60 * climtime) / 1000);
         fucost_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
