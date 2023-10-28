@@ -99,7 +99,7 @@ int main(void)
         fucost_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
         fucons_TO = spec_fuconsclim * engthrust_val * (climtime / 60);
         fucons_cruise = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fusons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
-        req_engthrustcruise = (m * 9.8) / k; // k = cya / cxa;
+        req_engthrustcruise = (m * 9.8) / k;
         q = (spec_fuconscruise * req_engthrustcruise) / cruisspeed;
         rangcruise = fucons_cruise / q;
         timecruise = rangcruise / cruisspeed;
