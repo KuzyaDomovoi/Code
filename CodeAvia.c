@@ -11,7 +11,7 @@ int main(void)
            fucons_final_Land_taxi, guarfusupp_unusfures, rangcruise, 
            timecruise, fucons_cruise, flrange, descspeed, desctime;
 
-    double nM = 0.85, k = 12.7, engthrottdegree = 0.836,
+    double nM = 0.85, k = 11.7, engthrottdegree = 0.836,
            spec_fuconscruise = 0.089, m, q, spec_fuconsclim = 0.103;
            
     printf("\n1. Расчет дальности и продолжительности\n"
