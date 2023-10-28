@@ -102,10 +102,10 @@ int main(void)
         fucons_cruise = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fusons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
         //k = cya / cxa;
         req_engthrustcruise = (m * 9.8) / k;
-        q = (spec_fuconscruise * req_engthrustcruise) / (3.6 * cruisspeed);
+        q = (spec_fuconscruise * req_engthrustcruise) / cruisspeed;
         rangcruise = fucons_cruise / q;
-        timecruise = rangcruise / (3.6 * cruisspeed);
-        flrange = (midaverage_climspeed * climtime) + (cruisspeed * timecruise) + (Vdesc * tdesc);
+        timecruise = rangcruise / cruisspeed;
+        flrange = (midaverage_climspeed * climtime) + ((cruisspeed / 3.6) * timecruise) + (Vdesc * tdesc);
         flduration = (climtime / 60) + timecruise + (tdesc / 60);
         //flduration_maxfuload = 
         //flrange_maxfuload = 
