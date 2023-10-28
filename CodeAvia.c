@@ -29,7 +29,7 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  Средн скор при наборе выс, км/ч: ");
+        printf("  Средн скор при наборе выс, м/с: ");
         while(scanf("%lf", &average_climspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
