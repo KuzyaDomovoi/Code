@@ -39,7 +39,7 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("\n\n  время набора выс, мин: ");
+        printf("  время набора выс, мин: ");
         while(scanf("%lf", &climtime) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -64,7 +64,7 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("\n  макс заправка топ, кг: ");
+        printf("  макс заправка топ, кг: ");
         while(scanf("%lf", &full_fusupp) != 1) {
             printf("\nError_input!\n");
             return 0;
