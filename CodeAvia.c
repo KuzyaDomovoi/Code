@@ -6,10 +6,9 @@ int main(void)
     double max_TOweigth, max_fuelreserve, cruisspeed, flrange_maxfuload, 
            flduration_maxfuload, flduration, req_engthrustcruise, engthrust_val,
            average_climspeed, climtime, airbornspeed, flrang_clim,
-           fucost_clim, fucost_desc, full_fusupp, midaverage_climspeed,
-           fucons_preTO, fucons_TO, fucons_clim, fusons_desc,
-           fucons_final_Land_taxi, guarfusupp_unusfures, rangcruise, 
-           timecruise, fucons_cruise, flrange, descspeed, desctime;
+           full_fusupp, midaverage_climspeed, fucons_preTO, fucons_TO, 
+           fucons_clim, fucons_desc, fucons_final_Land_taxi, guarfusupp_unusfures, 
+           rangcruise, timecruise, fucons_cruise, flrange, descspeed, desctime;
 
     double nM = 0.72, k = 11.7, engthrottdegree = 0.7,
            spec_fuconscruise = 0.077, m, q, spec_fuconsclim = 0.091;
@@ -97,9 +96,9 @@ int main(void)
 
         midaverage_climspeed = 0.5 * ((airbornspeed / 3.6) + (average_climspeed / 3.6));
         flrang_clim = (average_climspeed * 3.6) * ((60 * climtime) / 1000);
-        fucost_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
+        fucons_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
         fucons_TO = spec_fuconsclim * engthrust_val * (climtime / 60);
-        fucons_cruise = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fusons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
+        fucons_cruise = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fucons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
         req_engthrustcruise = (m * 9.8) / k;
         q = (spec_fuconscruise * req_engthrustcruise) / cruisspeed;
         rangcruise = fucons_cruise / q;
