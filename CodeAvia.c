@@ -9,7 +9,7 @@ int main(void)
            fucost_clim, fucost_desc, full_fusupp, midaverage_climspeed,
            fucons_preTO, fucons_TO, fucons_clim, fusons_desc,
            fucons_final_Land_taxi, guarfusupp_unusfures, rangcruise, 
-           timecruise, fucons_cruise, flrange, Vdesc, tdesc;
+           timecruise, fucons_cruise, flrange, descspeed, desctime;
 
     double nM = 0.84, cya = 0.47, cxa = 0.029, k = 15.79, engthrottdegree = 0.836,
            spec_fuconscruise = 0.091, m, q, spec_fuconsclim = 0.103;
@@ -45,7 +45,7 @@ int main(void)
             return 0;
         }
         printf("  Скорость на снижении, км/ч: ");
-        while(scanf("%lf", &Vdesc) != 1) {
+        while(scanf("%lf", &descspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
@@ -90,7 +90,7 @@ int main(void)
             return 0;
         }
         printf("  время снижения, мин: ");
-        while(scanf("%lf", &tdesc) != 1) {
+        while(scanf("%lf", &desctime) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
@@ -104,7 +104,7 @@ int main(void)
         q = (spec_fuconscruise * req_engthrustcruise) / cruisspeed;
         rangcruise = fucons_cruise / q;
         timecruise = rangcruise / cruisspeed;
-        flrange = (midaverage_climspeed * climtime) + ((cruisspeed / 3.6) * timecruise) + (Vdesc * tdesc);
+        flrange = (midaverage_climspeed * climtime) + ((cruisspeed / 3.6) * timecruise / 3.6) + (descspeed * desctime);
         flduration = (climtime / 60) + timecruise + (tdesc / 60);
         //flduration_maxfuload = 
         //flrange_maxfuload = 
