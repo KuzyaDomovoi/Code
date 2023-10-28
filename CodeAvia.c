@@ -105,7 +105,7 @@ int main(void)
         rangcruise = fucons_cruise / q;
         timecruise = rangcruise / cruisspeed;
         flrange = (midaverage_climspeed * climtime) + ((cruisspeed / 3.6) * timecruise / 3.6) + (descspeed * desctime);
-        flduration = (climtime / 60) + timecruise + (tdesc / 60);
+        flduration = (climtime / 60) + timecruise + (desctime / 60);
         //flduration_maxfuload = 
         //flrange_maxfuload = 
 
