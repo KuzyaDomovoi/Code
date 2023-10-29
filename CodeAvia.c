@@ -127,7 +127,7 @@ int main(void)
         case 1:
             printf("\nОпределение радиуса разворота по углу крена и скорости разворота\n");
             printf("\n   Введи через пробел значение скорости в км/ч и крена° на развороте: ");
-            while(scanf("%d %d", &const_speed, &turn_roll) != 2) {
+            while(scanf("%d %d", &turn_speed, &turn_roll) != 2) {
                 printf("\nError_input!\n");
                 return 0;
             }
