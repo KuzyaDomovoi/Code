@@ -17,8 +17,7 @@ int main(void)
 
     int turn_rad, turn_roll, time_angle, turn_angle, const_speed;  
            
-    printf("\n1. Расчет дальности и продолжительности\n"
-                "полета на заданной скорости и высоте\n"
+    printf("\n1. Расчет дальности и продолжительности полета на заданной скорости и высоте\n"
              "2. Расчеты на маневрирование\n"
              "3. Выход\n");
     printf("   Выбери расчет или выход: ");
@@ -28,17 +27,17 @@ int main(void)
         }
     switch(item) {
     case 1:
-        printf("\n  Величина тяги для ТРДД при номинал ррд в наборе на средн выс, H: ");
+        printf("\n  величина тяги для ТРДД при номинал ррд в наборе на средн выс, H: ");
         while(scanf("%lf", &engthrust_val) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  Скорость отрыва, км/ч: ");
+        printf("  скорость отрыва, км/ч: ");
         while(scanf("%lf", &airbornspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  Средн скор набора выс, км/ч: ");
+        printf("  средн скор набора выс, км/ч: ");
         while(scanf("%lf", &average_climspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -48,12 +47,12 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  Крейс скорость, км/ч: ");
+        printf("  крейс скорость, км/ч: ");
         while(scanf("%lf", &cruisspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  Скорость на снижении, км/ч: ");
+        printf("  скорость на снижении, км/ч: ");
         while(scanf("%lf", &descspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
@@ -68,32 +67,32 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  макс заправка топ, кг: ");
+        printf("  макс заправка топл, кг: ");
         while(scanf("%lf", &full_fusupp) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  прогрев опроб двиг рул, кг: ");
+        printf("  расход топл на прогрев, опроб двиг и руление, кг: ");
         while(scanf("%lf", &fucons_preTO) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  на взлете, кг: ");
+        printf("  расход топл на взлете, кг: ");
         while(scanf("%lf", &fucons_TO) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  на снижении, кг: ");
+        printf("  расход топл на снижении, кг: ");
         while(scanf("%lf", &fucons_desc) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  на кругу посадке заруливании, кг: ");
+        printf("  расход топл на кругу, посадке и заруливании, кг: ");
         while(scanf("%lf", &fucons_final_Land_taxi) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  гарант запас невыраб остаток, кг: ");
+        printf("  невырабатываемый остаток топл, кг: ");
         while(scanf("%lf", &guarfusupp_unusfures) != 1) {
             printf("\nError_input!\n");
             return 0;
