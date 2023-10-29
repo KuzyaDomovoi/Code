@@ -15,7 +15,7 @@ int main(void)
     double nM = 0.72, k = 11.4, engthrottdegree = 0.7,
            spec_fuconscruise = 0.077, m, q, spec_fuconsclim = 0.091;
 
-    unsigned turn_time, turn_time_m, turn_time_s, turn_rad, turn_roll,  turn_angle, turn_speed;;
+    unsigned turn_time, turn_time_m, turn_time_s, turn_rad, turn_roll,  turn_angle, turn_speed;
            
     printf("\n1. Расчет дальности и продолжительности полета на заданной скорости и высоте\n"
              "2. Расчеты на маневрирование\n"
@@ -111,8 +111,8 @@ int main(void)
         int flduration_h = (int)flduration / 3600;
         int flduration_m = (int)flduration % 3600 / 60;
         
-        printf("\nРасполагаемый запас топлива = %.2f\n", fucons_cruise);
-        printf("Дальность полета, км = %.f\nПродолжительность полета, ч = %d ч %02d мин\n", flrange, flduration_h, flduration_m);
+        printf("\nРасполагаемый запас топлива = %.f кг\n", fucons_cruise);
+        printf("Дальность полета = %.f км\nПродолжительность полета = %d ч %02d мин\n", flrange, flduration_h, flduration_m);
         return 0;
     case 2:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
