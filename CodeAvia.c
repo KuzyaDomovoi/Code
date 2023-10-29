@@ -129,7 +129,7 @@ int main(void)
                 printf("\nError_input!\n");
                 return 0;
             }
-            printf("\nрадиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", const_speed, turn_roll, 
+            printf("\n  радиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", const_speed, turn_roll, 
                     pow((const_speed / 3.6), 2) / (9.81 * (tan((turn_roll * 3.14) / 180))));
             return 0;
         case 2:
@@ -139,7 +139,7 @@ int main(void)
                 printf("\nError_input!\n");
                 return 0;
             }
-            printf("время разворота со скоростью %d км/ч креном %d° на угол %d° = %.f сек\n", turn_angle, turn_roll, const_speed, 
+            printf("\n  время разворота со скоростью %d км/ч креном %d° на угол %d° = %.f сек\n", turn_angle, turn_roll, const_speed, 
                     (2 * 3.14 * (const_speed / 3.6)) / (9.81 * (tan((turn_roll * 3.14) / 180))));
             return 0;
         case 3:
