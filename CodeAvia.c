@@ -1,21 +1,26 @@
 #include <stdio.h>
+#include <math.h>
 
 int main(void)
 {
     int item;
-    double max_TOweigth, max_fuelreserve, cruisspeed, flrange_maxfuload, 
-           flduration_maxfuload, flduration, req_engthrustcruise, engthrust_val,
-           average_climspeed, climtime, airbornspeed, flrang_clim,
-           full_fusupp, midaverage_climspeed, fucons_preTO, fucons_TO, 
-           fucons_clim, fucons_desc, fucons_final_Land_taxi, guarfusupp_unusfures, 
-           rangcruise, timecruise, fucons_cruise, flrange, descspeed, desctime;
+    double full_fusupp, engthrust_val, guarfusupp_unusfures, airbornspeed, max_TOweigth,
+           fucons_preTO, fucons_TO, 
+           fucons_clim, average_climspeed, midaverage_climspeed, flrang_clim, climtime, 
+           fucons_cruise, req_engthrustcruise, cruisspeed, timecruise, rangcruise,
+           fucons_desc, descspeed, desctime, 
+           fucons_final_Land_taxi,
+           flrange, flduration;
 
     double nM = 0.72, k = 11.7, engthrottdegree = 0.7,
            spec_fuconscruise = 0.077, m, q, spec_fuconsclim = 0.091;
+
+    int turn_rad, turn_roll, time_angle, turn_angle, const_speed;  
            
     printf("\n1. Расчет дальности и продолжительности\n"
                 "полета на заданной скорости и высоте\n"
-             "2. Выход\n");
+             "2. Расчеты на маневрирование\n"
+             "3. Выход\n");
     printf("   Выбери расчет или выход: ");
     if(scanf("%d", &item) != 1) {
         printf("\nError input!\n");
@@ -107,8 +112,44 @@ int main(void)
         
         printf("\nРасполагаемый запас топлива = %.2f\n", fucons_cruise);
         printf("Дальность полета, км = %.2f\nПродолжительность полета, ч = %.2f\n", flrange, flduration);
-        //printf("Дальн пол с макс заправкой топл, км = %f\n", flrange_maxfuload, flduration_maxfuload);
     case 2:
+        printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
+                 "   2. Определение времени разворота самолета с заданным креном и скоростью разворота\n"
+                 "   3. Выход\n");
+        printf("      Выбери действие: ");
+        if(scanf("%d", &item) != 1) {
+            printf("\nError input!\n");
+            return 0;
+        }
+        switch(item) {
+        case 1:
+            printf("\nОпределение радиуса разворота по углу крена и скорости разворота\n");
+            printf("\n  Введи через пробел значение скорости в км/ч и крена° на развороте: ");
+            while(scanf("%d %d", &const_speed, &turn_roll) != 2) {
+                printf("\nError_input!\n");
+                return 0;
+            }
+            printf("\nрадиус разворота cо скоростью %d км/ч и креном %d° = %.2f м\n", const_speed, turn_roll, 
+                    pow((const_speed / 3.6), 2) / (9.81 * (tan((turn_roll * 3.14) / 180))));
+            return 0;
+        case 2:
+            printf("\nОпределение времени разворота самолета с заданной скоростью креном, и углом разворота\n");
+            printf("\n  Введи через пробел значение скорости в км/ч, крена° и угла° разворота: ");
+            while(scanf("%d %d %d", &const_speed, &turn_roll, &turn_angle) != 3) {
+                printf("\nError_input!\n");
+                return 0;
+            }
+            printf("время разворота со скоростью %d км/ч креном %d° на угол %d° = %.f сек\n", turn_angle, turn_roll, const_speed, 
+                    (2 * 3.14 * (const_speed / 3.6)) / (9.81 * (tan((turn_roll * 3.14) / 180))));
+            return 0;
+        case 3:
+            printf("\nEnd of program\n");
+            return 0;
+        default:
+            printf("\nIncorrect input!\n");
+            return 0;  
+        }
+    case 3:
         printf("\nEnd of program\n");
         return 0;
     default:
