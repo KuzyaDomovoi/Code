@@ -112,6 +112,7 @@ int main(void)
         
         printf("\nРасполагаемый запас топлива = %.2f\n", fucons_cruise);
         printf("Дальность полета, км = %.2f\nПродолжительность полета, ч = %.2f\n", flrange, flduration);
+        return 0;
     case 2:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
                  "   2. Определение времени разворота самолета с заданным креном и скоростью разворота\n"
@@ -129,7 +130,7 @@ int main(void)
                 printf("\nError_input!\n");
                 return 0;
             }
-            printf("\nрадиус разворота cо скоростью %d км/ч и креном %d° = %.2f м\n", const_speed, turn_roll, 
+            printf("\nрадиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", const_speed, turn_roll, 
                     pow((const_speed / 3.6), 2) / (9.81 * (tan((turn_roll * 3.14) / 180))));
             return 0;
         case 2:
