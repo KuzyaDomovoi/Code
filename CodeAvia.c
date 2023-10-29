@@ -108,9 +108,11 @@ int main(void)
         timecruise = rangcruise / cruisspeed;
         flrange = (midaverage_climspeed * climtime) + ((cruisspeed / 3.6) * timecruise / 3.6) + (descspeed * desctime);
         flduration = (climtime / 60) + timecruise + (desctime / 60);
+        int flduration_h = flduration % 3600;
+        int flduration_m = flduration % 3600 / 60;
         
         printf("\nРасполагаемый запас топлива = %.2f\n", fucons_cruise);
-        printf("Дальность полета, км = %.2f\nПродолжительность полета, ч = %.2f\n", flrange, flduration);
+        printf("Дальность полета, км = %.2f\nПродолжительность полета, ч = %d.%02d\n", flrange, flduration_h, flduration_m);
         return 0;
     case 2:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
