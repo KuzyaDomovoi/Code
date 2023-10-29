@@ -12,7 +12,7 @@ int main(void)
            fucons_final_Land_taxi,
            flrange, flduration;
 
-    double nM = 0.72, k = 11.7, engthrottdegree = 0.7,
+    double nM = 0.72, k = 11.4, engthrottdegree = 0.7,
            spec_fuconscruise = 0.077, m, q, spec_fuconsclim = 0.091;
 
     int turn_rad, turn_roll, time_angle, turn_angle, const_speed;  
