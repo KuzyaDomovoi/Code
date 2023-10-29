@@ -15,7 +15,7 @@ int main(void)
     double nM = 0.72, k = 11.4, engthrottdegree = 0.7,
            spec_fuconscruise = 0.077, m, q, spec_fuconsclim = 0.091;
 
-    int turn_rad, turn_roll, time_angle, turn_angle, const_speed;  
+    unsigned turn_time, turn_time_m, turn_time_s, turn_rad, turn_roll,  turn_angle, turn_speed;;
            
     printf("\n1. Расчет дальности и продолжительности полета на заданной скорости и высоте\n"
              "2. Расчеты на маневрирование\n"
@@ -126,23 +126,26 @@ int main(void)
         switch(item) {
         case 1:
             printf("\nОпределение радиуса разворота по углу крена и скорости разворота\n");
-            printf("\n  Введи через пробел значение скорости в км/ч и крена° на развороте: ");
+            printf("\n   Введи через пробел значение скорости в км/ч и крена° на развороте: ");
             while(scanf("%d %d", &const_speed, &turn_roll) != 2) {
                 printf("\nError_input!\n");
                 return 0;
             }
-            printf("\n  радиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", const_speed, turn_roll, 
+            printf("\n  радиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", turn_speed, turn_roll, 
                     pow((const_speed / 3.6), 2) / (9.81 * (tan((turn_roll * 3.14) / 180))));
             return 0;
         case 2:
             printf("\nОпределение времени разворота самолета с заданной скоростью креном, и углом разворота\n");
-            printf("\n  Введи через пробел значение скорости в км/ч, крена° и угла° разворота: ");
-            while(scanf("%d %d %d", &const_speed, &turn_roll, &turn_angle) != 3) {
+            printf("\n   Введи через пробел значение скорости в км/ч, крена° и угла° разворота: ");
+            while(scanf("%d %d %d", &turn_speed, &turn_roll, &turn_angle) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
-            printf("\n  время разворота со скоростью %d км/ч креном %d° на угол %d° = %.f сек\n", turn_angle, turn_roll, const_speed, 
-                    (2 * 3.14 * (const_speed / 3.6)) / (9.81 * (tan((turn_roll * 3.14) / 180))));
+            turn_time = (2 * 3.14 * (const_speed / 3.6)) / (9.81 * (tan((turn_roll * 3.14) / 180)));
+            turn_time_m = (turn_time /60) % 60;
+            turn_time_s = turn_time % 60;
+            printf("\n  время разворота со скоростью %d км/ч креном %d° на угол %d° = %d мин %02d сек\n",turn_speed, turn_roll, turn_angle, 
+                     turn_time_m, turn_time_s);
             return 0;
         case 3:
             printf("\nEnd of program\n");
