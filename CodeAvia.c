@@ -132,7 +132,7 @@ int main(void)
                 return 0;
             }
             printf("\n  радиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", turn_speed, turn_roll, 
-                    pow((const_speed / 3.6), 2) / (9.81 * (tan((turn_roll * 3.14) / 180))));
+                    pow((turn_speed / 3.6), 2) / (9.81 * (tan((turn_roll * 3.14) / 180))));
             return 0;
         case 2:
             printf("\nОпределение времени разворота самолета с заданной скоростью креном, и углом разворота\n");
@@ -141,7 +141,7 @@ int main(void)
                 printf("\nError_input!\n");
                 return 0;
             }
-            turn_time = (2 * 3.14 * (const_speed / 3.6)) / (9.81 * (tan((turn_roll * 3.14) / 180)));
+            turn_time = (2 * 3.14 * (turn_speed / 3.6)) / (9.81 * (tan((turn_roll * 3.14) / 180)));
             turn_time_m = (turn_time /60) % 60;
             turn_time_s = turn_time % 60;
             printf("\n  время разворота со скоростью %d км/ч креном %d° на угол %d° = %d мин %02d сек\n",turn_speed, turn_roll, turn_angle, 
