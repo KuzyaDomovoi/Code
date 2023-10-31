@@ -12,10 +12,10 @@ int main(void)
            fucons_final_Land_taxi,
            flrange, flduration;
 
-    double nM = 0.72, k = 11.4, engthrottdegree = 0.7,
-           spec_fuconscruise = 0.077, m, q, spec_fuconsclim = 0.091;
+    double nM = 0.77, k = 11.4, spec_fuconscruise = 0.077, m, q, spec_fuconsclim = 0.091;
 
-    unsigned int turn_time, turn_time_m, turn_time_s, turn_rad, turn_roll,  turn_angle, turn_speed;
+    int turn_time, turn_time_m, turn_time_s, turn_rad, turn_roll, turn_angle, wind_angle, magnetpath_angle, aircr_speed, wind_speed;
+    double drift_angle, graund_speed, speed, angle, sa, a, wa, ad;
            
     printf("\n1. Расчет дальности и продолжительности полета на заданной скорости и высоте\n"
              "2. Расчеты на маневрирование\n"
@@ -102,7 +102,7 @@ int main(void)
         flrang_clim = (average_climspeed * 3.6) * ((60 * climtime) / 1000);
         fucons_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
         fucons_cruise = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fucons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
-        req_engthrustcruise = (m * 9.8) / k;
+        req_engthrustcruise = (m * 9.81) / k;
         q = (spec_fuconscruise * req_engthrustcruise) / cruisspeed;
         rangcruise = fucons_cruise / q;
         timecruise = rangcruise / cruisspeed;
@@ -117,7 +117,8 @@ int main(void)
     case 2:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
                  "   2. Определение времени разворота самолета с заданным креном и скоростью разворота\n"
-                 "   3. Выход\n");
+                 "   3. Расчет угла сноса и путевой скорости по известному вектору ветра\n"
+                 "   4. Выход\n");
         printf("      Выбери действие: ");
         if(scanf("%d", &item) != 1) {
             printf("\nError input!\n");
@@ -127,27 +128,50 @@ int main(void)
         case 1:
             printf("\nОпределение радиуса разворота по углу крена и скорости разворота\n");
             printf("\n   Введи через пробел значение скорости в км/ч и крена° на развороте: ");
-            while(scanf("%d %d", &turn_speed, &turn_roll) != 2) {
+            while(scanf("%d %d", &aircr_speed, &turn_roll) != 2) {
                 printf("\nError_input!\n");
                 return 0;
             }
-            printf("\n  радиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", turn_speed, turn_roll, 
-                    pow(turn_speed / 3.6, 2) / (9.81 * tan(turn_roll * 3.14 / 180)));
+            printf("\n   радиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", aircr_speed, turn_roll, 
+                    pow(aircr_speed / 3.6, 2) / (9.81 * tan(turn_roll * 3.14 / 180)));
             return 0;
         case 2:
             printf("\nОпределение времени разворота самолета с заданной скоростью, креном и углом разворота\n");
             printf("\n   Введи через пробел значение скорости в км/ч, крена° и угла° разворота: ");
-            while(scanf("%d %d %d", &turn_speed, &turn_roll, &turn_angle) != 3) {
+            while(scanf("%d %d %d", &aircr_speed, &turn_roll, &turn_angle) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
-            turn_time = (2 * 3.14 * turn_speed / 3.6) / (9.81 * tan(turn_roll * 3.14 / 180)) * turn_angle / 360;
+            turn_time = (2 * 3.14 * aircr_speed / 3.6) / (9.81 * tan(turn_roll * 3.14 / 180)) * turn_angle / 360;
             turn_time_m = (turn_time / 60) % 60;
             turn_time_s = turn_time % 60;
-            printf("\n  время разворота со скоростью %d км/ч креном %d° на угол %d° = %d мин %02d сек\n",turn_speed, turn_roll, turn_angle, 
+            printf("\n   время разворота со скоростью %d км/ч креном %d° на угол %d° = %d мин %02d сек\n",aircr_speed, turn_roll, turn_angle, 
                      turn_time_m, turn_time_s);
             return 0;
         case 3:
+            printf("\n Расчет угла сноса и путевой скорости по известному вектору ветра\n");
+            printf("\n   Введи через пробел значение V полета с-та в км/ч, U ветра в м/с, НВ° и МПУ°: ");
+            while(scanf("%d %d %d %d", &aircr_speed, &wind_speed, &wind_angle, &magnetpath_angle) != 4) {
+                printf("\nError_input!\n");
+                return 0;
+            }
+            speed = wind_speed / aircr_speed;
+            angle = sin(wind_angle * 3.14 / 180);
+            sa = speed * angle;
+            drift_angle = sin(sa * 3.14 / 180);
+
+            a = wind_angle + drift_angle;
+            ad = sin(a * 3.14 / 180);
+            wa = sin(wind_angle * 3.14 / 180);
+            graund_speed = ad / wa * aircr_speed;
+
+            printf("speed = %.2f\nangle = %.2f\nsa = %.2f\n", speed, angle, sa);
+            printf("a = %.2f\nad = %.2f\nwa = %.2f\n", a, ad, wa);
+            printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении ветра %d° и МПУ %d°\n   угол сноса = %.f°\n   путевпя скорость = %.f км/ч\n   ",
+                    aircr_speed, wind_speed, wind_angle, magnetpath_angle, drift_angle, graund_speed);
+            return 0;
+                
+        case 4:
             printf("\nEnd of program\n");
             return 0;
         default:
