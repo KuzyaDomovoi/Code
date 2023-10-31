@@ -14,8 +14,8 @@ int main(void)
 
     double nM = 0.77, k = 11.4, spec_fuconscruise = 0.077, m, q, spec_fuconsclim = 0.091;
 
-    int turn_time, turn_time_m, turn_time_s, turn_rad, turn_roll, turn_angle, wind_angle, magnetpath_angle, aircr_speed, wind_speed;
-    double drift_angle, graund_speed, speed, angle, sa, a, wa, ad;
+    int turn_time, turn_time_m, turn_time_s, turn_rad, turn_roll, turn_angle, wind_angle, 
+        magnetpath_angle, aircr_speed, wind_dir, graund_speed, wind_speed, drift_angle;
            
     printf("\n1. Расчет дальности и продолжительности полета на заданной скорости и высоте\n"
              "2. Расчеты на маневрирование\n"
