@@ -13,7 +13,8 @@ int main(void)
     int flduration_h, flduration_m, flrange, flduration;
 
     int turn_time, turn_time_m, turn_time_s, turn_rad, turn_roll, turn_angle, wind_angle, 
-        magnetpath_angle, aircr_speed, wind_dir, graund_speed, wind_speed, drift_angle;
+        magnetpath_angle, aircr_speed, wind_dir, graund_speed, wind_speed;
+    double drift_angle;
            
     printf("\n1. Расчет дальности и продолжительности полета на заданной скорости и высоте\n"
              "2. Расчеты на маневрирование\n"
@@ -156,14 +157,13 @@ int main(void)
                 wind_angle = 360 - wind_dir - magnetpath_angle;
             else
                 wind_angle = wind_dir - magnetpath_angle;    
-           
             if(wind_angle >= 181) 
-                drift_angle = - rint(asin((float)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180)) / 3.14 * 180);
+                drift_angle = -asin(((float)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180)) / 3.14 * 180);
             else
-                drift_angle = rint(asin((float)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180)) / 3.14 * 180);
+                drift_angle = asin(((float)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180)) / 3.14 * 180);
             graund_speed = sin((wind_angle + drift_angle)* 3.14 / 180) / sin((wind_angle) * 3.14 / 180) * aircr_speed;
             printf("\n   wind_angel = %d\n", wind_angle);
-            printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении ветра %d° и МПУ %d°\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n   ",
+            printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении ветра %d° и МПУ %d°\n   угол сноса = %.f°\n   путевая скорость = %d км/ч\n   ",
                     aircr_speed, wind_speed, wind_dir, magnetpath_angle, drift_angle, graund_speed);
             return 0;     
         case 4:
