@@ -9,7 +9,7 @@ int main(void)
            fucons_preTO, fucons_TO, spec_fuconsclim = 0.091, spec_fuconscruise = 0.077,
            fucons_clim, average_climspeed, midaverage_climspeed, flrang_clim, climtime, 
            fucons_cruise, req_engthrustcruise, cruisspeed, timecruise, rangcruise,
-           fucons_desc, descspeed, desctime, nM = 0.77, k = 11.4, , m, q, fucons_final_Land_taxi; 
+           fucons_desc, descspeed, desctime, nM = 0.77, k = 11.4, m, q, fucons_final_Land_taxi; 
     int flduration_h, flduration_m, flrange, flduration;
 
     int turn_time, turn_time_m, turn_time_s, turn_rad, turn_roll, turn_angle, wind_angle, 
