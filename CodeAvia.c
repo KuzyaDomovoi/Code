@@ -151,26 +151,15 @@ int main(void)
         case 3:
             printf("\n Расчет угла сноса и путевой скорости по известному вектору ветра\n");
             printf("\n   Введи через пробел значение V полета с-та в км/ч, U ветра в м/с, НВ° и МПУ°: ");
-            while(scanf("%d %d %d %d", &aircr_speed, &wind_speed, &wind_angle, &magnetpath_angle) != 4) {
+            while(scanf("%d %d %d %d", &aircr_speed, &wind_speed, &wind_dir, &magnetpath_angle) != 4) {
                 printf("\nError_input!\n");
                 return 0;
             }
-            speed = wind_speed / aircr_speed;
-            angle = sin(wind_angle * 3.14 / 180);
-            sa = speed * angle;
-            drift_angle = sin(sa * 3.14 / 180);
-
-            a = wind_angle + drift_angle;
-            ad = sin(a * 3.14 / 180);
-            wa = sin(wind_angle * 3.14 / 180);
-            graund_speed = ad / wa * aircr_speed;
-
-            printf("speed = %.2f\nangle = %.2f\nsa = %.2f\n", speed, angle, sa);
-            printf("a = %.2f\nad = %.2f\nwa = %.2f\n", a, ad, wa);
-            printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении ветра %d° и МПУ %d°\n   угол сноса = %.f°\n   путевпя скорость = %.f км/ч\n   ",
-                    aircr_speed, wind_speed, wind_angle, magnetpath_angle, drift_angle, graund_speed);
-            return 0;
-                
+            drift_angle = rint(asin((float)wind_speed / aircr_speed * sin((wind_dir - magnetpath_angle) * 3.14 / 180)) / 3.14 * 180);
+            graund_speed = sin((wind_dir - magnetpath_angle + drift_angle)* 3.14 / 180) / sin((wind_dir - magnetpath_angle) * 3.14 / 180) * aircr_speed;;
+            printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении ветра %d° и МПУ %d°\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n   ",
+                    aircr_speed, wind_speed, wind_dir, magnetpath_angle, drift_angle, graund_speed);
+            return 0;     
         case 4:
             printf("\nEnd of program\n");
             return 0;
