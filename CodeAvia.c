@@ -1,18 +1,16 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 int main(void)
 {
     int item;
     double full_fusupp, engthrust_val, guarfusupp_unusfures, airbornspeed, max_TOweigth,
-           fucons_preTO, fucons_TO, 
+           fucons_preTO, fucons_TO, spec_fuconsclim = 0.091, spec_fuconscruise = 0.077,
            fucons_clim, average_climspeed, midaverage_climspeed, flrang_clim, climtime, 
            fucons_cruise, req_engthrustcruise, cruisspeed, timecruise, rangcruise,
-           fucons_desc, descspeed, desctime, 
-           fucons_final_Land_taxi,
-           flrange, flduration;
-
-    double nM = 0.77, k = 11.4, spec_fuconscruise = 0.077, m, q, spec_fuconsclim = 0.091;
+           fucons_desc, descspeed, desctime, nM = 0.77, k = 11.4, , m, q, fucons_final_Land_taxi; 
+    int flduration_h, flduration_m, flrange, flduration;
 
     int turn_time, turn_time_m, turn_time_s, turn_rad, turn_roll, turn_angle, wind_angle, 
         magnetpath_angle, aircr_speed, wind_dir, graund_speed, wind_speed, drift_angle;
@@ -108,11 +106,10 @@ int main(void)
         timecruise = rangcruise / cruisspeed;
         flrange = (midaverage_climspeed * climtime) + ((cruisspeed / 3.6) * timecruise / 3.6) + (descspeed * desctime);
         flduration = (climtime * 60) + (timecruise * 3600) + (desctime * 60);
-        int flduration_h = (int)flduration / 3600;
-        int flduration_m = (int)flduration % 3600 / 60;
-        
+        flduration_h = (int)flduration / 3600;
+        flduration_m = (int)flduration % 3600 / 60;
         printf("\nРасполагаемый запас топлива = %.f кг\n", fucons_cruise);
-        printf("Дальность полета = %.f км\nПродолжительность полета = %d ч %02d мин\n", flrange, flduration_h, flduration_m);
+        printf("Дальность полета = %d км\nПродолжительность полета = %d ч %02d мин\n", flrange, flduration_h, flduration_m);
         return 0;
     case 2:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
@@ -155,8 +152,17 @@ int main(void)
                 printf("\nError_input!\n");
                 return 0;
             }
-            drift_angle = rint(asin((float)wind_speed / aircr_speed * sin((wind_dir - magnetpath_angle) * 3.14 / 180)) / 3.14 * 180);
-            graund_speed = sin((wind_dir - magnetpath_angle + drift_angle)* 3.14 / 180) / sin((wind_dir - magnetpath_angle) * 3.14 / 180) * aircr_speed;;
+            if(wind_dir < magnetpath_angle)
+                wind_angle = 360 - wind_dir - magnetpath_angle;
+            else
+                wind_angle = wind_dir - magnetpath_angle;    
+           
+            if(wind_angle >= 181) 
+                drift_angle = - rint(asin((float)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180)) / 3.14 * 180);
+            else
+                drift_angle = rint(asin((float)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180)) / 3.14 * 180);
+            graund_speed = sin((wind_angle + drift_angle)* 3.14 / 180) / sin((wind_angle) * 3.14 / 180) * aircr_speed;
+            printf("\n   wind_angel = %d\n", wind_angle);
             printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении ветра %d° и МПУ %d°\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n   ",
                     aircr_speed, wind_speed, wind_dir, magnetpath_angle, drift_angle, graund_speed);
             return 0;     
