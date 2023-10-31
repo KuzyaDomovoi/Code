@@ -20,7 +20,7 @@ int main(void)
     if(wind_angle >= 181) {
         t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * 3.14 / 180.0);
         drift_angle = rint(asin(t) * 180.0 / 3.14);
-        graund_speed = sin(w(ind_angle + drift_angle) * 3.14 / 180.0) / sin(wind_angle * 3.14 / 180.0) * aircr_speed;
+        graund_speed = sin((wind_angle + drift_angle) * 3.14 / 180.0) / sin(wind_angle * 3.14 / 180.0) * aircr_speed;
     } else
         t = (double)wind_speed / aircr_speed * sin(wind_angle);
         drift_angle = rint(asin(t) * 180.0 / 3.14);
