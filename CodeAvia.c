@@ -258,6 +258,10 @@ int main(void)
                 printf("\nError_input!\n");
                 return 0;
             }
+            if(max_aircr_speed < aircr_speed) {
+                printf("\nError_input! The max_aircr_speed can't be less than aircr_speed!\n");
+                return 0; 
+            }   
             speed_range = max_aircr_speed - aircr_speed;
             mindist_checkpoint = ((double)aircr_speed * max_aircr_speed / speed_range * time_range / 3600);
             printf("\n   при избытке скорости = %d км/ч\n", speed_range);
