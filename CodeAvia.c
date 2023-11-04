@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#define M_PI 3.14159265358979323846
+
 bool range(int x, int a, int y)
 {
     if(a >= x && a <= y)
@@ -19,11 +21,11 @@ int main(void)
            fucons_clim, average_climspeed, midaverage_climspeed, flrang_clim, climtime, 
            fucons_cruise, req_engthrustcruise, cruisspeed, timecruise, rangcruise,
            fucons_desc, descspeed, desctime, nM = 0.77, lifttodrag_ratio = 11.4, load_weight, 
-           hourfucons, fucons_final_Land_taxi, mindist_checkpoint, linturn_lead, t;
+           hourfucons, fucons_final_land_taxi, mindist_checkpoint, linturn_lead, t;
 
     int flduration_h, flduration_m, flrange, flduration, turn_time, turn_time_m, turn_time_s,
-        turn_rad, turn_roll, turn_angle, wind_angle, max_aircr_speed, 
-        magnetpath_angle, aircr_speed, wind_dir,graund_speed, drift_angle, wind_speed,
+        turn_rad, turn_roll, turn_angle, max_aircr_speed, wind_angle, 
+        magnetpath_angle, aircr_speed, wind_dir, graund_speed, drift_angle, wind_speed,
         speed_range, time_range;
 
     printf("\n1. Расчет дальности и продолжительности полета на заданной скорости и высоте\n"
@@ -97,7 +99,7 @@ int main(void)
             return 0;
         }
         printf("  расход топл на кругу, посадке и заруливании, кг: ");
-        while(scanf("%lf", &fucons_final_Land_taxi) != 1) {
+        while(scanf("%lf", &fucons_final_land_taxi) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
@@ -109,7 +111,7 @@ int main(void)
         midaverage_climspeed = 0.5 * ((airbornspeed / 3.6) + (average_climspeed / 3.6));
         flrang_clim = (average_climspeed * 3.6) * ((60 * climtime) / 1000);
         fucons_clim = (spec_fuconsclim * engthrust_val) * (climtime / 60); 
-        fucons_cruise = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fucons_desc - fucons_final_Land_taxi - guarfusupp_unusfures;
+        fucons_cruise = full_fusupp - fucons_preTO - fucons_TO - fucons_clim - fucons_desc - fucons_final_land_taxi - guarfusupp_unusfures;
         req_engthrustcruise = (load_weight * 9.81) / lifttodrag_ratio;
         hourfucons = (spec_fuconscruise * req_engthrustcruise) / cruisspeed;
         rangcruise = fucons_cruise / hourfucons;
@@ -142,7 +144,7 @@ int main(void)
                 return 0;
             }
             printf("\n   радиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", aircr_speed, turn_roll, 
-                    pow(aircr_speed / 3.6, 2) / (9.81 * tan(turn_roll * 3.14 / 180)));
+                    pow(aircr_speed / 3.6, 2) / (9.81 * tan(turn_roll * M_PI / 180)));
             return 0;
         case 2:
             printf("\nОпределение времени разворота самолета с заданной скоростью, креном и углом разворота\n");
@@ -155,7 +157,7 @@ int main(void)
                 printf("\nError! The turn_roll can't be more than 83°!\n");
                 return 0;
             }
-            turn_time = (2 * 3.14 * aircr_speed / 3.6) / (9.81 * tan(turn_roll * 3.14 / 180)) * turn_angle / 360;
+            turn_time = (2 * M_PI * aircr_speed / 3.6) / (9.81 * tan(turn_roll * M_PI / 180)) * turn_angle / 360;
             turn_time_m = (turn_time / 60) % 60;
             turn_time_s = turn_time % 60;
             printf("\n   время разворота со скоростью %d км/ч креном %d° на угол %d° = %d мин %02d сек\n",aircr_speed, turn_roll, turn_angle, 
@@ -173,86 +175,60 @@ int main(void)
                 graund_speed = aircr_speed + wind_speed;
                 printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении нав ветра %d° и курсе самолета %d°\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n",
                         aircr_speed, wind_speed, wind_dir, magnetpath_angle, drift_angle, graund_speed);
-                    return 0;
+                return 0;
             }
             if(wind_dir < magnetpath_angle) {
                 wind_angle = 360 + wind_dir - magnetpath_angle;
-                if(wind_angle == 180 || wind_angle == 0 || wind_angle == 360) {
-                    drift_angle = 0;
-                    graund_speed = aircr_speed - wind_speed;
-                    printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении внав етра %d° и курсе самолета %d°\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n",
-                            aircr_speed, wind_speed, wind_dir, magnetpath_angle, drift_angle, graund_speed);
-                    return 0;
-                }
-                if(wind_angle >= 1 || wind_angle <= 179) {
-                    if(range(0, magnetpath_angle, 180) && range(0, wind_dir, 180))
-                        t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180.0);
-                    if(range(0, magnetpath_angle, 180) && range(181, wind_dir, 360))
-                        t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180.0);
-                    if(range(181, magnetpath_angle, 360) && range(0, wind_dir, 180))
-                        t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180.0);
-                    if(range(181, magnetpath_angle, 360) && range(181, wind_dir, 360))
-                        t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180.0);
-                }
-                if(wind_angle >= 181 || wind_angle <= 359) {    
-                    if(range(0, magnetpath_angle, 180) && range(0, wind_dir, 180))
-                        t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * 3.14 / 180.0);
-                    if(range(0, magnetpath_angle, 180) && range(181, wind_dir, 360))
-                        t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * 3.14 / 180.0);
-                    if(range(181, magnetpath_angle, 360) && range(0, wind_dir, 180))
-                        t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * 3.14 / 180.0);
-                    if(range(181, magnetpath_angle, 360) && range(181, wind_dir, 360))
-                        t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * 3.14 / 180.0);
-                }
-            }
-            if(wind_dir > magnetpath_angle) {
+            } else
                 wind_angle = wind_dir - magnetpath_angle;
-                if(wind_angle == 180 || wind_angle == 0 || wind_angle == 360) {
-                    drift_angle = 0;
-                    graund_speed = aircr_speed - wind_speed;
-                    printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении нав ветра %d° и курсе самолета %d°\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n",
-                            aircr_speed, wind_speed, wind_dir, magnetpath_angle, drift_angle, graund_speed);
-                    return 0;
-                }
-                 if(wind_angle >= 1 || wind_angle <= 179) {
-                    if(range(0, magnetpath_angle, 180) && range(0, wind_dir, 180))
-                        t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180.0);
-                    if(range(0, magnetpath_angle, 180) && range(181, wind_dir, 360))
-                        t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180.0);
-                    if(range(181, magnetpath_angle, 360) && range(0, wind_dir, 180))
-                        t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180.0);
-                    if(range(181, magnetpath_angle, 360) && range(181, wind_dir, 360))
-                        t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * 3.14 / 180.0);
-                }
-                if(wind_angle >= 181 || wind_angle <= 359) {    
-                    if(range(0, magnetpath_angle, 180) && range(0, wind_dir, 180))
-                        t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * 3.14 / 180.0);
-                    if(range(0, magnetpath_angle, 180) && range(181, wind_dir, 360))
-                        t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * 3.14 / 180.0);
-                    if(range(181, magnetpath_angle, 360) && range(0, wind_dir, 180))
-                        t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * 3.14 / 180.0);
-                    if(range(181, magnetpath_angle, 360) && range(181, wind_dir, 360))
-                        t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * 3.14 / 180.0);
-                }
+            if(wind_angle == 180 || wind_angle == 0 || wind_angle == 360) {
+                drift_angle = 0;
+                graund_speed = aircr_speed - wind_speed;
+                printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении внав етра %d° и курсе самолета %d°\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n",
+                        aircr_speed, wind_speed, wind_dir, magnetpath_angle, drift_angle, graund_speed);
+                return 0;
             }
-            drift_angle = rint(asin(t) * 180.0 / 3.14);
-            graund_speed = aircr_speed * cos(drift_angle * 3.14 / 180.0) + wind_speed * cos(wind_angle * 3.14 / 180.0);
+            
+            if(range(1, wind_angle, 179)) {
+                if(range(0, magnetpath_angle, 180) && range(0, wind_dir, 180))
+                    t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * M_PI / 180.0);
+                if(range(0, magnetpath_angle, 180) && range(181, wind_dir, 360))
+                    t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * M_PI / 180.0);
+                if(range(181, magnetpath_angle, 360) && range(0, wind_dir, 180))
+                    t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * M_PI / 180.0);
+                if(range(181, magnetpath_angle, 360) && range(181, wind_dir, 360))
+                    t = -1 * (double)wind_speed / aircr_speed * sin(wind_angle * M_PI / 180.0);
+            }
+            if(range(181, wind_angle, 359)) {     
+                if(range(0, magnetpath_angle, 180) && range(0, wind_dir, 180))
+                    t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * M_PI / 180.0);
+                if(range(0, magnetpath_angle, 180) && range(181, wind_dir, 360))
+                    t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * M_PI / 180.0);
+                if(range(181, magnetpath_angle, 360) && range(0, wind_dir, 180))
+                    t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * M_PI / 180.0);
+                if(range(181, magnetpath_angle, 360) && range(181, wind_dir, 360))
+                    t = (double)wind_speed / aircr_speed * sin((wind_angle - 180) * M_PI / 180.0);
+            }
+            
+            drift_angle = rint(asin(t) * 180.0 / M_PI);
+            graund_speed = aircr_speed * cos(drift_angle * M_PI / 180.0) + wind_speed * cos(wind_angle * M_PI / 180.0);
             printf("\n   wind_angel = %d\n", wind_angle);
             printf("\n   при скорости полета с-та %d км/ч, скорости ветра %d км/ч, направлении ветра %d° и курсе самолета %d°\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n",
                     aircr_speed, wind_speed, wind_dir, magnetpath_angle, drift_angle, graund_speed);
             return 0;
         case 4:
             printf("\nОпределение линейного упреждения разворота\n");
-            printf("\n   ВВееди через пробел угол° и радиус разворота в км: ");
+            printf("\n   Введи через пробел угол° и радиус разворота в км: ");
             while(scanf("%d %d", &turn_angle, &turn_rad) != 2) {
                 printf("\nError_input!\n");
                 return 0;
             }
-            linturn_lead = turn_rad * (tan((turn_angle / 2) * 3.14 / 180.0));
-            printf("\n   ЛУР = %.1f\n", linturn_lead);
+            linturn_lead = turn_rad * (tan((turn_angle / 2) * M_PI / 180.0));
+            printf("\n   ЛУР = %.1f км\n", linturn_lead);
+            return 0;
         case 5:
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
-            printf("\n   ВВееди через пробел приб скорость полета в км/ч,  макс приб скорость в км/, " 
+            printf("\n   Введи через пробел приб скорость полета в км/ч,  макс приб скорость в км/, " 
                    "макс возможный избыток или недостаток времени в сек: ");
             while(scanf("%d %d %d", &aircr_speed, &max_aircr_speed, &time_range) != 3) {
                 printf("\nError_input!\n");
@@ -266,6 +242,7 @@ int main(void)
             mindist_checkpoint = ((double)aircr_speed * max_aircr_speed / speed_range * time_range / 3600);
             printf("\n   при избытке скорости = %d км/ч\n", speed_range);
             printf("   минимальное расстояние до РТ = %.1f км\n", mindist_checkpoint);
+            return 0;
         case 6:
             printf("\nEnd of program\n");
             return 0;
