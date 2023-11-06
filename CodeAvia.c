@@ -25,8 +25,7 @@ struct fltime_flangle_flspeed {
 
 #define M_PI 3.14159265358979323846
 
-bool range(int x, int a, int y)
-{
+bool range(int x, int a, int y) {
     if(a >= x && a <= y)
         return true;
     return false;
