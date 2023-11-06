@@ -257,7 +257,7 @@ int main(void)
         case 4:
             printf("\nОпределение линейного упреждения разворота и длины дуги угла р-та\n");
             printf("\n   Введи через пробел скорость с-та в км/ч, угол° и радиус разворота в км: ");
-            while(scanf("%d %d %d %d", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_rad) != 3) {
+            while(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_rad) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
