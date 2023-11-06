@@ -267,7 +267,7 @@ int main(void)
             }
             maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * M_PI / 180.0));
             maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
-            printf("\n   ЛУР = %.1f км\nДлина дуги УР = %.1f км\n", maneuver.linturn_lead, maneuver.range_turnlead);
+            printf("\n   ЛУР = %.1f км\n   Длина дуги УР = %.1f км\n", maneuver.linturn_lead, maneuver.range_turnlead);
             return 0;
         case 5:
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
