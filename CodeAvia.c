@@ -151,7 +151,7 @@ int main(void)
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
                  "   2. Определение времени разворота самолета с заданным креном и скоростью разворота\n"
                  "   3. Расчет угла сноса и путевой скорости по известному вектору ветра\n"
-                 "   4. Определение линейного упреждения разворота\n"
+                 "   4. Определение линейного упреждения разворота и длины дуги угла р-та\n"
                  "   5. Расчет минимального расстояния для возможного погашения опоздания или избытка времени\n"
                  "   6. Выход\n");
         printf("      Выбери действие: ");
@@ -255,9 +255,9 @@ int main(void)
             printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.graund_speed);
             return 0;
         case 4:
-            printf("\nОпределение линейного упреждения разворота и его длины\n");
-            printf("\n   Введи через пробел скорость с-та в км/ч, время в сек, угол° и радиус разворота в км: ");
-            while(scanf("%d %d %d %d", &maneuver.aircr_speed, &maneuver.turn_time, &maneuver.turn_angle, &maneuver.turn_rad) != 4) {
+            printf("\nОпределение линейного упреждения разворота и длины дуги угла р-та\n");
+            printf("\n   Введи через пробел скорость с-та в км/ч, угол° и радиус разворота в км: ");
+            while(scanf("%d %d %d %d", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_rad) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
@@ -266,7 +266,7 @@ int main(void)
                 return 0;
             }
             maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * M_PI / 180.0));
-            maneuver.range_turnlead = maneuver.aircr_speed * maneuver.turn_time * K * maneuver.turn_angle;
+            maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
             printf("\n   ЛУР = %.1f км\nДлина дуги УР = %.1f км\n", maneuver.linturn_lead, maneuver.range_turnlead);
             return 0;
         case 5:
