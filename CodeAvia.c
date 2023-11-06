@@ -20,10 +20,12 @@ struct fltime_flangle_flspeed {
     int turn_time; int turn_time_m; int turn_time_s; int turn_rad; int turn_roll; int turn_angle;
     int max_aircr_speed; int wind_angle; int magnetpath_angle; int aircr_speed; int wind_dir;
     int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range; 
-    double linturn_lead; double t; double mindist_checkpoint; 
+    double linturn_lead; double t; double mindist_checkpoint; double range_turnlead; 
 } maneuver;
 
 #define M_PI 3.14159265358979323846
+#define G 9.81
+#define K 0.0175
 
 bool range(int x, int a, int y) {
     if(a >= x && a <= y)
@@ -134,7 +136,7 @@ int main(void)
         flight.flrang_clim = (flight.average_climspeed * 3.6) * ((flight.climtime / 3600) / 1000);
         flight.fucons_clim = (flight.spec_fuconsclim * flight.engthrust_val) * (flight.climtime / 3600 ); 
         flight.fucons_cruise = flight.full_fusupp - flight.fucons_preTO - flight.fucons_TO - flight.fucons_clim - flight.fucons_desc - flight.fucons_final_land_taxi - flight.guarfusupp_unusfures;
-        flight.req_engthrustcruise = (flight.load_weight * 9.81) / flight.lifttodrag_ratio;
+        flight.req_engthrustcruise = (flight.load_weight * G) / flight.lifttodrag_ratio;
         flight.hourfucons = (flight.spec_fuconscruise * flight.req_engthrustcruise) / flight.cruisspeed;
         flight.rangcruise = flight.fucons_cruise / flight.hourfucons;
         flight.timecruise = flight.rangcruise / flight.cruisspeed;
@@ -253,14 +255,19 @@ int main(void)
             printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.graund_speed);
             return 0;
         case 4:
-            printf("\nОпределение линейного упреждения разворота\n");
-            printf("\n   Введи через пробел угол° и радиус разворота в км: ");
-            while(scanf("%d %d", &maneuver.turn_angle, &maneuver.turn_rad) != 2) {
+            printf("\nОпределение линейного упреждения разворота и его длины\n");
+            printf("\n   Введи через пробел скорость с-та в км/ч, время в сек, угол° и радиус разворота в км: ");
+            while(scanf("%d %d %d %d", &maneuver.aircr_speed, &maneuver.turn_time, &maneuver.turn_angle, &maneuver.turn_rad) != 4) {
                 printf("\nError_input!\n");
                 return 0;
             }
+            if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500) {
+                printf("\nError! Input the unreal speed for an aircraft!\n");
+                return 0;
+            }
             maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * M_PI / 180.0));
-            printf("\n   ЛУР = %.1f км\n", maneuver.linturn_lead);
+            maneuver.range_turnlead = maneuver.aircr_speed * maneuver.turn_time * K * maneuver.turn_angle;
+            printf("\n   ЛУР = %.1f км\nДлина дуги УР = %.1f км\n", maneuver.linturn_lead, maneuver.range_turnlead);
             return 0;
         case 5:
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
