@@ -20,7 +20,7 @@ struct fltime_flangle_flspeed {
     int turn_time; int turn_time_m; int turn_time_s; int turn_rad; int turn_roll; int turn_angle;
     int max_aircr_speed; int wind_angle; int magnetpath_angle; int aircr_speed; int wind_dir;
     int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range; int lateral_line;
-    int flcurr_range; int flrem_range; int course_correction; int track_range; int course_correction_curr;
+    int flcurr_range; int flrem_range; int course_correction; int flight_track; int course_correction_curr;
     int course_correction_rem;
     double linturn_lead; double t; double mindist_checkpoint; double range_turnlead; 
 } maneuver;
@@ -292,15 +292,23 @@ int main(void)
         case 6:
             printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
             printf("\n   Введи через пробел линейное боковое уклонение в км, общее расстояние до РТ в км, пройденное/оставшееся расстояние до РТ в км: ");
-            while(scanf("%d %d %d", &maneuver.lateral_line, &maneuver.track_range, &maneuver.flcurr_range) != 3) {
+            while(scanf("%d %d %d", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
-            maneuver.flrem_range = maneuver.track_range - maneuver.flcurr_range;
+            if(maneuver.flcurr_range <= 3) {
+                printf("Error! The current or remain flight range is relatively small to their calculation!")
+                return 0;
+            }
+            if(maneuver.lateral_line >= 0.5 * maneuver.flight_track) {
+                printf("Error! The lateral line is relatively large compared to flight track to calculation!")
+                return 0;
+            }
+            maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
             maneuver.course_correction_curr = (tan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI);
             maneuver.course_correction_rem = (tan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
             maneuver.course_correction = (tan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI) + (tan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
-            printf("   при БУ = %d° поправки в курс:\n      по пройденному расстоянию = %d°\n      по оставшемуся расстоянию = %d°\n      полная = %d°\n", maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
+            printf("   при БУ = %d км поправки в курс:\n      по пройденному расстоянию = %d°\n      по оставшемуся расстоянию = %d°\n      полная = %d°\n", maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
             return 0;
         case 7:
             printf("\nEnd of program\n");
