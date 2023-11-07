@@ -275,7 +275,7 @@ int main(void)
             return 0;
         case 5:
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
-            printf("\n   Введи через пробел приб скорость полета в км/ч,  макс приб скорость в км/ч, " 
+            printf("\n   Введи через пробел приб скорость полета в км/ч, макс приб скорость в км/ч, " 
                    "макс возможный избыток или недостаток времени в сек: ");
             while(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.max_aircr_speed, &maneuver.time_range) != 3) {
                 printf("\nError_input!\n");
@@ -306,9 +306,9 @@ int main(void)
                 return 0;
             }
             maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
-            maneuver.course_correction_curr = (tan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI);
-            maneuver.course_correction_rem = (tan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
-            maneuver.course_correction = (tan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI) + (tan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
+            maneuver.course_correction_curr = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI);
+            maneuver.course_correction_rem = (atan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
+            maneuver.course_correction = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI) + (atan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
             printf("   при ЛБУ = %d км:\n      боковое уклонение = УС = %.f°\n      дополнительная ПК = %.f°\n      полная ПК = %.f°\n", maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
             return 0;
         case 7:
