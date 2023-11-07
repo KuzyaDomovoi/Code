@@ -297,11 +297,11 @@ int main(void)
                 return 0;
             }
             if(maneuver.flcurr_range <= 3) {
-                printf("Error! The current or remain flight range is relatively small to their calculation!");
+                printf("\nError! The current or remain flight range is relatively small to their calculation!\n");
                 return 0;
             }
             if(maneuver.lateral_line >= 0.5 * maneuver.flight_track) {
-                printf("Error! The lateral line is relatively large compared to flight track to calculation!");
+                printf("\nError! The lateral line is relatively large compared to flight track to calculation!\n");
                 return 0;
             }
             maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
