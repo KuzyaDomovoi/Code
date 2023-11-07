@@ -301,7 +301,7 @@ int main(void)
                 printf("\nError! The current or remain flight range is relatively small to their calculation!\n");
                 return 0;
             }
-            if(maneuver.lateral_line >= 0.5 * maneuver.flight_track) {
+            if(maneuver.lateral_line > 0.5 * maneuver.flight_track) {
                 printf("\nError! The lateral line is relatively large compared to flight track to calculation!\n");
                 return 0;
             }
