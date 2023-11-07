@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-struct flrande_flduration {
+struct flrange_flduration {
     double engthrust_val;
     int airbornspeed; int average_climspeed; int climtime; int cruisspeed;
     int descspeed; int desctime; int load_weight; int full_fusupp; int fucons_preTO; int fucons_TO; 
@@ -19,7 +19,9 @@ struct flrande_flduration {
 struct fltime_flangle_flspeed {
     int turn_time; int turn_time_m; int turn_time_s; int turn_rad; int turn_roll; int turn_angle;
     int max_aircr_speed; int wind_angle; int magnetpath_angle; int aircr_speed; int wind_dir;
-    int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range; 
+    int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range; int lateral_line;
+    int flcurr_range; int flrem_range; int course_correction; int track_range; int course_correction_curr;
+    int course_correction_rem;
     double linturn_lead; double t; double mindist_checkpoint; double range_turnlead; 
 } maneuver;
 
@@ -153,7 +155,8 @@ int main(void)
                  "   3. Расчет угла сноса и путевой скорости по известному вектору ветра\n"
                  "   4. Определение линейного упреждения разворота и длины дуги угла р-та\n"
                  "   5. Расчет минимального расстояния для возможного погашения опоздания или избытка времени\n"
-                 "   6. Выход\n");
+                 "   6. Расчет поправки в курс по расстоянию и боковому уклонению\n"
+                 "   7. Выход\n");
         printf("      Выбери действие: ");
         if(scanf("%d", &item) != 1) {
             printf("\nError! input out of range list!\n");
@@ -287,6 +290,19 @@ int main(void)
             printf("   минимальное расстояние до РТ = %.1f км\n", maneuver.mindist_checkpoint);
             return 0;
         case 6:
+            printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
+            printf("\n   Введи через пробел линейное боковое уклонение в км, общее расстояние до РТ в км, пройденное/оставшееся расстояние до РТ в км: ");
+            while(scanf("%d %d %d", &maneuver.lateral_line, &maneuver.track_range, &maneuver.flcurr_range) != 3) {
+                printf("\nError_input!\n");
+                return 0;
+            }
+            maneuver.flrem_range = maneuver.track_range - maneuver.flcurr_range;
+            maneuver.course_correction_curr = (tan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI);
+            maneuver.course_correction_rem = (tan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
+            maneuver.course_correction = (tan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI) + (tan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
+            printf("   при БУ = %d° поправки в курс:\n      по пройденному расстоянию = %d°\n      по оставшемуся расстоянию = %d°\n      полная = %d°\n", maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
+            return 0;
+        case 7:
             printf("\nEnd of program\n");
             return 0;
         default:
