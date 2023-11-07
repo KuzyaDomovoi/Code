@@ -309,7 +309,7 @@ int main(void)
             maneuver.course_correction_curr = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI);
             maneuver.course_correction_rem = (atan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
             maneuver.course_correction = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI) + (atan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
-            printf("   при БУ = %d км поправки в курс:\n      от пройденного расстояния = %.f°\n      до оставшегося расстояния = %.f°\n      полная = %.f°\n", maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
+            printf("   при БУ = %d км:\n      УС от пройденного расстояния = %.f°\n      ПК до оставшегося расстояния = %.f°\n      полная ПК = %.f°\n", maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
             return 0;
         case 7:
             printf("\nEnd of program\n");
