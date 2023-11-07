@@ -20,9 +20,10 @@ struct fltime_flangle_flspeed {
     int turn_time; int turn_time_m; int turn_time_s; int turn_rad; int turn_roll; int turn_angle;
     int max_aircr_speed; int wind_angle; int magnetpath_angle; int aircr_speed; int wind_dir;
     int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range; int lateral_line;
-    int flcurr_range; int flrem_range; int course_correction; int flight_track; int course_correction_curr;
-    int course_correction_rem;
-    double linturn_lead; double t; double mindist_checkpoint; double range_turnlead; 
+    int flcurr_range; int flrem_range; int flight_track; 
+    
+    double linturn_lead; double t; double mindist_checkpoint; double range_turnlead;
+    double course_correction_curr; double course_correction_rem; double course_correction;
 } maneuver;
 
 #define M_PI 3.14159265358979323846
@@ -305,10 +306,10 @@ int main(void)
                 return 0;
             }
             maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
-            maneuver.course_correction_curr = (tan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI);
-            maneuver.course_correction_rem = (tan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
-            maneuver.course_correction = (tan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI) + (tan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
-            printf("   при БУ = %d км поправки в курс:\n      по пройденному расстоянию = %d°\n      по оставшемуся расстоянию = %d°\n      полная = %d°\n", maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
+            maneuver.course_correction_curr = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI);
+            maneuver.course_correction_rem = (atan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
+            maneuver.course_correction = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI) + (atan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
+            printf("   при БУ = %d км поправки в курс:\n      от пройденного расстояния = %.f°\n      до оставшегося расстояния = %.f°\n      полная = %.f°\n", maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
             return 0;
         case 7:
             printf("\nEnd of program\n");
