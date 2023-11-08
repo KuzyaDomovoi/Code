@@ -7,25 +7,25 @@ struct geo_nlat {
     unsigned sec;
     unsigned grad;
     unsigned min;
-} geo_nlat;
+} nlat;
 
 struct geo_elon {
     unsigned elon;
     unsigned sec;
     unsigned grad;
     unsigned min;
-} geo_elon;
+} elon;
 
 int main(void)
 {
     printf("Input coordinats of northern latitude in format gg.mm.ss: ");
-    while(scanf("%d.%d.%d", &geo_nlat.grad, &geo_nlat.min, &geo_nlat.sec) != 3) {
+    while(scanf("%d.%d.%d", &nlat.grad, &nlat.min, &nlat.sec) != 3) {
         printf("Incorrect input!\n");
         return 0;
     } 
     
     printf("Input coordinats of eastern longitude in format gg.mm.ss: ");
-    while(scanf("%d.%d.%d", &geo_elon.grad, &geo_elon.min, &geo_elon.sec) != 3) {
+    while(scanf("%d.%d.%d", &elon.grad, &elon.min, &elon.sec) != 3) {
         printf("Incorrect input!\n");
         return 0;
     }
@@ -34,8 +34,8 @@ int main(void)
     //geo_elon.elon = geo_elon.grad * 3600 + geo_elon.min * 60 * geo_elon.sec;
 
 
-    printf("nlat: %03d:%02d:%02d\n", geo_nlat.grad, geo_nlat.min, geo_nlat.sec);
-    printf("elon: %03d:%02d:%02d\n", geo_elon.grad, geo_elon.min, geo_elon.sec);
+    printf("nlat: %03d:%02d:%02d\n", nlat.grad, glat.min, nlat.sec);
+    printf("elon: %03d:%02d:%02d\n", elon.grad, elon.min, elon.sec);
 
     return 0;
 }
