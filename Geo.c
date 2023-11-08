@@ -29,8 +29,10 @@ int main(void)
         printf("Incorrect input!\n");
         return 0;
     }
-    geo_nlat.nlat = geo_nlat.grad * 3600 + geo_nlat.min * 60 + geo_nlat.sec;
-    geo_elon.elon = geo_elon.grad * 3600 + geo_elon.min * 60 * geo_elon.sec;
+    //geo_nlat.nlat = geo_nlat.grad * 3600 + geo_nlat.min * 60 + geo_nlat.sec;
+
+    //geo_elon.elon = geo_elon.grad * 3600 + geo_elon.min * 60 * geo_elon.sec;
+
 
     printf("nlat: %03d:%02d:%02d\n", geo_nlat.grad, geo_nlat.min, geo_nlat.sec);
     printf("elon: %03d:%02d:%02d\n", geo_elon.grad, geo_elon.min, geo_elon.sec);
