@@ -21,13 +21,13 @@ struct geo_elon {
 int main(void)
 {
     printf("Input coordinats of northern latitude in format gg.mm.ss,ms: ");
-    while(scanf("%d.%d.%d,%d", &nlat.grad, &nlat.min, &nlat.sec, &nlat.msec) != 4) {
+    while(scanf("%d.%d.%d,%d", &nlat.grad, &nlat.min, &nlat.sec, &nlat.msec) != 3) {
         printf("Incorrect input!\n");
         return 0;
     } 
     
     printf("Input coordinats of eastern longitude in format gg.mm.ss,ms: ");
-    while(scanf("%d.%d.%d", &elon.grad, &elon.min, &elon.sec, &elon.msec) != 4) {
+    while(scanf("%d.%d.%d,%d", &elon.grad, &elon.min, &elon.sec, &elon.msec) != 3) {
         printf("Incorrect input!\n");
         return 0;
     }
