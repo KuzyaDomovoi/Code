@@ -18,14 +18,14 @@ int main(void)
     
     printf("Input the first data in the format: 'hour.min.sec' for calculation: ");
     while(scanf("%d.%d.%d", &hour_1, &min_1, &sec_1) != 3) {
-            printf("\nError input!\n");
-            return 0;
-        }
+        printf("\nError input!\n");
+        return 0;
+    }
     printf("Input the second data in the format: 'hour.min.sec' for calculation: ");
     while(scanf("%d.%d.%d", &hour_2, &min_2, &sec_2) != 3) {
-            printf("\nError input!\n");
-            return 0; 
-        }
+        printf("\nError input!\n");
+        return 0; 
+    }
 
     time_1 = hour_1 * 3600 + min_1 * 60 + sec_1;
     time_2 = hour_2 * 3600 + min_2 * 60 + sec_2;
