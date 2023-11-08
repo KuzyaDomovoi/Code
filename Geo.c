@@ -34,8 +34,8 @@ int main(void)
     //geo_elon.elon = geo_elon.grad * 3600 + geo_elon.min * 60 * geo_elon.sec;
 
 
-    printf("nlat: %03d:%02d:%02d\n", nlat.grad, nlat.min, nlat.sec);
-    printf("elon: %03d:%02d:%02d\n", elon.grad, elon.min, elon.sec);
+    printf("N: %03d:%02d:%02d\n", nlat.grad, nlat.min, nlat.sec);
+    printf("E: %03d:%02d:%02d\n", elon.grad, elon.min, elon.sec);
 
     return 0;
 }
