@@ -18,13 +18,13 @@ struct geo_elon {
 
 int main(void)
 {
-    printf("Input coordinats of nlat in format gg.mm.ss: ");
+    printf("Input coordinats of northern latitude in format gg.mm.ss: ");
     while(scanf("%d.%d.%d", &geo_nlat.grad, &geo_nlat.min, &geo_nlat.sec) != 3) {
         printf("Incorrect input!\n");
         return 0;
     } 
     
-    printf("Input coordinats of elon in format gg.mm.ss: ");
+    printf("Input coordinats of eastern longitude in format gg.mm.ss: ");
     while(scanf("%d.%d.%d", &geo_elon.grad, &geo_elon.min, &geo_elon.sec) != 3) {
         printf("Incorrect input!\n");
         return 0;
