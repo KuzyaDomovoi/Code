@@ -31,22 +31,10 @@ int main(void)
         printf("Incorrect input!\n");
         return 0;
     }
-    //nlat.nlat = nlat.grad * 3600 + nlat.min * 60 + nlat.sec;
-
-    //elon.elon = elon.grad * 3600 + elon.min * 60 * elon.sec;
-
 
     printf("N: %03d:%02d:%02d,%02d\n", nlat.grad, nlat.min, nlat.sec, nlat.msec);
     printf("E: %03d:%02d:%02d,%02d\n", elon.grad, elon.min, elon.sec, elon.msec);
 
     return 0;
 }
-    /*
-    nlat.sec = nlat % 60;
-    nlat.min = (nlat / 60) % 60;
-    nlat.grad = nlat / 3600;*/
 
-    /* 
-    elon.sec = elon % 60; 
-    elon.min = (elon / 60) % 60;
-    elon.grad = elon / 3600;*/
