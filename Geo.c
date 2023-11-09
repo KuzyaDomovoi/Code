@@ -61,9 +61,9 @@ int main(void)
 
     double flight_range = (R_P + R_E) / 2 * acos(sin(elng_1.lng * M_PI / 180.0) * sin(elng_2.lng * M_PI / 180.0) * cos((nlat_1.lat - nlat_2.lat) * M_PI / 180.0) + cos(elng_1.lng * M_PI / 180.0) * cos(elng_2.lng * M_PI / 180.0)) * 180 / M_PI;
 
-    printf("\nfirst point:  N  %02d° %02d' %02d.%02d''   E %03d° %02d' %02d.%02d''\n", nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
-    printf("second point: N  %02d° %02d' %02d.%02d ''  E %03d° %02d' %02d.%02d''\n", nlat_2.grad, nlat_2.min, nlat_2.sec, nlat_2.msec, elng_2.grad, elng_2.min, elng_2.sec, elng_2.msec);
-    printf("\nflight_range = %.2f км\n", flight_range);
+    printf("\nFirst point:  N  %02d° %02d' %02d.%02d''   E %03d° %02d' %02d.%02d''\n", nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
+    printf("Second point: N  %02d° %02d' %02d.%02d ''  E %03d° %02d' %02d.%02d''\n", nlat_2.grad, nlat_2.min, nlat_2.sec, nlat_2.msec, elng_2.grad, elng_2.min, elng_2.sec, elng_2.msec);
+    printf("\nFlight range = %.2f км\n", flight_range);
 
     return 0;
 }
