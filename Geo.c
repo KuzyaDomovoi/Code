@@ -50,11 +50,11 @@ int main(void)
         return 0;
     }
 
-    nlat_1.lat = nlat_1.grad * 3600 + nlat_1.min * 60 + nlat_1.sec * 60 + nlat_1.msec * 0.60;
-    elng_1.lng = elng_1.grad * 3600 + elng_1.min * 60 + elng_1.sec * 60 + elng_1.msec * 0.60;
+    nlat_1.lat = nlat_1.grad + nlat_1.min / 60 + nlat_1.sec / 3600 + nlat_1.msec / 3600 / 60;
+    elng_1.lng = elng_1.grad + elng_1.min / 60 + elng_1.sec / 3600 + elng_1.msec / 3600 / 60;
     
-    nlat_2.lat = nlat_2.grad * 3600 + nlat_2.min * 60 + nlat_2.sec * 60 + nlat_2.msec * 0.60;
-    elng_2.lng = elng_2.grad * 3600 + elng_2.min * 60 + elng_2.sec * 60 + elng_2.msec * 0.60;
+    nlat_2.lat = nlat_2.grad * nlat_2.min / 60 + nlat_2.sec / 3600 + nlat_2.msec / 3600 / 60;
+    elng_2.lng = elng_2.grad * elng_2.min / 60 + elng_2.sec / 3600 + elng_2.msec / 3600 / 60;
 
     //double angle = 
     //double flight_range_2 = ((M_PI * ((R_P + R_E) / 2) * angle) / 180.0) * 1000;
