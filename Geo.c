@@ -33,7 +33,7 @@ int main(void)
         printf("Incorrect input!\n");
         return 0;
     } 
-    printf("Input eastern longitude coordinates of the first point in the format ggg mm ss.ms: ");
+    printf("Input the eastern longitude coordinates of the first point in the format ggg mm ss.ms: ");
     while(scanf("%d %d %d.%d", &elng_1.grad, &elng_1.min, &elng_1.sec, &elng_1.msec) < 3 && scanf("%d.%d.%d,%d", &elng_1.grad, &elng_1.min, &elng_1.sec, &elng_1.msec) > 4) {
         printf("Incorrect input!\n");
         return 0;
@@ -44,7 +44,7 @@ int main(void)
         printf("Incorrect input!\n");
         return 0;
     } 
-    printf("Input eastern longitude coordinates of the first point in the format ggg mm ss.ms: ");
+    printf("Input the eastern longitude coordinates of the first point in the format ggg mm ss.ms: ");
     while(scanf("%d %d %d.%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) < 3 && scanf("%d.%d.%d,%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) > 4) {
         printf("Incorrect input!\n");
         return 0;
