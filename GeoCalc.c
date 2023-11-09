@@ -69,6 +69,7 @@ int main(void)
         printf("Incorrect input!\n");
         return 0;
     }
+    
     double lat_1 = nlat_1.grad + nlat_1.min / 60 + nlat_1.sec / 3600 + nlat_1.msec / 3600 / 60;
     double lng_1 = elng_1.grad + elng_1.min / 60 + elng_1.sec / 3600 + elng_1.msec / 3600 / 60;
     double lat_2 = nlat_2.grad + nlat_2.min / 60 + nlat_2.sec / 3600 + nlat_2.msec / 3600 / 60;
