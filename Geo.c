@@ -45,7 +45,7 @@ int main(void)
     double flight_range_P = (M_PI * R_P * angle) / 180.0;
     double flight_range = (M_PI * ((R_P + R_E) / 2) * angle) / 180.0;
 
-    printf ("\nAngle = %.1f°:\n   flight range E = %.2f км\n   flight range P = %.2f км\n   flight range midle = %.2f км\n", angle, flight_range_E, flight_range_P, flight_range);
+    printf ("\nAngle = %.1f°:\n   flight range E = %.2f км\n   flight range P = %.2f км\n   flight range m = %.2f км\n", angle, flight_range_E, flight_range_P, flight_range);
 
     return 0;
 }
