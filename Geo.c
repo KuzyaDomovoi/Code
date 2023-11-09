@@ -8,7 +8,7 @@
 #define S_M 40007.863
 
 struct geo_nlat {
-    unsigned nlat;
+    double lat;
     unsigned sec;
     unsigned msec;
     unsigned grad;
@@ -16,7 +16,7 @@ struct geo_nlat {
 } nlat_1;
 
 struct geo_elng {
-    unsigned elng;
+    double lng;
     unsigned sec;
     unsigned msec;
     unsigned grad;
@@ -50,16 +50,16 @@ int main(void)
         return 0;
     }
 
-    double lat_1 = nlat_1.grad * 3600 + nlat_1.min * 60 + nlat_1.sec * 60 + nlat_1.msec * 0.60;
-    double lng_1 = elng_1.grad * 3600 + elng_1.min * 60 + elng_1.sec * 60 + elng_1.msec * 0.60;
+    nlat_1.lat = nlat_1.grad * 3600 + nlat_1.min * 60 + nlat_1.sec * 60 + nlat_1.msec * 0.60;
+    elng_1.lng = elng_1.grad * 3600 + elng_1.min * 60 + elng_1.sec * 60 + elng_1.msec * 0.60;
     
-    double lat_2 = nlat_2.grad * 3600 + nlat_2.min * 60 + nlat_2.sec * 60 + nlat_2.msec * 0.60;
-    double lng_2 = elng_2.grad * 3600 + elng_2.min * 60 + elng_2.sec * 60 + elng_2.msec * 0.60;
+    nlat_2.lat = nlat_2.grad * 3600 + nlat_2.min * 60 + nlat_2.sec * 60 + nlat_2.msec * 0.60;
+    elng_2.lng = elng_2.grad * 3600 + elng_2.min * 60 + elng_2.sec * 60 + elng_2.msec * 0.60;
 
     //double angle = acos(sin(lng_1) * sin(lng_2) * cos(lat_1 - lat_2) + cos(lng_1) * cos(lng_2)); // calc...
     //double flight_range_2 = ((M_PI * ((R_P + R_E) / 2) * angle) / 180.0) * 1000;
 
-    double flight_range = (R_P + R_E) / 2 * acos(sin(lng_1 * M_PI / 180.0) * sin(lng_2 * M_PI / 180.0) * cos((lat_1 - lat_2) * M_PI / 180.0) + cos(lng_1 * M_PI / 180.0) * cos(lng_2 * M_PI / 180.0)) * 180 / M_PI * 1000;
+    double flight_range = (R_P + R_E) / 2 * acos(sin(elng_1.lng * M_PI / 180.0) * sin(elng_2.lng * M_PI / 180.0) * cos((nlat_1.lat - nlat_2.lat) * M_PI / 180.0) + cos(elng_1.lng * M_PI / 180.0) * cos(elng_2.lng * M_PI / 180.0)) * 180 / M_PI * 1000;
 
     printf("N:  %02d %02d %02d.%02d\n", nlat.grad, nlat.min, nlat.sec, nlat.msec);
     printf("E: %03d %02d %02d.%02d\n", elng.grad, elng.min, elng.sec, elng.msec);
