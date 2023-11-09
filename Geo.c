@@ -29,7 +29,7 @@ struct geo_elng elng_2;
 int main(void)
 {
     printf("Input the northern latitude coordinates of the first point in the format gg mm ss.ms: ");
-    while(scanf("%d %d %d.%d", &nlat_1.grad, &lat_1.min, &lat_1.sec, &lat_1.msec) < 3 && scanf("%d.%d.%d,%d", &lat_1.grad, &lat_1.min, &lat_1.sec, &lat_1.msec) > 4) {
+    while(scanf("%d %d %d.%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) < 3 && scanf("%d.%d.%d,%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) > 4) {
         printf("Incorrect input!\n");
         return 0;
     } 
@@ -61,9 +61,9 @@ int main(void)
 
     double flight_range = (R_P + R_E) / 2 * acos(sin(elng_1.lng * M_PI / 180.0) * sin(elng_2.lng * M_PI / 180.0) * cos((nlat_1.lat - nlat_2.lat) * M_PI / 180.0) + cos(elng_1.lng * M_PI / 180.0) * cos(elng_2.lng * M_PI / 180.0)) * 180 / M_PI * 1000;
 
-    printf("N:  %02d %02d %02d.%02d\n", nlat.grad, nlat.min, nlat.sec, nlat.msec);
-    printf("E: %03d %02d %02d.%02d\n", elng.grad, elng.min, elng.sec, elng.msec);
-    printf("flight_range = %.2f\n", flight_range);
+    printf("first point:  N  %02d° %02d' %02d.%02d''   E %03d° %02d' %02d.%02d''\n", nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
+    printf("second point: N  %02d° %02d' %02d.%02d ''  E %03d° %02d' %02d.%02d''\n", nlat_2.grad, nlat_2.min, nlat_2.sec, nlat_2.msec, elng_2.grad, elng_2.min, elng_2.sec, elng_2.msec);
+    printf("flight_range = %.2f м\n", flight_range);
 
     return 0;
 }
