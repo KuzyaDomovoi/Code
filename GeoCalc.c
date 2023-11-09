@@ -40,8 +40,6 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
     double ad = atan2(y, x);
     double flight_dist = ad * (R_E + R_P) / 2;
     
-    return flight_dist;
-
     double x2 = (cl1 * sl2) - (sl1 * cl2 * cdelta);
     double y2 = sdelta * cl2;
     int z = atan(-y2 / x2) * 180.0 / M_PI;
@@ -53,6 +51,7 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
     double anglerad2 = z2 - (2 * M_PI * floor(z2 / 2 * M_PI));
     double bearing = anglerad2 * 180.0 / M_PI;
         
+    return flight_dist; 
     return bearing;
 }
 
@@ -92,7 +91,7 @@ int main(void)
             nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
     printf("Second point: N  %02d° %02d' %02d.%02d''   E %03d° %02d' %02d.%02d''\n",
             nlat_2.grad, nlat_2.min, nlat_2.sec, nlat_2.msec, elng_2.grad, elng_2.min, elng_2.sec, elng_2.msec);
-    printf("\nFlight distance = %.f м\nInitial bearing = %.lf°\n", calcfldist(lat_1 , lng_1, lat_2, lng_2));
+    printf("\nFlight distance = %.f м\nInitial bearing = %.f°\n", calcfldist(lat_1 , lng_1, lat_2, lng_2));
 
     return 0;
 }
