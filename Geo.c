@@ -47,7 +47,7 @@ int main(void)
 
     printf("\nR_P + R_E / 2 = %.3f км\n", (R_P + R_E )/ 2);
 
-    printf ("Angle = %.1f°:\n   flight range E = %.2f км\n   flight range P = %.2f км\n   flight range midle = %.2f км\n", angle, flight_range_E, flight_range_P, flight_range);
+    printf ("\nAngle = %.1f°:\n   flight range E = %.2f км\n   flight range P = %.2f км\n   flight range midle = %.2f км\n", angle, flight_range_E, flight_range_P, flight_range);
 
     return 0;
 }
