@@ -56,7 +56,7 @@ int main(void)
     nlat_2.lat = nlat_2.grad * 3600 + nlat_2.min * 60 + nlat_2.sec * 60 + nlat_2.msec * 0.60;
     elng_2.lng = elng_2.grad * 3600 + elng_2.min * 60 + elng_2.sec * 60 + elng_2.msec * 0.60;
 
-    //double angle = acos(sin(lng_1) * sin(lng_2) * cos(lat_1 - lat_2) + cos(lng_1) * cos(lng_2)); // calc...
+    //double angle = 
     //double flight_range_2 = ((M_PI * ((R_P + R_E) / 2) * angle) / 180.0) * 1000;
 
     double flight_range = (R_P + R_E) / 2 * acos(sin(elng_1.lng * M_PI / 180.0) * sin(elng_2.lng * M_PI / 180.0) * cos((nlat_1.lat - nlat_2.lat) * M_PI / 180.0) + cos(elng_1.lng * M_PI / 180.0) * cos(elng_2.lng * M_PI / 180.0)) * 180 / M_PI * 1000;
