@@ -2,30 +2,47 @@
 #include <math.h>
 
 #define M_PI 3.14159265358979323846
-#define R_E 6378.1
-#define R_P 6357.8
-#define S_E 40075.017
-#define S_M 40007.863
+#define R_E 6378100
+#define R_P 6357800
 
 struct geo_nlat {
     double lat;
-    unsigned sec;
-    unsigned msec;
-    unsigned grad;
-    unsigned min;
+    unsigned sec; unsigned msec;
+    unsigned grad; unsigned min;
 } nlat_1;
 
 struct geo_elng {
     double lng;
-    unsigned sec;
-    unsigned msec;
-    unsigned grad;
-    unsigned min;
+    unsigned sec; unsigned msec;
+    unsigned grad; unsigned min;
 } elng_1;
 
 struct geo_nlat nlat_2;
 struct geo_elng elng_2;
 
+double calcflrange(double lat_1, double lng_1, double lat_2, double lng_2) {
+    nlat_1.lat = lat_1 * M_PI / 180.0;
+    elng_1.lng = lng_1 * M_PI / 180.0;
+    
+    nlat_2.lat = lat_2 * M_PI / 180.0;
+    elng_2.lng = lng_2 * M_PI / 180.0;
+
+    double cl1 = cos(nlat_1.lat);
+    double cl2 = cos(nlat_2.lat);
+    double sl1 = sin(nlat_1.lat);
+    double sl2 = sin(nlat_2.lat);
+    double delta = elng_2.lng - elng_1.lng;
+    double cdelta = cos(delta);
+    double sdelta = sin(delta);
+
+    double y = sqrt(pow(cl2 * sdelta, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta, 2));
+    double x = sl1 * sl2 + cl1 * cl2 * cdelta;
+
+    double ad = atan2(y, x);
+    double flight_range = ad * (R_E + R_P) / 2;
+    
+    return flight_range;
+}
 int main(void)
 {
     printf("Input the northern latitude coordinates of the first point in the format gg mm ss.ms: ");
@@ -50,20 +67,11 @@ int main(void)
         return 0;
     }
 
-    nlat_1.lat = nlat_1.grad + nlat_1.min / 60 + nlat_1.sec / 3600 + nlat_1.msec / 3600 / 60;
-    elng_1.lng = elng_1.grad + elng_1.min / 60 + elng_1.sec / 3600 + elng_1.msec / 3600 / 60;
-    
-    nlat_2.lat = nlat_2.grad * nlat_2.min / 60 + nlat_2.sec / 3600 + nlat_2.msec / 3600 / 60;
-    elng_2.lng = elng_2.grad * elng_2.min / 60 + elng_2.sec / 3600 + elng_2.msec / 3600 / 60;
 
-    //double angle = 
-    //double flight_range_2 = ((M_PI * ((R_P + R_E) / 2) * angle) / 180.0) * 1000;
-
-    double flight_range = (R_P + R_E) / 2 * acos(sin(elng_1.lng * M_PI / 180.0) * sin(elng_2.lng * M_PI / 180.0) * cos((nlat_1.lat - nlat_2.lat) * M_PI / 180.0) + cos(elng_1.lng * M_PI / 180.0) * cos(elng_2.lng * M_PI / 180.0)) * 180 / M_PI;
 
     printf("\nFirst point:  N  %02d° %02d' %02d.%02d''   E %03d° %02d' %02d.%02d''\n", nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
     printf("Second point: N  %02d° %02d' %02d.%02d ''  E %03d° %02d' %02d.%02d''\n", nlat_2.grad, nlat_2.min, nlat_2.sec, nlat_2.msec, elng_2.grad, elng_2.min, elng_2.sec, elng_2.msec);
-    printf("\nFlight range = %.2f км\n", flight_range);
+    printf("Flight range = %.f м\n", calcflrange(nlat_1.lat , elng_1.lng, nlat_2.lat, elng_2.lng));
 
     return 0;
 }
