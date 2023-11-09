@@ -40,16 +40,16 @@ double calcflrange(double lat_1, double lng_1, double lat_2, double lng_2) {
     double ad = atan2(y, x);
     double flight_dist = ad * (R_E + R_P) / 2;
 
-    double x2 = (cl1*sl2) - (sl1*cl2*cdelta);
-    double y2 = sdelta*cl2;
-    int z = atan(-y2 / x2) * 180.0 / M_PI;
+    double x2 = (cl1 * sl2) - (sl1 * cl2 * cdelta);
+    double y2 = sdelta * cl2;
+    int z = atan(-y2 / x2) * 180 / M_PI;
     if(x < 0) {
-        z = z + 180.0;
+        z = z + 180;
     }
     int z2 = (z + 180) % 360 - 180;
-    z2 = -z2 * M_PI / 180.0;
+    z2 = -z2 * M_PI / 180;
     int anglerad2 = z2 - (2 * M_PI * floor(z2 / 2 * M_PI));
-    int bearing = anglerad2 * 180.0 / M_PI;
+    int bearing = anglerad2 * 180 / M_PI;
     
     return flight_dist;
     return bearing;
