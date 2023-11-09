@@ -81,8 +81,9 @@ int main(void)
     int item;
 
     printf("\n1. Расчет дальности и продолжительности полета на заданной скорости и высоте\n"
-             "2. Расчеты на маневрирование\n"
-             "3. Выход\n");
+             "2. Расчет дальности между двумя точками заданными географическими координатами\n"
+             "3. Расчеты на маневрирование\n"
+             "4. Выход\n");
     printf("   Выбери расчет или выход: ");
     if(scanf("%d", &item) != 1) {
         printf("\nError input!\n");
@@ -90,6 +91,7 @@ int main(void)
     }
     switch(item) {
     case 1:
+        printf("Расчет дальности и продолжительности полета на заданной скорости и высоте\n");
         printf("\n  величина тяги для ТРДД при номинал ррд в наборе на средн выс, H: ");
         while(scanf("%lf", &flight.engthrust_val) != 1) {
             printf("\nError_input!\n");
@@ -190,7 +192,45 @@ int main(void)
         printf("\nРасполагаемый запас топлива = %.f кг\n", flight.fucons_cruise);
         printf("Дальность полета = %d км\nПродолжительность полета = %d ч %02d мин\n", flight.flrange, flight.flduration_h, flight.flduration_m);
         return 0;
-    case 2:
+    case 2
+        printf("Расчет дальности между двумя точками заданными географическими координатами\n");
+        printf("Input the northern latitude coordinates of the first point in the format gg mm ss.ms: ");
+        while(scanf("%d %d %d.%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) < 3 && 
+              scanf("%d.%d.%d,%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) > 4) {
+            printf("Incorrect input!\n");
+            return 0;
+        } 
+        printf("Input the eastern longitude coordinates of the first point in the format ggg mm ss.ms: ");
+        while(scanf("%d %d %d.%d", &elng_1.grad, &elng_1.min, &elng_1.sec, &elng_1.msec) < 3 && 
+              scanf("%d.%d.%d,%d", &elng_1.grad, &elng_1.min, &elng_1.sec, &elng_1.msec) > 4) {
+            printf("Incorrect input!\n");
+            return 0;
+        }
+        printf("\nInput the northern latitude coordinates of the first point in the format gg mm ss.ms: ");
+        while(scanf("%d %d %d.%d", &nlat_2.grad, &nlat_2.min, &nlat_2.sec, &nlat_2.msec) < 3 && 
+              scanf("%d.%d.%d,%d", &nlat_2.grad, &nlat_2.min, &nlat_2.sec, &nlat_2.msec) > 4) {
+            printf("Incorrect input!\n");
+            return 0;
+        } 
+        printf("Input the eastern longitude coordinates of the first point in the format ggg mm ss.ms: ");
+        while(scanf("%d %d %d.%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) < 3 && 
+              scanf("%d.%d.%d,%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) > 4) {
+            printf("Incorrect input!\n");
+            return 0;
+        }
+    
+        double lat_1 = nlat_1.grad + nlat_1.min / 60 + nlat_1.sec / 3600 + nlat_1.msec / 3600 / 60;
+        double lng_1 = elng_1.grad + elng_1.min / 60 + elng_1.sec / 3600 + elng_1.msec / 3600 / 60;
+        double lat_2 = nlat_2.grad + nlat_2.min / 60 + nlat_2.sec / 3600 + nlat_2.msec / 3600 / 60;
+        double lng_2 = elng_2.grad + elng_2.min / 60 + elng_2.sec / 3600 + elng_2.msec / 3600 / 60;
+
+        printf("\nFirst point:  N  %02d° %02d' %02d.%02d''   E %03d° %02d' %02d.%02d''\n",
+                nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
+        printf("Second point: N  %02d° %02d' %02d.%02d''   E %03d° %02d' %02d.%02d''\n",
+                nlat_2.grad, nlat_2.min, nlat_2.sec, nlat_2.msec, elng_2.grad, elng_2.min, elng_2.sec, elng_2.msec);
+        printf("\nFlight range = %.f м\n", calcflrange(lat_1 , lng_1, lat_2, lng_2));
+        return 0;
+    case 3:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
                  "   2. Определение времени разворота самолета с заданным креном и скоростью разворота\n"
                  "   3. Расчет угла сноса и путевой скорости по известному вектору ветра\n"
@@ -350,7 +390,7 @@ int main(void)
             printf("\nIncorrect input!\n");
             return 0;
         }
-    case 3:
+    case 4:
         printf("\nEnd of program\n");
         return 0;
     default:
