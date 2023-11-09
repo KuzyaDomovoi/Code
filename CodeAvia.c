@@ -192,7 +192,7 @@ int main(void)
         printf("\nРасполагаемый запас топлива = %.f кг\n", flight.fucons_cruise);
         printf("Дальность полета = %d км\nПродолжительность полета = %d ч %02d мин\n", flight.flrange, flight.flduration_h, flight.flduration_m);
         return 0;
-    case 2
+    case 2:
         printf("Расчет дальности между двумя точками заданными географическими координатами\n");
         printf("Input the northern latitude coordinates of the first point in the format gg mm ss.ms: ");
         while(scanf("%d %d %d.%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) < 3 && 
