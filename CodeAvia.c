@@ -3,6 +3,50 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#define M_PI 3.14159265358979323846
+#define G 9.8
+#define K 0.0175
+#define R_E  6378100
+#define R_P  6357800
+
+struct geo_nlat {
+    double lat;
+    unsigned sec; unsigned msec;
+    unsigned grad; unsigned min;
+} nlat_1;
+
+struct geo_elng {
+    double lng;
+    unsigned sec; unsigned msec;
+    unsigned grad; unsigned min;
+} elng_1;
+
+struct geo_nlat nlat_2;
+struct geo_elng elng_2;
+
+double calcflrange(double lat_1, double lng_1, double lat_2, double lng_2) {
+    nlat_1.lat = lat_1 * M_PI / 180.0;
+    elng_1.lng = lng_1 * M_PI / 180.0;
+    nlat_2.lat = lat_2 * M_PI / 180.0;
+    elng_2.lng = lng_2 * M_PI / 180.0;
+
+    double cl1 = cos(nlat_1.lat);
+    double cl2 = cos(nlat_2.lat);
+    double sl1 = sin(nlat_1.lat);
+    double sl2 = sin(nlat_2.lat);
+    double delta = elng_2.lng - elng_1.lng;
+    double cdelta = cos(delta);
+    double sdelta = sin(delta);
+
+    double y = sqrt(pow(cl2 * sdelta, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta, 2));
+    double x = sl1 * sl2 + cl1 * cl2 * cdelta;
+
+    double ad = atan2(y, x);
+    double flight_range = ad * (R_E + R_P) / 2;
+    
+    return flight_range;
+}
+
 struct flrange_flduration {
     double engthrust_val;
     int airbornspeed; int average_climspeed; int climtime; int cruisspeed;
@@ -25,10 +69,6 @@ struct fltime_flangle_flspeed {
     double linturn_lead; double t; double mindist_checkpoint; double range_turnlead;
     double course_correction_curr; double course_correction_rem; double course_correction;
 } maneuver;
-
-#define M_PI 3.14159265358979323846
-#define G 9.8
-#define K 0.0175
 
 bool range(int x, int a, int y) {
     if(a >= x && a <= y)
