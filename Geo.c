@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
+
+#define M_PI 3.14159265358979323846
+#define R_E 6378.1
+#define R_P 6357.8
 
 struct geo_nlat {
     unsigned nlat;
@@ -32,6 +35,8 @@ int main(void)
     }
     printf("N:  %02d %02d %02d.%02d\n", nlat.grad, nlat.min, nlat.sec, nlat.msec);
     printf("E: %03d %02d %02d.%02d\n", elng.grad, elng.min, elng.sec, elng.msec);
+
+    double flight_range = M_PI * R * 
 
     return 0;
 }

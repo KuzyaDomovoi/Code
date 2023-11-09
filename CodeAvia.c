@@ -27,7 +27,7 @@ struct fltime_flangle_flspeed {
 } maneuver;
 
 #define M_PI 3.14159265358979323846
-#define G 9.81
+#define G 9.8
 #define K 0.0175
 
 bool range(int x, int a, int y) {
