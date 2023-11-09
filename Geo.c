@@ -20,12 +20,12 @@ struct geo_elng {
 
 int main(void)
 {
-    printf("Input coordinats of northern latitude in format gg.mm.ss,ms: ");
+    printf("Input coordinats of northern latitude in format gg mm ss.ms: ");
     while(scanf("%d %d %d.%d", &nlat.grad, &nlat.min, &nlat.sec, &nlat.msec) < 3 && scanf("%d.%d.%d,%d", &nlat.grad, &nlat.min, &nlat.sec, &nlat.msec) > 4) {
         printf("Incorrect input!\n");
         return 0;
     } 
-    printf("Input coordinats of eastern longitude in format gg.mm.ss,ms: ");
+    printf("Input coordinats of eastern longitude in format gg mm ss.ms: ");
     while(scanf("%d %d %d.%d", &elng.grad, &elng.min, &elng.sec, &elng.msec) < 3 && scanf("%d.%d.%d,%d", &elng.grad, &elng.min, &elng.sec, &elng.msec) > 4) {
         printf("Incorrect input!\n");
         return 0;
