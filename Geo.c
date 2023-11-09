@@ -25,7 +25,7 @@ struct geo_elng {
 
 int main(void)
 {
-    int angle = 12; // calc...
+    float angle = 12.4; // calc...
 
     printf("Input coordinats of northern latitude in format gg mm ss.ms: ");
     while(scanf("%d %d %d.%d", &nlat.grad, &nlat.min, &nlat.sec, &nlat.msec) < 3 && scanf("%d.%d.%d,%d", &nlat.grad, &nlat.min, &nlat.sec, &nlat.msec) > 4) {
@@ -42,7 +42,7 @@ int main(void)
 
     double flight_range = (M_PI * (R_E + R_P / 2) * angle) / 180.0;
 
-    printf ("Angle = %d° flight range = %f км\n", angle, flight_range);
+    printf ("Angle = %.1f° flight range = %.3f км\n", angle, flight_range);
 
     return 0;
 }
