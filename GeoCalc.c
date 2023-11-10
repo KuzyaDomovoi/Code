@@ -96,10 +96,10 @@ int main(void)
         return 0;
     }*/
     
-    double lat_1 = 77.1539;
-    double lng_1 = -139.398;
-    double lat_2 = -77.1804;
-    double lng_2 = -139.55;
+    double lat_1 = 48.3;
+    double lng_1 = 40.5;
+    double lat_2 = 55.5;
+    double lng_2 = 49.3;
     
     printf("\nFirst point:  N  %02d° %02d' %02d.%02d''   E %03d° %02d' %02d.%02d''\n",
             nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
