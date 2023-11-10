@@ -103,7 +103,7 @@ bool range(int x, int a, int y) {
 }
 
 bool range2(int x, int a, int y) {
-    if(a > -x && a > y)
+    if(a < x && a > y)
         return true;
     return false;
 }
@@ -236,7 +236,7 @@ int main(void)
             printf("Incorrect input! Range of lat is -90...90\n");
             return 0;
         }
-        if(range(0, ))
+        if(range2(0, lat_1.min, 60))
         printf("   Введи через пробел координаты WGS-84 для долготы первой точки: ");
         while(scanf("%d %d %d.%d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec) < 3 && 
               scanf("%d.%d.%d,%d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec) > 4) {
