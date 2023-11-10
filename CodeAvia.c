@@ -12,28 +12,28 @@ struct geo_nlat {
     double lat;
     unsigned sec; unsigned msec;
     unsigned grad; unsigned min;
-} nlat_1;
+} lat_1;
 
 struct geo_elng {
     double lng;
     unsigned sec; unsigned msec;
     unsigned grad; unsigned min;
-} elng_1;
+} lng_1;
 
-struct geo_nlat nlat_2;
-struct geo_elng elng_2;
+struct geo_nlat lat_2;
+struct geo_elng lng_2;
 
-double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
-    nlat_1.lat = lat_1 * M_PI / 180.0;
-    elng_1.lng = lng_1 * M_PI / 180.0;
-    nlat_2.lat = lat_2 * M_PI / 180.0;
-    elng_2.lng = lng_2 * M_PI / 180.0;
+double calcfldist(double lat1, double lng1, double lat2, double lng2) {
+    lat_1.lat = lat1 * M_PI / 180.0;
+    lng_1.lng = lng1 * M_PI / 180.0;
+    lat_2.lat = lat2 * M_PI / 180.0;
+    lng_2.lng = lng2 * M_PI / 180.0;
 
-    double cl1 = cos(nlat_1.lat);
-    double cl2 = cos(nlat_2.lat);
-    double sl1 = sin(nlat_1.lat);
-    double sl2 = sin(nlat_2.lat);
-    double delta = elng_2.lng - elng_1.lng;
+    double cl1 = cos(lat_1.lat);
+    double cl2 = cos(lat_2.lat);
+    double sl1 = sin(lat_1.lat);
+    double sl2 = sin(lat_2.lat);
+    double delta = lng_2.lng - lng_1.lng;
     double cdelta = cos(delta);
     double sdelta = sin(delta);
 
@@ -46,17 +46,17 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
     return flight_dist;
 }
 
-double calcflbear(double lat_1, double lng_1, double lat_2, double lng_2) {
-    nlat_1.lat = lat_1 * M_PI / 180.0;
-    elng_1.lng = lng_1 * M_PI / 180.0;
-    nlat_2.lat = lat_2 * M_PI / 180.0;
-    elng_2.lng = lng_2 * M_PI / 180.0;
+double calcflbear(double lat1, double lng1, double lat2, double lng2) {
+    lat_1.lat = lat1 * M_PI / 180.0;
+    lng_1.lng = lng1 * M_PI / 180.0;
+    lat_2.lat = lat2 * M_PI / 180.0;
+    lng_2.lng = lng2 * M_PI / 180.0;
 
-    double cl1 = cos(nlat_1.lat);
-    double cl2 = cos(nlat_2.lat);
-    double sl1 = sin(nlat_1.lat);
-    double sl2 = sin(nlat_2.lat);
-    double delta = elng_2.lng - elng_1.lng;
+    double cl1 = cos(lat_1.lat);
+    double cl2 = cos(lat_2.lat);
+    double sl1 = sin(lat_1.lat);
+    double sl2 = sin(lat_2.lat);
+    double delta = lng_2.lng - lng_1.lng;
     double cdelta = cos(delta);
     double sdelta = sin(delta);
 
@@ -227,42 +227,43 @@ int main(void)
     case 2:
         printf("\nРасчет дальности между двумя точками заданными географическими координатами\n");
         printf("\n   Введи через пробел координаты WGS-84 для широты первой точки: ");
-        while(scanf("%d %d %d.%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) < 3 && 
-              scanf("%d.%d.%d,%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) > 4) {
+        while(scanf("%d %d %d.%d", &lat_1.grad, &lat_1.min, &lat_1.sec, &lat_1.msec) < 3 && 
+              scanf("%d.%d.%d,%d", &lat_1.grad, &lat_1.min, &lat_1.sec, &lat_1.msec) > 4) {
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-90, nlat_1.grad, 90)) {
+        if(range2(-90, lat_1.grad, 90)) {
             printf("Incorrect input! Range of lat is -90...90\n");
             return 0;
         }
+        if(range(0, ))
         printf("   Введи через пробел координаты WGS-84 для долготы первой точки: ");
-        while(scanf("%d %d %d.%d", &elng_1.grad, &elng_1.min, &elng_1.sec, &elng_1.msec) < 3 && 
-              scanf("%d.%d.%d,%d", &elng_1.grad, &elng_1.min, &elng_1.sec, &elng_1.msec) > 4) {
+        while(scanf("%d %d %d.%d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec) < 3 && 
+              scanf("%d.%d.%d,%d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec) > 4) {
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-180, elng_1.grad, 180)) {
+        if(range2(-180, lng_1.grad, 180)) {
             printf("Incorrect input! Range of lng is -180...180\n");
             return 0;
         }
         printf("\n   Введи через пробел координаты WGS-84 для широты второй точки: ");
-        while(scanf("%d %d %d.%d", &nlat_2.grad, &nlat_2.min, &nlat_2.sec, &nlat_2.msec) < 3 && 
-              scanf("%d.%d.%d,%d", &nlat_2.grad, &nlat_2.min, &nlat_2.sec, &nlat_2.msec) > 4) {
+        while(scanf("%d %d %d.%d", &lat_2.grad, &lat_2.min, &lat_2.sec, &lat_2.msec) < 3 && 
+              scanf("%d.%d.%d,%d", &lat_2.grad, &lat_2.min, &lat_2.sec, &lat_2.msec) > 4) {
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-90, nlat_2.grad, 90)) {
+        if(range2(-90, lat_2.grad, 90)) {
             printf("Incorrect input! Range of lat is -90...90\n");
             return 0;
         }
         printf("   Введи через пробел координаты WGS-84 для долготы второй точки: ");
-        while(scanf("%d %d %d.%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) < 3 && 
-              scanf("%d.%d.%d,%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) > 4) {
+        while(scanf("%d %d %d.%d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec) < 3 && 
+              scanf("%d.%d.%d,%d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec) > 4) {
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-180, elng_2.grad, 180)) {
+        if(range2(-180, lng_2.grad, 180)) {
             printf("Incorrect input! Range of lng is -180...180\n");
             return 0;
         }
@@ -272,9 +273,9 @@ int main(void)
         double lng_2 = elng_2.grad + elng_2.min / 60.0 + elng_2.sec / 3600.0 + elng_2.msec / 3600.0 / 60.0;
 
         printf("\nПервая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
-                nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
+                lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, lng_1.grad, lng_1.min, lng_1.sec, lng_1.msec);
         printf("Вторая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
-                nlat_2.grad, nlat_2.min, nlat_2.sec, nlat_2.msec, elng_2.grad, elng_2.min, elng_2.sec, elng_2.msec);
+                lat_2.grad, lat_2.min, lat_2.sec, lat_2.msec, lng_2.grad, lng_2.min, lng_2.sec, lng_2.msec);
         printf("\nРасстояние = %.f м\nНачальный азимут = %.f°\n", calcfldist(lat_1, lng_1, lat_2, lng_2), calcflbear(lat_1, lng_1, lat_2, lng_2));
         return 0;
     case 3:
