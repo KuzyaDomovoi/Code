@@ -42,19 +42,34 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
     double x = sl1 * sl2 + cl1 * cl2 * cdelta;
 
     double anglerad = atan2(y, x);
-    double flight_range = anglerad * (R_E + R_P) / 2;
+    double flight_dist = anglerad * (R_E + R_P) / 2;
     
-    return flight_range;
-    
-    double x2 = (cl1 * sl2) - (sl1 * cl2 * cdelta);
-    double y2 = sdelta * cl2;
+    return flight_dist;
+}
+
+double calcflbear(double lat_1, double lng_1, double lat_2, double lng_2) {
+    nlat_1.lat = lat_1 * M_PI / 180.0;
+    elng_1.lng = lng_1 * M_PI / 180.0;
+    nlat_2.lat = lat_2 * M_PI / 180.0;
+    elng_2.lng = lng_2 * M_PI / 180.0;
+
+    double cl1 = cos(nlat_1.lat);
+    double cl2 = cos(nlat_2.lat);
+    double sl1 = sin(nlat_1.lat);
+    double sl2 = sin(nlat_2.lat);
+    double delta = elng_2.lng - elng_1.lng;
+    double cdelta = cos(delta);
+    double sdelta = sin(delta);
+
+    double x = (cl1 * sl2) - (sl1 * cl2 * cdelta);
+    double y = sdelta * cl2;
     double z;
     if(x < 0) {
         z = -((z + 180.0 / 360.0) - 180.0) * M_PI / 180.0;
     } else
-        z = atan(-y2 / x2) * 180.0 / M_PI;
-    double anglerad2 = z - (2 * M_PI * floor(z / (2 * M_PI)));
-    double bearing = anglerad2 * 180.0 / M_PI;
+        z = atan(-y / x) * 180.0 / M_PI;
+    double anglerad = z - (2 * M_PI * floor(z / (2 * M_PI)));
+    double bearing = anglerad * 180.0 / M_PI;
 
     return bearing;
 }
@@ -240,7 +255,7 @@ int main(void)
                 nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
         printf("Вторая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 nlat_2.grad, nlat_2.min, nlat_2.sec, nlat_2.msec, elng_2.grad, elng_2.min, elng_2.sec, elng_2.msec);
-        printf("\nРасстояние = %.f м\nНачальный азимут = %.f\n", calcfldist(lat_1, lng_1, lat_2, lng_2));
+        printf("\nРасстояние = %.f м\nНачальный азимут = %.f\n", calcfldist(lat_1, lng_1, lat_2, lng_2), calcflbear(lat_1, lng_1, lat_2, lng_2));
         return 0;
     case 3:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
