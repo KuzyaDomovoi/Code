@@ -40,19 +40,7 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
     double ad = atan2(y, x);
     double flight_dist = ad * (R_E + R_P) / 2;
     
-    double x2 = (cl1 * sl2) - (sl1 * cl2 * cdelta);
-    double y2 = sdelta * cl2;
-    int z = atan(-y2 / x2) * 180.0 / M_PI;
-    if(x2 < 0) {
-        z = z + 180;
-    }
-    z = - (z + 180) % 360 - 180;
-    z = -z * M_PI / 180.0;
-    double anglerad2 = z- (2 * M_PI * floor(z / 2 * M_PI));
-    double bearing = anglerad2 * 180.0 / M_PI;
-        
     return flight_dist;
-    return bearing;
 }
 
 double calcflbear(double lat_1, double lng_1, double lat_2, double lng_2) {
@@ -69,15 +57,15 @@ double calcflbear(double lat_1, double lng_1, double lat_2, double lng_2) {
     double cdelta = cos(delta);
     double sdelta = sin(delta);
 
-    double x2 = (cl1 * sl2) - (sl1 * cl2 * cdelta);
-    double y2 = sdelta * cl2;
-    int z = atan(-y2 / x2) * 180.0 / M_PI;
-    if(x2 < 0) {
+    double x = (cl1 * sl2) - (sl1 * cl2 * cdelta);
+    double y = sdelta * cl2;
+    int z = atan(-y / x) * 180.0 / M_PI;
+    if(x < 0) {
         z = z + 180;
     }
-    z = - (z + 180) % 360 - 180;
+    z = -(z + 180) % 360 - 180;
     z = -z * M_PI / 180.0;
-    double anglerad2 = z- (2 * M_PI * floor(z / 2 * M_PI));
+    double anglerad2 = z - (2 * M_PI * floor(z / 2 * M_PI));
     double bearing = anglerad2 * 180.0 / M_PI;
 
     return bearing;
