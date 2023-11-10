@@ -66,7 +66,7 @@ double calcflbear(double lat_1, double lng_1, double lat_2, double lng_2) {
     double anglerad = z - (2 * M_PI * floor(z / 2 * M_PI));
     double bearing = anglerad * 180.0 / M_PI;
 
-    return bearing;
+    return bearing; 
 }
 
 int main(void)
