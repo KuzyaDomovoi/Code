@@ -6,7 +6,7 @@
 #define M_PI 3.14159265358979323846
 #define G    9.8
 #define K    0.0175
-#define R_E  6372795
+#define R_E  6378137
 
 struct geo_nlat {
     double lat;
@@ -236,7 +236,10 @@ int main(void)
             printf("Incorrect input! Range of lat is -90...90\n");
             return 0;
         }
-        if(range2(0, lat_1.min, 60))
+        if(range2(0, lat_1.min, 59) && range2(0, lat_1.sec, 59) && range2(0, lat_1.msec, 59)) {
+            printf("Incorrect input! Range of min, sec and msec is 0...59\n");
+            return 0;            
+        }
         printf("   Введи через пробел координаты WGS-84 для долготы первой точки: ");
         while(scanf("%d %d %d.%d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec) < 3 && 
               scanf("%d.%d.%d,%d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec) > 4) {
@@ -246,6 +249,10 @@ int main(void)
         if(range2(-180, lng_1.grad, 180)) {
             printf("Incorrect input! Range of lng is -180...180\n");
             return 0;
+        }
+        if(range2(0, lng_1.min, 59) && range2(0, lng_1.sec, 59) && range2(0, lng_1.msec, 59)) {
+            printf("Incorrect input! Range of min, sec and msec is 0...59\n");
+            return 0;            
         }
         printf("\n   Введи через пробел координаты WGS-84 для широты второй точки: ");
         while(scanf("%d %d %d.%d", &lat_2.grad, &lat_2.min, &lat_2.sec, &lat_2.msec) < 3 && 
@@ -257,6 +264,10 @@ int main(void)
             printf("Incorrect input! Range of lat is -90...90\n");
             return 0;
         }
+        if(range2(0, lat_2.min, 59) && range2(0, lat_2.sec, 59) && range2(0, lat_2.msec, 59)) {
+            printf("Incorrect input! Range of min, sec and msec is 0...59\n");
+            return 0;            
+        }        
         printf("   Введи через пробел координаты WGS-84 для долготы второй точки: ");
         while(scanf("%d %d %d.%d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec) < 3 && 
               scanf("%d.%d.%d,%d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec) > 4) {
@@ -266,6 +277,10 @@ int main(void)
         if(range2(-180, lng_2.grad, 180)) {
             printf("Incorrect input! Range of lng is -180...180\n");
             return 0;
+        }
+        if(range2(0, lng_2.min, 59) && range2(0, lng_2.sec, 59) && range2(0, lng_2.msec, 59)) {
+            printf("Incorrect input! Range of min, sec and msec is 0...59\n");
+            return 0;            
         }
         double lat1 = lat_1.grad + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
         double lng1 = lng_1.grad + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
