@@ -194,41 +194,41 @@ int main(void)
         return 0;
     case 2:
         printf("\nРасчет дальности между двумя точками заданными географическими координатами\n");
-        printf("\n   Input the northern latitude coordinates of the first point in the format gg mm ss.ms: ");
+        printf("\n   Введи через пробел координаты WGS-84 для широты первой точки: ");
         while(scanf("%d %d %d.%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) < 3 && 
               scanf("%d.%d.%d,%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) > 4) {
             printf("Incorrect input!\n");
             return 0;
         } 
-        printf("   Input the eastern longitude coordinates of the first point in the format ggg mm ss.ms: ");
+        printf("   Введи через пробел координаты WGS-84 для долготы первой точки: ");
         while(scanf("%d %d %d.%d", &elng_1.grad, &elng_1.min, &elng_1.sec, &elng_1.msec) < 3 && 
               scanf("%d.%d.%d,%d", &elng_1.grad, &elng_1.min, &elng_1.sec, &elng_1.msec) > 4) {
             printf("Incorrect input!\n");
             return 0;
         }
-        printf("\n   Input the northern latitude coordinates of the first point in the format gg mm ss.ms: ");
+        printf("\n   Введи через пробел координаты WGS-84 для широты второй точки: ");
         while(scanf("%d %d %d.%d", &nlat_2.grad, &nlat_2.min, &nlat_2.sec, &nlat_2.msec) < 3 && 
               scanf("%d.%d.%d,%d", &nlat_2.grad, &nlat_2.min, &nlat_2.sec, &nlat_2.msec) > 4) {
             printf("Incorrect input!\n");
             return 0;
         } 
-        printf("   Input the eastern longitude coordinates of the first point in the format ggg mm ss.ms: ");
+        printf("   Введи через пробел координаты WGS-84 для долготы второй точки: ");
         while(scanf("%d %d %d.%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) < 3 && 
               scanf("%d.%d.%d,%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) > 4) {
             printf("Incorrect input!\n");
             return 0;
         }
     
-        double lat_1 = nlat_1.grad + nlat_1.min / 60 + nlat_1.sec / 3600 + nlat_1.msec / 3600 / 60;
-        double lng_1 = elng_1.grad + elng_1.min / 60 + elng_1.sec / 3600 + elng_1.msec / 3600 / 60;
-        double lat_2 = nlat_2.grad + nlat_2.min / 60 + nlat_2.sec / 3600 + nlat_2.msec / 3600 / 60;
-        double lng_2 = elng_2.grad + elng_2.min / 60 + elng_2.sec / 3600 + elng_2.msec / 3600 / 60;
+        double lat_1 = nlat_1.grad + nlat_1.min / 60.0 + nlat_1.sec / 3600.0 + nlat_1.msec / 3600.0 / 60.0;
+        double lng_1 = elng_1.grad + elng_1.min / 60.0 + elng_1.sec / 3600.0 + elng_1.msec / 3600.0 / 60.0;
+        double lat_2 = nlat_2.grad + nlat_2.min / 60.0 + nlat_2.sec / 3600.0 + nlat_2.msec / 3600.0 / 60.0;
+        double lng_2 = elng_2.grad + elng_2.min / 60.0 + elng_2.sec / 3600.0 + elng_2.msec / 3600.0 / 60.0;
 
-        printf("\nFirst point:  N  %02d° %02d' %02d.%02d''\n              E %03d° %02d' %02d.%02d''\n",
+        printf("\nПервая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
-        printf("Second point: N  %02d° %02d' %02d.%02d''\n              E %03d° %02d' %02d.%02d''\n",
+        printf("Вторая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 nlat_2.grad, nlat_2.min, nlat_2.sec, nlat_2.msec, elng_2.grad, elng_2.min, elng_2.sec, elng_2.msec);
-        printf("\nFlight range = %.f м\n", calcflrange(lat_1 , lng_1, lat_2, lng_2));
+        printf("\nРасстояние = %.f м\n", calcflrange(lat_1 , lng_1, lat_2, lng_2));
         return 0;
     case 3:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
