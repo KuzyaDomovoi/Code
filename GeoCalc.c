@@ -62,9 +62,9 @@ double calcflbear(double lat_1, double lng_1, double lat_2, double lng_2) {
     if(x < 0) {
         z = z + 180;
     }
-    z = (z + 180) % 360 - 180;
-    z = -z * M_PI / 180.0;
-    double anglerad = z - (2 * M_PI * floor(z / 2 * M_PI));
+    int z2 = (z + 180) % 360 - 180;
+    z2 = -z2 * M_PI / 180.0;
+    double anglerad = z2 - (2 * M_PI * floor(z2 / 2 * M_PI));
     double bearing = anglerad * 180.0 / M_PI;
 
     return bearing; 
