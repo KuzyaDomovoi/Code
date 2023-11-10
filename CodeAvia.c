@@ -232,14 +232,18 @@ int main(void)
             printf("Incorrect input!\n");
             return 0;
         }
+        if(range2(-90, nlat_1.grad, 90)) {
+            printf("Incorrect input! Range of lat is -90...90\n");
+            return 0;
+        }
         printf("   Введи через пробел координаты WGS-84 для долготы первой точки: ");
         while(scanf("%d %d %d.%d", &elng_1.grad, &elng_1.min, &elng_1.sec, &elng_1.msec) < 3 && 
               scanf("%d.%d.%d,%d", &elng_1.grad, &elng_1.min, &elng_1.sec, &elng_1.msec) > 4) {
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-90, nlat_1.grad, 90) && range2(-180, elng_1.grad, 180)) {
-            printf("Incorrect input! Range of lat is -90...90 and range of lng is -180...180\n");
+        if(range2(-180, elng_1.grad, 180)) {
+            printf("Incorrect input! Range of lng is -180...180\n");
             return 0;
         }
         printf("\n   Введи через пробел координаты WGS-84 для широты второй точки: ");
@@ -248,14 +252,18 @@ int main(void)
             printf("Incorrect input!\n");
             return 0;
         }
+        if(range2(-90, nlat_2.grad, 90)) {
+            printf("Incorrect input! Range of lat is -90...90\n");
+            return 0;
+        }
         printf("   Введи через пробел координаты WGS-84 для долготы второй точки: ");
         while(scanf("%d %d %d.%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) < 3 && 
               scanf("%d.%d.%d,%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) > 4) {
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-90, nlat_2.grad, 90) && range2(-180, elng_2.grad, 180)) {
-            printf("Incorrect input! Range of lat is -90...90 and range of lng is -180...180\n");
+        if(range2(-180, elng_2.grad, 180)) {
+            printf("Incorrect input! Range of lng is -180...180\n");
             return 0;
         }
         double lat_1 = nlat_1.grad + nlat_1.min / 60.0 + nlat_1.sec / 3600.0 + nlat_1.msec / 3600.0 / 60.0;
