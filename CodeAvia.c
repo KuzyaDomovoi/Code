@@ -6,8 +6,7 @@
 #define M_PI 3.14159265358979323846
 #define G 9.8
 #define K 0.0175
-#define R_E  6378100
-#define R_P  6357800
+#define R_E  6372795
 
 struct geo_nlat {
     double lat;
@@ -42,7 +41,7 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
     double x = sl1 * sl2 + cl1 * cl2 * cdelta;
 
     double anglerad = atan2(y, x);
-    double flight_dist = anglerad * (R_E + R_P) / 2;
+    double flight_dist = anglerad * R_E;
     
     return flight_dist;
 }
