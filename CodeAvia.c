@@ -267,10 +267,10 @@ int main(void)
             printf("Incorrect input! Range of lng is -180...180\n");
             return 0;
         }
-        double lat_1 = nlat_1.grad + nlat_1.min / 60.0 + nlat_1.sec / 3600.0 + nlat_1.msec / 3600.0 / 60.0;
-        double lng_1 = elng_1.grad + elng_1.min / 60.0 + elng_1.sec / 3600.0 + elng_1.msec / 3600.0 / 60.0;
-        double lat_2 = nlat_2.grad + nlat_2.min / 60.0 + nlat_2.sec / 3600.0 + nlat_2.msec / 3600.0 / 60.0;
-        double lng_2 = elng_2.grad + elng_2.min / 60.0 + elng_2.sec / 3600.0 + elng_2.msec / 3600.0 / 60.0;
+        double lat1 = lat_1.grad + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
+        double lng1 = lng_1.grad + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
+        double lat2 = lat_2.grad + lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
+        double lng2 = lng_2.grad + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
 
         printf("\nПервая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, lng_1.grad, lng_1.min, lng_1.sec, lng_1.msec);
