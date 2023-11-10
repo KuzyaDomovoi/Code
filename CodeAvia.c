@@ -103,7 +103,7 @@ bool range(int x, int a, int y) {
 }
 
 bool range2(int x, int a, int y) {
-    if(a < x && a > y)
+    if(a > x && a > y)
         return true;
     return false;
 }
