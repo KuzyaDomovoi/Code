@@ -228,7 +228,7 @@ int main(void)
                 nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
         printf("Вторая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 nlat_2.grad, nlat_2.min, nlat_2.sec, nlat_2.msec, elng_2.grad, elng_2.min, elng_2.sec, elng_2.msec);
-        printf("\nРасстояние = %.f м\n", calcflrange(lat_1 , lng_1, lat_2, lng_2));
+        printf("\nРасстояние = %.f м\n", calcflrange(lat_1, lng_1, lat_2, lng_2));
         return 0;
     case 3:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
