@@ -250,7 +250,7 @@ int main(void)
             printf("Incorrect input! Range of lng is -180...180\n");
             return 0;
         }
-        if(range2(0, lng_1.min, 59) || range2(0, lng_1.sec, 59) &|| range2(0, lng_1.msec, 59)) {
+        if(range2(0, lng_1.min, 59) || range2(0, lng_1.sec, 59) || range2(0, lng_1.msec, 59)) {
             printf("Incorrect input! Range of min, sec and msec is 0...59\n");
             return 0;            
         }
