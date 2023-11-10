@@ -41,10 +41,12 @@ int main(void)
 
     double x = (cl1 * sl2) - (sl1 * cl2 * cdelta);
     double y = sdelta * cl2;
-    double z = atan(-y / x) * 180.0 / M_PI;
-    if(x < 0)
+    double z;
+    if(x < 0) {
         z = z + 180.0;
-    z = -((z / 360.0) - 180.0) * M_PI / 180.0;
+        z = -((z + 180.0 / 360.0) - 180.0) * M_PI / 180.0;
+    } else
+        z = atan(-y / x) * 180.0 / M_PI;
     double anglerad = z - (2 * M_PI * floor(z / (2 * M_PI)));
     double bearing = anglerad * 180.0 / M_PI;
 
@@ -58,7 +60,6 @@ int main(void)
     printf("\nx = %f\n", x);
     printf("y = %f\n", y);
     printf("z = %f\n", z);
-    //printf("z2 = %d\n", z2);
     printf("anglerad = %f\n", anglerad);
     printf("\nbearing = %.f°\n", bearing);
 
