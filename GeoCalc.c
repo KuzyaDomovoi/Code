@@ -58,13 +58,14 @@ double calcflbear(double lat_1, double lng_1, double lat_2, double lng_2) {
 
     double x = (cl1 * sl2) - (sl1 * cl2 * cdelta);
     double y = sdelta * cl2;
-    int z = atan(-y / x) * 180.0 / M_PI;
+    double z;
     if(x < 0) {
-        z = z + 180;
-    }
-    int z2 = ((z + 180) % 360 - 180) * M_PI / 180.0;
-    double anglerad = -z2 - (2 * M_PI * z2 / 2 * M_PI);
+        z = -((z + 180.0 / 360.0) - 180.0) * M_PI / 180.0;
+    } else
+        z = atan(-y / x) * 180.0 / M_PI;
+    double anglerad = z - (2 * M_PI * floor(z / (2 * M_PI)));
     double bearing = anglerad * 180.0 / M_PI;
+
 
     return bearing;
 }

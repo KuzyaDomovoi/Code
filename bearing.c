@@ -22,7 +22,7 @@ struct geo_elng elng_2;
 int main(void)
 {
     double lat_1 = 77.1539;
-    double lng_1 = 120.398;
+    double lng_1 = -120.398;
     double lat_2 = 77.1804;
     double lng_2 = 129.55;
 
@@ -43,20 +43,12 @@ int main(void)
     double y = sdelta * cl2;
     double z;
     if(x < 0) {
-        z = z + 180.0;
         z = -((z + 180.0 / 360.0) - 180.0) * M_PI / 180.0;
     } else
         z = atan(-y / x) * 180.0 / M_PI;
     double anglerad = z - (2 * M_PI * floor(z / (2 * M_PI)));
     double bearing = anglerad * 180.0 / M_PI;
 
-    printf("cl1 = %f\n", cl1);
-    printf("cl2 = %f\n", cl2);
-    printf("sl1 = %f\n", sl1);
-    printf("sl2 = %f\n", sl2);
-    printf("delta = %f\n", delta);
-    printf("cdelta = %f\n", cdelta);
-    printf("sdelta = %f\n", sdelta);
     printf("\nx = %f\n", x);
     printf("y = %f\n", y);
     printf("z = %f\n", z);
