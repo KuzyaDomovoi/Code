@@ -4,8 +4,8 @@
 #include <stdbool.h>
 
 #define M_PI 3.14159265358979323846
-#define G 9.8
-#define K 0.0175
+#define G    9.8
+#define K    0.0175
 #define R_E  6372795
 
 struct geo_nlat {
@@ -98,6 +98,12 @@ struct fltime_flangle_flspeed {
 
 bool range(int x, int a, int y) {
     if(a >= x && a <= y)
+        return true;
+    return false;
+}
+
+bool range2(int x, int a, int y) {
+    if(a < -x || a > y)
         return true;
     return false;
 }
@@ -232,7 +238,7 @@ int main(void)
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range(-90, nlat_1.grad, 90) || range(-180, elng_1.grad, 180)) {
+        if(range2(-90, nlat_1.grad, 90) || range2(-180, elng_1.grad, 180)) {
             printf("Incorrect input! Range of lat is -90...90 and range of lng is -180...180\n");
             return 0;
         }
@@ -248,7 +254,7 @@ int main(void)
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range(-90, nlat_2.grad, 90) || range(-180, elng_2.grad, 180)) {
+        if(range2(-90, nlat_2.grad, 90) || range2(-180, elng_2.grad, 180)) {
             printf("Incorrect input! Range of lat is -90...90 and range of lng is -180...180\n");
             return 0;
         }
