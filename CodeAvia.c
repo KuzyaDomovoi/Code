@@ -276,7 +276,7 @@ int main(void)
                 lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, lng_1.grad, lng_1.min, lng_1.sec, lng_1.msec);
         printf("Вторая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 lat_2.grad, lat_2.min, lat_2.sec, lat_2.msec, lng_2.grad, lng_2.min, lng_2.sec, lng_2.msec);
-        printf("\nРасстояние = %.f м\nНачальный азимут = %.f°\n", calcfldist(lat_1, lng_1, lat_2, lng_2), calcflbear(lat_1, lng_1, lat_2, lng_2));
+        printf("\nРасстояние = %.f м\nНачальный азимут = %.f°\n", calcfldist(lat1, lng1, lat2, lng2), calcflbear(lat1, lng1, lat2, lng2));
         return 0;
     case 3:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
