@@ -44,11 +44,11 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
     double y2 = sdelta * cl2;
     int z = atan(-y2 / x2) * 180.0 / M_PI;
     if(x2 < 0) {
-        z = z + 180.0;
+        z = z + 180;
     }
-    int z2 = (z + 180) % 360 - 180;
-    z2 = -z2 * M_PI / 180.0;
-    double anglerad2 = z2 - (2 * M_PI * floor(z2 / 2 * M_PI));
+    z = - (z + 180) % 360 - 180;
+    z = -z * M_PI / 180.0;
+    double anglerad2 = z- (2 * M_PI * floor(z / 2 * M_PI));
     double bearing = anglerad2 * 180.0 / M_PI;
         
     return flight_dist;
