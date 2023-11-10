@@ -238,7 +238,7 @@ int main(void)
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-90, nlat_1.grad, 90) || range2(-180, elng_1.grad, 180)) {
+        if(range2(-90, nlat_1.grad, 90) && range2(-180, elng_1.grad, 180)) {
             printf("Incorrect input! Range of lat is -90...90 and range of lng is -180...180\n");
             return 0;
         }
@@ -254,7 +254,7 @@ int main(void)
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-90, nlat_2.grad, 90) || range2(-180, elng_2.grad, 180)) {
+        if(range2(-90, nlat_2.grad, 90) && range2(-180, elng_2.grad, 180)) {
             printf("Incorrect input! Range of lat is -90...90 and range of lng is -180...180\n");
             return 0;
         }
