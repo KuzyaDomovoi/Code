@@ -62,17 +62,16 @@ double calcflbear(double lat_1, double lng_1, double lat_2, double lng_2) {
     if(x < 0) {
         z = z + 180;
     }
-    int z2 = (z + 180) % 360 - 180;
-    z2 = -z2 * M_PI / 180.0;
-    double anglerad = z2 - (2 * M_PI * floor(z2 / 2 * M_PI));
+    int z2 = ((z + 180) % 360 - 180) * M_PI / 180.0;
+    double anglerad = -z2 - (2 * M_PI * z2 / 2 * M_PI);
     double bearing = anglerad * 180.0 / M_PI;
 
-    return bearing; 
+    return bearing;
 }
 
 int main(void)
 {
-    printf("Input the northern latitude coordinates of the first point in the format gg mm ss.ms: ");
+    /*printf("Input the northern latitude coordinates of the first point in the format gg mm ss.ms: ");
     while(scanf("%d %d %d.%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) < 3 && 
           scanf("%d.%d.%d,%d", &nlat_1.grad, &nlat_1.min, &nlat_1.sec, &nlat_1.msec) > 4) {
         printf("Incorrect input!\n");
@@ -95,12 +94,12 @@ int main(void)
           scanf("%d.%d.%d,%d", &elng_2.grad, &elng_2.min, &elng_2.sec, &elng_2.msec) > 4) {
         printf("Incorrect input!\n");
         return 0;
-    }
+    }*/
     
-    double lat_1 = nlat_1.grad + nlat_1.min / 60.0 + nlat_1.sec / 3600.0 + nlat_1.msec / 3600.0 / 60.0;
-    double lng_1 = elng_1.grad + elng_1.min / 60.0 + elng_1.sec / 3600.0 + elng_1.msec / 3600.0 / 60.0;
-    double lat_2 = nlat_2.grad + nlat_2.min / 60.0 + nlat_2.sec / 3600.0 + nlat_2.msec / 3600.0 / 60.0;
-    double lng_2 = elng_2.grad + elng_2.min / 60.0 + elng_2.sec / 3600.0 + elng_2.msec / 3600.0 / 60.0;
+    double lat_1 = 77.1539;
+    double lng_1 = -139.398;
+    double lat_2 = -77.1804;
+    double lng_2 = -139.55;
     
     printf("\nFirst point:  N  %02d° %02d' %02d.%02d''   E %03d° %02d' %02d.%02d''\n",
             nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);

@@ -21,10 +21,10 @@ struct geo_elng elng_2;
 
 int main(void)
 {
-    double lat_1 = 45 + 01 / 60.0 + 00 / 3600.0 + 00 / 3600.0 / 60.0;
-    double lng_1 = 45 + 00 / 60.0 + 00 / 3600.0 + 00 / 3600.0 / 60.0;
-    double lat_2 = 45 + 00 / 60.0 + 00 / 3600.0 + 00 / 3600.0 / 60.0;
-    double lng_2 = 45 + 00 / 60.0 + 00 / 3600.0 + 00 / 3600.0 / 60.0;
+    double lat_1 = 77.1539;
+    double lng_1 = 120.398;
+    double lat_2 = 77.1804;
+    double lng_2 = 129.55;
 
     nlat_1.lat = lat_1 * M_PI / 180.0;
     elng_1.lng = lng_1 * M_PI / 180.0;
@@ -41,15 +41,25 @@ int main(void)
 
     double x = (cl1 * sl2) - (sl1 * cl2 * cdelta);
     double y = sdelta * cl2;
-    int z = atan(-y / x) * 180.0 / M_PI;
-    if(x < 0) {
-        z = z + 180;
-    }
-    int z2 = (z + 180) % 360 - 180;
-    z2 = -z2 * M_PI / 180.0;
-    double anglerad = z2 - (2 * M_PI * floor(z2 / 2 * M_PI));
+    double z = atan(-y / x) * 180.0 / M_PI;
+    if(x < 0)
+        z = z + 180.0;
+    z = -((z / 360.0) - 180.0) * M_PI / 180.0;
+    double anglerad = z - (2 * M_PI * floor(z / (2 * M_PI)));
     double bearing = anglerad * 180.0 / M_PI;
 
+    printf("cl1 = %f\n", cl1);
+    printf("cl2 = %f\n", cl2);
+    printf("sl1 = %f\n", sl1);
+    printf("sl2 = %f\n", sl2);
+    printf("delta = %f\n", delta);
+    printf("cdelta = %f\n", cdelta);
+    printf("sdelta = %f\n", sdelta);
+    printf("\nx = %f\n", x);
+    printf("y = %f\n", y);
+    printf("z = %f\n", z);
+    //printf("z2 = %d\n", z2);
+    printf("anglerad = %f\n", anglerad);
     printf("\nbearing = %.f°\n", bearing);
 
     return 0;

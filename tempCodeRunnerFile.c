@@ -1,1 +1,2 @@
-flduration
+
+    if(x < 0) {
