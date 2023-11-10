@@ -2,8 +2,7 @@
 #include <math.h>
 
 #define M_PI 3.14159265358979323846
-#define R_E  6378100
-#define R_P  6357800
+#define R_E  6372795
 
 struct geo_nlat {
     double lat;
@@ -37,8 +36,8 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
     double y = sqrt(pow(cl2 * sdelta, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta, 2));
     double x = sl1 * sl2 + cl1 * cl2 * cdelta;
 
-    double ad = atan2(y, x);
-    double flight_dist = ad * (R_E + R_P) / 2;
+    double anglerad = atan2(y, x);
+    double flight_dist = anglerad * R_E;
     
     return flight_dist;
 }
@@ -64,9 +63,8 @@ double calcflbear(double lat_1, double lng_1, double lat_2, double lng_2) {
         z = z + 180;
     }
     z = -(z + 180) % 360 - 180;
-    z = -z * M_PI / 180.0;
-    double anglerad2 = z - (2 * M_PI * floor(z / 2 * M_PI));
-    double bearing = anglerad2 * 180.0 / M_PI;
+    double anglerad = z - (2 * M_PI * floor(z / 2 * M_PI));
+    double bearing = anglerad * 180.0 / M_PI;
 
     return bearing;
 }
