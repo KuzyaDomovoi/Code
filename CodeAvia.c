@@ -93,6 +93,21 @@ bool range2(int x, int a, int y) {
     return false;
 }
 
+bool input_verif(int a, int b, int c, int d, int result) {
+    if(range2(3, result, 4)) {
+        printf("Incorrect input! should be entered 3...4 value!\n");
+        return true;
+    }
+    if(range2(-90, a, 90)) {
+        printf("Incorrect input! Range of lat is -90...90\n");
+        return true;
+    }
+    if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) {
+        printf("Incorrect input! Range of min, sec and msec is 0...59\n");
+        return true;
+    } else
+        return false;
+}
 int main(void)
 {
     int item;
@@ -216,53 +231,25 @@ int main(void)
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-90, lat_1.grad, 90)) {
-            printf("Incorrect input! Range of lat is -90...90\n");
-            return 0;
-        }
-        if(range2(0, lat_1.min, 59) && range2(0, lat_1.sec, 59) && range2(0, lat_1.msec, 59)) {
-            printf("Incorrect input! Range of min, sec and msec is 0...59\n");
-            return 0;            
-        }
+        
         printf("   Введи через пробел координаты WGS-84 для долготы первой точки: ");
         if(scanf("%d %d %d %d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec) != 4) {
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-180, lng_1.grad, 180)) {
-            printf("Incorrect input! Range of lng is -180...180\n");
-            return 0;
-        }
-        if(range2(0, lng_1.min, 59) || range2(0, lng_1.sec, 59) || range2(0, lng_1.msec, 59)) {
-            printf("Incorrect input! Range of min, sec and msec is 0...59\n");
-            return 0;            
-        }
+        
         printf("\n   Введи через пробел координаты WGS-84 для широты второй точки: ");
         if(scanf("%d %d %d %d", &lat_2.grad, &lat_2.min, &lat_2.sec, &lat_2.msec) != 4) {
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-90, lat_2.grad, 90)) {
-            printf("Incorrect input! Range of lat is -90...90\n");
-            return 0;
-        }
-        if(range2(0, lat_2.min, 59) || range2(0, lat_2.sec, 59) || range2(0, lat_2.msec, 59)) {
-            printf("Incorrect input! Range of min, sec and msec is 0...59\n");
-            return 0;            
-        }        
+        
         printf("   Введи через пробел координаты WGS-84 для долготы второй точки: ");
         if(scanf("%d %d %d %d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec) != 4) {
             printf("Incorrect input!\n");
             return 0;
         }
-        if(range2(-180, lng_2.grad, 180)) {
-            printf("Incorrect input! Range of lng is -180...180\n");
-            return 0;
-        }
-        if(range2(0, lng_2.min, 59) && range2(0, lng_2.sec, 59) && range2(0, lng_2.msec, 59)) {
-            printf("Incorrect input! Range of min, sec and msec is 0...59\n");
-            return 0;            
-        }
+        
         double lat1 = lat_1.grad + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
         double lng1 = lng_1.grad + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
         double lat2 = lat_2.grad + lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
