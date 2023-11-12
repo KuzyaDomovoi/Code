@@ -61,8 +61,5 @@
         "typeinfo": "c",
         "practice79": "c",
         "functional": "c"
-    },
-    "C_Cpp.dimInactiveRegions": false,
-    "workbench.preferredHighContrastColorTheme": "Default High Contrast",
-    "workbench.colorTheme": "Default Dark Modern"
+    }
 }
