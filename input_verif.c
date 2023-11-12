@@ -31,19 +31,16 @@ bool range2(int x, int a, int y) {
  int main(void)
 {
     printf("\n   Введи через пробел координаты WGS-84 для широты первой точки: ");
-    int result = scanf("%d %d %d %d", &lat.grad, &lat.min, &lat.sec, &lat.msec);
-    if(result != 4) {
+    if(scanf("%d %d %d %d", &lat.grad, &lat.min, &lat.sec, &lat.msec) != 4) {
         printf("Incorrect input! It should be entered 4 value!\n");
         return 0;
     }
-    if(range2(-90, lat.grad, 90)) {
+    if(range2(-90, lat.grad, 90)) 
         printf("Incorrect input! Range of lat is -90...90\n");
         return 0;
-    }
-    if(range2(0, lat.min, 59) || range2(0, lat.sec, 59) || range2(0, lat.msec, 59)) {
+    if(range2(0, lat.min, 59) || range2(0, lat.sec, 59) || range2(0, lat.msec, 59))
         printf("Incorrect input! Range of min, sec and msec is 0...59\n");
-        return 0;
-    }    
+        return 0;   
     
     /*do {
         int result = scanf("%d %d %d.%d", &lat.grad, &lat.min, &lat.sec, &lat.msec);
