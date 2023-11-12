@@ -53,9 +53,9 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     x = sl1 * sl2 + cl1 * cl2 * cdelta;
     anglerad = atan2(y, x);
     double flight_dist = anglerad * R_E;
-    
-    result[0] = bearing;
-    result[1] = flight_dist;
+
+    result[0] = flight_dist;
+    result[1] = bearing;
 }
 
 struct flrange_flduration {
