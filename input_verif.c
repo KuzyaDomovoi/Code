@@ -33,7 +33,7 @@ bool input_verif(int a, int b, int c, int d, int result) {
  int main(void)
 {
     printf("\n   Введи через пробел координаты WGS-84 для широты первой точки: ");
-    int result = scanf("%d %d %d.%d", &lat.grad, &lat.min, &lat.sec, &lat.msec);
+    int result = scanf("%d %d %d %d", &lat.grad, &lat.min, &lat.sec, &lat.msec);
     do {
         input_verif(lat.grad, lat.min, lat.sec, lat.msec, result);
         
