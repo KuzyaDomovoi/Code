@@ -108,6 +108,7 @@ bool input_verif(int a, int b, int c, int d, int result) {
     } else
         return false;
 }
+
 int main(void)
 {
     int item;
