@@ -212,7 +212,7 @@ int main(void)
     case 2:
         printf("\nРасчет дальности между двумя точками заданными географическими координатами\n");
         printf("\n   Введи через пробел координаты WGS-84 для широты первой точки: ");
-        if(scanf("%d %d %d.%d", &lat_1.grad, &lat_1.min, &lat_1.sec, &lat_1.msec) < 3) {
+        if(scanf("%d %d %d %d", &lat_1.grad, &lat_1.min, &lat_1.sec, &lat_1.msec) != 4) {
             printf("Incorrect input!\n");
             return 0;
         }
@@ -225,7 +225,7 @@ int main(void)
             return 0;            
         }
         printf("   Введи через пробел координаты WGS-84 для долготы первой точки: ");
-        if(scanf("%d %d %d.%d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec) < 3) {
+        if(scanf("%d %d %d %d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec) != 4) {
             printf("Incorrect input!\n");
             return 0;
         }
@@ -238,7 +238,7 @@ int main(void)
             return 0;            
         }
         printf("\n   Введи через пробел координаты WGS-84 для широты второй точки: ");
-        if(scanf("%d %d %d.%d", &lat_2.grad, &lat_2.min, &lat_2.sec, &lat_2.msec) < 3) {
+        if(scanf("%d %d %d %d", &lat_2.grad, &lat_2.min, &lat_2.sec, &lat_2.msec) != 4) {
             printf("Incorrect input!\n");
             return 0;
         }
@@ -251,7 +251,7 @@ int main(void)
             return 0;            
         }        
         printf("   Введи через пробел координаты WGS-84 для долготы второй точки: ");
-        if(scanf("%d %d %d.%d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec) < 3) {
+        if(scanf("%d %d %d %d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec) != 4) {
             printf("Incorrect input!\n");
             return 0;
         }
