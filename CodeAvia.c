@@ -7,6 +7,7 @@
 #define G    9.8
 #define K    0.0175
 #define R_E  6378137
+#define RAD  M_PI / 180.0
 
 struct geo_nlat {
     double lat;
@@ -24,10 +25,10 @@ struct geo_nlat lat_2;
 struct geo_elng lng_2;
 
 double calcfldist(double lat1, double lng1, double lat2, double lng2) {
-    lat_1.lat = lat1 * M_PI / 180.0;
-    lng_1.lng = lng1 * M_PI / 180.0;
-    lat_2.lat = lat2 * M_PI / 180.0;
-    lng_2.lng = lng2 * M_PI / 180.0;
+    lat_1.lat = lat1 * RAD;
+    lng_1.lng = lng1 * RAD;
+    lat_2.lat = lat2 * RAD;
+    lng_2.lng = lng2 * RAD;
 
     double cl1 = cos(lat_1.lat);
     double cl2 = cos(lat_2.lat);
@@ -47,10 +48,10 @@ double calcfldist(double lat1, double lng1, double lat2, double lng2) {
 }
 
 double calcflbear(double lat1, double lng1, double lat2, double lng2) {
-    lat_1.lat = lat1 * M_PI / 180.0;
-    lng_1.lng = lng1 * M_PI / 180.0;
-    lat_2.lat = lat2 * M_PI / 180.0;
-    lng_2.lng = lng2 * M_PI / 180.0;
+    lat_1.lat = lat1 * RAD;
+    lng_1.lng = lng1 * RAD;
+    lat_2.lat = lat2 * RAD;
+    lng_2.lng = lng2 * RAD;
 
     double cl1 = cos(lat_1.lat);
     double cl2 = cos(lat_2.lat);
