@@ -25,30 +25,7 @@ struct geo_elng {
 struct geo_nlat lat_2;
 struct geo_elng lng_2;
 
-double calcfldist(double lat1, double lng1, double lat2, double lng2) {
-    lat_1.lat = lat1 * RAD;
-    lng_1.lng = lng1 * RAD;
-    lat_2.lat = lat2 * RAD;
-    lng_2.lng = lng2 * RAD;
-
-    double cl1 = cos(lat_1.lat);
-    double cl2 = cos(lat_2.lat);
-    double sl1 = sin(lat_1.lat);
-    double sl2 = sin(lat_2.lat);
-    double delta = lng_2.lng - lng_1.lng;
-    double cdelta = cos(delta);
-    double sdelta = sin(delta);
-
-    double y = sqrt(pow(cl2 * sdelta, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta, 2));
-    double x = sl1 * sl2 + cl1 * cl2 * cdelta;
-
-    double anglerad = atan2(y, x);
-    double flight_dist = anglerad * R_E;
-    
-    return flight_dist;
-}
-
-double calcflbear(double lat1, double lng1, double lat2, double lng2) {
+void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[2]) {
     lat_1.lat = lat1 * RAD;
     lng_1.lng = lng1 * RAD;
     lat_2.lat = lat2 * RAD;
@@ -72,7 +49,13 @@ double calcflbear(double lat1, double lng1, double lat2, double lng2) {
     double anglerad = (z - (2 * M_PI * floor(z / (2 * M_PI))));
     double bearing = (anglerad * DEG);
 
-    return bearing;
+    y = sqrt(pow(cl2 * sdelta, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta, 2));
+    x = sl1 * sl2 + cl1 * cl2 * cdelta;
+    anglerad = atan2(y, x);
+    double flight_dist = anglerad * R_E;
+    
+    result[0] = bearing;
+    result[1] = flight_dist;
 }
 
 struct flrange_flduration {
@@ -99,13 +82,13 @@ struct fltime_flangle_flspeed {
 } maneuver;
 
 bool range(int x, int a, int y) {
-    if(a >= x && a <= y)
+    if(x >= a && a <= y)
         return true;
     return false;
 }
 
 bool range2(int x, int a, int y) {
-    if(a < x || a > y)
+    if(a < x && y > a)
         return true;
     return false;
 }
@@ -285,11 +268,14 @@ int main(void)
         double lat2 = lat_2.grad + lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
         double lng2 = lng_2.grad + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
 
+        double result[2];
+        calcfldist_bear(lat1, lng1, lat2, lng2, result);
+
         printf("\nПервая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, lng_1.grad, lng_1.min, lng_1.sec, lng_1.msec);
         printf("Вторая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 lat_2.grad, lat_2.min, lat_2.sec, lat_2.msec, lng_2.grad, lng_2.min, lng_2.sec, lng_2.msec);
-        printf("\nРасстояние = %.f м\nНачальный азимут = %.f°\n", calcfldist(lat1, lng1, lat2, lng2), calcflbear(lat1, lng1, lat2, lng2));
+        printf("\nРасстояние = %.f м\nНачальный азимут = %.f°\n", result[0], result[1]);
         return 0;
     case 3:
         printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
