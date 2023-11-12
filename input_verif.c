@@ -19,15 +19,14 @@ bool input_verif(int a, int b, int c, int d, int result) {
         printf("Incorrect input! should be entered 3...4 value!\n");
         return 0;
     }
-    if(range2(-90, a, 90)) 
+    if(range2(-90, a, 90)) {
         printf("Incorrect input! Range of lat is -90...90\n");
         return 0;
-    
-    if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) 
+    }
+    if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) {
         printf("Incorrect input! Range of min, sec and msec is 0...59\n");
         return 0;
-        
-    else 
+    } else
         return false;
 }
 
