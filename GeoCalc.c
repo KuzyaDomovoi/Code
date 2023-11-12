@@ -38,14 +38,14 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
     double anglerad = atan2(y, x);
     double flight_dist = anglerad * R_E;
     
-    double x = (cl1 * sl2) - (sl1 * cl2 * cdelta);
-    double y = sdelta * cl2;
+    double x2 = (cl1 * sl2) - (sl1 * cl2 * cdelta);
+    double y2 = sdelta * cl2;
     double z;
     if(x < 0) {
         z = -((z + 180.0 / 360.0) - 180.0) * M_PI / 180.0;
     } else
-        z = atan(-y / x) * 180.0 / M_PI;
-    double anglerad = z - (2 * M_PI * floor(z / (2 * M_PI)));
+        z = atan(-y2 / x2) * 180.0 / M_PI;
+    double anglerad2 = z - (2 * M_PI * floor(z / (2 * M_PI)));
     double bearing = anglerad * 180.0 / M_PI;
 
     return flight_dist;
