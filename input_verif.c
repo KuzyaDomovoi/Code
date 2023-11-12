@@ -31,7 +31,7 @@ bool range2(int x, int a, int y) {
  int main(void)
 {
     printf("\n   Введи через пробел координаты WGS-84 для широты первой точки: ");
-    int result = scanf("%d %d %d.%d", &lat.grad, &lat.min, &lat.sec, &lat.msec);
+    int result = scanf("%d %d %d %d", &lat.grad, &lat.min, &lat.sec, &lat.msec);
     if(result != 4) {
         printf("Incorrect input! It should be entered 4 value!\n");
         return 0;
