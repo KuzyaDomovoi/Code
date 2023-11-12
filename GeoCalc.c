@@ -54,10 +54,10 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
 
 int main(void)
 {
-    double lat_1 = 48.33;
-    double lng_1 = 40.53;
-    double lat_2 = 55.51;
-    double lng_2 = 49.33;
+    double lat_1 = 48 57 07;
+    double lng_1 = 40 22 13;
+    double lat_2 = 55 51 08;
+    double lng_2 = 49 03 57;
     
     printf("\nFirst point:  N  %02d° %02d' %02d.%02d''   E %03d° %02d' %02d.%02d''\n",
             nlat_1.grad, nlat_1.min, nlat_1.sec, nlat_1.msec, elng_1.grad, elng_1.min, elng_1.sec, elng_1.msec);
