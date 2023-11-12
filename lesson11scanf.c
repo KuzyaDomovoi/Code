@@ -13,7 +13,7 @@ int main(void)
     printf("x = %d\n", x);
     
     if(x >= 3 && x <= 11)
-        printf("x in [3; 11]\n");
+        printf("x in range[3; 11]\n");
     
     return 0;
 }
