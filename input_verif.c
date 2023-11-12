@@ -16,11 +16,15 @@ bool range2(int x, int a, int y) {
 
 bool input_verif(int grad, int min, int sec, int msec) {
     if(range2(-90, grad, 90)) {
-       printf("Incorrect input!\n"); 
+       printf("Incorrect input!\n");
+       return 0;
     }
+
     if(range2(0, min, 59) || range2(0, sec, 59) || range2(0, msec, 59)) {
         printf("Incorrect input! Range of min, sec and msec is 0...59\n");
-    }      
+        return 0;
+    }
+    return false;
 }
  int main(void)
 {
