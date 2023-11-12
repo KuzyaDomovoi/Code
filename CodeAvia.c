@@ -8,7 +8,7 @@
 #define K    0.0175
 #define R_E  6378137
 #define RAD  M_PI / 180.0
-#define DEG  180.0 * M_PI
+#define DEG  180.0 / M_PI
 
 struct geo_nlat {
     double lat;
