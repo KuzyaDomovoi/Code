@@ -8,6 +8,7 @@
 #define K    0.0175
 #define R_E  6378137
 #define RAD  M_PI / 180.0
+#define DEG  180.0 * M_PI
 
 struct geo_nlat {
     double lat;
@@ -65,11 +66,11 @@ double calcflbear(double lat1, double lng1, double lat2, double lng2) {
     double y = sdelta * cl2;
     double z;
     if(x < 0) {
-        z = -((z + 180.0 / 360.0) - 180.0) * M_PI / 180.0;
+        z = -((z + 180.0 / 360.0) - 180.0) * RAD;
     } else
-        z = atan(-y / x) * 180.0 / M_PI;
+        z = atan(-y / x) * DEG;
     double anglerad = (z - (2 * M_PI * floor(z / (2 * M_PI))));
-    double bearing = (anglerad * 180.0 / M_PI);
+    double bearing = (anglerad * DEG);
 
     return bearing;
 }
