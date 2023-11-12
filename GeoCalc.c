@@ -52,10 +52,6 @@ double calcfldist(double lat_1, double lng_1, double lat_2, double lng_2) {
     return bearing;
 }
 
-double calcflbear(double lat_1, double lng_1, double lat_2, double lng_2) {
-
-}
-
 int main(void)
 {
     double lat_1 = 48.33;
