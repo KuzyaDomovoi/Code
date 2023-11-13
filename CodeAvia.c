@@ -93,20 +93,19 @@ bool range2(int x, int a, int y) {
     return false;
 }
 
-bool input_verif(int a, int b, int c, int d, int result) {
-    if(range2(3, result, 4)) {
+bool input_verif(int a, int b, int c, int d, int res) {
+    if(range2(3, res, 4)) {
         printf("Incorrect input! should be entered 3...4 value!\n");
-        return true;
-    }
-    if(range2(-90, a, 90)) {
+
+    
+    if(range2(-90, a, 90))
         printf("Incorrect input! Range of latitude is -90...90\n");
-        return true;
-    }
-    if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) {
+
+    
+    if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) 
         printf("Incorrect input! Range of min, sec and msec is 0...59\n");
-        return true;
-    } else
-        return false;
+        return 1;
+    } else return 0;
 }
 
 int main(void)
@@ -230,8 +229,8 @@ int main(void)
         printf("\nРасчет дальности между двумя точками заданными географическими координатами\n");
         printf("\n   Введи через пробел координаты WGS-84 для широты первой точки: ");
         res = scanf("%d %d %d %d", &lat_1.grad, &lat_1.min, &lat_1.sec, &lat_1.msec);
-        input_verif(lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, res);
-
+        if(input_verif(lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, res) != 0)
+            return 0;
         printf("   Введи через пробел координаты WGS-84 для долготы первой точки: ");
         res = scanf("%d %d %d %d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec);
         input_verif(lng_1.grad, lng_1.min, lng_1.sec, lng_1.msec, res);
