@@ -95,7 +95,7 @@ bool range2(int x, int a, int y) {
 
 bool input_verif(int a, int b, int c, int d, int res) {
     if(range2(3, res, 4)) {
-        printf("Incorrect input! should be entered 3...4 value!\n");
+        printf("Incorrect input! should be entered 4 values!\n");
         return true;
     }
     if(range2(-90, a, 90)){
