@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
 #include <stdbool.h>
 
 #define M_PI 3.14159265358979323846
@@ -82,7 +81,7 @@ struct fltime_flangle_flspeed {
 } maneuver;
 
 bool range(int x, int a, int y) {
-    if(x >= a && a <= y)
+    if(x <= a && a <= y)
         return true;
     return false;
 }
@@ -95,15 +94,15 @@ bool range2(int x, int a, int y) {
 
 bool input_verif(int a, int b, int c, int d, int res) {
     if(range2(3, res, 4)) {
-        printf("Incorrect input! should be entered 4 values!\n");
+        printf("\nIncorrect input! should be entered 4 values!\n");
         return true;
     }
     if(range2(-90, a, 90)){
-        printf("Incorrect input! Range of latitude is -90...90\n");
+        printf("\nncorrect input! Range of latitude is -90...90\n");
         return true;
     }
     if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) {
-        printf("Incorrect input! Range of min, sec and msec is 0...59\n");
+        printf("\nIncorrect input! Range of min, sec and msec is 0...59\n");
         return true;
     } else return false;
 }
@@ -126,90 +125,91 @@ int main(void)
     case 1:
         printf("Расчет дальности и продолжительности полета на заданной скорости и высоте\n");
         printf("\n  величина тяги для ТРДД при номинал ррд в наборе на средн выс, H: ");
-        while(scanf("%lf", &flight.engthrust_val) != 1) {
+        if(scanf("%lf", &flight.engthrust_val) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  аэродинамическое качество с-та: ");
-        while(scanf("%lf", &flight.lifttodrag_ratio) != 1) {
+        if(scanf("%lf", &flight.lifttodrag_ratio) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  скорость отрыва, км/ч: ");
-        while(scanf("%d", &flight.airbornspeed) != 1) {
+        if(scanf("%d", &flight.airbornspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  скор набора выс, км/ч: ");
-        while(scanf("%d", &flight.average_climspeed) != 1) {
+        if(scanf("%d", &flight.average_climspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  время набора выс, сек: ");
-        while(scanf("%d", &flight.climtime) != 1) {
+        if(scanf("%d", &flight.climtime) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  крейс скорость, км/ч: ");
-        while(scanf("%d", &flight.cruisspeed) != 1) {
+        if(scanf("%d", &flight.cruisspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  скорость на снижении, км/ч: ");
-        while(scanf("%d", &flight.descspeed) != 1) {
+        if(scanf("%d", &flight.descspeed) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  время снижения, сек: ");
-        while(scanf("%d", &flight.desctime) != 1) {
+        if(scanf("%d", &flight.desctime) != 1) {
             printf("\nError_input!\n");
             return 0;
         }       
         printf("  масса снаряж самолета, кг: ");
-        while(scanf("%d", &flight.load_weight) != 1) {
+        if(scanf("%d", &flight.load_weight) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  макс заправка топл, кг: ");
-        while(scanf("%d", &flight.full_fusupp) != 1) {
+        if(scanf("%d", &flight.full_fusupp) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  удельный расход топл в наборе, кг: ");
-        while(scanf("%lf", &flight.spec_fuconsclim) != 1) {
+        if(scanf("%lf", &flight.spec_fuconsclim) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  удельный расход топл по мрш в гп, кг: ");
-        while(scanf("%lf", &flight.spec_fuconscruise) != 1) {
+        if(scanf("%lf", &flight.spec_fuconscruise) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  расход топл на прогрев, опроб двиг и руление, кг: ");
-        while(scanf("%d", &flight.fucons_preTO) != 1) {
+        if(scanf("%d", &flight.fucons_preTO) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  расход топл на взлете, кг: ");
-        while(scanf("%d", &flight.fucons_TO) != 1) {
+        if(scanf("%d", &flight.fucons_TO) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  расход топл на снижении, кг: ");
-        while(scanf("%d", &flight.fucons_desc) != 1) {
+        if(scanf("%d", &flight.fucons_desc) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  расход топл на кругу, посадке и заруливании, кг: ");
-        while(scanf("%d", &flight.fucons_final_land_taxi) != 1) {
+        if(scanf("%d", &flight.fucons_final_land_taxi) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
         printf("  невырабатываемый остаток топл, кг: ");
-        while(scanf("%d", &flight.guarfusupp_unusfures) != 1) {
+        if(scanf("%d", &flight.guarfusupp_unusfures) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
+
         flight.midaverage_climspeed = 0.5 * (flight.airbornspeed + flight.average_climspeed);
         flight.flrang_clim = (flight.average_climspeed * 3.6) * ((flight.climtime / 3600) / 1000);
         flight.fucons_clim = (flight.spec_fuconsclim * flight.engthrust_val) * (flight.climtime / 3600 ); 
@@ -222,6 +222,7 @@ int main(void)
         flight.flduration = flight.climtime + (flight.timecruise * 3600) + flight.desctime;
         flight.flduration_h = (int)flight.flduration / 3600;
         flight.flduration_m = (int)flight.flduration % 3600 / 60;
+        
         printf("\nРасполагаемый запас топлива = %.f кг\n", flight.fucons_cruise);
         printf("Дальность полета = %d км\nПродолжительность полета = %d ч %02d мин\n", flight.flrange, flight.flduration_h, flight.flduration_m);
         return 0;
@@ -275,7 +276,7 @@ int main(void)
         case 1:
             printf("\nОпределение радиуса разворота по углу крена и скорости разворота\n");
             printf("\n   Введи через пробел значение скорости в км/ч и крена° на развороте: ");
-            while(scanf("%d %d", &maneuver.aircr_speed, &maneuver.turn_roll) != 2) {
+            if(scanf("%d %d", &maneuver.aircr_speed, &maneuver.turn_roll) != 2) {
                 printf("\nError_input!\n");
                 return 0;
             }
@@ -288,12 +289,12 @@ int main(void)
                 return 0;
             }
             printf("\n   радиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", maneuver.aircr_speed, maneuver.turn_roll, 
-                    pow(maneuver.aircr_speed / 3.6, 2) / (9.81 * tan(maneuver.turn_roll * M_PI / 180)));
+                    pow(maneuver.aircr_speed / 3.6, 2) / (9.81 * tan(maneuver.turn_roll * RAD)));
             return 0;
         case 2:
             printf("\nОпределение времени разворота самолета с заданной скоростью, креном и углом разворота\n");
             printf("\n   Введи через пробел значение скорости в км/ч, крена° и угла° разворота: ");
-            while(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_roll, &maneuver.turn_angle) != 3) {
+            if(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_roll, &maneuver.turn_angle) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
@@ -305,7 +306,7 @@ int main(void)
                 printf("\nError! The turn_roll can't be more than 83°!\n");
                 return 0;
             }
-            maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (9.81 * tan(maneuver.turn_roll * M_PI / 180)) * maneuver.turn_angle / 360;
+            maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (9.81 * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
             maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
             maneuver.turn_time_s = maneuver.turn_time % 60;
             printf("\n   время разворота со скоростью %d км/ч креном %d° на угол %d° = %d мин %02d сек\n", 
@@ -314,7 +315,7 @@ int main(void)
         case 3:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
             printf("\n   Введи через пробел значение скорость с-та в км/ч, скорость ветра в км/ч, курс полета с-та° и направление нав ветера°: ");
-            while(scanf("%d %d %d %d", &maneuver.aircr_speed, &maneuver.wind_speed, &maneuver.magnetpath_angle, &maneuver.wind_dir) != 4) {
+            if(scanf("%d %d %d %d", &maneuver.aircr_speed, &maneuver.wind_speed, &maneuver.magnetpath_angle, &maneuver.wind_dir) != 4) {
                 printf("\nError_input!\n");
                 return 0;
             }
@@ -344,32 +345,32 @@ int main(void)
             }
             if(range(1, maneuver.wind_angle, 179)) {
                 if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
-                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * M_PI / 180.0);
+                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * RAD);
                 if(range(0, maneuver.magnetpath_angle, 180) && range(181, maneuver.wind_dir, 360))
-                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * M_PI / 180.0);
+                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * RAD);
                 if(range(181, maneuver.magnetpath_angle, 360) && range(0, maneuver.wind_dir, 180))
-                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * M_PI / 180.0);
+                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * RAD);
                 if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
-                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * M_PI / 180.0);
+                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * RAD);
             }
             if(range(181, maneuver.wind_angle, 359)) {     
                 if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
-                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * M_PI / 180.0);
+                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * RAD);
                 if(range(0, maneuver.magnetpath_angle, 180) && range(181, maneuver.wind_dir, 360))
-                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * M_PI / 180.0);
+                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * RAD);
                 if(range(181, maneuver.magnetpath_angle, 360) && range(0, maneuver.wind_dir, 180))
-                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * M_PI / 180.0);
+                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * RAD);
                 if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
-                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * M_PI / 180.0);
+                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * RAD);
             }
-            maneuver.drift_angle = rint(asin(maneuver.t) * 180.0 / M_PI);
-            maneuver.graund_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * M_PI / 180.0) + maneuver.wind_speed * cos(maneuver.wind_angle * M_PI / 180.0);
+            maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
+            maneuver.graund_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
             printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.graund_speed);
             return 0;
         case 4:
             printf("\nОпределение линейного упреждения разворота и длины дуги угла р-та\n");
             printf("\n   Введи через пробел скорость с-та в км/ч, угол° и радиус разворота в км: ");
-            while(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_rad) != 3) {
+            if(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_rad) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
@@ -377,7 +378,7 @@ int main(void)
                 printf("\nError! Input the unreal speed for an aircraft!\n");
                 return 0;
             }
-            maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * M_PI / 180.0));
+            maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * RAD));
             maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
             printf("\n   ЛУР = %.1f км\n   Длина дуги УР = %.1f км\n", maneuver.linturn_lead, maneuver.range_turnlead);
             return 0;
@@ -385,7 +386,7 @@ int main(void)
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
             printf("\n   Введи через пробел приб скорость полета в км/ч, макс приб скорость в км/ч, " 
                    "макс возможный избыток или недостаток времени в сек: ");
-            while(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.max_aircr_speed, &maneuver.time_range) != 3) {
+            if(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.max_aircr_speed, &maneuver.time_range) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
@@ -401,15 +402,16 @@ int main(void)
         case 6:
             printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
             printf("\n   Введи через пробел линейное боковое уклонение в км, общее расстояние до РТ в км, пройденное/оставшееся расстояние до РТ в км: ");
-            while(scanf("%d %d %d", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
+            if(scanf("%d %d %d", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
             maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
-            maneuver.course_correction_curr = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI);
-            maneuver.course_correction_rem = (atan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
-            maneuver.course_correction = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * 180.0 / M_PI) + (atan((double)maneuver.lateral_line / maneuver.flrem_range) * 180.0 / M_PI);
-            printf("   при ЛБУ = %d км:\n      боковое уклонение = УС = %.f°\n      дополнительная ПК = %.f°\n      полная ПК = %.f°\n", maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
+            maneuver.course_correction_curr = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * DEG);
+            maneuver.course_correction_rem = (atan((double)maneuver.lateral_line / maneuver.flrem_range) * DEG);
+            maneuver.course_correction = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * DEG) + (atan((double)maneuver.lateral_line / maneuver.flrem_range) * DEG);
+            printf("   при ЛБУ = %d км:\n      боковое уклонение = УС = %.f°\n      дополнительная ПК = %.f°\n      полная ПК = %.f°\n", 
+                    maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
             return 0;
         case 7:
             printf("\nEnd of program\n");
