@@ -96,16 +96,16 @@ bool range2(int x, int a, int y) {
 bool input_verif(int a, int b, int c, int d, int res) {
     if(range2(3, res, 4)) {
         printf("Incorrect input! should be entered 3...4 value!\n");
-
-    
-    if(range2(-90, a, 90))
+        return true;
+    }
+    if(range2(-90, a, 90)){
         printf("Incorrect input! Range of latitude is -90...90\n");
-
-    
-    if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) 
+        return true;
+    }
+    if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) {
         printf("Incorrect input! Range of min, sec and msec is 0...59\n");
-        return 1;
-    } else return 0;
+        return true;
+    } else return false;
 }
 
 int main(void)
