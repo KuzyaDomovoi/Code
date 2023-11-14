@@ -97,12 +97,16 @@ bool input_verif_lat(int a, int b, int c, int d, int res) {
         printf("\nIncorrect input! It should be entered 4 values!\n");
         return true;
     }
-    if(range2(-90, a, 90)){
+    if(range2(-90, a, 90)) {
         printf("\nIncorrect input! Range of latitude is -90...90\n");
         return true;
     }
-    if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) {
-        printf("\nIncorrect input! Range of min, sec and msec is 0...59\n");
+    if(range2(0, b, 59) || range2(0, c, 59)) {
+        printf("\nIncorrect input! Range of min and sec is 0...59\n");
+        return true;
+    }
+    if(range2(0, d, 99)) {
+        printf("\nIncorrect input! Range of msec is 0...99\n");
         return true;
     }
     if(range2(-89, a, 89) && (b > 0 || c > 0 || d > 0)) {
@@ -116,12 +120,16 @@ bool input_verif_lng(int a, int b, int c, int d, int res) {
         printf("\nIncorrect input! It should be entered 4 values!\n");
         return true;
     }
-    if(range2(-180, a, 180)){
+    if(range2(-180, a, 180)) {
         printf("\nIncorrect input! Range of latitude is -180...180\n");
         return true;
     }
-    if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) {
-        printf("\nIncorrect input! Range of min, sec and msec is 0...59\n");
+    if(range2(0, b, 59) || range2(0, c, 59)) {
+        printf("\nIncorrect input! Range of min and sec is 0...59\n");
+        return true;
+    }
+    if(range2(0, d, 99)) {
+        printf("\nIncorrect input! Range of msec is 0...99\n");
         return true;
     }
     if(range2(-179, a, 179) && (b > 0 || c > 0 || d > 0)) {
