@@ -60,22 +60,20 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
 struct flrange_flduration {
     double engthrust_val;
     int airbornspeed; int average_climspeed; int climtime; int cruisspeed;
-    int descspeed; int desctime; int load_weight; int full_fusupp; int fucons_preTO; int fucons_TO; 
-    int fucons_desc; int fucons_final_land_taxi; int guarfusupp_unusfures;
+    int descspeed; int desctime; int load_weight; int full_fusupp; int fucons_preTO;
+    int fucons_TO; int fucons_desc; int fucons_final_land_taxi; int guarfusupp_unusfures;
 
     double midaverage_climspeed; double flrang_clim; double fucons_clim; double fucons_cruise;
-    double req_engthrustcruise; double lifttodrag_ratio; double hourfucons;
-    double spec_fuconsclim; double spec_fuconscruise; double rangcruise;
-    double timecruise; 
-    int flrange; int flduration; int flduration_h; int flduration_m; 
+    double req_engthrustcruise; double lifttodrag_ratio; double hourfucons; double spec_fuconsclim;
+    double spec_fuconscruise; double rangcruise; double timecruise;
+    int flrange; int flduration; int flduration_h; int flduration_m;  
     } flight;
 
 struct fltime_flangle_flspeed {
     int turn_time; int turn_time_m; int turn_time_s; int turn_roll; int turn_angle;
     int max_aircr_speed; int wind_angle; int magnetpath_angle; int aircr_speed; int wind_dir;
-    int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range; int lateral_line;
-    int flcurr_range; int flrem_range; int flight_track; 
-    
+    int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range;
+    int lateral_line; int flcurr_range; int flrem_range; int flight_track; 
     double turn_rad; double t; double mindist_checkpoint; double range_turnlead;
     double course_correction_curr; double course_correction_rem; double course_correction;
 } maneuver;
