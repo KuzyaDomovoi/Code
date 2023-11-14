@@ -73,7 +73,7 @@ struct fltime_flangle_flspeed {
     int turn_time; int turn_time_m; int turn_time_s; int turn_roll; int turn_angle;
     int max_aircr_speed; int wind_angle; int magnetpath_angle; int aircr_speed; int wind_dir;
     int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range;
-    int lateral_line; int flcurr_range; int flrem_range; int flight_track; 
+    int lateral_line; int flcurr_range; int flrem_range; int flight_track; int heading_corr;
     double turn_rad; double t; double mindist_checkpoint; double range_turnlead;
     double course_correction_curr; double course_correction_rem; double course_correction;
 } maneuver;
@@ -364,7 +364,8 @@ int main(void)
                 maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
             maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
             maneuver.graund_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
-            printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.graund_speed);
+            maneuver.heading_corr = maneuver.magnetpath_angle - maneuver.drift_angle;
+            printf("\n   угол сноса = %d°\n   курс с учетом УС = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.graund_speed);
             return 0;
         case 3:
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
