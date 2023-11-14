@@ -362,7 +362,6 @@ int main(void)
                 maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
             if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
                 maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
-            }
             maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
             maneuver.graund_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
             printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.graund_speed);
