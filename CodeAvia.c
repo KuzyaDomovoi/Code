@@ -51,7 +51,7 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
 
     double y2 = (sin(initial_bearing) * sin(flight_dist / R_E)) * RAD * cl1;
     double x2 = cos(flight_dist / R_E) * RAD - sl1 * sl2;
-    double end_bearing = lat1 + atan2(y2, x2) * DEG;
+    double end_bearing = lat1 + atan2(y2, x2) * DEG - 180;
     
     result[0] = flight_dist;
     result[1] = initial_bearing;
