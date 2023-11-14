@@ -40,18 +40,19 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
 
     double y = sdelta_lng * cl2;
     double x = (cl1 * sl2) - (sl1 * cl2 * cdelta_lng);
-    double anglerad_init = atan2(y, x) * DEG;
-    double initial_bearing = ((int)anglerad_init + 360) % 360;
-    double reverse_bearing = ((int)anglerad_init + 180) % 360;
+    double angledeg_init = atan2(y, x) * DEG;
+    double initial_bearing = ((int)angledeg_init + 360) % 360;
+    double reverse_bearing = ((int)angledeg_init + 180) % 360;
 
     y = sqrt(pow(cl2 * sdelta_lng, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta_lng, 2));
     x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
-    anglerad_init = atan2(y, x);
+    double anglerad_init = atan2(y, x);
     double flight_dist = anglerad_init * R_E;
 
     double y2 = (sin(initial_bearing) * sin(flight_dist / R_E)) * RAD * cl1;
     double x2 = cos(flight_dist / R_E) * RAD - sl1 * sl2;
-    double end_bearing = lat1 + atan2(y2, x2) * DEG - 180;
+    double angledeg_end = lat1 + atan2(y2, x2) * DEG;
+    double end_bearing = ((int)angledeg_end + 360) % 360;
     
     result[0] = flight_dist;
     result[1] = initial_bearing;
