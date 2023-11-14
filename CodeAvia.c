@@ -400,8 +400,8 @@ int main(void)
             return 0;
         case 4:
             printf("\nОпределение линейного упреждения разворота и длины дуги угла р-та\n");
-            printf("\n   Введи через пробел скорость с-та в км/ч, угол° и радиус разворота в км: ");
-            if(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_rad) != 3) {
+            printf("\n   Введи через пробел скорость с-та в км/ч, угол° и крен°: ");
+            if(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_roll) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
@@ -409,6 +409,7 @@ int main(void)
                 printf("\nError! Input the unreal speed for an aircraft!\n");
                 return 0;
             }
+            maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
             maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * RAD));
             maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
             printf("\n   ЛУР = %.1f км\n   Длина дуги УР = %.1f км\n", maneuver.linturn_lead, maneuver.range_turnlead);
