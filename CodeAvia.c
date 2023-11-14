@@ -361,7 +361,7 @@ int main(void)
             if(range(181, maneuver.magnetpath_angle, 360) && range(0, maneuver.wind_dir, 180))
                 maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
             if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
-                maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+            maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
             maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
             maneuver.graund_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
             maneuver.heading_corr = maneuver.magnetpath_angle - maneuver.drift_angle;
