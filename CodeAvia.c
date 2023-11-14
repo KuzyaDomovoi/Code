@@ -117,7 +117,7 @@ bool input_verif_lng(int a, int b, int c, int d, int res) {
         return true;
     }
     if(range2(-180, a, 180)){
-        printf("\nIncorrect input! Range of latitude is -90...90\n");
+        printf("\nIncorrect input! Range of latitude is -180...180\n");
         return true;
     }
     if(range2(0, b, 59) || range2(0, c, 59) || range2(0, d, 59)) {
