@@ -291,13 +291,11 @@ int main(void)
         printf("\nРасстояние = %.f м\nНачальный пеленг = %.f°\n", result[0], result[1]);
         return 0;
     case 3:
-        printf("\n   1. Определение радиуса разворота по углу крена и скорости разворота\n"
-                 "   2. Определение времени разворота самолета с заданным креном и скоростью разворота\n"
-                 "   3. Расчет угла сноса и путевой скорости по известному вектору ветра\n"
-                 "   4. Определение линейного упреждения разворота и длины дуги угла р-та\n"
-                 "   5. Расчет минимального расстояния для возможного погашения опоздания или избытка времени\n"
-                 "   6. Расчет поправки в курс по расстоянию и боковому уклонению\n"
-                 "   7. Выход\n");
+        printf("\n   1. Расчет радиуса, времени, линейного упреждения и длинны дуги угла разворота\n"
+                 "   2. Расчет угла сноса и путевой скорости по известному вектору ветра\n"
+                 "   3. Расчет минимального расстояния для возможного погашения опоздания или избытка времени\n"
+                 "   4. Расчет поправки в курс по расстоянию и боковому уклонению\n"
+                 "   5. Выход\n");
         printf("      Выбери действие: ");
         if(scanf("%d", &item) != 1) {
             printf("\nError! input out of range list!\n");
@@ -305,27 +303,9 @@ int main(void)
         }
         switch(item) {
         case 1:
-            printf("\nОпределение радиуса разворота по углу крена и скорости разворота\n");
-            printf("\n   Введи через пробел значение скорости в км/ч и крена° на развороте: ");
-            if(scanf("%d %d", &maneuver.aircr_speed, &maneuver.turn_roll) != 2) {
-                printf("\nError_input!\n");
-                return 0;
-            }
-            if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500) {
-                printf("\nError! Input the unreal speed for an aircraft or for the wind!\n");
-                return 0;
-            }
-            if(maneuver.turn_roll > 83) {
-                printf("\nError! The turn_roll can't be more than 83°!\n");
-                return 0;
-            }
-            printf("\n   радиус разворота cо скоростью %d км/ч и креном %d° = %.f м\n", maneuver.aircr_speed, maneuver.turn_roll, 
-                    pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD)));
-            return 0;
-        case 2:
-            printf("\nОпределение времени разворота самолета с заданной скоростью, креном и углом разворота\n");
-            printf("\n   Введи через пробел значение скорости в км/ч, крена° и угла° разворота: ");
-            if(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_roll, &maneuver.turn_angle) != 3) {
+            printf("\nРасчет радиуса, времени, линейного упреждения и длинны дуги угла разворота\n");
+            printf("\n   Введи через пробел скорость с-та в км/ч, угол° и крен°: ");
+            if(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_roll) != 3) {
                 printf("\nError_input!\n");
                 return 0;
             }
@@ -340,10 +320,13 @@ int main(void)
             maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
             maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
             maneuver.turn_time_s = maneuver.turn_time % 60;
-            printf("\n   время разворота со скоростью %d км/ч креном %d° на угол %d° = %d мин %02d сек\n", 
-                    maneuver.aircr_speed, maneuver.turn_roll, maneuver.turn_angle, maneuver.turn_time_m, maneuver.turn_time_s);
+            maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
+            maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * RAD));
+            maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
+            printf("\n   радиус разворота = %.f м\n   время разворота = %d мин %02d сек\n   ЛУР = %.1f км\n   длина дуги УР = %.1f км\n", 
+                    maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.linturn_lead, maneuver.range_turnlead);
             return 0;
-        case 3:
+        case 2:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
             printf("\n   Введи через пробел значение скорость с-та в км/ч, скорость ветра в км/ч, курс полета с-та° и направление нав ветера°: ");
             if(scanf("%d %d %d %d", &maneuver.aircr_speed, &maneuver.wind_speed, &maneuver.magnetpath_angle, &maneuver.wind_dir) != 4) {
@@ -398,23 +381,7 @@ int main(void)
             maneuver.graund_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
             printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.graund_speed);
             return 0;
-        case 4:
-            printf("\nОпределение линейного упреждения разворота и длины дуги угла р-та\n");
-            printf("\n   Введи через пробел скорость с-та в км/ч, угол° и крен°: ");
-            if(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_roll) != 3) {
-                printf("\nError_input!\n");
-                return 0;
-            }
-            if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500) {
-                printf("\nError! Input the unreal speed for an aircraft!\n");
-                return 0;
-            }
-            maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
-            maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * RAD));
-            maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
-            printf("\n   ЛУР = %.1f км\n   Длина дуги УР = %.1f км\n", maneuver.linturn_lead, maneuver.range_turnlead);
-            return 0;
-        case 5:
+        case 3:
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
             printf("\n   Введи через пробел приб скорость полета в км/ч, макс приб скорость в км/ч, " 
                    "макс возможный избыток или недостаток времени в сек: ");
@@ -431,7 +398,7 @@ int main(void)
             printf("\n   при избытке скорости = %d км/ч\n", maneuver.speed_range);
             printf("   минимальное расстояние до РТ = %.1f км\n", maneuver.mindist_checkpoint);
             return 0;
-        case 6:
+        case 4:
             printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
             printf("\n   Введи через пробел линейное боковое уклонение в км, общее расстояние до РТ в км, пройденное/оставшееся расстояние до РТ в км: ");
             if(scanf("%d %d %d", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
@@ -445,7 +412,7 @@ int main(void)
             printf("   при ЛБУ = %d км:\n      боковое уклонение = УС = %.f°\n      дополнительная ПК = %.f°\n      полная ПК = %.f°\n", 
                     maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
             return 0;
-        case 7:
+        case 5:
             printf("\nEnd of program\n");
             return 0;
         default:
