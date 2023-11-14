@@ -24,7 +24,7 @@ struct geo_lng {
 struct geo_lat lat_2;
 struct geo_lng lng_2;
 
-void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[4]) {
+void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[3]) {
     lat_1.lat = lat1 * RAD;
     lng_1.lng = lng1 * RAD;
     lat_2.lat = lat2 * RAD;
@@ -49,15 +49,10 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     double anglerad_init = atan2(y, x);
     double flight_dist = anglerad_init * R_E;
 
-    double y2 = (sin(initial_bearing) * sin(flight_dist / R_E)) * RAD * cl1;
-    double x2 = cos(flight_dist / R_E) * RAD - sl1 * sl2;
-    double angledeg_end = lat1 + atan2(y2, x2) * DEG;
-    double end_bearing = ((int)angledeg_end + 180) % 360;
-    
     result[0] = flight_dist;
     result[1] = initial_bearing;
     result[2] = reverse_bearing;
-    result[3] = end_bearing;
+
 }
 
 struct flrange_flduration {
@@ -288,8 +283,7 @@ int main(void)
                 lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, lng_1.grad, lng_1.min, lng_1.sec, lng_1.msec);
         printf("Вторая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 lat_2.grad, lat_2.min, lat_2.sec, lat_2.msec, lng_2.grad, lng_2.min, lng_2.sec, lng_2.msec);
-        printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nНачальный пеленг = %.1f°\nКонечный азимут = %.1f°\n", 
-                result[0], result[1], result[2], result[3]);
+        printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nНачальный пеленг = %.1f°\n", result[0], result[1], result[2]);
         return 0;
     case 3:
         printf("\n   1. Расчет радиуса, времени и длинны дуги угла разворота\n"
