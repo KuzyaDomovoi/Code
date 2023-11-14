@@ -318,7 +318,7 @@ int main(void)
                 return 0;
             }
             if(maneuver.turn_angle > 180) {
-                maneuver.turn_angle = maneuver.turn_angle - 180.0;
+                maneuver.turn_angle - 180;
             }
             maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
             maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
