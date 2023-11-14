@@ -141,8 +141,8 @@ int main(void)
     int item;
     int res = 0;
 
-    printf("\n1. Расчет дальности и продолжительности полета на заданной скорости и высоте\n"
-             "2. Расчет дальности между двумя точками заданными географическими координатами\n"
+    printf("\n1. Расчет дальности и продолжительности полета\n"
+             "2. Расчет расстояния между двумя точками по их координатам\n"
              "3. Расчеты маневрирования\n"
              "4. Выход\n");
     printf("   Выбери расчет или выход: ");
@@ -152,7 +152,7 @@ int main(void)
     }
     switch(item) {
     case 1:
-        printf("Расчет дальности и продолжительности полета на заданной скорости и высоте\n");
+        printf("Расчет дальности и продолжительности полета\n");
         printf("\n  величина тяги для ТРДД при номинал ррд в наборе на средн выс, H: ");
         if(scanf("%lf", &flight.engthrust_val) != 1) {
             printf("\nError_input!\n");
@@ -238,7 +238,6 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-
         flight.midaverage_climspeed = 0.5 * (flight.airbornspeed + flight.average_climspeed);
         flight.flrang_clim = (flight.average_climspeed * 3.6) * ((flight.climtime / 3600) / 1000);
         flight.fucons_clim = (flight.spec_fuconsclim * flight.engthrust_val) * (flight.climtime / 3600 ); 
@@ -251,25 +250,24 @@ int main(void)
         flight.flduration = flight.climtime + (flight.timecruise * 3600) + flight.desctime;
         flight.flduration_h = (int)flight.flduration / 3600;
         flight.flduration_m = (int)flight.flduration % 3600 / 60;
-        
         printf("\nРасполагаемый запас топлива = %.f кг\n", flight.fucons_cruise);
         printf("Дальность полета = %d км\nПродолжительность полета = %d ч %02d мин\n", flight.flrange, flight.flduration_h, flight.flduration_m);
         return 0;
     case 2:
-        printf("\nРасчет дальности между двумя точками заданными географическими координатами\n");
-        printf("\n   Введи через пробел координаты WGS-84 для широты первой точки: ");
+        printf("\nРасчет расстояния между двумя точками по их координатам\n");
+        printf("\n   Введи через пробел координаты WGS-84 широты первой точки: ");
         res = scanf("%d %d %d %d", &lat_1.grad, &lat_1.min, &lat_1.sec, &lat_1.msec);
         if(input_verif_lat(lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, res) != 0)
             return 0;
-        printf("   Введи через пробел координаты WGS-84 для долготы первой точки: ");
+        printf("   Введи через пробел координаты WGS-84 долготы первой точки: ");
         res = scanf("%d %d %d %d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec);
         if(input_verif_lng(lng_1.grad, lng_1.min, lng_1.sec, lng_1.msec, res) !=0)
             return 0;
-        printf("\n   Введи через пробел координаты WGS-84 для широты второй точки: ");
+        printf("\n   Введи через пробел координаты WGS-84 широты второй точки: ");
         res = scanf("%d %d %d %d", &lat_2.grad, &lat_2.min, &lat_2.sec, &lat_2.msec);
         if(input_verif_lat(lat_2.grad, lat_2.min, lat_2.sec, lat_2.msec, res) != 0)
             return 0;
-        printf("   Введи через пробел координаты WGS-84 для долготы второй точки: ");
+        printf("   Введи через пробел координаты WGS-84 долготы второй точки: ");
         res = scanf("%d %d %d %d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec);
         if(input_verif_lng(lng_2.grad, lng_2.min, lng_2.sec, lng_2.msec, res) != 0)
             return 0;
@@ -315,11 +313,12 @@ int main(void)
                 printf("\nError! The turn_roll can't be more than 83°!\n");
                 return 0;
             }
+            maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
+            maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
             maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
             maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
             maneuver.turn_time_s = maneuver.turn_time % 60;
-            maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
-            maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
+
             printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   длина дуги УР = %.1f м\n", 
                     maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.range_turnlead);
             return 0;
@@ -341,7 +340,7 @@ int main(void)
             if(maneuver.wind_dir == maneuver.magnetpath_angle) {
                 maneuver.drift_angle = 0;
                 maneuver.graund_speed = maneuver.aircr_speed + maneuver.wind_speed;
-               printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.graund_speed);
+                printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.graund_speed);
                 return 0;
             }
             if(maneuver.wind_dir < maneuver.magnetpath_angle) {
