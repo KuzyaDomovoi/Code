@@ -41,11 +41,11 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     double y = sdelta * cl2;
     double x = (cl1 * sl2) - (sl1 * cl2 * cdelta);
     double anglerad = atan2(y, x);
-    double bearing = (anglerad * 180.0 / M_PI + 360.0) % 360;
+    int bearing = (anglerad * 180 / M_PI + 360) % 360;
 
     y = sqrt(pow(cl2 * sdelta, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta, 2));
     x = sl1 * sl2 + cl1 * cl2 * cdelta;
-    anglerad = atan(-y, x);
+    anglerad = atan2(-y, x);
     double flight_dist = anglerad * R_E;
 
     result[0] = flight_dist;
