@@ -251,7 +251,8 @@ int main(void)
         flight.flduration_h = (int)flight.flduration / 3600;
         flight.flduration_m = (int)flight.flduration % 3600 / 60;
         printf("\nРасполагаемый запас топлива = %.f кг\n", flight.fucons_cruise);
-        printf("Дальность полета = %d км\nПродолжительность полета = %d ч %02d мин\n", flight.flrange, flight.flduration_h, flight.flduration_m);
+        printf("Дальность полета = %d км\nПродолжительность полета = %d ч %02d мин\n", 
+                flight.flrange, flight.flduration_h, flight.flduration_m);
         return 0;
     case 2:
         printf("\nРасчет расстояния между двумя точками по их координатам\n");
