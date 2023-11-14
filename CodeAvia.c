@@ -24,7 +24,7 @@ struct geo_lng {
 struct geo_lat lat_2;
 struct geo_lng lng_2;
 
-void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[3]) {
+void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[4]) {
     lat_1.lat = lat1 * RAD;
     lng_1.lng = lng1 * RAD;
     lat_2.lat = lat2 * RAD;
@@ -40,18 +40,24 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
 
     double y = sdelta_lng * cl2;
     double x = (cl1 * sl2) - (sl1 * cl2 * cdelta_lng);
-    double anglerad = atan2(y, x) * DEG;
-    double initial_bearing = ((int)anglerad + 360) % 360;
-    double reverse_bearing = ((int)anglerad + 180) % 360;
+    double anglerad_init = atan2(y, x) * DEG;
+    double initial_bearing = ((int)anglerad_init + 360) % 360;
+    double reverse_bearing = ((int)anglerad_init + 180) % 360;
 
     y = sqrt(pow(cl2 * sdelta_lng, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta_lng, 2));
     x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
-    anglerad = atan2(y, x);
-    double flight_dist = anglerad * R_E;
+    anglerad_init = atan2(y, x);
+    double flight_dist = anglerad_init * R_E;
+
+    double y2 = (sin(initial_bearing) * sin(flight_dist / R_E)) * RAD * cl1;
+    double x2 = cos(flight_dist / R_E) * RAD - sl1 * sl2;
+    double anglerad_end = lat_1.lat  + atan2(y2, x2) * DEG;
+    double end_bearing = ((int)anglerad_end + 360) % 360;
 
     result[0] = flight_dist;
     result[1] = initial_bearing;
     result[2] = reverse_bearing;
+    result[3] = end_bearing;
 }
 
 struct flrange_flduration {
@@ -275,14 +281,14 @@ int main(void)
         double lat2 = lat_2.grad + lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
         double lng2 = lng_2.grad + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
 
-        double result[3];
+        double result[4];
         calcfldist_bear(lat1, lng1, lat2, lng2, result);
 
         printf("\nПервая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, lng_1.grad, lng_1.min, lng_1.sec, lng_1.msec);
         printf("Вторая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 lat_2.grad, lat_2.min, lat_2.sec, lat_2.msec, lng_2.grad, lng_2.min, lng_2.sec, lng_2.msec);
-        printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nНачальный пеленг = %.1f°\n", result[0], result[1], result[2]);
+        printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nНачальный пеленг = %.1f°\n", result[0], result[1], result[2], result[3]);
         return 0;
     case 3:
         printf("\n   1. Расчет радиуса, времени и длинны дуги угла разворота\n"
