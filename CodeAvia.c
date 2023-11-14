@@ -9,20 +9,20 @@
 #define RAD  M_PI / 180.0
 #define DEG  180.0 / M_PI
 
-struct geo_nlat {
+struct geo_lat {
     double lat;
     unsigned sec; unsigned msec;
     unsigned grad; unsigned min;
 } lat_1;
 
-struct geo_elng {
+struct geo_lng {
     double lng;
     unsigned sec; unsigned msec;
     unsigned grad; unsigned min;
 } lng_1;
 
-struct geo_nlat lat_2;
-struct geo_elng lng_2;
+struct geo_lat lat_2;
+struct geo_lng lng_2;
 
 void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[2]) {
     lat_1.lat = lat1 * RAD;
