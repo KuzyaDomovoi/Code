@@ -76,7 +76,7 @@ struct fltime_flangle_flspeed {
     int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range; int lateral_line;
     int flcurr_range; int flrem_range; int flight_track; 
     
-    double turn_rad; double linturn_lead; double t; double mindist_checkpoint; double range_turnlead;
+    double turn_rad; double t; double mindist_checkpoint; double range_turnlead;
     double course_correction_curr; double course_correction_rem; double course_correction;
 } maneuver;
 
@@ -303,7 +303,7 @@ int main(void)
         }
         switch(item) {
         case 1:
-            printf("\nРасчет радиуса, времени, линейного упреждения и длинны дуги угла разворота\n");
+            printf("\nРасчет радиуса, времени и длинны дуги угла разворота\n");
             printf("\n   Введи через пробел скорость с-та в км/ч, угол° и крен°: ");
             if(scanf("%d %d %d", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_roll) != 3) {
                 printf("\nError_input!\n");
@@ -321,10 +321,9 @@ int main(void)
             maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
             maneuver.turn_time_s = maneuver.turn_time % 60;
             maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
-            maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * RAD));
             maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
-            printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   ЛУР = %.1f м\n   длина дуги УР = %.1f м\n", 
-                    maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.linturn_lead, maneuver.range_turnlead);
+            printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   длина дуги УР = %.1f м\n", 
+                    maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.range_turnlead);
             return 0;
         case 2:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
