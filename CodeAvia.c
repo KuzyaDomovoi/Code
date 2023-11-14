@@ -317,14 +317,14 @@ int main(void)
                 printf("\nError! The turn_roll can't be more than 83°!\n");
                 return 0;
             }
-            if(maneuver.turn_angle > 180) {
-                maneuver.turn_angle - 180;
-            }
             maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
             maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
             maneuver.turn_time_s = maneuver.turn_time % 60;
             maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
-            maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * RAD));
+            if(range(181, maneuver.turn_angle, 360)) {
+                maneuver.linturn_lead = maneuver.turn_rad * (tan(((maneuver.turn_angle - 180) / 2) * RAD));
+            } else
+                maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * RAD));
             maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
             printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   ЛУР = %.1f м\n   длина дуги УР = %.1f м\n", 
                     maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.linturn_lead, maneuver.range_turnlead);
