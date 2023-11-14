@@ -71,12 +71,12 @@ struct flrange_flduration {
     } flight;
 
 struct fltime_flangle_flspeed {
-    int turn_time; int turn_time_m; int turn_time_s; int turn_rad; int turn_roll; int turn_angle;
+    int turn_time; int turn_time_m; int turn_time_s; int turn_roll; int turn_angle;
     int max_aircr_speed; int wind_angle; int magnetpath_angle; int aircr_speed; int wind_dir;
     int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range; int lateral_line;
     int flcurr_range; int flrem_range; int flight_track; 
     
-    double linturn_lead; double t; double mindist_checkpoint; double range_turnlead;
+    double turn_rad; double linturn_lead; double t; double mindist_checkpoint; double range_turnlead;
     double course_correction_curr; double course_correction_rem; double course_correction;
 } maneuver;
 
@@ -323,7 +323,7 @@ int main(void)
             maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
             maneuver.linturn_lead = maneuver.turn_rad * (tan((maneuver.turn_angle / 2) * RAD));
             maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
-            printf("\n   радиус разворота = %.f м\n   время разворота = %d мин %02d сек\n   ЛУР = %.1f км\n   длина дуги УР = %.1f км\n", 
+            printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   ЛУР = %.1f км\n   длина дуги УР = %.1f км\n", 
                     maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.linturn_lead, maneuver.range_turnlead);
             return 0;
         case 2:
