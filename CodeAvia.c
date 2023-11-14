@@ -106,7 +106,7 @@ bool input_verif_lat(int a, int b, int c, int d, int res) {
         return true;
     }
     if(range2(-89, a, 89) && (b > 0 || c > 0 || d > 0)) {
-        printf("\nIncorrect input! If the latitude has value -90 or 90 then the min, sec or msec will havn't more than value 59\n");
+        printf("\nIncorrect input! If the latitude has value -90 or 90 then the min, sec and msec should have the value 00 only\n");
         return true;
     } else return false;
 }
@@ -125,7 +125,7 @@ bool input_verif_lng(int a, int b, int c, int d, int res) {
         return true;
     }
     if(range2(-179, a, 179) && (b > 0 || c > 0 || d > 0)) {
-        printf("\nIncorrect input! If the longitude has value -180 or 180 then the min, sec or msec will havn't more than value 59\n");
+        printf("\nIncorrect input! If the longitude has value -180 or 180 then the min, sec and msec should have the value 00 only\n");
         return true;
     } else return false;
 }
