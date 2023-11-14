@@ -354,25 +354,14 @@ int main(void)
                 printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.graund_speed);
                 return 0;
             }
-            if(range(1, maneuver.wind_angle, 179)) {
-                if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
-                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * RAD);
-                if(range(0, maneuver.magnetpath_angle, 180) && range(181, maneuver.wind_dir, 360))
-                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * RAD);
-                if(range(181, maneuver.magnetpath_angle, 360) && range(0, maneuver.wind_dir, 180))
-                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * RAD);
-                if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
-                    maneuver.t = -1 * (double)maneuver.wind_speed / maneuver.aircr_speed * sin(maneuver.wind_angle * RAD);
-            }
-            if(range(181, maneuver.wind_angle, 359)) {     
-                if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
-                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * RAD);
-                if(range(0, maneuver.magnetpath_angle, 180) && range(181, maneuver.wind_dir, 360))
-                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * RAD);
-                if(range(181, maneuver.magnetpath_angle, 360) && range(0, maneuver.wind_dir, 180))
-                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * RAD);
-                if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
-                    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle - 180) * RAD);
+            if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
+                maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+            if(range(0, maneuver.magnetpath_angle, 180) && range(181, maneuver.wind_dir, 360))
+                maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+            if(range(181, maneuver.magnetpath_angle, 360) && range(0, maneuver.wind_dir, 180))
+                maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+            if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
+                maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
             }
             maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
             maneuver.graund_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
