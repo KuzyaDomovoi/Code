@@ -19,10 +19,16 @@ int main(void)
         printf("incorrect input!");
         return 0;
 
-    int result[3];
-    coord_transfer(degrees, result);
+    //int result[3];
+    //coord_transfer(degrees, result);
 
-    printf("%d° %d' %d''\n", result[0], result[1], result[2]);
+    int dd = trunc(degrees);
+    int mm = trunc((degrees - dd) * 60);
+    int ss = trunc(((degrees - dd) * 60 - mm) * 60);
+
+    printf("%d° %d' %d''\n", dd, mm, ss);
+
+    //printf("%d° %d' %d''\n", result[0], result[1], result[2]);
 
     return 0;
 }
