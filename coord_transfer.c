@@ -28,6 +28,11 @@ int main(void)
         printf("incorrect input!\n");
         return 0;
     }
+    printf("lng dd.ddddd: ");
+    if(scanf("%lf %lf", &lat_deg, &lng_deg) != 1) {
+        printf("incorrect input!\n");
+        return 0;
+    }
     int res[2];
     float res2[1];
     coord_transfer(lat_deg, res, res2);
