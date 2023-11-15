@@ -16,15 +16,15 @@ int main(void)
     double degrees;
     printf("dd.ddddd: ");
     if(scanf("%lf", &degrees) != 1)
-        printf("incorrect input!");
+        printf("incorrect input!\n");
         return 0;
 
     //int result[3];
     //coord_transfer(degrees, result);
 
-    int dd = trunc(degrees);
-    int mm = trunc((degrees - dd) * 60);
-    int ss = trunc(((degrees - dd) * 60 - mm) * 60);
+    int dd = floor(degrees);
+    int mm = floor((degrees - dd) * 60);
+    int ss = floor(((degrees - dd) * 60 - mm) * 60);
 
     printf("%d° %d' %d''\n", dd, mm, ss);
 
