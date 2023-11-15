@@ -2,21 +2,21 @@
 #include <math.h>
 
 void coord_transfer(double lat_deg, double lng_deg, int lat_res[2], float lat_res2[1], int lng_res[2], float lng_res2[1]) {
-    int dd = trunc(lat_deg);
-    int mm = trunc((lat_deg - dd) * 60);
-    float ss = ((lat_deg - dd) * 60 - mm) * 60;
+    int lat_dd = trunc(lat_deg);
+    int lat_mm = trunc((lat_deg - lat_dd) * 60);
+    float lat_ss = ((lat_deg - lat_dd) * 60 - lat_mm) * 60;
     
-    int dd = trunc(lng_deg);
-    int mm = trunc((lng_deg - dd) * 60);
-    float ss = ((lng_deg - dd) * 60 - mm) * 60;    
+    int lng_dd = trunc(lng_deg);
+    int lng_mm = trunc((lng_deg - lng_dd) * 60);
+    float lng_ss = ((lng_deg - lng_dd) * 60 - lng_mm) * 60;    
     
-    lat_res[0] = dd;
-    lat_res[1] = mm;
-    lat_res2[0] = ss;
+    lat_res[0] = lat_dd;
+    lat_res[1] = lat_mm;
+    lat_res2[0] = lat_ss;
    
-    lng_res[0] = dd;
-    lng_res[1] = mm;
-    lng_res2[0] = ss;
+    lng_res[0] = lng_dd;
+    lng_res[1] = lng_mm;
+    lng_res2[0] = lng_ss;
 }
 
 int main(void)
