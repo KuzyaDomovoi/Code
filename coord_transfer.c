@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-void coord_transfer(float degrees, int result[3]) {
+void coord_transfer(double degrees, int result[3]) {
     int dd = trunc(degrees);
     int mm = trunc((degrees - dd) * 60);
     int ss = trunc(((degrees - dd) * 60 - mm) * 60);
@@ -13,9 +13,9 @@ void coord_transfer(float degrees, int result[3]) {
 
 int main(void)
 {
-    float degrees;
+    double degrees;
     printf("dd.ddddd: ");
-    if(scanf("%f", &degrees) != 1)
+    if(scanf("%lf", &degrees) != 1)
         printf("incorrect input!");
         return 0;
 
