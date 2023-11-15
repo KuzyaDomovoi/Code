@@ -24,12 +24,14 @@ struct geo_lng {
 struct geo_lat lat_2;
 struct geo_lng lng_2;
 
-void coord_transfer(double grad, result[1]) {
-    int dd = trunc(grad);
-    int mm = trunc((grad - dd) * 60);
-    float ss = trunc(((grad - dd) * 60 - mm) * 60);
+void coord_transfer(double deg, int res[2], float res2[1]) {
+    int dd = trunc(deg);
+    int mm = trunc((deg - dd) * 60);
+    float ss = ((deg - dd) * 60 - mm) * 60;
     
-    resut[0] = printf("%d° %d' %.2f''\n", dd, mm, ss);
+    res[0] = dd;
+    res[1] = mm;
+    res2[0] = ss;
 }
 
 void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[3]) {
