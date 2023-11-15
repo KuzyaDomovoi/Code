@@ -24,6 +24,14 @@ struct geo_lng {
 struct geo_lat lat_2;
 struct geo_lng lng_2;
 
+void coord_transfer(double grad, result[1]) {
+    int dd = trunc(grad);
+    int mm = trunc((grad - dd) * 60);
+    float ss = trunc(((grad - dd) * 60 - mm) * 60);
+    
+    resut[0] = printf("%d° %d' %.2f''\n", dd, mm, ss);
+}
+
 void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[3]) {
     lat_1.lat = lat1 * RAD;
     lng_1.lng = lng1 * RAD;
@@ -276,7 +284,7 @@ int main(void)
         double lat2 = lat_2.grad + lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
         double lng2 = lng_2.grad + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
 
-        double result[4];
+        double result[3];
         calcfldist_bear(lat1, lng1, lat2, lng2, result);
 
         printf("\nПервая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
