@@ -151,8 +151,9 @@ int main(void)
 
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
-             "3. Расчеты маневрирования\n"
-             "4. Выход\n");
+             "3. Преобразование координат из градусов в гг мм сс.мс\n"
+             "4. Расчеты маневрирования\n"
+             "5. Выход\n");
     printf("   Выбери расчет или выход: ");
     if(scanf("%d", &item) != 1) {
         printf("\nError input!\n");
@@ -280,15 +281,12 @@ int main(void)
         res = scanf("%d %d %d %d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec);
         if(input_verif_lng(lng_2.grad, lng_2.min, lng_2.sec, lng_2.msec, res) != 0)
             return 0;
-        
         double lat1 = lat_1.grad + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
         double lng1 = lng_1.grad + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
         double lat2 = lat_2.grad + lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
         double lng2 = lng_2.grad + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
-
         double result[3];
         calcfldist_bear(lat1, lng1, lat2, lng2, result);
-
         printf("\nПервая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
                 lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, lng_1.grad, lng_1.min, lng_1.sec, lng_1.msec);
         printf("Вторая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
@@ -296,6 +294,27 @@ int main(void)
         printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nНачальный пеленг = %.1f°\n", result[0], result[1], result[2]);
         return 0;
     case 3:
+        printf("\nПреобразование координат из градусов в гг мм сс.мс\n");
+        printf("\n   Введи координаты широты: ");
+        if(scanf("%lf", &lat_1.lat) != 1) {
+            printf("incorrect input!\n");
+            return 0;
+        }    
+        printf("\n   Введи координаты долготы: ");
+        if(scanf("%lf", &lng_1.lng) != 1) {
+            printf("incorrect input!\n");
+            return 0;
+        } 
+        int lat_res[2];
+        float lat_res2[1];
+        int lng_res[2];
+        float lng_res2[1];
+        coord_transfer(lat_1.lat, lat_res, lat_res2);
+        coord_transfer(lng_1.lng, lng_res, lng_res2);
+        printf("lat  %02d° %02d' %.2f''\nlng %03d° %02d' %.2f''\n", 
+                lat_res[0], lat_res[1], lat_res2[0], lng_res[0], lng_res[1], lng_res2[0]);
+        return 0;
+    case 4:
         printf("\n   1. Расчет радиуса, времени и длинны дуги угла разворота\n"
                  "   2. Расчет угла сноса и путевой скорости по известному вектору ветра\n"
                  "   3. Расчет минимального расстояния для возможного погашения опоздания или избытка времени\n"
@@ -413,7 +432,7 @@ int main(void)
             printf("\nIncorrect input!\n");
             return 0;
         }
-    case 4:
+    case 5:
         printf("\nEnd of program\n");
         return 0;
     default:
