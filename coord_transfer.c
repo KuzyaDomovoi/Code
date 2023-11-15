@@ -14,7 +14,7 @@ void coord_transfer(float grad, int result[3]) {
 int main(void)
 {
     float ddd;
-    printf("ddd: ");
+    printf("dd.ddddd: ");
     if(scanf("%f", &ddd) != 1)
         printf("incorrect input!");
         return 0;
