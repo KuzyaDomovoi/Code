@@ -33,7 +33,7 @@ int main(void)
     float lng_res2[1];
 
     coord_transfer(lat_deg, lat_res, lat_res2);
-    coord_transfer(lng_deg, langres, lng_res2);
+    coord_transfer(lng_deg, lng_res, lng_res2);
   
     printf("lat  %02d° %02d' %.2f''\nlng %03d° %02d' %.2f''\n", 
             lat_res[0], lat_res[1], lat_res2[0], lng_res[0], lng_res[1], lng_res2[0]);
