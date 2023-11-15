@@ -23,12 +23,12 @@ int main(void)
 {
     double lat_deg;
     double lng_deg;
-    printf("lat dd.ddddd: ");
+    printf("lat in degrees: ");
     if(scanf("%lf", &lat_deg) != 1) {
         printf("incorrect input!\n");
         return 0;
     }
-    printf("lng dd.ddddd: ");
+    printf("lng in degrees: ");
     if(scanf("%lf", &lng_deg) != 1) {
         printf("incorrect input!\n");
         return 0;
