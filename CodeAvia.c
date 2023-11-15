@@ -311,7 +311,7 @@ int main(void)
         float lng_res2[1];
         coord_transfer(lat_1.lat, lat_res, lat_res2);
         coord_transfer(lng_1.lng, lng_res, lng_res2);
-        printf("lat  %02d° %02d' %.2f''\nlng %03d° %02d' %.2f''\n", 
+        printf("\n   lat  %02d° %02d' %.2f''\n   lng %03d° %02d' %.2f''\n", 
                 lat_res[0], lat_res[1], lat_res2[0], lng_res[0], lng_res[1], lng_res2[0]);
         return 0;
     case 4:
