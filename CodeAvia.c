@@ -25,7 +25,7 @@ struct geo_lng {
 struct geo_lat lat_2;
 struct geo_lng lng_2;
 
-void coord_transfer_deg(double deg, int result[2], float result2[1]) {
+void coord_transfer_deg(double deg, int result[2], double result2[1]) {
     int dd = trunc(deg);
     int mm = trunc((deg - dd) * 60);
     float ss = ((deg - dd) * 60 - mm) * 60;
@@ -387,9 +387,9 @@ int main(void)
                 return 0;
             } 
             int lat_res[2];
-            float lat_res2[1];
+            double lat_res2[1];
             int lng_res[2];
-            float lng_res2[1];
+            double lng_res2[1];
             coord_transfer_deg(lat_1.deg_1, lat_res, lat_res2);
             coord_transfer_deg(lng_1.deg_1, lng_res, lng_res2);
             if(lat_res[0] < 0 && lng_res[0] < 0) {
