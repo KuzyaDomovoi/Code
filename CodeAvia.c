@@ -99,7 +99,7 @@ bool range2(int x, int a, int y) {
 }
 
 bool input_verif_lat(int a, int b, int c, int d, int res) {
-    if(range2(3, res, 4)) {
+    if(res != 4) {
         printf("\nIncorrect input! It should be entered 4 values!\n");
         return true;
     }
@@ -122,7 +122,7 @@ bool input_verif_lat(int a, int b, int c, int d, int res) {
 }
 
 bool input_verif_lng(int a, int b, int c, int d, int res) {
-    if(range2(3, res, 4)) {
+    if(res != 4) {
         printf("\nIncorrect input! It should be entered 4 values!\n");
         return true;
     }
@@ -265,20 +265,20 @@ int main(void)
         return 0;
     case 2:
         printf("\nРасчет расстояния между двумя точками по их координатам\n");
-        printf("\n   Введи через пробел координаты WGS-84 широты первой точки: ");
-        res = scanf("%d %d %d %d", &lat_1.grad, &lat_1.min, &lat_1.sec, &lat_1.msec);
+        printf("\n   Введи координаты гг мм сс.мс WGS-84 широты первой точки: ");
+        res = scanf("%d %d %d.%d", &lat_1.grad, &lat_1.min, &lat_1.sec, &lat_1.msec);
         if(input_verif_lat(lat_1.grad, lat_1.min, lat_1.sec, lat_1.msec, res) != 0)
             return 0;
-        printf("   Введи через пробел координаты WGS-84 долготы первой точки: ");
-        res = scanf("%d %d %d %d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec);
+        printf("   Введи координаты ггг мм сс.мс WGS-84 долготы первой точки: ");
+        res = scanf("%d %d %d.%d", &lng_1.grad, &lng_1.min, &lng_1.sec, &lng_1.msec);
         if(input_verif_lng(lng_1.grad, lng_1.min, lng_1.sec, lng_1.msec, res) !=0)
             return 0;
-        printf("\n   Введи через пробел координаты WGS-84 широты второй точки: ");
-        res = scanf("%d %d %d %d", &lat_2.grad, &lat_2.min, &lat_2.sec, &lat_2.msec);
+        printf("\n   Введи координаты гг мм сс.мс WGS-84 широты второй точки: ");
+        res = scanf("%d %d %d.%d", &lat_2.grad, &lat_2.min, &lat_2.sec, &lat_2.msec);
         if(input_verif_lat(lat_2.grad, lat_2.min, lat_2.sec, lat_2.msec, res) != 0)
             return 0;
-        printf("   Введи через пробел координаты WGS-84 долготы второй точки: ");
-        res = scanf("%d %d %d %d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec);
+        printf("   Введи координаты ггг мм сс.мс WGS-84 долготы второй точки: ");
+        res = scanf("%d %d %d.%d", &lng_2.grad, &lng_2.min, &lng_2.sec, &lng_2.msec);
         if(input_verif_lng(lng_2.grad, lng_2.min, lng_2.sec, lng_2.msec, res) != 0)
             return 0;
         double lat1 = lat_1.grad + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
