@@ -448,7 +448,7 @@ int main(void)
             maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
             maneuver.turn_time_s = maneuver.turn_time % 60;
             maneuver.ny = 1 / cos(maneuver.turn_roll * RAD);
-            maneuver.turn_speed = maneuver.turn_angle / maneuver.turn_time;
+            maneuver.turn_speed = (double)maneuver.turn_angle / maneuver.turn_time;
 
             printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   угловая скорость р-та = %.1f °/сек\n   ny = %.1f ед\n   длина дуги УР = %.1f м\n", 
                     maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.turn_speed, maneuver.ny, maneuver.range_turnlead);
