@@ -21,7 +21,7 @@ bool range2(int x, int a, int y) {
 }
 
 bool input_verif_lat(int a, int b, int c, int d, int res) {
-    if(range2(3, res, 4)) {
+    if(res != 4) {
         printf("\nIncorrect input! It should be entered 4 values!\n");
         return true;
     }
@@ -44,7 +44,7 @@ bool input_verif_lat(int a, int b, int c, int d, int res) {
 }
 
 bool input_verif_lng(int a, int b, int c, int d, int res) {
-    if(range2(3, res, 4)) {
+    if(res != 4) {
         printf("\nIncorrect input! It should be entered 4 values!\n");
         return true;
     }
