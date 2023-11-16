@@ -13,13 +13,13 @@
 struct geo_lat {
     double lat; double deg_1;
     unsigned sec; unsigned msec;
-    unsigned deg; unsigned min;
+    int deg; unsigned min;
 } lat_1;
 
 struct geo_lng {
     double lng; double deg_1;
     unsigned sec; unsigned msec;
-    unsigned deg; unsigned min;
+    int deg; unsigned min;
 } lng_1;
 
 struct geo_lat lat_2;
@@ -36,14 +36,15 @@ void coord_transfer_deg(double deg, int result[2], float result2[1]) {
 }
 
 void coord_transfer_wgs84(int deg, int min, int sec, int msec, float result[2]) {
+    double lat, lng;
     if(deg < 0) {
-        double lat = abs(lat_1.deg) + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;       
+        lat = abs(lat_1.deg) + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
     } else
-        double lat = lat_1.deg + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
-    if(lng < 0) {
-        double lng = abs(lng_1.deg) + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;    
+        lat = lat_1.deg + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
+    if(deg < 0) {
+        lng = abs(lng_1.deg) + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
     } else
-        double lng = lng_1.deg + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
+    lng = lng_1.deg + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
 
     result[0] = lat;
     result[1] = lng;
