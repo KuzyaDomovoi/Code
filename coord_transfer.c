@@ -83,6 +83,7 @@ void coord_transfer_wgs84(int deg, int min, int sec, int msec, float res[2]) {
     res[0] = lat;
     res[1] = lng;
 }
+
 int main(void)
 {
     int item;
