@@ -101,11 +101,11 @@ int main(void)
     switch(item) {
     case 1:
         printf("\nПреобразование координат из гг мм сс мс в градусы\n");
-        printf("   Введи через пробел координаты WGS-84 широты: ");
+        printf("\n   Введи через пробел координаты WGS-84 широты: ");
         res = scanf("%d %d %d %d", &lat_1.deg, &lat_1.min, &lat_1.sec, &lat_1.msec);
         if(input_verif_lat(lat_1.deg, lat_1.min, lat_1.sec, lat_1.msec, res) != 0)
             return 0;
-        printf("   Введи через пробел координаты WGS-84 долготы: ");
+        printf("\n   Введи через пробел координаты WGS-84 долготы: ");
         res = scanf("%d %d %d %d", &lng_1.deg, &lng_1.min, &lng_1.sec, &lng_1.msec);
         if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, lng_1.msec, res) !=0)
             return 0;
@@ -117,12 +117,12 @@ int main(void)
         return 0;
     case 2:
         printf("\nПреобразование координат из градусов в гг мм сс.мс\n");
-        printf("Введи координаты широты: ");
+        printf("\n   Введи координаты широты: ");
         if(scanf("%lf", &lat_deg) != 1) {
             printf("incorrect input!\n");
             return 0;
         }    
-        printf("Введи координаты долготы: ");
+        printf("\n   Введи координаты долготы: ");
         if(scanf("%lf", &lng_deg) != 1) {
                 printf("incorrect input!\n");
                 return 0;
@@ -133,7 +133,7 @@ int main(void)
         float lng_res2[1];
         coord_transfer_deg(lat_deg, lat_res, lat_res2);
         coord_transfer_deg(lng_deg, lng_res, lng_res2);
-        printf("lat  %02d° %02d' %.2f''\n   lng %03d° %02d' %.2f''\n", 
+        printf("\n   lat  %02d° %02d' %.2f''\n   lng %03d° %02d' %.2f''\n", 
                 lat_res[0], lat_res[1], lat_res2[0], lng_res[0], lng_res[1], lng_res2[0]);
     case 3:
         printf("\nEnd of program\n");
