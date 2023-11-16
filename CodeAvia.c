@@ -124,7 +124,7 @@ struct fltime_flangle_flspeed {
     int max_aircr_speed; int wind_angle; int magnetpath_angle; int aircr_speed; int wind_dir;
     int graund_speed; int drift_angle; int wind_speed; int speed_range; int time_range;
     int lateral_line; int flcurr_range; int flrem_range; int flight_track; int heading_corr;
-    double turn_rad; double t; double mindist_checkpoint; double range_turnlead;
+    double turn_rad; double t; double mindist_checkpoint; double range_turnlead; double ny;
     double course_correction_curr; double course_correction_rem; double course_correction;
 } maneuver;
 
@@ -197,7 +197,7 @@ int main(void)
              "3. Преобразование координат из градусов в гг мм сс.мс\n"
              "4. Расчеты маневрирования\n"
              "5. Выход\n");
-    printf("   Выбери расчет или выход: ");
+    printf("   Выбери действие: ");
     if(scanf("%d", &item) != 1) {
         printf("\nError input!\n");
         return 0;
@@ -354,7 +354,7 @@ int main(void)
         printf("\n   1. Преобразование координат из гг мм сс.мс в градусы\n"
                  "   2. Преобразование координат из градусов в гг мм сс.мс\n"
                  "   3. Выход\n");
-        printf("      Выбери расчет или выход: ");
+        printf("      Выбери действие: ");
         if(scanf("%d", &item) != 1) {
             printf("\nError input!\n");
             return 0;
@@ -446,9 +446,10 @@ int main(void)
             maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
             maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
             maneuver.turn_time_s = maneuver.turn_time % 60;
+            maneuver.ny = 1 / cos(maneuver.turn_roll * RAD);
 
-            printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   длина дуги УР = %.1f м\n", 
-                    maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.range_turnlead);
+            printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   ny = %.2f\n   длина дуги УР = %.1f м\n", 
+                    maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.ny, maneuver.range_turnlead);
             return 0;
         case 2:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
