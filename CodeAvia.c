@@ -448,7 +448,7 @@ int main(void)
             maneuver.turn_time_s = maneuver.turn_time % 60;
             maneuver.ny = 1 / cos(maneuver.turn_roll * RAD);
 
-            printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   ny = %.2f\n   длина дуги УР = %.1f м\n", 
+            printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   ny = %.1f ед\n   длина дуги УР = %.1f м\n", 
                     maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.ny, maneuver.range_turnlead);
             return 0;
         case 2:
