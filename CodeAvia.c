@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define M_PI 3.14159265358979323846
 #define G    9.8
@@ -30,8 +31,8 @@ void coord_transfer_deg(double deg, int result[2], float result2[1]) {
     float ss = ((deg - dd) * 60 - mm) * 60;
 
     result[0] = dd;
-    result[1] = mm;
-    result2[0] = ss;
+    result[1] = abs(mm);
+    result2[0] = labs(ss);
 }
 
 void coord_transfer_wgs84(int deg, int min, int sec, int msec, float result[2]) {
@@ -343,6 +344,18 @@ int main(void)
             float lng_res2[1];
             coord_transfer_deg(lat_1.deg_1, lat_res, lat_res2);
             coord_transfer_deg(lng_1.deg_1, lng_res, lng_res2);
+            if(lat_res[0] < 0 && lng_res[0] < 0) {
+                printf("\n   lat  %03d° %02d' %05.2f''\n   lng %04d° %02d' %05.2f''\n", 
+                    lat_res[0], lat_res[1], lat_res2[0], lng_res[0], lng_res[1], lng_res2[0]);
+            } else
+            if(lat_res[0] < 0) {
+                printf("\n   lat  %03d° %02d' %05.2f''\n   lng  %03d° %02d' %05.2f''\n", 
+                    lat_res[0], lat_res[1], lat_res2[0], lng_res[0], lng_res[1], lng_res2[0]);
+            } else
+            if(lng_res[0] < 0) {
+                printf("\n   lat   %02d° %02d' %05.2f''\n   lng %04d° %02d' %05.2f''\n", 
+                    lat_res[0], lat_res[1], lat_res2[0], lng_res[0], lng_res[1], lng_res2[0]);
+            } else
             printf("\n   lat  %02d° %02d' %05.2f''\n   lng %03d° %02d' %05.2f''\n", 
                     lat_res[0], lat_res[1], lat_res2[0], lng_res[0], lng_res[1], lng_res2[0]);
             return 0;

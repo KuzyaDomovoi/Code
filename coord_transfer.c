@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 struct geo_lat {
     double lat;
@@ -72,8 +73,8 @@ void coord_transfer_deg(double deg, int res[2], float res2[1]) {
     float ss = ((deg - dd) * 60 - mm) * 60;
 
     res[0] = dd;
-    res[1] = mm;
-    res2[0] = ss;
+    res[1] = abs(mm);
+    res2[0] = labs(ss);
 }
 
 void coord_transfer_wgs84(int deg, int min, int sec, int msec, float res[2]) {
