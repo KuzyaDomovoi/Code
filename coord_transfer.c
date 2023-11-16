@@ -90,7 +90,7 @@ int main(void)
     double lng_deg;
     int res = 0;
 
-    printf("\n1. Преобразование координат из гг мм сс мс в градусы\n"
+    printf("\n1. Преобразование координат из гг мм сс.мс в градусы\n"
              "2. Преобразование координат из градусов в гг мм сс.мс\n"
              "3. Выход\n");
     printf("   Выбери расчет или выход: ");
@@ -100,7 +100,7 @@ int main(void)
     }
     switch(item) {
     case 1:
-        printf("\nПреобразование координат из гг мм сс мс в градусы\n");
+        printf("\nПреобразование координат из гг мм сс.мс в градусы\n");
         printf("\n   Введи через пробел координаты WGS-84 широты: ");
         res = scanf("%d %d %d.%d", &lat_1.deg, &lat_1.min, &lat_1.sec, &lat_1.msec);
         if(input_verif_lat(lat_1.deg, lat_1.min, lat_1.sec, lat_1.msec, res) != 0)
@@ -111,8 +111,6 @@ int main(void)
             return 0;
         float res[2];
         coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, lat_1.msec, res);
-        printf("\n   lat  %02d° %02d' %02d.%02d''\n   lng %03d° %02d' %02d.%02d''\n",
-                lat_1.deg, lat_1.min, lat_1.sec, lat_1.msec, lng_1.deg, lng_1.min, lng_1.sec, lng_1.msec);
         printf("\n   lat  %.6f°\n   lng  %.6f°\n", res[0], res[1]);
         return 0;
     case 2:
