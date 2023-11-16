@@ -105,7 +105,7 @@ int main(void)
         res = scanf("%d %d %d %d", &lat_1.deg, &lat_1.min, &lat_1.sec, &lat_1.msec);
         if(input_verif_lat(lat_1.deg, lat_1.min, lat_1.sec, lat_1.msec, res) != 0)
             return 0;
-        printf("\n   Введи через пробел координаты WGS-84 долготы: ");
+        printf("   Введи через пробел координаты WGS-84 долготы: ");
         res = scanf("%d %d %d %d", &lng_1.deg, &lng_1.min, &lng_1.sec, &lng_1.msec);
         if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, lng_1.msec, res) !=0)
             return 0;
@@ -122,7 +122,7 @@ int main(void)
             printf("incorrect input!\n");
             return 0;
         }    
-        printf("\n   Введи координаты долготы: ");
+        printf("   Введи координаты долготы: ");
         if(scanf("%lf", &lng_deg) != 1) {
                 printf("incorrect input!\n");
                 return 0;
