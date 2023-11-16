@@ -32,7 +32,7 @@ void coord_transfer_deg(double deg, int result[2], double result2[1]) {
 
     result[0] = dd;
     result[1] = abs(mm);
-    result2[0] = labs(ss);
+    result2[0] = fabsf(ss);
 }
 
 void calc_input_wgs84(int deg, int min, int sec, int msec, double result[2], double result2[2]) {
