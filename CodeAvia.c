@@ -35,7 +35,32 @@ void coord_transfer_deg(double deg, int result[2], float result2[1]) {
     result2[0] = labs(ss);
 }
 
-void coord_transfer_wgs84(int deg, int min, int sec, int msec, float result[2]) {
+void calc_input_wgs84(int deg, int min, int sec, int msec, double result[2], double result2[2]) {
+    double lat1, lat2, lng1, lng2;
+    if(lat_1.deg < 0) {
+        lat1 = -1 * (abs(lat_1.deg) + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0);
+    } else
+    lat1 = lat_1.deg + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
+    if(lng_1.deg < 0) {
+        lng1 = -1 * abs(lng_1.deg) + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
+    } else
+    lng1 = lng_1.deg + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
+    if(lat_2.deg < 0) {
+        lat2 = -1 * abs(lat_2.deg )+ lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
+    } else
+    lat2 = lat_2.deg + lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
+    if(lng_2.deg < 0) {
+        lng2 = -1 * abs(lng_2.deg) + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
+    } else
+        lng2 = lng_2.deg + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
+
+    result[0] = lat1;
+    result[1] = lng1;
+    result2[0] = lat2;
+    result2[1] = lng2;    
+}
+
+void coord_transfer_wgs84(int deg, int min, int sec, int msec, double result[2]) {
     double lat, lng;
     if(lat_1.deg < 0) {
         lat = -1 * (abs(lat_1.deg) + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0);
@@ -165,6 +190,7 @@ int main(void)
 {
     int item;
     int res = 0;
+    double lat1, lat2, lng1, lng2;
 
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
@@ -298,10 +324,24 @@ int main(void)
         res = scanf("%d %d %d.%d", &lng_2.deg, &lng_2.min, &lng_2.sec, &lng_2.msec);
         if(input_verif_lng(lng_2.deg, lng_2.min, lng_2.sec, lng_2.msec, res) != 0)
             return 0;
-        double lat1 = lat_1.deg + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
-        double lng1 = lng_1.deg + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
-        double lat2 = lat_2.deg + lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
-        double lng2 = lng_2.deg + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
+
+        if(lat_1.deg < 0) {
+            lat1 = -1 * (abs(lat_1.deg) + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0);
+        } else
+            lat1 = lat_1.deg + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
+        if(lng_1.deg < 0) {
+            lng1 = -1 * abs(lng_1.deg) + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
+        } else
+            lng1 = lng_1.deg + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
+        if(lat_2.deg < 0) {
+            lat2 = -1 * abs(lat_2.deg )+ lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
+        } else
+            lat2 = lat_2.deg + lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
+        if(lng_2.deg < 0) {
+            lng2 = -1 * abs(lng_2.deg) + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
+        } else
+            lng2 = lng_2.deg + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
+
         double result[3];
         calcfldist_bear(lat1, lng1, lat2, lng2, result);
         printf("\nПервая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
@@ -330,7 +370,7 @@ int main(void)
             res = scanf("%d %d %d.%d", &lng_1.deg, &lng_1.min, &lng_1.sec, &lng_1.msec);
             if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, lng_1.msec, res) !=0)
                 return 0;
-            float result[2];
+            double result[2];
             coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, lat_1.msec, result);
             printf("\n   lat  %.6f°\n   lng  %.6f°\n", result[0], result[1]);
             return 0;
