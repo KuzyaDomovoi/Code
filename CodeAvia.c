@@ -344,9 +344,9 @@ int main(void)
 
         double result[3];
         calcfldist_bear(lat1, lng1, lat2, lng2, result);
-        printf("\nПервая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
+        printf("\nПервая точка: lat %d° %02d' %02d.%02d''\n              lng %d° %02d' %02d.%02d''\n",
                 lat_1.deg, lat_1.min, lat_1.sec, lat_1.msec, lng_1.deg, lng_1.min, lng_1.sec, lng_1.msec);
-        printf("Вторая точка: lat  %02d° %02d' %02d.%02d''\n              lng %03d° %02d' %02d.%02d''\n",
+        printf("Вторая точка: lat %d° %02d' %02d.%02d''\n              lng %d° %02d' %02d.%02d''\n",
                 lat_2.deg, lat_2.min, lat_2.sec, lat_2.msec, lng_2.deg, lng_2.min, lng_2.sec, lng_2.msec);
         printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nНачальный пеленг = %.1f°\n", result[0], result[1], result[2]);
         return 0;
