@@ -126,6 +126,7 @@ struct fltime_flangle_flspeed {
     int lateral_line; int flcurr_range; int flrem_range; int flight_track; int heading_corr;
     double turn_rad; double t; double mindist_checkpoint; double range_turnlead; double ny;
     double course_correction_curr; double course_correction_rem; double course_correction;
+    double turn_speed;
 } maneuver;
 
 bool range(int x, int a, int y) {
@@ -447,9 +448,10 @@ int main(void)
             maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
             maneuver.turn_time_s = maneuver.turn_time % 60;
             maneuver.ny = 1 / cos(maneuver.turn_roll * RAD);
+            maneuver.turn_speed = maneuver.turn_angle / maneuver.turn_time;
 
-            printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   ny = %.1f ед\n   длина дуги УР = %.1f м\n", 
-                    maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.ny, maneuver.range_turnlead);
+            printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   угловая скорость р-та = %.1f\n   ny = %.1f ед\n   длина дуги УР = %.1f м\n", 
+                    maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.turn_speed, maneuver.ny, maneuver.range_turnlead);
             return 0;
         case 2:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
