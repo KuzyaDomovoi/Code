@@ -45,12 +45,13 @@ int main(void)
     if(input_time(time_1.hour, time_1.min, time_1.sec, input) != 0) {
         return 0;
     }
+    int transf_1 = input_transfer_time(time_1.hour, time_1.min, time_1.sec);
+    
     printf("Enter time_2 in format hh.mm.ss: ");
     input = scanf("%d.%d.%d", &time_2.hour, &time_2.min, &time_2.sec);
     if(input_time(time_2.hour, time_2.min, time_2.sec, input) != 0) {
         return 0;
     }
-    int transf_1 = input_transfer_time(time_1.hour, time_1.min, time_1.sec);
     int transf_2 = input_transfer_time(time_2.hour, time_2.min, time_2.sec);
 
     printf("\n1. addition\n"
