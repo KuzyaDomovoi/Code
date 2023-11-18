@@ -23,10 +23,8 @@ int input_transfer_time(int h, int m, int s) {
 }
 
 int calc_time(int a, int b, int res[2]) {
-    int add = a + b;
-    int sub = a - b;
-    res[0] = add;
-    res[1] = sub;
+    res[0] = a + b;
+    res[1] = a - b;
 }
 
 void output_transfer_time(int t, int time[3]) {
@@ -56,7 +54,7 @@ int main(void)
 
     printf("\n1. addition\n"
              "2. substraction\n");
-    printf("Select the mode of time calculation: ");
+    printf("Select the calc mode: ");
 
     if(scanf("%d", &calc_mode) != 1) {
         printf("\nError input!\n");
@@ -64,7 +62,6 @@ int main(void)
     }
     switch(calc_mode) {
     case 1:
-        printf("\nAddition:\n");
         int res1[2];
         calc_time(transf_1, transf_2, res1);
         int add = res1[0];
@@ -73,7 +70,6 @@ int main(void)
         printf("\n%d:%02d:%02d + %d:%02d:%02d = %d:%02d:%02d\n", time_1.hour, time_1.min, time_1.sec, time_2.hour, time_2.min, time_2.sec, time1[0], time1[1], time1[2]);
         return 0;
     case 2:
-        printf("\nSubstraction:\n");
         int res2[2];
         calc_time(transf_1, transf_2, res2);
         int sub = res2[1];
