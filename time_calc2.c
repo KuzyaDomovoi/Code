@@ -12,10 +12,10 @@ struct time_calc {
 struct time_calc time_2;
 
 bool input_time(int h, int m, int s, int input) {
-    if(input != 3) {
+    while(input != 3) {
         printf("\nIt should be entered hh.mm.ss\n");
         return true;
-    } else return false;
+    } return false;
 }
 
 int input_transfer_time(int h, int m, int s) {
