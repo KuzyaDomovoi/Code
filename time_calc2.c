@@ -35,7 +35,7 @@ void output_transfer_time(int t, int time[3]) {
 
 int main(void)
 {   
-    int input; int calc_mode;
+    int input, calc_mode;
     int res1[2]; int res2[2];
     int time1[3]; int time2[3];
 
