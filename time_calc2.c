@@ -22,7 +22,7 @@ int input_transfer_time(int h, int m, int s) {
     return h * 3600 + m * 60 + s;
 }
 
-int calc_time(int a, int b, int res[2]) {
+void calc_time(int a, int b, int res[2]) {
     res[0] = a + b;
     res[1] = a - b;
 }
