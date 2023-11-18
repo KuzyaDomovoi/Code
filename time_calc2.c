@@ -15,7 +15,7 @@ bool input_time(int h, int m, int s, int input) {
     if(input != 3) {
         printf("\nIt should be entered hh.mm.ss\n");
         return true;
-    } return false;
+    } else return false;
 }
 
 int input_transfer_time(int h, int m, int s) {
