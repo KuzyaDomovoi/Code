@@ -25,16 +25,6 @@ struct geo_lng {
 struct geo_lat lat_2;
 struct geo_lng lng_2;
 
-void coord_transfer_deg(double deg, int result[2], double result2[1]) {
-    int dd = trunc(deg);
-    int mm = trunc((deg - dd) * 60);
-    float ss = ((deg - dd) * 60 - mm) * 60;
-
-    result[0] = dd;
-    result[1] = abs(mm);
-    result2[0] = fabsf(ss);
-}
-
 void calc_input_wgs84(int deg, int min, int sec, int msec, double result[2], double result2[2]) {
     double lat1, lat2, lng1, lng2;
     if(lat_1.deg < 0) {
@@ -58,6 +48,16 @@ void calc_input_wgs84(int deg, int min, int sec, int msec, double result[2], dou
     result[1] = lng1;
     result2[0] = lat2;
     result2[1] = lng2;    
+}
+
+void coord_transfer_deg(double deg, int result[2], double result2[1]) {
+    int dd = trunc(deg);
+    int mm = trunc((deg - dd) * 60);
+    float ss = ((deg - dd) * 60 - mm) * 60;
+
+    result[0] = dd;
+    result[1] = abs(mm);
+    result2[0] = fabsf(ss);
 }
 
 void coord_transfer_wgs84(int deg, int min, int sec, int msec, double result[2]) {
