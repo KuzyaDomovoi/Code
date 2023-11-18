@@ -87,7 +87,6 @@ struct flrange_flduration {
     int airbornspeed; int average_climspeed; int climtime; int cruisspeed;
     int descspeed; int desctime; int load_weight; int full_fusupp; int fucons_preTO;
     int fucons_TO; int fucons_desc; int fucons_final_land_taxi; int guarfusupp_unusfures;
-
     double midaverage_climspeed; double flrang_clim; double fucons_clim; double fucons_cruise;
     double req_engthrustcruise; double lifttodrag_ratio; double hourfucons; double spec_fuconsclim;
     double spec_fuconscruise; double rangcruise; double timecruise;
