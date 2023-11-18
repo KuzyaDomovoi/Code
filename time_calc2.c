@@ -19,19 +19,17 @@ bool input_time(int h, int m, int s, int input) {
 }
 
 int input_transfer_time(int h, int m, int s) {
-    int transfer = h * 3600 + m * 60 + s;
-    return transfer;
+    return h * 3600 + m * 60 + s;
 }
 
 int calc_time(int a, int b) {
-    int add = a + b;
-    return add;
+    return a + b;
 }
 
 void output_transfer_time(int t, int time[3]) {
     time[0] = t / 3600;
-    time[1] = (t / 60) % 60;
-    time[2] = t % 60;
+    time[1] = abs((t / 60) % 60);
+    time[2] = abs(t % 60);
 }
 
 int main(void)
@@ -49,10 +47,10 @@ int main(void)
     if(input_time(time_2.hour, time_2.min, time_2.sec, input) != 0) {
         return 0;
     }
-    int transfer_1 = input_transfer_time(time_1.hour, time_1.min, time_1.sec);
-    int transfer_2 = input_transfer_time(time_2.hour, time_2.min, time_2.sec);
+    int transf_1 = input_transfer_time(time_1.hour, time_1.min, time_1.sec);
+    int transf_2 = input_transfer_time(time_2.hour, time_2.min, time_2.sec);
 
-    int add = calc_time(transfer_1, transfer_2);
+    int add = calc_time(transf_1, transf_2);
     
     int time[3];
     output_transfer_time(add, time);
