@@ -24,12 +24,12 @@ int main(void)
  
     short* data = malloc(sizeof(short) * capacity);
  
-    for(int i = 0; i < 11;++i)
+    for(int i = 0; i < 11; ++i)
         data = append(data, &length, &capacity, rand() % 40 - 20);
  
     printf("length = %lu, capacity = %lu\n", length, capacity);
  
-    for(int i = 0;i < length;++i)
+    for(int i = 0;i < length; ++i)
         printf("%d ", data[i]);
     free(data);
 

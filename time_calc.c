@@ -16,12 +16,12 @@ int main(void)
     unsigned min_2 = (time_2 / 60) % 60;
     unsigned sec_2 = time_2 % 60;
     
-    printf("Input the first data in the format: 'hour.min.sec' for calculation: ");
+    printf("Input time_1 in format: 'hour.min.sec': ");
     while(scanf("%d.%d.%d", &hour_1, &min_1, &sec_1) != 3) {
         printf("\nError input!\n");
         return 0;
     }
-    printf("Input the second data in the format: 'hour.min.sec' for calculation: ");
+    printf("Input time_2 in format: 'hour.min.sec': ");
     while(scanf("%d.%d.%d", &hour_2, &min_2, &sec_2) != 3) {
         printf("\nError input!\n");
         return 0; 
@@ -53,7 +53,7 @@ int main(void)
         unsigned int hour_res_sub = time_res_sub / 3600;
         unsigned int min_res_sub = (time_res_sub / 60) % 60;
         unsigned int sec_res_sub = time_res_sub % 60;
-        printf("%d:%02d:%02d + %d:%02d:%02d = %d:%02d:%02d\n", hour_1, min_1, sec_1, hour_2, min_2, sec_2, hour_res_sub, min_res_sub, sec_res_sub);
+        printf("%d:%02d:%02d - %d:%02d:%02d = %d:%02d:%02d\n", hour_1, min_1, sec_1, hour_2, min_2, sec_2, hour_res_sub, min_res_sub, sec_res_sub);
         return 0;
     case 3:
         printf("\nExit.\n");
