@@ -25,31 +25,6 @@ struct geo_lng {
 struct geo_lat lat_2;
 struct geo_lng lng_2;
 
-void calc_input_wgs84(int deg, int min, int sec, int msec, double result[2], double result2[2]) {
-    double lat1, lat2, lng1, lng2;
-    if(lat_1.deg < 0) {
-        lat1 = -1 * (abs(lat_1.deg) + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0);
-    } else
-    lat1 = lat_1.deg + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
-    if(lng_1.deg < 0) {
-        lng1 = -1 * abs(lng_1.deg) + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
-    } else
-    lng1 = lng_1.deg + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0;
-    if(lat_2.deg < 0) {
-        lat2 = -1 * abs(lat_2.deg )+ lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
-    } else
-    lat2 = lat_2.deg + lat_2.min / 60.0 + lat_2.sec / 3600.0 + lat_2.msec / 3600.0 / 60.0;
-    if(lng_2.deg < 0) {
-        lng2 = -1 * abs(lng_2.deg) + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
-    } else
-        lng2 = lng_2.deg + lng_2.min / 60.0 + lng_2.sec / 3600.0 + lng_2.msec / 3600.0 / 60.0;
-
-    result[0] = lat1;
-    result[1] = lng1;
-    result2[0] = lat2;
-    result2[1] = lng2;    
-}
-
 void coord_transfer_deg(double deg, int result[2], double result2[1]) {
     int dd = trunc(deg);
     int mm = trunc((deg - dd) * 60);
