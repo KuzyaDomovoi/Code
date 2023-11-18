@@ -22,8 +22,11 @@ int input_transfer_time(int h, int m, int s) {
     return h * 3600 + m * 60 + s;
 }
 
-int calc_time(int a, int b) {
-    return a + b;
+int calc_time(int a, int b, int res[2]) {
+    int add = a + b;
+    int sub = a - b;
+    res[0] = add;
+    res[1] = sub;
 }
 
 void output_transfer_time(int t, int time[3]) {
@@ -50,11 +53,18 @@ int main(void)
     int transf_1 = input_transfer_time(time_1.hour, time_1.min, time_1.sec);
     int transf_2 = input_transfer_time(time_2.hour, time_2.min, time_2.sec);
 
-    int add = calc_time(transf_1, transf_2);
-    
+    int res[2];
+
+    calc_time(transf_1, transf_2, res);
+    int add = res[0];
+    int sub = res[1];
+
     int time[3];
     output_transfer_time(add, time);
-    printf("\nRes_time = %d:%02d:%02d\n", time[0], time[1], time[2]);
+    printf("\nAdd_time = %d:%02d:%02d\n", time[0], time[1], time[2]);
+
+    output_transfer_time(sub, time);
+    printf("\nSub_time = %d:%02d:%02d\n", time[0], time[1], time[2]);
     
     return 0;     
 }
