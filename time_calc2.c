@@ -56,7 +56,7 @@ int main(void)
     
     int time[3];
     output_transfer_time(add, time);
-    printf("\ntime = %d:%02d:%02d\n", time[0], time[1], time[2]);
+    printf("\nRes_time = %d:%02d:%02d\n", time[0], time[1], time[2]);
     
     return 0;     
 }
