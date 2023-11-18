@@ -38,13 +38,13 @@ int main(void)
 {   
     int input;
 
-    printf("Time-calculator\n");
-    printf("\nInput time_1 in format: 'hour.min.sec': ");
+    printf("\nTime-calculator\n");
+    printf("\nInput time_1 in format 'hour.min.sec': ");
     input = scanf("%d.%d.%d", &time_1.hour, &time_1.min, &time_1.sec);
     if(input_time(time_1.hour, time_1.min, time_1.sec, input) != 0) {
         return 0;
     }
-    printf("\nInput time_2 in format: 'hour.min.sec': ");
+    printf("Input time_2 in format 'hour.min.sec': ");
     input = scanf("%d.%d.%d", &time_2.hour, &time_2.min, &time_2.sec);
     if(input_time(time_2.hour, time_2.min, time_2.sec, input) != 0) {
         return 0;
@@ -56,9 +56,6 @@ int main(void)
     
     int time[3];
     output_transfer_time(add, time);
-
-    printf("%d\n", time_1.time);
-    printf("%d\n", time_2.time);
     printf("\ntime = %d:%02d:%02d\n", time[0], time[1], time[2]);
     
     return 0;     
