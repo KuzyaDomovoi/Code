@@ -64,7 +64,7 @@ int main(void)
     printf("\nAdd_time = %d:%02d:%02d\n", time[0], time[1], time[2]);
 
     output_transfer_time(sub, time);
-    printf("\nSub_time = %d:%02d:%02d\n", time[0], time[1], time[2]);
+    printf("Sub_time = %d:%02d:%02d\n", time[0], time[1], time[2]);
     
     return 0;     
 }
