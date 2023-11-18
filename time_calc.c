@@ -46,7 +46,8 @@ int main(void)
         int hour_res_add = time_res_add / 3600;
         int min_res_add = (time_res_add / 60) % 60;
         int sec_res_add = time_res_add % 60;
-        printf("%d:%02d:%02d + %d:%02d:%02d = %d:%02d:%02d\n", hour_1, min_1, sec_1, hour_2, min_2, sec_2, hour_res_add, min_res_add, sec_res_add);
+        printf("%d:%02d:%02d + %d:%02d:%02d = %d:%02d:%02d\n", 
+                hour_1, min_1, sec_1, hour_2, min_2, sec_2, hour_res_add, min_res_add, sec_res_add);
         return 0;
     case 2:
         printf("\nSubstraction:\n");
@@ -54,7 +55,8 @@ int main(void)
         int hour_res_sub = time_res_sub / 3600;
         int min_res_sub = abs((time_res_sub / 60) % 60);
         int sec_res_sub = abs(time_res_sub % 60);
-        printf("%d:%02d:%02d - %d:%02d:%02d = %d:%02d:%02d\n", hour_1, min_1, sec_1, hour_2, min_2, sec_2, hour_res_sub, min_res_sub, sec_res_sub);
+        printf("%d:%02d:%02d - %d:%02d:%02d = %d:%02d:%02d\n", 
+                hour_1, min_1, sec_1, hour_2, min_2, sec_2, hour_res_sub, min_res_sub, sec_res_sub);
         return 0;
     case 3:
         printf("\nExit.\n");
