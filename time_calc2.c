@@ -78,7 +78,7 @@ int main(void)
         printf("\n%d:%02d:%02d - %d:%02d:%02d = %d:%02d:%02d\n", time_1.hour, time_1.min, time_1.sec, time_2.hour, time_2.min, time_2.sec, time2[0], time2[1], time2[2]);
         return 0;
     case 3:
-        printf("\nExit.\n");
+        printf("\nExit\n");
         return 0;
     default:
         printf("\nIncorrect symbol!\n");
