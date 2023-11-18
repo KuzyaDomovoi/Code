@@ -54,7 +54,6 @@ int main(void)
     int transf_2 = input_transfer_time(time_2.hour, time_2.min, time_2.sec);
 
     int res[2];
-
     calc_time(transf_1, transf_2, res);
     int add = res[0];
     int sub = res[1];
@@ -62,7 +61,7 @@ int main(void)
     int time[3];
     output_transfer_time(add, time);
     printf("\nAdd_time = %d:%02d:%02d\n", time[0], time[1], time[2]);
-
+    
     output_transfer_time(sub, time);
     printf("Sub_time = %d:%02d:%02d\n", time[0], time[1], time[2]);
     
