@@ -62,7 +62,7 @@ int main(void)
         printf("\nError input!\n");
         return 0;
     }
-    switch(calc_mode) {
+        switch(calc_mode) {
     case 1:
         calc_time(transf_1, transf_2, res1);
         output_transfer_time(res1[0], time1);
