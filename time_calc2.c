@@ -13,7 +13,7 @@ struct time_calc time_2;
 
 bool input_time(int h, int m, int s, int input) {
     if(input != 3) {
-        printf("\nIt should be entered 3 value\n");
+        printf("\nIt should be entered hh.mm.ss\n");
         return true;
     } else return false;
 }
