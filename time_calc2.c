@@ -37,6 +37,10 @@ int main(void)
 {   
     int input;
     int calc_mode;
+    int res1[2];
+    int res2[2];
+    int time1[3];
+    int time2[3];
 
     printf("\nTime-calculator\n");
     printf("\nInput time_1 in format 'hour.min.sec': ");
@@ -62,17 +66,13 @@ int main(void)
     }
     switch(calc_mode) {
     case 1:
-        int res1[2];
         calc_time(transf_1, transf_2, res1);
-        int time1[3];
         output_transfer_time(res1[0], time1);
         printf("\n%d:%02d:%02d + %d:%02d:%02d = %d:%02d:%02d\n", 
                 time_1.hour, time_1.min, time_1.sec, time_2.hour, time_2.min, time_2.sec, time1[0], time1[1], time1[2]);
         return 0;
     case 2:
-        int res2[2];
         calc_time(transf_1, transf_2, res2);
-        int time2[3];
         output_transfer_time(res2[1], time2);
         printf("\n%d:%02d:%02d - %d:%02d:%02d = %d:%02d:%02d\n", 
                 time_1.hour, time_1.min, time_1.sec, time_2.hour, time_2.min, time_2.sec, time2[0], time2[1], time2[2]);
