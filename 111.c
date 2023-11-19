@@ -4,6 +4,7 @@
 #define M_PI 3.14159265358979323846
 #define R_E  6372795
 #define RAD  M_PI / 180.0
+#define DEG  180.0 / M_PI
 
 int main(void)
 {
@@ -31,11 +32,18 @@ int main(void)
     double anglerad = atan2(y, x);
     double dist = anglerad * R_E;
 
+    y = sdelta_lng * cl2;
+    x = cl1 * sl2 - sl1 * cl2 * cdelta_lng;
+    double angledeg = atan2(y, x) * DEG;
+    double initial_bearing = ((int)angledeg + 360) % 360;
+    double reverse_bearing = ((int)angledeg + 180) % 360;
+
     printf("y = %f\n", y);
     printf("x = %f\n", x);
     printf("anglerad = %f\n", anglerad);
 
-    printf("dist = %.1f\n", dist);
+    printf("dist = %.1f м\n", dist);
+    printf("initial_bearing = %.f°\n", initial_bearing);
 
     return 0;
 }
