@@ -7,17 +7,22 @@
 
 int main(void)
 {
-    double lat1 = 77.1539;
-    double lng1 = -139.398;
-    double lat2= -77.1804;
-    double lng2 = -139.55;
+    double lat1deg = 77.1539;
+    double lng1deg = -139.398;
+    double lat2deg = -77.1804;
+    double lng2deg = -139.55;
 
-    double cl1 = cos(lat1);
-    double cl2 = cos(lat2);
-    double sl1 = sin(lat1);
-    double sl2 = sin(lat2);
+    double lat1rad = lat1deg * RAD;
+    double lng1rad = lng1deg * RAD;
+    double lat2rad = lat2deg * RAD;
+    double lng2rad = lng2deg * RAD;
 
-    double delta_lng = lng2 - lng1;
+    double cl1 = cos(lat1rad);
+    double cl2 = cos(lat2rad);
+    double sl1 = sin(lat1rad);
+    double sl2 = sin(lat2rad);
+
+    double delta_lng = lng2rad - lng1rad;
     double cdelta_lng = cos(delta_lng);
     double sdelta_lng = sin(delta_lng);
 
