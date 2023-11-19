@@ -61,7 +61,7 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     double cl2 = cos(lat_2.lat);
     double sl1 = sin(lat_1.lat);
     double sl2 = sin(lat_2.lat);
-    
+
     double delta_lng = lng_2.lng - lng_1.lng;
     double cdelta_lng = cos(delta_lng);
     double sdelta_lng = sin(delta_lng);
@@ -300,15 +300,15 @@ int main(void)
         } else
             lat1 = lat_1.deg + (lat_1.min * 60.0 + lat_1.sec) / 3600.0;
         if(lng_1.deg < 0) {
-            lng1 = -1 * abs(lng_1.deg) + (lng_1.min * 60.0) + lng_1.sec / 3600.0;
+            lng1 = -1 * (abs(lng_1.deg) + (lng_1.min * 60.0) + lng_1.sec / 3600.0);
         } else
             lng1 = lng_1.deg + (lng_1.min * 60.0 + lng_1.sec) / 3600.0;
         if(lat_2.deg < 0) {
-            lat2 = -1 * abs(lat_2.deg) + (lat_2.min * 60.0 + lat_2.sec) / 3600.0;
+            lat2 = -1 * (abs(lat_2.deg) + (lat_2.min * 60.0 + lat_2.sec) / 3600.0);
         } else
             lat2 = lat_2.deg + (lat_2.min * 60.0 + lat_2.sec) / 3600.0;
         if(lng_2.deg < 0) {
-            lng2 = -1 * abs(lng_2.deg) + (lng_2.min * 60.0 + lng_2.sec) / 3600.0;
+            lng2 = -1 * (abs(lng_2.deg) + (lng_2.min * 60.0 + lng_2.sec) / 3600.0);
         } else
             lng2 = lng_2.deg + (lng_2.min * 60.0 + lng_2.sec) / 3600.0;
 
