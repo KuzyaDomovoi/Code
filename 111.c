@@ -26,20 +26,6 @@ int main(void)
     double anglerad = atan2(y, x);
     double dist = anglerad * R_E;
 
-    printf("\nlat_1 = %f\n", lat1);
-    printf("lat_2 = %f\n", lat2);
-    printf("lng_1 = %f\n", lng1);
-    printf("lng_2 = %f\n", lng2);
-
-    printf("\ncl1 = %f\n", cl1);
-    printf("cl2 = %f\n", cl2);
-    printf("sl1 = %f\n", sl1);
-    printf("sl2 = %f\n", sl2);
-
-    printf("\ndelta_lng = %f\n", delta_lng);
-    printf("cdelta_lng = %f\n", cdelta_lng);
-    printf("sdelta_lng = %f\n", sdelta_lng);
-
     printf("y = %f\n", y);
     printf("x = %f\n", x);
     printf("anglerad = %f\n", anglerad);
