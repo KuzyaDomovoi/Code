@@ -120,7 +120,7 @@ int main(void)
                 printf("\nASin%d° = %f\n", x, asin(x * RAD));
                 return 0;
             case 5:
-                printf("\nEnter a value for COS: ");
+                printf("\nEnter a value for ACOS: ");
                 if(scanf("%d", &x) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
@@ -128,7 +128,7 @@ int main(void)
                 printf("\nACos%d° = %f\n", x, acos(x * RAD));
                 return 0;
             case 6:
-                printf("\nEnter a value for TAN: ");
+                printf("\nEnter a value for ATAN: ");
                 if(scanf("%d", &x) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
