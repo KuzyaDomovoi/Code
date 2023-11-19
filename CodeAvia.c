@@ -61,6 +61,7 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     double cl2 = cos(lat_2.lat);
     double sl1 = sin(lat_1.lat);
     double sl2 = sin(lat_2.lat);
+    
     double delta_lng = lng_2.lng - lng_1.lng;
     double cdelta_lng = cos(delta_lng);
     double sdelta_lng = sin(delta_lng);

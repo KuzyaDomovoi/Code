@@ -37,12 +37,6 @@ int main(void)
     double anglerad = atan2(y, x);
     double dist = anglerad * R_E;
 
-
-
-    printf("y = %f\n", y);
-    printf("x = %f\n", x);
-    printf("anglerad = %f\n", anglerad);
-
     printf("dist = %.1f м\n", dist);
     printf("initial_bearing = %.f°\n", initial_bearing);
 
