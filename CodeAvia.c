@@ -35,7 +35,7 @@ void coord_transfer_deg(int deg, int result1[2], double result2[1]) {
     result2[0] = fabsf(ss);
 }
 
-void coord_transfer_wgs84(float deg, float min, float sec, double result[4]) {
+void coord_transfer_wgs84(float deg, float min, float sec, double res1[2], double res2[2]) {
     float lat1, lng1, lat2, lng2;
     if(lat_1.deg < 0) {
         lat1 = -1 * (abs(lat_1.deg) + (lat_1.min * 60.0 + lat_1.sec) / 3600.0);
@@ -54,10 +54,10 @@ void coord_transfer_wgs84(float deg, float min, float sec, double result[4]) {
     } else
         lng2 = lng_2.deg + (lng_2.min * 60.0 + lng_2.sec) / 3600.0;
 
-    result[0] = lat1;
-    result[1] = lng1;
-    result[2] = lat2;
-    result[3] = lng2;
+    res1[0] = lat1;
+    res1[1] = lng1;
+    res2[0] = lat2;
+    res2[1] = lng2;
 }
 
 void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[2]) {
@@ -165,7 +165,7 @@ int main(void)
     int item;
     int res = 0;
     double lat1, lat2, lng1, lng2;
-    double result[4];
+    double res1[2], res2[2];
     double result_db[2];
     int lat_res1[2];
     double lat_res2[1];
@@ -305,8 +305,8 @@ int main(void)
         res = scanf("%d %d %f", &lng_2.deg, &lng_2.min, &lng_2.sec);
         if(input_verif_lng(lng_2.deg, lng_2.min, lng_2.sec, res) != 0)
             return 0;
-        coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, result_db);
-        calcfldist_bear(lat1, lng1, lat2, lng2, result);
+        coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
+        calcfldist_bear(res1[0], res1[1], res2[0], res2[1], result_db);
         printf("\nПервая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
                 lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
         printf("Вторая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
