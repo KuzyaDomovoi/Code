@@ -333,8 +333,8 @@ int main(void)
             res = scanf("%d %d %f", &lng_1.deg, &lng_1.min, &lng_1.sec);
             if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, res) != 0)
                 return 0;
-            coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, result);
-            printf("\n   lat  %.6f°\n   lng  %.6f°\n", result[0], result[1]);
+            coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
+            printf("\n   lat  %.6f°\n   lng  %.6f°\n", res1[0], res1[1]);
             return 0;
         case 2:
             printf("\nПреобразование координат из градусов в гг мм сс.мс\n");
