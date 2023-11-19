@@ -12,14 +12,14 @@
 
 struct geo_lat {
     double lat; double deg_1;
-    unsigned sec; unsigned msec;
-    int deg; unsigned min;
+    float sec; int min;
+    int deg; 
 } lat_1;
 
 struct geo_lng {
     double lng; double deg_1;
-    unsigned sec; unsigned msec;
-    int deg; unsigned min;
+    float sec; int min;
+    int deg;
 } lng_1;
 
 struct geo_lat lat_2;
@@ -35,7 +35,7 @@ void coord_transfer_deg(double deg, int result[2], double result2[1]) {
     result2[0] = fabsf(ss);
 }
 
-void coord_transfer_wgs84(float deg, float min, float sec, float result[2]) {
+void coord_transfer_wgs84(float deg, float min, float sec, double result[2]) {
     float lat, lng;
     if(lat_1.deg < 0) {
         lat = -1 * (abs(lat_1.deg) + (lat_1.min * 60.0 + lat_1.sec) / 3600.0);
@@ -156,9 +156,10 @@ int main(void)
     int res = 0;
     double lat1, lat2, lng1, lng2;
     int lat_res[2];
-    float lat_res2[1];
+    double lat_res2[1];
     int lng_res[2];
-    float lng_res2[1];
+    double lng_res2[1];
+    double result[2];
 
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
@@ -290,7 +291,7 @@ int main(void)
             return 0;
         printf("   Введи координаты ггг мм сс.мс WGS-84 долготы второй точки: ");
         res = scanf("%d %d %f", &lng_2.deg, &lng_2.min, &lng_2.sec);
-        if(input_verif_lng(lng_2.deg, lng_2.min, lng_2.sec res) != 0)
+        if(input_verif_lng(lng_2.deg, lng_2.min, lng_2.sec, res) != 0)
             return 0;
 
         if(lat_1.deg < 0) {
@@ -312,7 +313,7 @@ int main(void)
 
         double result[3];
         calcfldist_bear(lat1, lng1, lat2, lng2, result);
-        printf("\nПервая точка: lat %4d° %02d' %f.2''\n              lng %4d° %02d' %.2f''\n",
+        printf("\nПервая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
                 lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
         printf("Вторая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
                 lat_2.deg, lat_2.min, lat_2.sec, lng_2.deg, lng_2.min, lng_2.sec);
@@ -332,13 +333,12 @@ int main(void)
             printf("\nПреобразование координат из гг мм сс.мс в градусы\n");
             printf("\n   Введи через пробел координаты WGS-84 широты: ");
             res = scanf("%d %d %f", &lat_1.deg, &lat_1.min, &lat_1.sec);
-            if(input_verif_lat(lat_1.deg, lat_1.min, lat_1.sec res) != 0)
+            if(input_verif_lat(lat_1.deg, lat_1.min, lat_1.sec, res) != 0)
                 return 0;
             printf("   Введи через пробел координаты WGS-84 долготы: ");
             res = scanf("%d %d %f", &lng_1.deg, &lng_1.min, &lng_1.sec);
             if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, res) != 0)
                 return 0;
-            double result[2];
             coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, result);
             printf("\n   lat  %.6f°\n   lng  %.6f°\n", result[0], result[1]);
             return 0;
@@ -354,7 +354,6 @@ int main(void)
                 printf("incorrect input!\n");
                 return 0;
             } 
-
             coord_transfer_deg(lat_1.deg_1, lat_res, lat_res2);
             coord_transfer_deg(lng_1.deg_1, lng_res, lng_res2);
             if(lat_res[0] < 0 && lng_res[0] < 0) {
