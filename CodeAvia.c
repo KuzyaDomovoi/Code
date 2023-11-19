@@ -300,7 +300,7 @@ int main(void)
         } else
             lat1 = lat_1.deg + (lat_1.min * 60.0 + lat_1.sec) / 3600.0;
         if(lng_1.deg < 0) {
-            lng1 = -1 * (abs(lng_1.deg) + (lng_1.min * 60.0) + lng_1.sec / 3600.0);
+            lng1 = -1 * (abs(lng_1.deg) + (lng_1.min * 60.0 + lng_1.sec) / 3600.0);
         } else
             lng1 = lng_1.deg + (lng_1.min * 60.0 + lng_1.sec) / 3600.0;
         if(lat_2.deg < 0) {
