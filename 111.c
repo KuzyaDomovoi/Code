@@ -8,10 +8,10 @@
 
 int main(void)
 {
-    double lat1deg = 77.1539;
-    double lng1deg = -139.398;
-    double lat2deg = -77.1804;
-    double lng2deg = -139.55;
+    double lat1deg = 48.935097;
+    double lng1deg = 40.370483;
+    double lat2deg = 20.033243;
+    double lng2deg = -72.863961;
 
     double lat1rad = lat1deg * RAD;
     double lng1rad = lng1deg * RAD;
