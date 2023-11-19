@@ -40,7 +40,7 @@ void coord_transfer_wgs84(int deg, int min, int sec, int msec, double result[2])
     if(lat_1.deg < 0) {
         lat = -1 * (abs(lat_1.deg) + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0);
     } else
-        lat = lat_1.deg + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60.0;
+        lat = lat_1.deg + lat_1.min / 60.0 + lat_1.sec / 3600.0 + lat_1.msec / 3600.0 / 60;
 
     if(lng_1.deg < 0) {
         lng =  -1 * (abs(lng_1.deg) + lng_1.min / 60.0 + lng_1.sec / 3600.0 + lng_1.msec / 3600.0 / 60.0);
