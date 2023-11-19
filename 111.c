@@ -35,8 +35,7 @@ int main(void)
     y = sdelta_lng * cl2;
     x = cl1 * sl2 - sl1 * cl2 * cdelta_lng;
     double angledeg = atan2(y, x) * DEG;
-    double initial_bearing = ((int)angledeg + 360) % 360;
-    double reverse_bearing = ((int)angledeg + 180) % 360;
+    double initial_bearing = (int)(angledeg + 360) % 360;
 
     printf("y = %f\n", y);
     printf("x = %f\n", x);
