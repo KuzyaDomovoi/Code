@@ -38,14 +38,14 @@ void coord_transfer_deg(double deg, int result[2], double result2[1]) {
 void coord_transfer_wgs84(float deg, float min, float sec, double result[2]) {
     float lat, lng;
     if(lat_1.deg < 0) {
-        lat = -1 * (abs(lat_1.deg) + (lat_1.min * 60.0 + lat_1.sec) / 3600.0);
+        lat = -1 * (abs(lat_1.deg) + ((float)lat_1.min * 60.0 + lat_1.sec) / 3600.0);
     } else
-        lat = lat_1.deg + (lat_1.min * 60.0 + lat_1.sec) / 3600.0;
+        lat = lat_1.deg + ((float)lat_1.min * 60.0 + lat_1.sec) / 3600.0;
 
     if(lng_1.deg < 0) {
-        lng =  -1 * (abs(lng_1.deg) + (lng_1.min * 60.0 + lng_1.sec) / 3600.0);
+        lng =  -1 * (abs(lng_1.deg) + ((float)lng_1.min * 60.0 + lng_1.sec) / 3600.0);
     } else
-    lng = lng_1.deg + (lng_1.min * 60.0 + lng_1.sec) / 3600.0;
+    lng = lng_1.deg + ((float)lng_1.min * 60.0 + lng_1.sec) / 3600.0;
 
     result[0] = lat;
     result[1] = lng;
