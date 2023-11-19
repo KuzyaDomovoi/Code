@@ -7,7 +7,7 @@ void coord_transfer_wgs84(float deg, float min, float sec, float msec, float res
     if(deg < 0) {
         lat = -1.0 * (abs(deg) + min / 60.0 + sec / 3600.0 + msec / 3600.0 / 60.0);
     } else
-        lat = deg + min / 60.0 + sec / 3600.0 + msec / 3600.0 / 60.0 - 0.0001;
+        lat = deg + min / 60.0 + sec / 3600.0 + msec / 3600.0 / 60.0;
 
     if(deg < 0) {
         lng =  -1.0 * (abs(deg) + min / 60.0 + sec / 3600.0 + msec / 3600.0 / 60.0);
