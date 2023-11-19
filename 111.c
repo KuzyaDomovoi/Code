@@ -27,15 +27,17 @@ int main(void)
     double cdelta_lng = cos(delta_lng);
     double sdelta_lng = sin(delta_lng);
 
-    double y = sqrt(pow(cl2 * sdelta_lng, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta_lng, 2));
-    double x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
+    double y = sdelta_lng * cl2;
+    double x = cl1 * sl2 - sl1 * cl2 * cdelta_lng;
+    double angledeg = atan2(y, x) * DEG;
+    double initial_bearing = (int)(angledeg + 360) % 360;
+
+    y = sqrt(pow(cl2 * sdelta_lng, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta_lng, 2));
+    x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
     double anglerad = atan2(y, x);
     double dist = anglerad * R_E;
 
-    y = sdelta_lng * cl2;
-    x = cl1 * sl2 - sl1 * cl2 * cdelta_lng;
-    double angledeg = atan2(y, x) * DEG;
-    double initial_bearing = (int)(angledeg + 360) % 360;
+
 
     printf("y = %f\n", y);
     printf("x = %f\n", x);

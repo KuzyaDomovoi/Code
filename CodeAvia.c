@@ -67,9 +67,8 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
 
     double y = sdelta_lng * cl2;
     double x = cl1 * sl2 - sl1 * cl2 * cdelta_lng;
-    double angledeg_init = atan2(y, x) * DEG;
-    double initial_bearing = ((int)angledeg_init + 360) % 360;
-    double reverse_bearing = ((int)angledeg_init + 180) % 360;
+    double angledeg = atan2(y, x) * DEG;
+    double initial_bearing = (int)(angledeg + 360) % 360;
 
     y = sqrt(pow(cl2 * sdelta_lng, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta_lng, 2));
     x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
@@ -78,7 +77,6 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
 
     result[0] = flight_dist;
     result[1] = initial_bearing;
-    result[2] = reverse_bearing;
 }
 
 struct flrange_flduration {
@@ -165,6 +163,10 @@ int main(void)
     int item;
     int res = 0;
     double lat1, lat2, lng1, lng2;
+    int lat_res[2];
+    double lat_res2[1];
+    int lng_res[2];
+    double lng_res2[1];
 
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
@@ -322,7 +324,7 @@ int main(void)
                 lat_1.deg, lat_1.min, lat_1.sec, lat_1.msec, lng_1.deg, lng_1.min, lng_1.sec, lng_1.msec);
         printf("Вторая точка: lat %4d° %02d' %02d.%02d''\n              lng %4d° %02d' %02d.%02d''\n",
                 lat_2.deg, lat_2.min, lat_2.sec, lat_2.msec, lng_2.deg, lng_2.min, lng_2.sec, lng_2.msec);
-        printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nНачальный пеленг = %.1f°\n", result[0], result[1], result[2]);
+        printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\n", result[0], result[1]);
         return 0;
     case 3:
         printf("\n   1. Преобразование координат из гг мм сс.мс в градусы\n"
@@ -360,10 +362,7 @@ int main(void)
                 printf("incorrect input!\n");
                 return 0;
             } 
-            int lat_res[2];
-            double lat_res2[1];
-            int lng_res[2];
-            double lng_res2[1];
+
             coord_transfer_deg(lat_1.deg_1, lat_res, lat_res2);
             coord_transfer_deg(lng_1.deg_1, lng_res, lng_res2);
             if(lat_res[0] < 0 && lng_res[0] < 0) {
