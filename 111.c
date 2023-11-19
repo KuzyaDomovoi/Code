@@ -10,21 +10,16 @@
 int main(void)
 {
     double lat1 = 77.1539;
-    double lat2 = -139.398;
-    double lng1 = -77.1804;
+    double lng1 = -139.398;
+    double lat2= -77.1804;
     double lng2 = -139.55;
 
-    double lat1rad = lat1 * RAD;
-    double lat2rad = lat2 * RAD;
-    double lng1rad = lng1 * RAD;
-    double lng2rad = lng2 * RAD;
+    double cl1 = cos(lat1);
+    double cl2 = cos(lat2);
+    double sl1 = sin(lat1);
+    double sl2 = sin(lat2);
 
-    double cl1 = cos(lat1rad);
-    double cl2 = cos(lat2rad);
-    double sl1 = sin(lat1rad);
-    double sl2 = sin(lat2rad);
-
-    double delta_lng = lng2rad - lng1rad;
+    double delta_lng = lng2 - lng1;
     double cdelta_lng = cos(delta_lng);
     double sdelta_lng = sin(delta_lng);
 
@@ -33,10 +28,10 @@ int main(void)
     double anglerad = atan2(y, x);
     double dist = anglerad * R_E;
 
-    printf("\nlat_1rad = %f\n", lat1rad);
-    printf("lat_2rad = %f\n", lat2rad);
-    printf("lng_1rad = %f\n", lng1rad);
-    printf("lng_2rad = %f\n", lng2rad);
+    printf("\nlat_1 = %f\n", lat1);
+    printf("lat_2 = %f\n", lat2);
+    printf("lng_1 = %f\n", lng1);
+    printf("lng_2 = %f\n", lng2);
 
     printf("\ncl1 = %f\n", cl1);
     printf("cl2 = %f\n", cl2);
