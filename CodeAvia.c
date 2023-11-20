@@ -319,7 +319,7 @@ int main(void)
         if(input_verif_lng(lng_2.deg, lng_2.min, lng_2.sec, res) != 0)
             return 0;
         coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
-        calcfldist_bear(res1[0], res1[1], res2[0], res2[1], result_db), result_b);
+        calcfldist_bear(res1[0], res1[1], res2[0], res2[1], result_db, result_b);
         printf("\nПервая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
                 lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
         printf("Вторая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
