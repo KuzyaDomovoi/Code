@@ -323,7 +323,7 @@ int main(void)
                 lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
         printf("Вторая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
                 lat_2.deg, lat_2.min, lat_2.sec, lng_2.deg, lng_2.min, lng_2.sec);
-        printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.1f км 1° азимута\n", result_db[0], result_db[1], result_db[2], result_db[3]);
+        printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.f м 1° изменения азимута\n", result_db[0], result_db[1], result_db[2], result_db[3]);
         return 0;
     case 3:
         printf("\n   1. Преобразование координат из гг мм сс.мс в градусы\n"
