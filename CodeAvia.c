@@ -93,7 +93,7 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     double anglerad = atan2(y, x);
     double flight_dist = anglerad * R_E;
 
-    float onegrad_dist = flight_dist / abs(end_bearing - initial_bearing);
+    float onegrad_dist = flight_dist / fabs(end_bearing - initial_bearing);
 
     result[0] = flight_dist;
     result[1] = initial_bearing;
@@ -319,9 +319,9 @@ int main(void)
             return 0;
         coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
         calcfldist_bear(res1[0], res1[1], res2[0], res2[1], result_db);
-        printf("\nПервая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
+        printf("\nПервая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
                 lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
-        printf("Вторая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
+        printf("Вторая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
                 lat_2.deg, lat_2.min, lat_2.sec, lng_2.deg, lng_2.min, lng_2.sec);
         printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.f м 1° изменения азимута\n", result_db[0], result_db[1], result_db[2], result_db[3]);
         return 0;
