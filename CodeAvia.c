@@ -60,7 +60,7 @@ void coord_transfer_wgs84(float deg, float min, float sec, double res1[2], doubl
     res2[1] = lng2;
 }
 
-void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[4], float result_b[1]) {
+void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[4]) {
     lat_1.lat = lat1 * RAD;
     lng_1.lng = lng1 * RAD;
     lat_2.lat = lat2 * RAD;
@@ -98,7 +98,7 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     result[0] = flight_dist;
     result[1] = initial_bearing;
     result[2] = end_bearing;
-    result_b[0] = onegrad_dist;
+    result[3] = onegrad_dist;
 }
 
 struct flrange_flduration {
@@ -178,8 +178,7 @@ int main(void)
     int res = 0;
     double lat1, lat2, lng1, lng2;
     double res1[2], res2[2];
-    double result_db[3];
-    float result_b[1];
+    double result_db[4];
     int lat_res1[2];
     float lat_res2[1];
     int lng_res1[2];
@@ -319,12 +318,12 @@ int main(void)
         if(input_verif_lng(lng_2.deg, lng_2.min, lng_2.sec, res) != 0)
             return 0;
         coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
-        calcfldist_bear(res1[0], res1[1], res2[0], res2[1], result_db, result_b);
+        calcfldist_bear(res1[0], res1[1], res2[0], res2[1], result_db);
         printf("\nПервая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
                 lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
         printf("Вторая точка: lat %4d° %02d' %.2f''\n              lng %4d° %02d' %.2f''\n",
                 lat_2.deg, lat_2.min, lat_2.sec, lng_2.deg, lng_2.min, lng_2.sec);
-        printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.1f км 1° азимута\n", result_db[0], result_db[1], result_db[2], result_b[0]);
+        printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.1f км 1° азимута\n", result_db[0], result_db[1], result_db[2], result_db[3]);
         return 0;
     case 3:
         printf("\n   1. Преобразование координат из гг мм сс.мс в градусы\n"
