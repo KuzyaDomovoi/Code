@@ -25,14 +25,14 @@ struct geo_lng {
 struct geo_lat lat_2;
 struct geo_lng lng_2;
 
-void coord_transfer_deg(int deg, int result1[2], double result2[1]) {
+void coord_transfer_deg(float deg, int result1[2], float result2[1]) {
     int dd = trunc(deg);
     int mm = trunc((deg - dd) * 60);
     double ss = ((deg - dd) * 60 - mm) * 60;
 
     result1[0] = dd;
     result1[1] = abs(mm);
-    result2[0] = fabsf(ss);
+    result2[0] = fabs(ss);
 }
 
 void coord_transfer_wgs84(float deg, float min, float sec, double res1[2], double res2[2]) {
@@ -116,13 +116,13 @@ bool range(int x, int a, int y) {
     return false;
 }
 
-bool range2(int x, int a, int y) {
+bool range2(float x, float a, float y) {
     if(a < x || a > y)
         return true;
     return false;
 }
 
-bool input_verif_lat(int a, int b, int c, int res) {
+bool input_verif_lat(int a, int b, float c, int res) {
     if(res != 3) {
         printf("\nIncorrect input! It should be entered 4 values!\n");
         return true;
@@ -141,7 +141,7 @@ bool input_verif_lat(int a, int b, int c, int res) {
     } else return false;
 }
 
-bool input_verif_lng(int a, int b, int c, int res) {
+bool input_verif_lng(int a, int b, float c, int res) {
     if(res != 3) {
         printf("\nIncorrect input! It should be entered 4 values!\n");
         return true;
@@ -168,9 +168,9 @@ int main(void)
     double res1[2], res2[2];
     double result_db[2];
     int lat_res1[2];
-    double lat_res2[1];
+    float lat_res2[1];
     int lng_res1[2];
-    double lng_res2[1];
+    float lng_res2[1];
 
 
     printf("\n1. Расчет дальности и продолжительности полета\n"
