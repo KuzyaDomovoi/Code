@@ -346,7 +346,7 @@ int main(void)
                 printf("Incorrect input!");
                 return 0;
             }
-            printf("\n   Введи координаты гг.гггггг долготы первой точки: ");
+            printf("   Введи координаты гг.гггггг долготы первой точки: ");
             if(scanf("%f", &lng_1.lng) != 1) {
                 printf("Incorrect input!");
                 return 0;
@@ -356,7 +356,7 @@ int main(void)
                 printf("Incorrect input!");
                 return 0;
             }
-            printf("\n   Введи координаты гг.гггггг долготы второй точки: ");
+            printf("   Введи координаты гг.гггггг долготы второй точки: ");
             if(scanf("%f", &lng_2.lng) != 1) {
                 printf("Incorrect input!");
                 return 0;
