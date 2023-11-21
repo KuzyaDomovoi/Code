@@ -103,12 +103,12 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
 
 struct flrange_flduration {
     double engthrust_val;
-    int airbornspeed; int average_climspeed; int climtime; int cruisspeed;
-    int descspeed; int desctime; int load_weight; int full_fusupp; int fucons_preTO;
-    int fucons_TO; int fucons_desc; int fucons_final_land_taxi; int guarfusupp_unusfures;
+    int airbornspeed; int average_climspeed; int climtime; int cruisspeed; int average_climspeed_1000; 
+    int descspeed; int desctime; int load_weight; int full_fusupp; int fucons_preTO; int climtime_1000;
+    int fucons_TO; int fucons_desc; int fucons_final_land_taxi; int guarfusupp_unusfures; int midaverage_climspeed_1000;
     double midaverage_climspeed; double flrang_clim; double fucons_clim; double fucons_cruise;
     double req_engthrustcruise; double lifttodrag_ratio; double hourfucons; double spec_fuconsclim;
-    double spec_fuconscruise; double rangcruise; double timecruise;
+    double spec_fuconscruise; double rangcruise; double timecruise; double flrang_clim_1000;
     int flrange; int flduration; int flduration_h; int flduration_m;  
     } flight;
 
@@ -283,16 +283,20 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        flight.midaverage_climspeed = 0.5 * (flight.airbornspeed + flight.average_climspeed);
-        flight.flrang_clim = (flight.average_climspeed * 3.6) * ((flight.climtime / 3600) / 1000);
+        flight.midaverage_climspeed_1000 = 0.5 * (flight.airbornspeed + flight.average_climspeed);
+        flight.midaverage_climspeed = flight.average_climspeed;
+        flight.flrang_clim_1000 = (flight.midaverage_climspeed_1000 * 3.6) * ((flight.climtime_1000 / 3600) / 1000);    
+        flight.climtime_1000 = flight.flrang_clim_1000 / flight.midaverage_climspeed_1000;
+        flight.flrang_clim = flight.flrang_clim_1000 + (flight.average_climspeed * 3.6) * (((flight.climtime - flight.climtime_1000) / 3600) / 1000);
+        flight.climtime = flight.flrang_clim / flight.average_climspeed;
         flight.fucons_clim = (flight.spec_fuconsclim * flight.engthrust_val) * (flight.climtime / 3600 ); 
         flight.fucons_cruise = flight.full_fusupp - flight.fucons_preTO - flight.fucons_TO - flight.fucons_clim - flight.fucons_desc - flight.fucons_final_land_taxi - flight.guarfusupp_unusfures;
         flight.req_engthrustcruise = (flight.load_weight * G) / flight.lifttodrag_ratio;
         flight.hourfucons = (flight.spec_fuconscruise * flight.req_engthrustcruise) / flight.cruisspeed;
         flight.rangcruise = flight.fucons_cruise / flight.hourfucons;
         flight.timecruise = flight.rangcruise / flight.cruisspeed;
-        flight.flrange = (flight.midaverage_climspeed * flight.climtime / 3600) + (flight.cruisspeed * flight.timecruise) + (flight.descspeed * flight.desctime / 3600);
-        flight.flduration = flight.climtime + (flight.timecruise * 3600) + flight.desctime;
+        flight.flrange = flight.flrang_clim_1000 + (flight.average_climspeed * (flight.climtime - flight.climtime_1000) / 3600) + (flight.cruisspeed * flight.timecruise) + (flight.descspeed * flight.desctime / 3600);
+        flight.flduration = flight.climtime + (flight.fucons_cruise / 1000 / flight.hourfucons * 3600) + flight.desctime;
         flight.flduration_h = (int)flight.flduration / 3600;
         flight.flduration_m = (int)flight.flduration % 3600 / 60;
         printf("\nРасполагаемый запас топлива = %.f кг\n", flight.fucons_cruise);
