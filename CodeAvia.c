@@ -11,13 +11,13 @@
 #define DEG  180.0 / M_PI
 
 struct geo_lat {
-    float lat; double deg_1;
+    float lat;
     float sec; int min;
     int deg; 
 } lat_1;
 
 struct geo_lng {
-    float lng; double deg_1;
+    float lng;
     float sec; int min;
     int deg;
 } lng_1;
@@ -399,17 +399,17 @@ int main(void)
         case 2:
             printf("\nПреобразование координат из градусов в гг мм сс.мс\n");
             printf("\n   Введи координаты широты: ");
-            if(scanf("%lf", &lat_1.deg_1) != 1) {
+            if(scanf("%f", &lat_1.lat) != 1) {
                 printf("incorrect input!\n");
                 return 0;
             }    
             printf("   Введи координаты долготы: ");
-            if(scanf("%lf", &lng_1.deg_1) != 1) {
+            if(scanf("%f", &lng_1.lng) != 1) {
                 printf("incorrect input!\n");
                 return 0;
             } 
-            coord_transfer_deg(lat_1.deg_1, lat_res1, lat_res2);
-            coord_transfer_deg(lng_1.deg_1, lng_res1, lng_res2);
+            coord_transfer_deg(lat_1.lat, lat_res1, lat_res2);
+            coord_transfer_deg(lng_1.lng, lng_res1, lng_res2);
             if(lat_res1[0] < 0 && lng_res1[0] < 0) {
                 printf("\n   lat  %03d° %02d' %05.2f''\n   lng %04d° %02d' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
