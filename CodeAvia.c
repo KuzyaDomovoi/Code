@@ -362,9 +362,9 @@ int main(void)
                 printf("Incorrect input!");
                 return 0;
             }
+            printf("\nПервая точка: lat %f°\n              lng %f°\n", lat_1.lat, lng_1.lng);
+            printf("Вторая точка: lat %f°\n              lng %f°\n", lat_2.lat, lng_2.lng);
             calcfldist_bear(lat_1.lat, lng_1.lng, lat_2.lat, lng_2.lng, result_db);
-            printf("\nПервая точка: lat %.6f°\n              lng %.6f°\n", lat_1.lat, lng_1.lng);
-            printf("Вторая точка: lat %.6f°\n              lng %.6f°\n", lat_2.lat, lng_2.lng);
             printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.f м 1° изменения азимута\n", 
                     result_db[0], result_db[1], result_db[2], result_db[3]);
             return 0;
