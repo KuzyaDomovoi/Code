@@ -337,7 +337,8 @@ int main(void)
                     lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
             printf("Вторая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
                     lat_2.deg, lat_2.min, lat_2.sec, lng_2.deg, lng_2.min, lng_2.sec);
-            printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.f м 1° изменения азимута\n", result_db[0], result_db[1], result_db[2], result_db[3]);
+            printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.f м 1° изменения азимута\n", 
+                    result_db[0], result_db[1], result_db[2], result_db[3]);
             return 0;
         case 2:
             printf("\nРасчет расстояния по координатам WGS-84 формата гг.гггггг\n");
@@ -362,9 +363,10 @@ int main(void)
                 return 0;
             }
             calcfldist_bear(lat_1.lat, lng_1.lng, lat_2.lat, lng_2.lng, result_db);
-            printf("\nПервая точка: lat %f°\n              lng %f°\n", lat_1.lat, lng_1.lng);
-            printf("Вторая точка: lat %f°\n              lng %f°\n", lat_2.lat, lng_2.lng);
-            printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.f м 1° изменения азимута\n", result_db[0], result_db[1], result_db[2], result_db[3]);
+            printf("\nПервая точка: lat %.6f°\n              lng %.6f°\n", lat_1.lat, lng_1.lng);
+            printf("Вторая точка: lat %.6f°\n              lng %.6f°\n", lat_2.lat, lng_2.lng);
+            printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.f м 1° изменения азимута\n", 
+                    result_db[0], result_db[1], result_db[2], result_db[3]);
             return 0;
         case 3:
             printf("\nEnd of program\n");
