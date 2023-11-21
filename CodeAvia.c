@@ -364,8 +364,8 @@ int main(void)
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\nПервая точка: lat  %f°\n              lng  %f°\n", lat_1.lat, lng_1.lng);
-            printf("Вторая точка: lat  %f°\n              lng  %f°\n", lat_2.lat, lng_2.lng);
+            printf("\nПервая точка: lat    %f°\n              lng    %f°\n", lat_1.lat, lng_1.lng);
+            printf("Вторая точка: lat    %f°\n              lng    %f°\n", lat_2.lat, lng_2.lng);
             coord_transfer_deg(lat_1.lat, lat_res1, lat_res2);
             coord_transfer_deg(lng_1.lng, lng_res1, lng_res2);
             coord_transfer_deg(lat_2.lat, lat_res1_1, lat_res2_2);
