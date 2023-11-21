@@ -384,7 +384,6 @@ int main(void)
             } else
             printf("\n   lat  %02d° %02d' %05.2f''\n   lng %03d° %02d' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
-            return 0;
             if(lat_res1_1[0] < 0 && lng_res1_1[0] < 0) {
                 printf("\n   lat  %03d° %02d' %05.2f''\n   lng %04d° %02d' %05.2f''\n", 
                     lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
