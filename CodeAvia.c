@@ -366,7 +366,6 @@ int main(void)
             }
             printf("\nПервая точка: lat  %f°\n              lng  %f°\n", lat_1.lat, lng_1.lng);
             printf("Вторая точка: lat  %f°\n              lng  %f°\n", lat_2.lat, lng_2.lng);
-            
             coord_transfer_deg(lat_1.lat, lat_res1, lat_res2);
             coord_transfer_deg(lng_1.lng, lng_res1, lng_res2);
             coord_transfer_deg(lat_2.lat, lat_res1_1, lat_res2_2);
@@ -400,8 +399,6 @@ int main(void)
             } else
             printf("\n   lat  %02d° %02d' %05.2f''\n   lng %03d° %02d' %05.2f''\n", 
                     lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
-            return 0;
-            
             calcfldist_bear(lat_1.lat, lng_1.lng, lat_2.lat, lng_2.lng, result_db);
             printf("\nРасстояние = %.f м\nНачальный азимут = %.1f°\nКонечный азимут = %.1f°\nНа %.f м 1° изменения азимута\n", 
                     result_db[0], result_db[1], result_db[2], result_db[3]);
