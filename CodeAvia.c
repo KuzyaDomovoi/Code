@@ -14,6 +14,8 @@ struct geo_lat {
     float lat;
     float sec; int min;
     int deg; 
+    int initial_bearing;
+    int fldist;
 } lat_1;
 
 struct geo_lng {
@@ -94,13 +96,31 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     double anglerad = atan2(y, x);
     double flight_dist = anglerad * R_E;
 
-    float onegrad_dist = flight_dist / fabs(end_bearing - initial_bearing);
+    double onegrad_dist = flight_dist / fabs(end_bearing - initial_bearing);
 
     result[0] = flight_dist;
     result[1] = initial_bearing;
     result[2] = end_bearing;
     result[3] = onegrad_dist;
 }
+
+void calcpoint_coord(double lat1, double lng1, double bearing, double dist, double result_cl2sl2[2]) {
+    lat_1.lat = lat1 * RAD;
+    lng_1.lng = lng1 * RAD;
+
+    double cl1 = cos(lat_1.lat);
+    double sl1 = sin(lat_1.lat);
+
+    double cdelta_lat = dist * cos(bearing * RAD);
+    double sdelta_lng = dist * sin(bearing * RAD);
+
+    double cl2 = cl1 + cdelta_lat;
+    double sl2 = sl1 + sdelta_lng;
+
+    result_cl2sl2[0] = cl2;
+    result_cl2sl2[1] = sl2;
+}
+
 
 struct flrange_flduration {
     double engthrust_val;
@@ -183,13 +203,15 @@ int main(void)
     int lat_res1[2]; int lng_res1[2];
     float lat_res2[1]; float lng_res2[1];
     int lat_res1_1[2]; int lng_res1_1[2];
-    float lat_res2_2[1]; float lng_res2_2[1];    
+    float lat_res2_2[1]; float lng_res2_2[1];
+    double result_cl2sl2[2];  
     
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
-             "3. Преобразование координат\n"
-             "4. Расчеты маневрирования\n"
-             "5. Выход\n");
+             "3. Расчет координат второй точки методом прямой линейно-угловой засечки\n"
+             "4. Преобразование координат\n"
+             "6. Расчеты маневрирования\n"
+             "6. Выход\n");
     printf("   Выбери действие: ");
     if(scanf("%d", &item) != 1) {
         printf("\nError input!\n");
@@ -411,6 +433,76 @@ int main(void)
             return 0;
         }
     case 3:
+        printf("\nРасчет координат второй точки методом прямой линейно-угловой засечки\n");
+        printf("\n   1. Расчет расстояния по координатам WGS-84 формата гг мм сс.сс\n"
+             "   2. Расчет расстояния по координатам WGS-84 формата гг.гггггг\n"
+             "   3. Выход\n");
+        printf("      Выбери действие: ");
+        if(scanf("%d", &item) != 1) {
+            printf("\nError input!\n");
+            return 0;
+        }
+        switch(item) {
+        case 1:
+            printf("\nРасчет координат второй точки по координатам WGS-84 формата гг мм сс.сс\n");
+            printf("\n   Введи координаты гг мм сс.сс широты первой точки: ");
+            res = scanf("%d %d %f", &lat_1.deg, &lat_1.min, &lat_1.sec);
+            if(input_verif_lat(lat_1.deg, lat_1.min, lat_1.sec, res) != 0)
+                return 0;
+            printf("   Введи координаты ггг мм сс.сс долготы первой точки: ");
+            res = scanf("%d %d %f", &lng_1.deg, &lng_1.min, &lng_1.sec);
+            if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, res) != 0)
+                return 0;
+           printf("\n   Введи дальность до второй точки в м: ");
+            if(scanf("%d", &lat_1.fldist) != 1) {
+                printf("\nIncorrect input!\n");
+                return 0;
+            }
+            printf("\n   Введи азимут на вторую точку в °: ");
+            if(scanf("%d", &lat_1.initial_bearing) != 1) {
+                printf("\nIncorrect input!\n");
+                return 0;
+            }
+            printf("\nПервая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
+                    lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
+            coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
+            calcpoint_coord(res1[0], res1[1], lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
+            printf("Вторая точка: lat   %.6f°\n              lng   %.6f°\n", result_cl2sl2[0], result_cl2sl2[1]);
+            return 0;
+        case 2:
+            printf("\nРасчет координат второй точки по координатам WGS-84 формата гг.гггггг\n");
+            printf("\n   Введи координаты гг.гггггг широты первой точки: ");
+            if(scanf("%f", &lat_1.lat) != 1) {
+                printf("\nIncorect Input!\n");
+                return 0;
+            }
+            printf("   Введи координаты ггг.гггггг долготы первой точки: ");
+            if(scanf("%f", &lng_1.lng) != 1) {
+                printf("\nIncorect Input!\n");
+                return 0;
+            }
+           printf("\n   Введи дальность до второй точки в м: ");
+            if(scanf("%d", &lat_1.fldist) != 1) {
+                printf("\nIncorrect input!\n");
+                return 0;
+            }
+            printf("\n   Введи азимут на вторую точку в °: ");
+            if(scanf("%d", &lat_1.initial_bearing) != 1) {
+                printf("\nIncorrect input!\n");
+                return 0;
+            }
+            printf("\nПервая точка:   lat   %.6f°\n   lng   %.6f°\n", lat_1.lat, lng_1.lng);
+            calcpoint_coord(lat_1.lat, lng_1.lng, lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
+            printf("Вторая точка:   lat   %.6f°\n   lng   %.6f°\n", result_cl2sl2[0], result_cl2sl2[1]);
+            return 0;
+        case 3:
+            printf("\nEnd of program\n");
+            return 0;
+        default:
+            printf("\nIncorrect input!\n");
+            return 0;
+        }
+    case 4:
         printf("\n   1. Преобразование координат из гг мм сс.мс в градусы\n"
                  "   2. Преобразование координат из градусов в гг мм сс.мс\n"
                  "   3. Выход\n");
@@ -469,7 +561,7 @@ int main(void)
             printf("\nIncorrect input!\n");
             return 0;
         }
-    case 4:
+    case 5:
         printf("\n   1. Расчет радиуса, времени и длинны дуги разворота\n"
                  "   2. Расчет угла сноса и путевой скорости\n"
                  "   3. Расчет минимального расстояния для возможного погашения опоздания или избытка времени\n"
@@ -589,7 +681,7 @@ int main(void)
             printf("\nIncorrect input!\n");
             return 0;
         }
-    case 5:
+    case 6:
         printf("\nEnd of program\n");
         return 0;
     default:
