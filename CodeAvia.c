@@ -72,17 +72,29 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     double sl2 = sin(lat_2.lat);
 
     double delta_lng = lng_2.lng - lng_1.lng;
+    double delta_lng2 = lng_1.lng - lng_2.lng;
     double cdelta_lng = cos(delta_lng);
     double sdelta_lng = sin(delta_lng);
+    double cdelta_lng2 = cos(delta_lng2);
+    double sdelta_lng2 = sin(delta_lng2);
 
-    double initial_bearing = atan2(sdelta_lng * cl2, cl1 * sl2 - sl1 * cl2 * cdelta_lng) * DEG;
-    double end_bearing = atan2(sdelta_lng * cl1, cl1 * sl2 * cdelta_lng - sl1 * cl2) * DEG;
+    double y = sdelta_lng * cl2;
+    double x = cl1 * sl2 - sl1 * cl2 * cdelta_lng;
+    double angledeg = atan2(y, x) * DEG;
+    double initial_bearing = (int)(angledeg + 360) % 360;
 
-    double y = sqrt(pow(cl2 * sdelta_lng, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta_lng, 2));
-    double x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
+    double y2 = sdelta_lng2 * cl1;
+    double x2 = cl2 * sl1 - sl2 * cl1 * cdelta_lng2;
+    double angledeg2 = atan2(y2, x2) * DEG;
+    double end_bearing = (int)(angledeg2 + 180) % 360;
+
+
+    y = sqrt(pow(cl2 * sdelta_lng, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta_lng, 2));
+    x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
     double anglerad = atan2(y, x);
     double flight_dist = anglerad * R_E;
-    double onegrad_dist = flight_dist / fabs(end_bearing - initial_bearing);
+
+    float onegrad_dist = flight_dist / fabs(end_bearing - initial_bearing);
 
     result[0] = flight_dist;
     result[1] = initial_bearing;
