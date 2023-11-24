@@ -79,7 +79,7 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     double x = cl1 * sl2 - sl1 * cl2 * cdelta_lng;
     double angledeg = atan2(y, x) * DEG;
     double initial_bearing = (int)(angledeg + 360) % 360;
-    double end_bearing = atan(sdelta_lng * cl1 / (cl1 * sl2 * cdelta_lng - sl1 * cl2)) * DEG;
+    double end_bearing = atan2(sdelta_lng * cl1, (cl1 * sl2 * cdelta_lng - sl1 * cl2)) * DEG;
 
     y = sqrt(pow(cl2 * sdelta_lng, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta_lng, 2));
     x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
