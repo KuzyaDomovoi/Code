@@ -15,7 +15,7 @@ struct geo_lat {
     float sec; int min;
     int deg; 
     float initial_bearing;
-    int fldist;
+    float fldist;
 } lat_1;
 
 struct geo_lng {
@@ -462,7 +462,7 @@ int main(void)
             if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, res) != 0)
                 return 0;
            printf("\n   Введи дальность до второй точки в м: ");
-            if(scanf("%d", &lat_1.fldist) != 1) {
+            if(scanf("%f", &lat_1.fldist) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
@@ -493,7 +493,7 @@ int main(void)
                 return 0;
             }
            printf("\n   Введи дальность до второй точки в м: ");
-            if(scanf("%d", &lat_1.fldist) != 1) {
+            if(scanf("%f", &lat_1.fldist) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
