@@ -104,7 +104,7 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     result[3] = onegrad_dist;
 }
 
-void calcpoint_coord(float lat1, float lng1, float bearing, float dist, double result_cl2sl2[2]) {
+void calcpoint_coord(double lat1, double lng1, double bearing, double dist, double result_cl2sl2[2]) {
     double cl1 = cos(lat1 * RAD);
     double sl1 = sin(lat1 * RAD);
     double cbear = cos(bearing * RAD);
