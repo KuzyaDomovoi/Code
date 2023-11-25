@@ -65,7 +65,6 @@ void coord_transfer_wgs84(float deg, float min, float sec, double res1[2], doubl
 void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[4]) {
     double initial_bearing;
     double end_bearing;
-    double angledeg2;
 
     lat_1.lat = lat1 * RAD;
     lng_1.lng = lng1 * RAD;
@@ -93,7 +92,7 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
 
     double y2 = sdelta_lng2 * cl1;
     double x2 = cl2 * sl1 - sl2 * cl1 * cdelta_lng2;
-    angledeg2 = atan2(y2, x2) * DEG;
+    double angledeg2 = atan2(y2, x2) * DEG;
     //double end_bearing = (int)(angledeg2 + 180) % 360;
     if(angledeg2 > 180) {
        end_bearing = angledeg2;
@@ -113,6 +112,8 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
 }
 
 void calcpoint_coord(double lat1, double lng1, double bearing, double dist, double result_cl2sl2[3]) {
+    double end_bearing;
+
     double cl1 = cos(lat1 * RAD);
     double sl1 = sin(lat1 * RAD);
     double cbear = cos(bearing * RAD);
@@ -132,7 +133,10 @@ void calcpoint_coord(double lat1, double lng1, double bearing, double dist, doub
     double y = sdelta_lng2 * cl1;
     double x = cl2 * sl1 - sl2 * cl1 * cdelta_lng2;
     double angledeg = atan2(y, x) * DEG;
-    double end_bearing = (int)(angledeg + 180) % 360;
+    //double end_bearing = (int)(angledeg + 180) % 360;
+    if(angledeg > 180) {
+       end_bearing = angledeg;
+    } else end_bearing = angledeg + 180;
 
     result_cl2sl2[0] = lat2;
     result_cl2sl2[1] = lng2;
