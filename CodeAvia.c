@@ -63,6 +63,10 @@ void coord_transfer_wgs84(float deg, float min, float sec, double res1[2], doubl
 }
 
 void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[4]) {
+    double initial_bearing;
+    double end_bearing;
+    double angledeg2;
+
     lat_1.lat = lat1 * RAD;
     lng_1.lng = lng1 * RAD;
     lat_2.lat = lat2 * RAD;
@@ -83,15 +87,17 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     double y = sdelta_lng * cl2;
     double x = cl1 * sl2 - sl1 * cl2 * cdelta_lng;
     double angledeg = atan2(y, x) * DEG;
-    double initial_bearing;
     if(angledeg > 0) {
        initial_bearing = angledeg;
     } else initial_bearing = angledeg + 360;
 
     double y2 = sdelta_lng2 * cl1;
     double x2 = cl2 * sl1 - sl2 * cl1 * cdelta_lng2;
-    double angledeg2 = atan2(y2, x2) * DEG;
-    double end_bearing = (int)(angledeg2 + 180) % 360;
+    angledeg2 = atan2(y2, x2) * DEG;
+    //double end_bearing = (int)(angledeg2 + 180) % 360;
+    if(angledeg2 > 180) {
+       end_bearing = angledeg2;
+    } else end_bearing = angledeg2 + 180;
 
     y = sqrt(pow(cl2 * sdelta_lng, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta_lng, 2));
     x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
@@ -373,7 +379,7 @@ int main(void)
                     lat_2.deg, lat_2.min, lat_2.sec, lng_2.deg, lng_2.min, lng_2.sec);
             printf("\nПервая точка: lat   %f°\n              lng   %f°\n", res1[0], res1[1]);
             printf("Вторая точка: lat   %f°\n              lng   %f°\n", res2[0], res2[1]);
-            printf("\nРасстояние = %.1f м\nНачальный азимут = %.6f°\nКонечный азимут = %.f°\nНа %.f м 1° изменения азимута\n", 
+            printf("\nРасстояние = %.1f м\nНачальный азимут = %.6f°\nКонечный азимут = %.6f°\nНа %.f м 1° изменения азимута\n", 
                     result_db[0], result_db[1], result_db[2], result_db[3]);
             return 0;
         case 2:
@@ -433,7 +439,7 @@ int main(void)
             printf("\nВторая точка:   lat  %02d° %02d' %05.2f''\n                lng %03d° %02d' %05.2f''\n", 
                     lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
             calcfldist_bear(lat_1.lat, lng_1.lng, lat_2.lat, lng_2.lng, result_db);
-            printf("\nРасстояние = %.1f м\nНачальный азимут = %.6f°\nКонечный азимут = %.f°\nНа %.f м 1° изменения азимута\n", 
+            printf("\nРасстояние = %.1f м\nНачальный азимут = %.6f°\nКонечный азимут = %.6f°\nНа %.f м 1° изменения азимута\n", 
                     result_db[0], result_db[1], result_db[2], result_db[3]);
             return 0;
         case 3:
