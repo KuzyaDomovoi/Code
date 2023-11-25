@@ -6,7 +6,7 @@
 #define M_PI 3.14159265358979323846
 #define G    9.8
 #define K    0.0175
-#define R_E  6372795
+#define R_E  6371008.8
 #define RAD  M_PI / 180.0
 #define DEG  180.0 / M_PI
 
