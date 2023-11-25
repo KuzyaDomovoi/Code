@@ -60,6 +60,8 @@
         "vector": "c",
         "typeinfo": "c",
         "practice79": "c",
-        "functional": "c"
+        "functional": "c",
+        "cmath": "c",
+        "random": "c"
     }
 }
