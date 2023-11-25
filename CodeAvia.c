@@ -486,7 +486,7 @@ int main(void)
             calcpoint_coord(res1[0], res1[1], lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
             coord_transfer_deg(result_cl2sl2[0], lat_res1, lat_res2);
             coord_transfer_deg(result_cl2sl2[1], lng_res1, lng_res2);
-            printf("\nВторая точка: lat   %02d° %02d' %05.2f''\n              lng   %02d° %02d' %05.2f''\n\nКонечный азимут = %.f°\n", 
+            printf("\nВторая точка: lat   %02d° %02d' %05.2f''\n              lng   %02d° %02d' %05.2f''\n\nКонечный азимут = %.6f°\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0], result_cl2sl2[2]);
             return 0;
         case 2:
@@ -513,7 +513,7 @@ int main(void)
             }
             printf("\nПервая точка:   lat   %.6f°\n                lng   %.6f°\n", lat_1.lat, lng_1.lng);
             calcpoint_coord(lat_1.lat, lng_1.lng, lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
-            printf("\nВторая точка:   lat   %.6f°\n                lng   %.6f°\n\nКонечный азимут = %.f°\n", result_cl2sl2[0], result_cl2sl2[1], result_cl2sl2[2]);
+            printf("\nВторая точка:   lat   %.6f°\n                lng   %.6f°\n\nКонечный азимут = %.6f°\n", result_cl2sl2[0], result_cl2sl2[1], result_cl2sl2[2]);
             return 0;
         case 3:
             printf("\nEnd of program\n");
