@@ -14,7 +14,7 @@ struct geo_lat {
     float lat;
     float sec; int min;
     int deg; 
-    int initial_bearing;
+    float initial_bearing;
     int fldist;
 } lat_1;
 
@@ -467,7 +467,7 @@ int main(void)
                 return 0;
             }
             printf("\n   Введи азимут на вторую точку в °: ");
-            if(scanf("%d", &lat_1.initial_bearing) != 1) {
+            if(scanf("%f", &lat_1.initial_bearing) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
@@ -498,7 +498,7 @@ int main(void)
                 return 0;
             }
             printf("\n   Введи азимут на вторую точку в °: ");
-            if(scanf("%d", &lat_1.initial_bearing) != 1) {
+            if(scanf("%f", &lat_1.initial_bearing) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
