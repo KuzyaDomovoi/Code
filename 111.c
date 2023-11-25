@@ -8,10 +8,14 @@
 
 int main(void)
 {
+    double initial_bearing;
+
     double lat1deg = 48.935432;
     double lng1deg = 40.370483;
     double lat2deg = 20.033241;
     double lng2deg = -72.863960;
+    //double lat2deg = 55.852306;
+    //double lng2deg = 49.066025;
 
     double lat1rad = lat1deg * RAD;
     double lng1rad = lng1deg * RAD;
@@ -33,7 +37,9 @@ int main(void)
     double y = sdelta_lng * cl2;
     double x = cl1 * sl2 - sl1 * cl2 * cdelta_lng;
     double angledeg = atan2(y, x) * DEG;
-    double initial_bearing = angledeg + 360;
+    if(angledeg > 0) {
+       initial_bearing = angledeg;
+    } else initial_bearing = angledeg + 360;
 
     y = sqrt(pow(cl2 * sdelta_lng, 2) + pow(cl1 * sl2 - sl1 * cl2 * cdelta_lng, 2));
     x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
@@ -42,7 +48,7 @@ int main(void)
 
     printf("anglerad = %.2f°\n", anglerad);
     printf("anglerdeg = %.2f°\n", angledeg);
-    printf("dist = %.1f м\n", dist);
+    printf("dist = %.f м\n", dist);
     printf("initial_bearing = %.2f°\n", initial_bearing);
 
     return 0;
