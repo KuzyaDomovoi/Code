@@ -104,7 +104,7 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     result[3] = onegrad_dist;
 }
 
-void calcpoint_coord(double lat1, double lng1, double bearing, double dist, double result_cl2sl2[2]) {
+void calcpoint_coord(double lat1, double lng1, double bearing, double dist, double result_cl2sl2[3]) {
     double cl1 = cos(lat1 * RAD);
     double sl1 = sin(lat1 * RAD);
     double cbear = cos(bearing * RAD);
@@ -117,8 +117,18 @@ void calcpoint_coord(double lat1, double lng1, double bearing, double dist, doub
     double sl2 = sin(lat2 * RAD);
     double lng2 = lng1 + atan2(sbear * sdist * cl1, cdist - sl1 * sl2) * DEG;
 
+    double delta_lng2 = lng1 * RAD - lng2 * RAD;
+    double sdelta_lng2 = sin(delta_lng2);
+    double cdelta_lng2 = cos(delta_lng2);
+
+    double y = sdelta_lng2 * cl1;
+    double x = cl2 * sl1 - sl2 * cl1 * cdelta_lng2;
+    double angledeg = atan2(y, x) * DEG;
+    double end_bearing = (int)(angledeg + 180) % 360;
+
     result_cl2sl2[0] = lat2;
     result_cl2sl2[1] = lng2;
+    result_cl2sl2[2] = end_bearing;
 }
 
 struct flrange_flduration {
@@ -203,7 +213,7 @@ int main(void)
     float lat_res2[1]; float lng_res2[1];
     int lat_res1_1[2]; int lng_res1_1[2];
     float lat_res2_2[1]; float lng_res2_2[1];
-    double result_cl2sl2[2];  
+    double result_cl2sl2[3];  
     
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
@@ -468,8 +478,8 @@ int main(void)
             calcpoint_coord(res1[0], res1[1], lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
             coord_transfer_deg(result_cl2sl2[0], lat_res1, lat_res2);
             coord_transfer_deg(result_cl2sl2[1], lng_res1, lng_res2);
-            printf("\nВторая точка:   lat  %02d° %02d' %05.2f''\n                lng %03d° %02d' %05.2f''\n", 
-                    lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
+            printf("\nВторая точка:   lat  %02d° %02d' %05.2f''\n                lng %03d° %02d' %05.2f''\n   Конечный азимут = %.1f\n", 
+                    lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0], result_cl2sl2[2]);
             return 0;
         case 2:
             printf("\nРасчет координат второй точки по координатам WGS-84 формата гг.гггггг\n");
@@ -495,7 +505,7 @@ int main(void)
             }
             printf("\nПервая точка:   lat   %.6f°\n                lng   %.6f°\n", lat_1.lat, lng_1.lng);
             calcpoint_coord(lat_1.lat, lng_1.lng, lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
-            printf("Вторая точка:   lat   %.6f°\n                lng   %.6f°\n", result_cl2sl2[0], result_cl2sl2[1]);
+            printf("Вторая точка:   lat   %.6f°\n                lng   %.6f°\n   Конечный азимут = %.1f\n", result_cl2sl2[0], result_cl2sl2[1], result_cl2sl2[2]);
             return 0;
         case 3:
             printf("\nEnd of program\n");
