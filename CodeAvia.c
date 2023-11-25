@@ -493,9 +493,9 @@ int main(void)
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\nПервая точка:   lat   %.6f°\n                 lng   %.6f°\n", lat_1.lat, lng_1.lng);
+            printf("\nПервая точка:   lat   %.6f°\n                lng   %.6f°\n", lat_1.lat, lng_1.lng);
             calcpoint_coord(lat_1.lat, lng_1.lng, lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
-            printf("Вторая точка:   lat   %.6f°\n                 lng   %.6f°\n", result_cl2sl2[0], result_cl2sl2[1]);
+            printf("Вторая точка:   lat   %.6f°\n                lng   %.6f°\n", result_cl2sl2[0], result_cl2sl2[1]);
             return 0;
         case 3:
             printf("\nEnd of program\n");
