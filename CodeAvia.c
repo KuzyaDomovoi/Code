@@ -104,21 +104,21 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     result[3] = onegrad_dist;
 }
 
-void calcpoint_coord(double lat1, double lng1, double bearing, double dist, double result_cl2sl2[2]) {
-    lat_1.lat = lat1 * RAD;
-    lng_1.lng = lng1 * RAD;
+void calcpoint_coord(float lat1, float lng1, float bearing, float dist, double result_cl2sl2[2]) {
+    double cl1 = cos(lat1 * RAD);
+    double sl1 = sin(lat1 * RAD);
+    double cbear = cos(bearing * RAD);
+    double sbear = sin(bearing * RAD);
+    double cdist = cos(dist / R_E);
+    double sdist = sin(dist / R_E);
 
-    double cl1 = cos(lat_1.lat);
-    double sl1 = sin(lat_1.lat);
+    double lat2 = asin(sl1 * cdist + cl1 * sdist * cbear) * DEG;
+    double cl2 = cos(lat2 * RAD);
+    double sl2 = sin(lat2 * RAD);
+    double lng2 = lng1 + (((int)atan2(sbear * sdist * cl1, cdist - sl1 * sl2) + 540) % 360 - 180) * DEG;
 
-    double cdelta_lat = dist * cos(bearing * RAD);
-    double sdelta_lng = dist * sin(bearing * RAD);
-
-    double cl2 = acos(cl1 + cdelta_lat) * DEG;
-    double sl2 = asin(sl1 + sdelta_lng) * DEG;
-
-    result_cl2sl2[0] = cl2;
-    result_cl2sl2[1] = sl2;
+    esult_cl2sl2[0] = lat2;
+    esult_cl2sl2[1] = lng2;
 }
 
 

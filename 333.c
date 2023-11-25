@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 #define M_PI 3.14159265358979323846
+#define R_E  6372795
 #define RAD  M_PI / 180.0
 #define DEG  180.0 / M_PI
 
@@ -20,27 +21,29 @@ struct geo_lng {
     int deg;
 } lng_1;
 
-void calcpoint_coord(float lat1, float lng1, float bearing, float dist, double result_cl2sl2[2]) {
-    lat_1.lat = lat1 * RAD;
-    lng_1.lng = lng1 * RAD;
+struct geo_lat lat_2;
+struct geo_lng lng_2;
 
-    double cl1 = cos(lat_1.lat);
-    double sl1 = sin(lat_1.lat);
+void calcpoint_coord(float lat1, float lng1, float bearing, float dist, double result[2]) {
+    double cl1 = cos(lat1 * RAD);
+    double sl1 = sin(lat1 * RAD);
+    double cbear = cos(bearing * RAD);
+    double sbear = sin(bearing * RAD);
+    double cdist = cos(dist / R_E);
+    double sdist = sin(dist / R_E);
 
-    double cdelta_lat = dist * cos(bearing * RAD) / 111134.861111;
-    double sdelta_lng = dist * sin(bearing * RAD) / 111321.377778;
+    double lat2 = asin(sl1 * cdist + cl1 * sdist * cbear) * DEG;
+    double cl2 = cos(lat2 * RAD);
+    double sl2 = sin(lat2 * RAD);
+    double lng2 = lng1 + (((int)atan2(sbear * sdist * cl1, cdist - sl1 * sl2) + 540) % 360 - 180) * DEG;
 
-    double cl2 = cl1 + cdelta_lat;
-    double sl2 = sl1 + sdelta_lng;
-
-    result_cl2sl2[0] = cl2 * DEG;
-    result_cl2sl2[1] = sl2 * DEG;
+    result[0] = lat2;
+    result[1] = lng2;
 }
 
 int main(void)
 {
-            int res = 0;
-            double result_cl2sl2[2];   
+            double result[2];
 
             printf("\nРасчет координат второй точки по координатам WGS-84 формата гг.гггггг\n");
             printf("\n   Введи координаты гг.гггггг широты первой точки: ");
@@ -63,9 +66,8 @@ int main(void)
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\nПервая точка:   lat   %.6f°\n                lng   %.6f°\n", lat_1.lat, lng_1.lng);
-            calcpoint_coord(lat_1.lat, lng_1.lng, lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
-            printf("Вторая точка:   lat   %.6f°\n                lng   %.6f°\n", result_cl2sl2[0], result_cl2sl2[1]);
-
+            calcpoint_coord(lat_1.lat, lng_1.lng, lat_1.initial_bearing, lat_1.fldist, result);
+            printf("\nВторая точка:   lat   %.6f°\n                lng   %.6f°\n", result[0], result[1]);
+    
     return 0;
 }
