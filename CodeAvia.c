@@ -11,7 +11,7 @@
 #define DEG  180.0 / M_PI
 
 struct geo_lat {
-    float lat;
+    double lat;
     float sec; int min;
     int deg; 
     float initial_bearing;
@@ -19,7 +19,7 @@ struct geo_lat {
 } lat_1;
 
 struct geo_lng {
-    float lng;
+    double lng;
     float sec; int min;
     int deg;
 } lng_1;
@@ -379,22 +379,22 @@ int main(void)
         case 2:
             printf("\nРасчет расстояния по координатам WGS-84 формата гг.гггггг\n");
             printf("\n   Введи координаты гг.гггггг широты первой точки: ");
-            if(scanf("%f", &lat_1.lat) != 1) {
+            if(scanf("%lf", &lat_1.lat) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
             printf("   Введи координаты гг.гггггг долготы первой точки: ");
-            if(scanf("%f", &lng_1.lng) != 1) {
+            if(scanf("%lf", &lng_1.lng) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
             printf("\n   Введи координаты гг.гггггг широты второй точки: ");
-            if(scanf("%f", &lat_2.lat) != 1) {
+            if(scanf("%lf", &lat_2.lat) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
             printf("   Введи координаты гг.гггггг долготы второй точки: ");
-            if(scanf("%f", &lng_2.lng) != 1) {
+            if(scanf("%lf", &lng_2.lng) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
@@ -486,12 +486,12 @@ int main(void)
         case 2:
             printf("\nРасчет координат второй точки по координатам WGS-84 формата гг.гггггг\n");
             printf("\n   Введи координаты гг.гггггг широты первой точки: ");
-            if(scanf("%f", &lat_1.lat) != 1) {
+            if(scanf("%lf", &lat_1.lat) != 1) {
                 printf("\nIncorect Input!\n");
                 return 0;
             }
             printf("   Введи координаты ггг.гггггг долготы первой точки: ");
-            if(scanf("%f", &lng_1.lng) != 1) {
+            if(scanf("%lf", &lng_1.lng) != 1) {
                 printf("\nIncorect Input!\n");
                 return 0;
             }
@@ -542,12 +542,12 @@ int main(void)
         case 2:
             printf("\nПреобразование координат из градусов в гг мм сс.мс\n");
             printf("\n   Введи координаты широты: ");
-            if(scanf("%f", &lat_1.lat) != 1) {
+            if(scanf("%lf", &lat_1.lat) != 1) {
                 printf("incorrect input!\n");
                 return 0;
             }    
             printf("   Введи координаты долготы: ");
-            if(scanf("%f", &lng_1.lng) != 1) {
+            if(scanf("%lf", &lng_1.lng) != 1) {
                 printf("incorrect input!\n");
                 return 0;
             } 

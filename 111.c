@@ -48,8 +48,8 @@ int main(void)
 
     printf("anglerad = %.2f°\n", anglerad);
     printf("anglerdeg = %.2f°\n", angledeg);
-    printf("dist = %.f м\n", dist);
-    printf("initial_bearing = %.2f°\n", initial_bearing);
+    printf("dist = %.1f м\n", dist);
+    printf("initial_bearing = %.6f°\n", initial_bearing);
 
     return 0;
 }
