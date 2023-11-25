@@ -121,7 +121,6 @@ void calcpoint_coord(float lat1, float lng1, float bearing, float dist, double r
     result_cl2sl2[1] = lng2;
 }
 
-
 struct flrange_flduration {
     double engthrust_val;
     int airbornspeed; int average_climspeed; int climtime; int cruisspeed; int average_climspeed_1000; 
