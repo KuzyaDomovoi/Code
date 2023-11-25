@@ -35,7 +35,7 @@ void calcpoint_coord(float lat1, float lng1, float bearing, float dist, double r
     double lat2 = asin(sl1 * cdist + cl1 * sdist * cbear) * DEG;
     double cl2 = cos(lat2 * RAD);
     double sl2 = sin(lat2 * RAD);
-    double lng2 = lng1 + (((int)atan2(sbear * sdist * cl1, cdist - sl1 * sl2) + 540) % 360 - 180) * DEG;
+    double lng2 = lng1 + atan2(sbear * sdist * cl1, cdist - sl1 * sl2) * DEG;
 
     result[0] = lat2;
     result[1] = lng2;
