@@ -31,13 +31,19 @@ int current_time(int flduration_h, int flduration_m, int flduration_s)
 	month = local->tm_mon + 1;
 	year = local->tm_year + 1900;
 
-	printf("Current time: %02d:%02d:%02d am\n", hours, minutes, seconds);
+    printf("Date: %02d/%02d/%d\n", day, month, year);
+	printf("Current time: %02d:%02d:%02d\n", hours, minutes, seconds);
+    if(flduration_seconds >= 60) {
+        printf("Estimated arrival time: %02d:%02d:%02d\n", flduration_hours, flduration_minutes + 1 , flduration_seconds - 60);
+    }
+    if(flduration_minutes >= 60) {
+        printf("Estimated arrival time: %02d:%02d:%02d\n", flduration_hours + 1, flduration_minutes - 60 , flduration_seconds);
+    }
     if(flduration_hours >= 24) {
         printf("Estimated arrival time: %02d:%02d:%02d\n", flduration_hours - 24, flduration_minutes, flduration_seconds);
 	    printf("Date: %02d/%02d/%d\n", day + 1, month, year);
     } else
         printf("Estimated arrival time: %02d:%02d:%02d\n", flduration_hours, flduration_minutes, flduration_seconds);
-        printf("Date: %02d/%02d/%d\n", day, month, year);
 
 	return 0;
 }
