@@ -652,7 +652,7 @@ int main(void)
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
             maneuver.flight_track = lat_1.fldist;
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
-            printf("Ожидаемое время пролета ППМ: %.f ч %.f мин %.f сек\n", result_flduration2[0], result_flduration2[1], result_flduration2[2]);
+            printf("Ожидаемое время пролета ППМ через: %.f ч %.f мин %.f сек\n", result_flduration2[0], result_flduration2[1], result_flduration2[2]);
             return 0;
         case 3:
             printf("\nEnd of program\n");
