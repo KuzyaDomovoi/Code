@@ -663,7 +663,7 @@ int main(void)
                 return 0;
             }
             calc_turn(maneuver.aircr_speed, maneuver.turn_angle, maneuver.turn_roll, result_turn);
-            printf("\n   радиус разворота = %.1f м\n   время разворота = %.f мин %04.fd сек\n   угловая скорость р-та = %.1f °/сек\n   ny = %.1f ед\n   длина дуги УР = %.1f м\n", 
+            printf("\n   радиус разворота = %.1f м\n   время разворота = %.f мин %.f сек\n   угловая скорость р-та = %.1f °/сек\n   ny = %.1f ед\n   длина дуги УР = %.1f м\n", 
                     result_turn[0], result_turn[1], result_turn[2], result_turn[3], result_turn[4], result_turn[5]);
             return 0;
         case 2:
