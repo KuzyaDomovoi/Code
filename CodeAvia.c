@@ -260,6 +260,39 @@ bool input_verif_lng(int a, int b, float c, int res) {
     } else return false;
 }
 
+double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle, double wind_dir) 
+{
+    if(maneuver.wind_dir == maneuver.magnetpath_angle) {
+        maneuver.drift_angle = 0;
+        maneuver.ground_speed = maneuver.aircr_speed + maneuver.wind_speed;
+        printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
+        return 0;
+    }
+    if(maneuver.wind_dir < maneuver.magnetpath_angle) {
+        maneuver.wind_angle = 360 + maneuver.wind_dir - maneuver.magnetpath_angle;
+    } else
+        maneuver.wind_angle = maneuver.wind_dir - maneuver.magnetpath_angle;
+    if(maneuver.wind_angle == 180 || maneuver.wind_angle == 0 || maneuver.wind_angle == 360) {
+        maneuver.drift_angle = 0;
+        maneuver.ground_speed = maneuver.aircr_speed - maneuver.wind_speed;
+        printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
+        return 0;
+    }
+    if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
+        maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+    if(range(0, maneuver.magnetpath_angle, 180) && range(181, maneuver.wind_dir, 360))
+        maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+    if(range(181, maneuver.magnetpath_angle, 360) && range(0, maneuver.wind_dir, 180))
+        maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+    if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
+    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+    maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
+    maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
+    maneuver.heading_corr = maneuver.magnetpath_angle - maneuver.drift_angle;
+    printf("\n   угол сноса = %d°\n   курс с учетом УС = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
+    return 0;
+}
+
 int main(void)
 {
     int item;
@@ -681,35 +714,7 @@ int main(void)
                 printf("\nError! Angle can't be less 0° or more than 360°\n");
                 return 0;
             }
-            if(maneuver.wind_dir == maneuver.magnetpath_angle) {
-                maneuver.drift_angle = 0;
-                maneuver.ground_speed = maneuver.aircr_speed + maneuver.wind_speed;
-                printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
-                return 0;
-            }
-            if(maneuver.wind_dir < maneuver.magnetpath_angle) {
-                maneuver.wind_angle = 360 + maneuver.wind_dir - maneuver.magnetpath_angle;
-            } else
-                maneuver.wind_angle = maneuver.wind_dir - maneuver.magnetpath_angle;
-            if(maneuver.wind_angle == 180 || maneuver.wind_angle == 0 || maneuver.wind_angle == 360) {
-                maneuver.drift_angle = 0;
-                maneuver.ground_speed = maneuver.aircr_speed - maneuver.wind_speed;
-                printf("\n   угол сноса = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
-                return 0;
-            }
-            if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
-                maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
-            if(range(0, maneuver.magnetpath_angle, 180) && range(181, maneuver.wind_dir, 360))
-                maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
-            if(range(181, maneuver.magnetpath_angle, 360) && range(0, maneuver.wind_dir, 180))
-                maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
-            if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
-            maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
-            maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
-            maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
-            maneuver.heading_corr = maneuver.magnetpath_angle - maneuver.drift_angle;
-            printf("\n   угол сноса = %d°\n   курс с учетом УС = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
-            return 0;
+            calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
         case 3:
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
             printf("\n   Введи через пробел приб скорость полета в км/ч, макс приб скорость в км/ч, " 
