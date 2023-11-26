@@ -167,7 +167,7 @@ struct fltime_flangle_flspeed {
 void nav_flcalc(int desctime, int full_fusupp,  int fucons_TO, int fucons_desc, int fucons_final_land_taxi, 
                          int guarfusupp_unusfures, int cruisspeed, double engthrust_val, int fucons_preTO, 
                          double spec_fuconsclim, int average_climspeed, int airbornspeed, int descspeed,
-                         int result_flrange[2], int result_flduration[3]) 
+                         int result_flrange[2], int result_flduration[2]) 
 {
     flight.midaverage_climspeed_1000 = 0.5 * (airbornspeed + average_climspeed);
     flight.midaverage_climspeed = average_climspeed;
@@ -188,9 +188,8 @@ void nav_flcalc(int desctime, int full_fusupp,  int fucons_TO, int fucons_desc, 
 
     result_flrange[0] = flight.fucons_cruise;
     result_flrange[1] = flight.flrange;
-    result_flduration[0] = flight.flduration;
-    result_flduration[1] = flight.flduration_h;
-    result_flduration[2] = flight.flduration_m;
+    result_flduration[0] = flight.flduration_h;
+    result_flduration[1] = flight.flduration_m;
 }
 
 bool range(int x, int a, int y) {
@@ -246,7 +245,7 @@ bool input_verif_lng(int a, int b, float c, int res) {
 int main(void)
 {
     int item;
-    int result_flrange[2], result_flduration[3];
+    int result_flrange[2], result_flduration[2];
     int res = 0;
     double lat1, lat2, lng1, lng2;
     double res1[2], res2[2];
@@ -361,7 +360,7 @@ int main(void)
                   flight.spec_fuconsclim, flight.average_climspeed, flight.airbornspeed, result_flrange, result_flduration);
         printf("\nРасполагаемый запас топлива = %d кг\n", result_flrange[0]);
         printf("Дальность полета = %d км\nПродолжительность полета = %d ч %02d мин\n", 
-                result_flduration[0], result_flduration[1], result_flduration[2]);
+                result_flrange[1], result_flduration[0], result_flduration[1]);
         return 0;
     case 2:
         printf("\nРасчет расстояния между двумя точками по их координатам\n");
