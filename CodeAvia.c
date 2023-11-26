@@ -11,7 +11,7 @@
 #define RAD  M_PI / 180.0
 #define DEG  180.0 / M_PI
 
-int current_time(int flduration_h, int flduration_m, int flduration_s)
+int current_time(int fl_hours , int fl_minutes, int fl_seconds)
 {
 	int hours, minutes, seconds, day, month, year;
 
@@ -23,9 +23,14 @@ int current_time(int flduration_h, int flduration_m, int flduration_s)
 	minutes = local->tm_min;
 	seconds = local->tm_sec;
 
-    int flduration_hours = local->tm_hour + flduration_h;
-	int flduration_minutes = local->tm_min + flduration_m;
-	int flduration_seconds = local->tm_sec + flduration_s;
+    int c_time = hours * 3600 + minutes * 60 * seconds;
+    int fl_time = fl_hours * 3600 + fl_minutes * 60 + fl_seconds;
+    int res_time = c_time + fl_time;
+    int res_hours = res_time / 3600;
+    int res_minutes = res_time / 60 % 60;
+    int res_seconds = res_time % 60;
+
+
 
 	day = local->tm_mday;
 	month = local->tm_mon + 1;
@@ -33,17 +38,11 @@ int current_time(int flduration_h, int flduration_m, int flduration_s)
 
     printf("Date: %02d/%02d/%d\n", day, month, year);
 	printf("Current time: %02d:%02d:%02d\n", hours, minutes, seconds);
-    if(flduration_seconds >= 60) {
-        printf("Estimated arrival time: %02d:%02d:%02d\n", flduration_hours, flduration_minutes + 1 , flduration_seconds - 60);
-    }
-    if(flduration_minutes >= 60) {
-        printf("Estimated arrival time: %02d:%02d:%02d\n", flduration_hours + 1, flduration_minutes - 60 , flduration_seconds);
-    }
-    if(flduration_hours >= 24) {
-        printf("Estimated arrival time: %02d:%02d:%02d\n", flduration_hours - 24, flduration_minutes, flduration_seconds);
+    if(res_hours > 23) {
+        printf("Estimated arrival time: %02d:%02d:%02d\n", res_hours - 24, res_minutes, res_seconds);
 	    printf("Date: %02d/%02d/%d\n", day + 1, month, year);
     } else
-        printf("Estimated arrival time: %02d:%02d:%02d\n", flduration_hours, flduration_minutes, flduration_seconds);
+        printf("Estimated arrival time: %02d:%02d:%02d\n", res_hours, res_minutes, res_seconds);
 
 	return 0;
 }
