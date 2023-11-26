@@ -93,7 +93,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nSin(%f°) = %lf° = %lf rad\n", a, sin(a * RAD), sin(a));
+                printf("\nSin(%lf°) = %lf° = %lf rad\n", a, sin(a * RAD), sin(a));
                 return 0;
             case 2:
                 printf("\nEnter a value for COS: ");
@@ -101,7 +101,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nCos(%f°) = %lf° = %lf rad\n", a, cos(a * RAD), cos(a));
+                printf("\nCos(%lf°) = %lf° = %lf rad\n", a, cos(a * RAD), cos(a));
                 return 0;
             case 3:
                 printf("\nEnter a value for TAN: ");
@@ -125,7 +125,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nASin(%f rad) = %lf rad\n", a, asin(a));
+                printf("\nASin(%lf rad) = %lf rad\n", a, asin(a));
                 return 0;
             case 6:
                 printf("\nEnter a value for ACOS in rad: ");
@@ -133,7 +133,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nACos(%f rad) = %lf rad\n", a, acos(a));
+                printf("\nACos(%lf rad) = %lf rad\n", a, acos(a));
                 return 0;
             case 7:
                 printf("\nEnter a value for ATAN in rad: ");
@@ -141,7 +141,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nATan(%f rad) = %lf rad\n", a, atan(a));
+                printf("\nATan(%lf rad) = %lf rad\n", a, atan(a));
                 return 0;       
             case 8:
                 printf("\nEnter a value for SQRT: ");
@@ -149,7 +149,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nSqrt%f = %lf\n", a, sqrt(a));
+                printf("\nSqrt%lf = %lf\n", a, sqrt(a));
                 return 0;
             case 9:
                 printf("\nEnter a number and the value to raise it to POW separated by space: ");
@@ -157,7 +157,7 @@ int main(void)
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\n%fpow %f = %lf\n", a, b, pow(a, b));
+                printf("\n%fpow %lf = %lf\n", a, b, pow(a, b));
                 return 0;
             case 0:
                 printf("\nEnd of program.\n");
