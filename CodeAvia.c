@@ -320,12 +320,12 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  удельный расход топл в наборе, кг: ");
+        printf("  удельный расход топл в наборе: ");
         if(scanf("%lf", &flight.spec_fuconsclim) != 1) {
             printf("\nError_input!\n");
             return 0;
         }
-        printf("  удельный расход топл по мрш в гп, кг: ");
+        printf("  удельный расход топл по мрш в гп: ");
         if(scanf("%lf", &flight.spec_fuconscruise) != 1) {
             printf("\nError_input!\n");
             return 0;
