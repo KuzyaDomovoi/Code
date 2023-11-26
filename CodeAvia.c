@@ -151,7 +151,7 @@ struct flrange_flduration {
     double midaverage_climspeed; double flrang_clim; double fucons_clim; double fucons_cruise; double midaverage_climspeed_1000;
     double req_engthrustcruise; double lifttodrag_ratio; double hourfucons; double spec_fuconsclim;
     double spec_fuconscruise; double rangcruise; double timecruise; double flrang_clim_1000;
-    double flrange; int flduration; int flduration_h; int flduration_m;  
+    double flrange; int flduration; int flduration_h; int flduration_m; int flduration_s;
     } flight;
 
 struct fltime_flangle_flspeed {
@@ -168,20 +168,20 @@ void nav_flcalc(int desctime, int full_fusupp,  int fucons_TO, int fucons_desc, 
                          int guarfusupp_unusfures, int cruisspeed, double engthrust_val, int fucons_preTO, 
                          double spec_fuconsclim, int average_climspeed, int airbornspeed, int descspeed,
                          int result_flrange[2], int result_flduration[2]) {
-    flight.midaverage_climspeed_1000 = 0.5 * (airbornspeed + average_climspeed);
-    flight.midaverage_climspeed = average_climspeed;
+    flight.midaverage_climspeed_1000 = 0.5 * (flight.airbornspeed + flight.average_climspeed);
+    flight.midaverage_climspeed = flight.average_climspeed;
     flight.flrang_clim_1000 = (flight.midaverage_climspeed_1000 * 3.6) * ((flight.climtime_1000 / 3600) / 1000);    
     flight.climtime_1000 = flight.flrang_clim_1000 / flight.midaverage_climspeed_1000;
-    flight.flrang_clim = flight.flrang_clim_1000 + (average_climspeed * 3.6) * (((flight.climtime - flight.climtime_1000) / 3600) / 1000);
-    flight.climtime = flight.flrang_clim / average_climspeed;
-    flight.fucons_clim = (spec_fuconsclim * engthrust_val) * (flight.climtime / 3600 ); 
-    flight.fucons_cruise = full_fusupp - fucons_preTO - flight.fucons_TO - flight.fucons_clim - fucons_desc - fucons_final_land_taxi - guarfusupp_unusfures;
+    flight.flrang_clim = flight.flrang_clim_1000 + (flight.average_climspeed * 3.6) * (((flight.climtime - flight.climtime_1000) / 3600) / 1000);
+    flight.climtime = flight.flrang_clim / flight.average_climspeed;
+    flight.fucons_clim = (flight.spec_fuconsclim * flight.engthrust_val) * (flight.climtime / 3600 ); 
+    flight.fucons_cruise = flight.full_fusupp - fucons_preTO - flight.fucons_TO - flight.fucons_clim - flight.fucons_desc - flight.fucons_final_land_taxi - flight.guarfusupp_unusfures;
     flight.req_engthrustcruise = (flight.load_weight * G) / flight.lifttodrag_ratio;
-    flight.hourfucons = (flight.spec_fuconscruise * flight.req_engthrustcruise) / cruisspeed;
+    flight.hourfucons = (flight.spec_fuconscruise * flight.req_engthrustcruise) / flight.cruisspeed;
     flight.rangcruise = flight.fucons_cruise / flight.hourfucons;
-    flight.timecruise = flight.rangcruise / cruisspeed;
-    flight.flrange = flight.flrang_clim_1000 + (average_climspeed * (flight.climtime - flight.climtime_1000) / 3600) + (cruisspeed * flight.timecruise) + (descspeed * desctime / 3600);
-    flight.flduration = flight.climtime + (flight.fucons_cruise / 1000 / flight.hourfucons * 3600) + desctime;
+    flight.timecruise = flight.rangcruise / flight.cruisspeed;
+    flight.flrange = flight.flrang_clim_1000 + (flight.average_climspeed * (flight.climtime - flight.climtime_1000) / 3600) + (flight.cruisspeed * flight.timecruise) + (flight.descspeed * flight.desctime / 3600);
+    flight.flduration = flight.climtime + (flight.fucons_cruise / 1000 / flight.hourfucons * 3600) + flight.desctime;
     flight.flduration_h = (int)flight.flduration / 3600;
     flight.flduration_m = (int)flight.flduration % 3600 / 60;
 
@@ -308,10 +308,22 @@ double calc_trackcorrection(double lateral_line, double flight_track, double flc
     return 0;
 }
 
+double calc_flduration(double ground_speed, double flight_dist, double result_flduration2[3]) {
+    flight.flduration = flight_dist / maneuver.ground_speed * 3.6;
+    flight.flduration_h = (int)flight.flduration / 3600;
+    flight.flduration_m = (int)flight.flduration % 3600 / 60;
+    flight.flduration_s = (int)flight.flduration % 3600;
+
+    result_flduration2[0] = flight.flduration_h;
+    result_flduration2[1] = flight.flduration_m;
+    result_flduration2[2] = flight.flduration_s;
+}
+
 int main(void)
 {
     int item;
     int result_flrange[2], result_flduration[2];
+    double result_flduration2[3];
     double result_turn[6];
     int res = 0;
     double lat1, lat2, lng1, lng2;
@@ -592,6 +604,9 @@ int main(void)
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0], result_cl2sl2[2]);
             maneuver.magnetpath_angle = lat_1.initial_bearing;
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
+            maneuver.flight_track = lat_1.fldist;
+            calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
+            printf("Ожидаемое время пролета ППМ: %.f ч %.f мин %.f сек\n", result_flduration2[0], result_flduration2[1], result_flduration2[2]);
             return 0;
         case 2:
             printf("\nРасчет координат второй точки по координатам WGS-84 формата гг.гггггг\n");
