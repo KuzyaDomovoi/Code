@@ -715,6 +715,7 @@ int main(void)
                 return 0;
             }
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
+            return 0;
         case 3:
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
             printf("\n   Введи через пробел приб скорость полета в км/ч, макс приб скорость в км/ч, " 
