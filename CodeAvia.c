@@ -11,30 +11,33 @@
 #define RAD  M_PI / 180.0
 #define DEG  180.0 / M_PI
 
-int current_time(void)
+int current_time(int flduration_h, int flduration_m, int flduration_s)
 {
 	int hours, minutes, seconds, day, month, year;
 
 	time_t now;
 	time(&now);
-	printf("Today is %s", ctime(&now));
 	struct tm *local = localtime(&now);
 
 	hours = local->tm_hour;
 	minutes = local->tm_min;
 	seconds = local->tm_sec;
 
+    int flduration_hours = local->tm_hour + flduration_h;
+	int flduration_minutes = local->tm_min + flduration_m;
+	int flduration_seconds = local->tm_sec + flduration_s;
+
 	day = local->tm_mday;
 	month = local->tm_mon + 1;
 	year = local->tm_year + 1900;
 
-	if (hours < 12) {	// before midday
-		printf("Time is %02d:%02d:%02d am\n", hours, minutes, seconds);
-	}
-	else {	// after midday
-		printf("Time is %02d:%02d:%02d pm\n", hours - 12, minutes, seconds);
-	}
-	printf("Date is : %02d/%02d/%d\n", day, month, year);
+	printf("Current time: %02d:%02d:%02d am\n", hours, minutes, seconds);
+    if(flduration_hours >= 24) {
+        printf("Estimated arrival time: %02d:%02d:%02d\n", flduration_hours - 24, flduration_minutes, flduration_seconds);
+	    printf("Date: %02d/%02d/%d\n", day + 1, month, year);
+    } else
+        printf("Estimated arrival time: %02d:%02d:%02d\n", flduration_hours, flduration_minutes, flduration_seconds);
+        printf("Date: %02d/%02d/%d\n", day, month, year);
 
 	return 0;
 }
@@ -193,7 +196,7 @@ struct fltime_flangle_flspeed {
     double lateral_line; double flcurr_range; double flrem_range; double flight_track; double heading_corr;
     double turn_rad; double t; double mindist_checkpoint; double range_turnlead; double ny;
     double course_correction_curr; double course_correction_rem; double course_correction;
-    double turn_speed;
+    double turn_speed; int hours; int minutes; int seconds;
 } maneuver;
 
 void nav_flcalc(int desctime, int full_fusupp,  int fucons_TO, int fucons_desc, int fucons_final_land_taxi, 
@@ -640,7 +643,7 @@ int main(void)
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
             printf("ожидаемое время пролета ППМ через: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
                     result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
-            current_time();
+            current_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
             return 0;
         case 2:
             printf("\nРасчет координат второй точки по координатам WGS-84 формата гг.гггггг\n");
@@ -688,7 +691,7 @@ int main(void)
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
             printf("ожидаемое время пролета ППМ через: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
                     result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
-            current_time();
+            current_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
             return 0;
         case 3:
             printf("\nEnd of program\n");
