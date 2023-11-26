@@ -167,8 +167,7 @@ struct fltime_flangle_flspeed {
 void nav_flcalc(int desctime, int full_fusupp,  int fucons_TO, int fucons_desc, int fucons_final_land_taxi, 
                          int guarfusupp_unusfures, int cruisspeed, double engthrust_val, int fucons_preTO, 
                          double spec_fuconsclim, int average_climspeed, int airbornspeed, int descspeed,
-                         int result_flrange[2], int result_flduration[2]) 
-{
+                         int result_flrange[2], int result_flduration[2]) {
     flight.midaverage_climspeed_1000 = 0.5 * (airbornspeed + average_climspeed);
     flight.midaverage_climspeed = average_climspeed;
     flight.flrang_clim_1000 = (flight.midaverage_climspeed_1000 * 3.6) * ((flight.climtime_1000 / 3600) / 1000);    
@@ -192,8 +191,7 @@ void nav_flcalc(int desctime, int full_fusupp,  int fucons_TO, int fucons_desc, 
     result_flduration[1] = flight.flduration_m;
 }
 
-void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double result_turn[6]) 
-{
+void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double result_turn[6]) {
     maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
     maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
     maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
@@ -260,8 +258,7 @@ bool input_verif_lng(int a, int b, float c, int res) {
     } else return false;
 }
 
-double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle, double wind_dir) 
-{
+double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle, double wind_dir) {
     if(maneuver.wind_dir == maneuver.magnetpath_angle) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed + maneuver.wind_speed;
@@ -290,6 +287,24 @@ double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle
     maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
     maneuver.heading_corr = maneuver.magnetpath_angle - maneuver.drift_angle;
     printf("\n   угол сноса = %d°\n   курс с учетом УС = %d°\n   путевая скорость = %d км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
+    return 0;
+}
+
+double calc_timecorrection(double aircr_speed, double max_aircr_speed, double time_range) {
+    maneuver.speed_range = maneuver.max_aircr_speed - maneuver.aircr_speed;
+    maneuver.mindist_checkpoint = ((double)maneuver.aircr_speed * maneuver.max_aircr_speed / maneuver.speed_range * maneuver.time_range / 3600);
+    printf("\n   при избытке скорости = %d км/ч\n", maneuver.speed_range);
+    printf("   минимальное расстояние до РТ = %.1f км\n", maneuver.mindist_checkpoint);
+    return 0;
+}
+
+double calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range) {            
+    maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
+    maneuver.course_correction_curr = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * DEG);
+    maneuver.course_correction_rem = (atan((double)maneuver.lateral_line / maneuver.flrem_range) * DEG);
+    maneuver.course_correction = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * DEG) + (atan((double)maneuver.lateral_line / maneuver.flrem_range) * DEG);
+    printf("   при ЛБУ = %d км:\n      боковое уклонение = УС = %.f°\n      дополнительная ПК = %.f°\n      полная ПК = %.f°\n", 
+            maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
     return 0;
 }
 
@@ -728,10 +743,7 @@ int main(void)
                 printf("\nError_input! The max_aircr_speed can't be less than aircr_speed!\n");
                 return 0; 
             }   
-            maneuver.speed_range = maneuver.max_aircr_speed - maneuver.aircr_speed;
-            maneuver.mindist_checkpoint = ((double)maneuver.aircr_speed * maneuver.max_aircr_speed / maneuver.speed_range * maneuver.time_range / 3600);
-            printf("\n   при избытке скорости = %d км/ч\n", maneuver.speed_range);
-            printf("   минимальное расстояние до РТ = %.1f км\n", maneuver.mindist_checkpoint);
+            calc_timecorrection(maneuver.aircr_speed, maneuver.max_aircr_speed, maneuver.time_range);
             return 0;
         case 4:
             printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
@@ -740,12 +752,7 @@ int main(void)
                 printf("\nError_input!\n");
                 return 0;
             }
-            maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
-            maneuver.course_correction_curr = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * DEG);
-            maneuver.course_correction_rem = (atan((double)maneuver.lateral_line / maneuver.flrem_range) * DEG);
-            maneuver.course_correction = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * DEG) + (atan((double)maneuver.lateral_line / maneuver.flrem_range) * DEG);
-            printf("   при ЛБУ = %d км:\n      боковое уклонение = УС = %.f°\n      дополнительная ПК = %.f°\n      полная ПК = %.f°\n", 
-                    maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
+            calc_trackcorrection(maneuver.lateral_line, maneuver.flight_track, maneuver.flcurr_range);
             return 0;
         case 5:
             printf("\nEnd of program\n");

@@ -66,8 +66,7 @@ void navigation(int cruisspeed, int result_flrange[1])
     
 }
 
-double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle, double wind_dir) 
-{
+double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle, double wind_dir) {
     if(maneuver.wind_dir == maneuver.magnetpath_angle) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed + maneuver.wind_speed;
@@ -99,5 +98,12 @@ double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle
     return 0;
 }
 
-
-
+double calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range) {            
+    maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
+    maneuver.course_correction_curr = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * DEG);
+    maneuver.course_correction_rem = (atan((double)maneuver.lateral_line / maneuver.flrem_range) * DEG);
+    maneuver.course_correction = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * DEG) + (atan((double)maneuver.lateral_line / maneuver.flrem_range) * DEG);
+    printf("   при ЛБУ = %d км:\n      боковое уклонение = УС = %.f°\n      дополнительная ПК = %.f°\n      полная ПК = %.f°\n", 
+            maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
+    return 0;
+}
