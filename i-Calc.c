@@ -14,7 +14,6 @@ int main(void)
 {
     int calc_item;
     double a, b;
-    int x;
     
         printf("\n1. Simple_calc\n"
                  "2. i-Calc\n"
@@ -75,12 +74,13 @@ int main(void)
             printf("\n1. SIN\n"
                      "2. COS\n"
                      "3. TAN\n"
-                     "4. ASIN\n"
-                     "5. ACOS\n"
-                     "6. ATAN\n"
-                     "7. SQRT\n"
-                     "8. POW\n"
-                     "9. Exit\n");
+                     "4. COTAN\n"
+                     "5. ASIN\n"
+                     "6. ACOS\n"
+                     "7. ATAN\n"
+                     "8. SQRT\n"
+                     "9. POW\n"
+                     "0. Exit\n");
             printf("   Select function for calculation: ");
             if(scanf("%d", &calc_item) != 1) {
                 printf("\nError input!\n");
@@ -89,69 +89,77 @@ int main(void)
             switch(calc_item) {
             case 1:
                 printf("\nEnter a value for SIN: ");
-                if(scanf("%d", &x) != 1 ) {
+                if(scanf("%lf", &a) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nSin%d° = %f\n", x, sin(x * RAD));
+                printf("\nSin(%f°) = %lf° = %lf rad\n", a, sin(a * RAD), sin(a));
                 return 0;
             case 2:
                 printf("\nEnter a value for COS: ");
-                if(scanf("%d", &x) != 1 ) {
+                if(scanf("%lf", &a) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nCos%d° = %f\n", x, cos(x * RAD));
+                printf("\nCos(%f°) = %lf° = %lf rad\n", a, cos(a * RAD), cos(a));
                 return 0;
             case 3:
                 printf("\nEnter a value for TAN: ");
-                if(scanf("%d", &x) != 1 ) {
+                if(scanf("%lf", &a) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nTan%d° = %f\n", x, tan(x * RAD));
-                return 0; 
-            case 4:
-                printf("\nEnter a value for ASIN: ");
-                if(scanf("%d", &x) != 1 ) {
-                    printf("\nError input!\n");
-                    return 0;
-                }
-                printf("\nASin%d° = %f\n", x, asin(x * RAD));
+                printf("\nTan(%lf°) = %lf° = %lf rad\n", a, tan(a * RAD), tan(a));
                 return 0;
-            case 5:
-                printf("\nEnter a value for ACOS: ");
-                if(scanf("%d", &x) != 1 ) {
+            case 4:
+                printf("\nEnter a value for COTAN: ");
+                if(scanf("%lf", &a) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nACos%d° = %f\n", x, acos(x * RAD));
+                printf("\nCoTan(%lf°) = %lf° = %lf rad\n", a, -tan(M_PI / 2 - a * RAD), -tan(M_PI / 2 - a));
+                return 0; 
+            case 5:
+                printf("\nEnter a value for ASIN: ");
+                if(scanf("%lf", &a) != 1 ) {
+                    printf("\nError input!\n");
+                    return 0;
+                }
+                printf("\nASin(%f rad) = %lf rad\n", a, asin(a));
                 return 0;
             case 6:
-                printf("\nEnter a value for ATAN: ");
-                if(scanf("%d", &x) != 1 ) {
+                printf("\nEnter a value for ACOS: ");
+                if(scanf("%lf", &a) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\nATan%d° = %f\n", x, atan(x * RAD));
-                return 0;       
-            case 7:
-                printf("\nEnter a value for SQRT: ");
-                if(scanf("%d", &x) != 1 ) {
-                    printf("\nError input!\n");
-                    return 0;
-                }
-                printf("\nSqrt%d = %f\n", x, sqrt(x));
+                printf("\nACos(%f rad) = %lf rad\n", a, acos(a));
                 return 0;
+            case 7:
+                printf("\nEnter a value for ATAN: ");
+                if(scanf("%lf", &a) != 1 ) {
+                    printf("\nError input!\n");
+                    return 0;
+                }
+                printf("\nATan(%f rad) = %lf rad\n", a, atan(a));
+                return 0;       
             case 8:
+                printf("\nEnter a value for SQRT: ");
+                if(scanf("%lf", &a) != 1 ) {
+                    printf("\nError input!\n");
+                    return 0;
+                }
+                printf("\nSqrt%f = %lf\n", a, sqrt(a));
+                return 0;
+            case 9:
                 printf("\nEnter a number and the value to raise it to POW separated by space: ");
                 if(scanf("%lf %lf", &a, &b) != 2 ) {
                     printf("\nError input!\n");
                     return 0;
                 }
-                printf("\n%fpow %f = %f\n", a, b, pow(a, b));
+                printf("\n%fpow %f = %lf\n", a, b, pow(a, b));
                 return 0;
-            case 9:
+            case 0:
                 printf("\nEnd of program.\n");
                 return 0;
             default:
