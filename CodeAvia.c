@@ -23,7 +23,7 @@ int current_time(int fl_hours , int fl_minutes, int fl_seconds)
 	minutes = local->tm_min;
 	seconds = local->tm_sec;
 
-    int c_time = hours * 3600 + minutes * 60 * seconds;
+    int c_time = hours * 3600 + minutes * 60 + seconds;
     int fl_time = fl_hours * 3600 + fl_minutes * 60 + fl_seconds;
     int res_time = c_time + fl_time;
     int res_hours = res_time / 3600;
@@ -38,8 +38,8 @@ int current_time(int fl_hours , int fl_minutes, int fl_seconds)
 
     printf("Date: %02d/%02d/%d\n", day, month, year);
 	printf("Current time: %02d:%02d:%02d\n", hours, minutes, seconds);
-    if(res_hours > 23) {
-        printf("Estimated arrival time: %02d:%02d:%02d\n", res_hours - 24, res_minutes, res_seconds);
+    if(res_hours >= 24) {
+        printf("Estimated arrival time: %02d:%02d:%02d\n", res_hours, res_minutes, res_seconds);
 	    printf("Date: %02d/%02d/%d\n", day + 1, month, year);
     } else
         printf("Estimated arrival time: %02d:%02d:%02d\n", res_hours, res_minutes, res_seconds);
