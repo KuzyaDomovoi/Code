@@ -111,7 +111,7 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     result[3] = onegrad_dist;
 }
 
-void calcpoint_coord(double lat1, double lng1, double bearing, double dist, double result_cl2sl2[3]) {
+void calcpoint_coord(double lat1, double lng1, double bearing, double dist, double result_cl2sl2[4]) {
     double end_bearing;
 
     double cl1 = cos(lat1 * RAD);
@@ -138,9 +138,12 @@ void calcpoint_coord(double lat1, double lng1, double bearing, double dist, doub
        end_bearing = angledeg;
     } else end_bearing = angledeg + 180;
 
+    double onegrad_dist = dist / fabs(end_bearing - bearing);
+
     result_cl2sl2[0] = lat2;
     result_cl2sl2[1] = lng2;
     result_cl2sl2[2] = end_bearing;
+    result_cl2sl2[3] = onegrad_dist;
 }
 
 struct flrange_flduration {
@@ -262,7 +265,7 @@ double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle
     if(maneuver.wind_dir == maneuver.magnetpath_angle) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed + maneuver.wind_speed;
-        printf("\n   угол сноса = %.2f°\n   путевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
+        printf("\nугол сноса = %.2f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
         return 0;
     }
     if(maneuver.wind_dir < maneuver.magnetpath_angle) {
@@ -272,7 +275,7 @@ double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle
     if(maneuver.wind_angle == 180 || maneuver.wind_angle == 0 || maneuver.wind_angle == 360) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed - maneuver.wind_speed;
-        printf("\n   угол сноса = %.2f°\n   путевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
+        printf("\nугол сноса = %.2f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
         return 0;
     }
     if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
@@ -286,7 +289,7 @@ double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle
     maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
     maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
     maneuver.heading_corr = maneuver.magnetpath_angle - maneuver.drift_angle;
-    printf("\n   угол сноса = %.2f°\n   курс с учетом УС = %.2f°\n   путевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
+    printf("\nугол сноса = %.2f°\nкурс с учетом УС = %.2f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
     return 0;
 }
 
@@ -333,7 +336,7 @@ int main(void)
     float lat_res2[1], lng_res2[1];
     int lat_res1_1[2], lng_res1_1[2];
     float lat_res2_2[1], lng_res2_2[1];
-    double result_cl2sl2[3];  
+    double result_cl2sl2[4];  
     
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
@@ -606,7 +609,8 @@ int main(void)
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
             maneuver.flight_track = lat_1.fldist;
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
-            printf("Ожидаемое время пролета ППМ: %.f ч %.f мин %.f сек\n", result_flduration2[0], result_flduration2[1], result_flduration2[2]);
+            printf("Ожидаемое время пролета ППМ: %.f ч %.f мин %.f сек\nНа %.f м 1° изменения азимута\n", 
+                    result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
             return 0;
         case 2:
             printf("\nРасчет координат второй точки по координатам WGS-84 формата гг.гггггг\n");
@@ -652,7 +656,8 @@ int main(void)
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
             maneuver.flight_track = lat_1.fldist;
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
-            printf("Ожидаемое время пролета ППМ через: %.f ч %.f мин %.f сек\n", result_flduration2[0], result_flduration2[1], result_flduration2[2]);
+            printf("Ожидаемое время пролета ППМ через: %.f ч %.f мин %.f сек\nНа %.f м 1° изменения азимута\n", 
+                    result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
             return 0;
         case 3:
             printf("\nEnd of program\n");
