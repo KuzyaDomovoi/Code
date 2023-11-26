@@ -166,7 +166,8 @@ struct fltime_flangle_flspeed {
 
 void nav_flcalc(int desctime, int full_fusupp,  int fucons_TO, int fucons_desc, int fucons_final_land_taxi, 
                          int guarfusupp_unusfures, int cruisspeed, double engthrust_val, int fucons_preTO, 
-                         double spec_fuconsclim, int average_climspeed, int airbornspeed, int result_flrange[2], int result_flduration[3]) 
+                         double spec_fuconsclim, int average_climspeed, int airbornspeed, int descspeed,
+                         int result_flrange[2], int result_flduration[3]) 
 {
     flight.midaverage_climspeed_1000 = 0.5 * (airbornspeed + average_climspeed);
     flight.midaverage_climspeed = average_climspeed;
@@ -180,7 +181,7 @@ void nav_flcalc(int desctime, int full_fusupp,  int fucons_TO, int fucons_desc, 
     flight.hourfucons = (flight.spec_fuconscruise * flight.req_engthrustcruise) / cruisspeed;
     flight.rangcruise = flight.fucons_cruise / flight.hourfucons;
     flight.timecruise = flight.rangcruise / cruisspeed;
-    flight.flrange = flight.flrang_clim_1000 + (average_climspeed * (flight.climtime - flight.climtime_1000) / 3600) + (cruisspeed * flight.timecruise) + (flight.descspeed * desctime / 3600);
+    flight.flrange = flight.flrang_clim_1000 + (average_climspeed * (flight.climtime - flight.climtime_1000) / 3600) + (cruisspeed * flight.timecruise) + (descspeed * desctime / 3600);
     flight.flduration = flight.climtime + (flight.fucons_cruise / 1000 / flight.hourfucons * 3600) + desctime;
     flight.flduration_h = (int)flight.flduration / 3600;
     flight.flduration_m = (int)flight.flduration % 3600 / 60;
@@ -356,7 +357,7 @@ int main(void)
             return 0;
         }
         nav_flcalc(flight.desctime, flight.full_fusupp, flight.fucons_TO, flight.fucons_desc, flight.fucons_final_land_taxi, 
-                  flight.guarfusupp_unusfures, flight.cruisspeed, flight.engthrust_val, flight.fucons_preTO, 
+                  flight.guarfusupp_unusfures, flight.cruisspeed, flight.engthrust_val, flight.fucons_preTO, flight.descspeed,
                   flight.spec_fuconsclim, flight.average_climspeed, flight.airbornspeed, result_flrange, result_flduration);
         printf("\nРасполагаемый запас топлива = %d кг\n", result_flrange[0]);
         printf("Дальность полета = %d км\nПродолжительность полета = %d ч %02d мин\n", 
