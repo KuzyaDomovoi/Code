@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define M_PI 3.14159265358979323846
 #define G    9.8
@@ -9,6 +10,34 @@
 #define R_E  6371008.8
 #define RAD  M_PI / 180.0
 #define DEG  180.0 / M_PI
+
+int current_time(void)
+{
+	int hours, minutes, seconds, day, month, year;
+
+	time_t now;
+	time(&now);
+	printf("Today is %s", ctime(&now));
+	struct tm *local = localtime(&now);
+
+	hours = local->tm_hour;
+	minutes = local->tm_min;
+	seconds = local->tm_sec;
+
+	day = local->tm_mday;
+	month = local->tm_mon + 1;
+	year = local->tm_year + 1900;
+
+	if (hours < 12) {	// before midday
+		printf("Time is %02d:%02d:%02d am\n", hours, minutes, seconds);
+	}
+	else {	// after midday
+		printf("Time is %02d:%02d:%02d pm\n", hours - 12, minutes, seconds);
+	}
+	printf("Date is : %02d/%02d/%d\n", day, month, year);
+
+	return 0;
+}
 
 struct geo_lat {
     double lat;
@@ -609,8 +638,9 @@ int main(void)
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
             maneuver.flight_track = lat_1.fldist;
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
-            printf("Ожидаемое время пролета ППМ: %.f ч %.f мин %.f сек\nНа %.f м 1° изменения азимута\n", 
+            printf("ожидаемое время пролета ППМ через: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
                     result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
+            current_time();
             return 0;
         case 2:
             printf("\nРасчет координат второй точки по координатам WGS-84 формата гг.гггггг\n");
@@ -656,8 +686,9 @@ int main(void)
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
             maneuver.flight_track = lat_1.fldist;
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
-            printf("Ожидаемое время пролета ППМ через: %.f ч %.f мин %.f сек\nНа %.f м 1° изменения азимута\n", 
+            printf("ожидаемое время пролета ППМ через: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
                     result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
+            current_time();
             return 0;
         case 3:
             printf("\nEnd of program\n");
