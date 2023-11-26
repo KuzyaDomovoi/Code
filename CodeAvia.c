@@ -311,8 +311,8 @@ double calc_trackcorrection(double lateral_line, double flight_track, double flc
 double calc_flduration(double ground_speed, double flight_dist, double result_flduration2[3]) {
     flight.flduration = flight_dist / maneuver.ground_speed * 3.6;
     flight.flduration_h = (int)flight.flduration / 3600;
-    flight.flduration_m = (int)flight.flduration % 3600 / 60;
-    flight.flduration_s = (int)flight.flduration % 3600;
+    flight.flduration_m = (int)flight.flduration / 60 % 60;
+    flight.flduration_s = (int)flight.flduration % 60;
 
     result_flduration2[0] = flight.flduration_h;
     result_flduration2[1] = flight.flduration_m;
