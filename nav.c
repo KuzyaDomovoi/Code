@@ -22,14 +22,32 @@ struct flrange_flduration {
     } flight;
 
 struct fltime_flangle_flspeed {
-    int turn_time; int turn_time_m; int turn_time_s; int turn_roll; int turn_angle;
-    int max_aircr_speed; int wind_angle; int magnetpath_angle; int aircr_speed; int wind_dir;
-    int ground_speed; int drift_angle; int wind_speed; int speed_range; int time_range;
-    int lateral_line; int flcurr_range; int flrem_range; int flight_track; int heading_corr;
+    double turn_time; double turn_time_m; double turn_time_s; double turn_roll; double turn_angle;
+    double max_aircr_speed; double wind_angle; double magnetpath_angle; double aircr_speed; double wind_dir;
+    double ground_speed; double drift_angle; double wind_speed; double speed_range; double time_range;
+    double lateral_line; double flcurr_range; double flrem_range; double flight_track; double heading_corr;
     double turn_rad; double t; double mindist_checkpoint; double range_turnlead; double ny;
     double course_correction_curr; double course_correction_rem; double course_correction;
     double turn_speed;
 } maneuver;
+
+void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double result_turn[6]) 
+{
+    maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
+    maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
+    maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
+    maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
+    maneuver.turn_time_s = maneuver.turn_time % 60;
+    maneuver.ny = 1 / cos(maneuver.turn_roll * RAD);
+    maneuver.turn_speed = maneuver.turn_angle / maneuver.turn_time;
+
+    result_turn[0] = maneuver.turn_rad
+    result_turn[1] = maneuver.turn_time_m;
+    result_turn[2] = maneuver.turn_time_s;
+    result_turn[3] = maneuver.turn_speed;
+    result_turn[4] = maneuver.ny;
+    result_turn[5] = maneuver.range_turnlead 
+}
 
 void navigation(int cruisspeed, int result_flrange[1]) 
 {
@@ -44,8 +62,8 @@ void navigation(int cruisspeed, int result_flrange[1])
 
     resuit_flrange[0] = flight.flrange;
     resuit_bering[0] = ; // func?
-    resuit_graundspeed[0] = graundspeed;
-    resuit_
+    resuit_graundspeed[0] = flight.ground_speed;
+    
 }
 
 

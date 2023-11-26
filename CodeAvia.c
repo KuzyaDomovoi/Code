@@ -192,6 +192,24 @@ void nav_flcalc(int desctime, int full_fusupp,  int fucons_TO, int fucons_desc, 
     result_flduration[1] = flight.flduration_m;
 }
 
+void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double result_turn[6]) 
+{
+    maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
+    maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
+    maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
+    maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
+    maneuver.turn_time_s = maneuver.turn_time % 60;
+    maneuver.ny = 1 / cos(maneuver.turn_roll * RAD);
+    maneuver.turn_speed = maneuver.turn_angle / maneuver.turn_time;
+
+    result_turn[0] = maneuver.turn_rad;
+    result_turn[1] = maneuver.turn_time_m;
+    result_turn[2] = maneuver.turn_time_s;
+    result_turn[3] = maneuver.turn_speed;
+    result_turn[4] = maneuver.ny;
+    result_turn[5] = maneuver.range_turnlead;
+}
+
 bool range(int x, int a, int y) {
     if(x <= a && a <= y)
         return true;
@@ -246,6 +264,7 @@ int main(void)
 {
     int item;
     int result_flrange[2], result_flduration[2];
+    double result_turn[6];
     int res = 0;
     double lat1, lat2, lng1, lng2;
     double res1[2], res2[2];
@@ -643,16 +662,9 @@ int main(void)
                 printf("\nError! The turn_roll can't be more than 83°!\n");
                 return 0;
             }
-            maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
-            maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
-            maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
-            maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
-            maneuver.turn_time_s = maneuver.turn_time % 60;
-            maneuver.ny = 1 / cos(maneuver.turn_roll * RAD);
-            maneuver.turn_speed = (double)maneuver.turn_angle / maneuver.turn_time;
-
-            printf("\n   радиус разворота = %.1f м\n   время разворота = %d мин %02d сек\n   угловая скорость р-та = %.1f °/сек\n   ny = %.1f ед\n   длина дуги УР = %.1f м\n", 
-                    maneuver.turn_rad, maneuver.turn_time_m, maneuver.turn_time_s, maneuver.turn_speed, maneuver.ny, maneuver.range_turnlead);
+            calc_turn(maneuver.aircr_speed, maneuver.turn_angle, maneuver.turn_roll, result_turn);
+            printf("\n   радиус разворота = %.1f м\n   время разворота = %.f мин %04.fd сек\n   угловая скорость р-та = %.1f °/сек\n   ny = %.1f ед\n   длина дуги УР = %.1f м\n", 
+                    result_turn[0], result_turn[1], result_turn[2], result_turn[3], result_turn[4], result_turn[5]);
             return 0;
         case 2:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
