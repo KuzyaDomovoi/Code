@@ -120,7 +120,7 @@ int main(void)
                 printf("\nCoTan(%lf°) = %lf° = %lf rad\n", a, -tan(M_PI / 2 - a * RAD), -tan(M_PI / 2 - a));
                 return 0; 
             case 5:
-                printf("\nEnter a value for ASIN: ");
+                printf("\nEnter a value for ASIN in rad: ");
                 if(scanf("%lf", &a) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
@@ -128,7 +128,7 @@ int main(void)
                 printf("\nASin(%f rad) = %lf rad\n", a, asin(a));
                 return 0;
             case 6:
-                printf("\nEnter a value for ACOS: ");
+                printf("\nEnter a value for ACOS in rad: ");
                 if(scanf("%lf", &a) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
@@ -136,7 +136,7 @@ int main(void)
                 printf("\nACos(%f rad) = %lf rad\n", a, acos(a));
                 return 0;
             case 7:
-                printf("\nEnter a value for ATAN: ");
+                printf("\nEnter a value for ATAN in rad: ");
                 if(scanf("%lf", &a) != 1 ) {
                     printf("\nError input!\n");
                     return 0;
