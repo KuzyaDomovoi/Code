@@ -90,6 +90,7 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
             res_hours = 0;
             res_minutes = 0;
             res_seconds = 0;
+            day += 1;
         }
         sleep(1);    
     }
