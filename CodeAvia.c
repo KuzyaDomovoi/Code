@@ -64,7 +64,7 @@ struct geo_lng {
 struct geo_lat lat_2;
 struct geo_lng lng_2;
 
-void coord_transfer_deg(float deg, int result1[2], float result2[1]) {
+void coord_transfer_deg(float deg, float result1[2], float result2[1]) {
     int dd = trunc(deg);
     int mm = trunc((deg - dd) * 60);
     float ss = ((deg - dd) * 60 - mm) * 60;
@@ -130,7 +130,6 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     double y2 = sdelta_lng2 * cl1;
     double x2 = cl2 * sl1 - sl2 * cl1 * cdelta_lng2;
     double angledeg2 = atan2(y2, x2) * DEG;
-    //double end_bearing = (int)(angledeg2 + 180) % 360;
     if(angledeg2 > 180) {
        end_bearing = angledeg2;
     } else end_bearing = angledeg2 + 180;
@@ -139,7 +138,6 @@ void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double 
     x = sl1 * sl2 + cl1 * cl2 * cdelta_lng;
     double anglerad = atan2(y, x);
     double flight_dist = anglerad * R_E;
-
     double onegrad_dist = flight_dist / fabs(end_bearing - initial_bearing);
 
     result[0] = flight_dist;
@@ -170,11 +168,9 @@ void calcpoint_coord(double lat1, double lng1, double bearing, double dist, doub
     double y = sdelta_lng2 * cl1;
     double x = cl2 * sl1 - sl2 * cl1 * cdelta_lng2;
     double angledeg = atan2(y, x) * DEG;
-    //double end_bearing = (int)(angledeg + 180) % 360;
     if(angledeg > 180) {
        end_bearing = angledeg;
     } else end_bearing = angledeg + 180;
-
     double onegrad_dist = dist / fabs(end_bearing - bearing);
 
     result_cl2sl2[0] = lat2;
@@ -184,30 +180,29 @@ void calcpoint_coord(double lat1, double lng1, double bearing, double dist, doub
 }
 
 struct flrange_flduration {
-    double engthrust_val;
     double airbornspeed; double average_climspeed; double climtime; double cruisspeed; double average_climspeed_1000; 
     double descspeed; double desctime; double load_weight; double full_fusupp; double fucons_preTO; double climtime_1000;
-    double fucons_TO; double fucons_desc; double fucons_final_land_taxi; double guarfusupp_unusfures; 
-    double midaverage_climspeed; double flrang_clim; double fucons_clim; double fucons_cruise; double midaverage_climspeed_1000;
-    double req_engthrustcruise; double lifttodrag_ratio; double hourfucons; double spec_fuconsclim;
-    double spec_fuconscruise; double rangcruise; double timecruise; double flrang_clim_1000;
-    double flrange; int flduration; int flduration_h; int flduration_m; int flduration_s;
+    double fucons_TO; double fucons_desc; double fucons_final_land_taxi; double guarfusupp_unusfures; double engthrust_val;
+    double midaverage_climspeed; double flrang_clim; double fucons_clim; double fucons_cruise; double midaverage_climspeed_1000; 
+    double req_engthrustcruise; double lifttodrag_ratio; double hourfucons; double spec_fuconsclim; double spec_fuconscruise; 
+    double rangcruise; double timecruise; double flrang_clim_1000; double flrange; 
+    int flduration; int flduration_h; int flduration_m; int flduration_s;
     } flight;
 
 struct fltime_flangle_flspeed {
-    int turn_time; int turn_time_m; int turn_time_s; double turn_roll; double turn_angle;
-    double max_aircr_speed; double wind_angle; double magnetpath_angle; double aircr_speed; double wind_dir;
-    double ground_speed; double drift_angle; double wind_speed; double speed_range; double time_range;
-    double lateral_line; double flcurr_range; double flrem_range; double flight_track; double heading_corr;
-    double turn_rad; double t; double mindist_checkpoint; double range_turnlead; double ny;
-    double course_correction_curr; double course_correction_rem; double course_correction;
-    double turn_speed; int hours; int minutes; int seconds;
+    double turn_roll; double turn_angle; double max_aircr_speed; double wind_angle; double magnetpath_angle; 
+    double aircr_speed; double wind_dir; double ground_speed; double drift_angle; double wind_speed; 
+    double speed_range; double time_range; double lateral_line; double flcurr_range; double flrem_range; 
+    double flight_track; double heading_corr; double turn_rad; double t; double mindist_checkpoint; 
+    double range_turnlead; double ny; double course_correction_curr; double course_correction_rem; 
+    double course_correction; double turn_speed; 
+    int hours; int minutes; int seconds; int turn_time; int turn_time_m; int turn_time_s; 
 } maneuver;
 
-void nav_flcalc(int desctime, int full_fusupp,  int fucons_TO, int fucons_desc, int fucons_final_land_taxi, 
-                         int guarfusupp_unusfures, int cruisspeed, double engthrust_val, int fucons_preTO, 
-                         double spec_fuconsclim, int average_climspeed, int airbornspeed, int descspeed,
-                         int result_flrange[2], int result_flduration[2]) {
+void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, double fucons_TO, double fucons_desc, 
+                           double fucons_final_land_taxi, double guarfusupp_unusfures, int cruisspeed, double engthrust_val,  
+                           double spec_fuconsclim, int average_climspeed, int airbornspeed, int descspeed,
+                           double result_flrange[2], double result_flduration[2]) {
     flight.midaverage_climspeed_1000 = 0.5 * (flight.airbornspeed + flight.average_climspeed);
     flight.midaverage_climspeed = flight.average_climspeed;
     flight.flrang_clim_1000 = (flight.midaverage_climspeed_1000 * 3.6) * ((flight.climtime_1000 / 3600) / 1000);    
@@ -302,7 +297,7 @@ double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle
     if(maneuver.wind_dir == maneuver.magnetpath_angle) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed + maneuver.wind_speed;
-        printf("\nугол сноса = %.2f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
+        printf("\nугол сноса = %.6f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
         return 0;
     }
     if(maneuver.wind_dir < maneuver.magnetpath_angle) {
@@ -312,27 +307,27 @@ double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle
     if(maneuver.wind_angle == 180 || maneuver.wind_angle == 0 || maneuver.wind_angle == 360) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed - maneuver.wind_speed;
-        printf("\nугол сноса = %.2f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
+        printf("\nугол сноса = %.6f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
         return 0;
     }
     if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
-        maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+        maneuver.t = maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
     if(range(0, maneuver.magnetpath_angle, 180) && range(181, maneuver.wind_dir, 360))
-        maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+        maneuver.t = maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
     if(range(181, maneuver.magnetpath_angle, 360) && range(0, maneuver.wind_dir, 180))
-        maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+        maneuver.t = maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
     if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
-    maneuver.t = (double)maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+    maneuver.t = maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
     maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
     maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
     maneuver.heading_corr = maneuver.magnetpath_angle - maneuver.drift_angle;
-    printf("\nугол сноса = %.2f°\nкурс с учетом УС = %.2f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
+    printf("\nугол сноса = %.6f°\nкурс с учетом УС = %.6f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
     return 0;
 }
 
 double calc_timecorrection(double aircr_speed, double max_aircr_speed, double time_range) {
     maneuver.speed_range = maneuver.max_aircr_speed - maneuver.aircr_speed;
-    maneuver.mindist_checkpoint = ((double)maneuver.aircr_speed * maneuver.max_aircr_speed / maneuver.speed_range * maneuver.time_range / 3600);
+    maneuver.mindist_checkpoint = (maneuver.aircr_speed * maneuver.max_aircr_speed / maneuver.speed_range * maneuver.time_range / 3600);
     printf("\n   при избытке скорости = %.f км/ч\n", maneuver.speed_range);
     printf("   минимальное расстояние до РТ = %.1f км\n", maneuver.mindist_checkpoint);
     return 0;
@@ -340,10 +335,10 @@ double calc_timecorrection(double aircr_speed, double max_aircr_speed, double ti
 
 double calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range) {            
     maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
-    maneuver.course_correction_curr = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * DEG);
-    maneuver.course_correction_rem = (atan((double)maneuver.lateral_line / maneuver.flrem_range) * DEG);
-    maneuver.course_correction = (atan((double)maneuver.lateral_line / maneuver.flcurr_range) * DEG) + (atan((double)maneuver.lateral_line / maneuver.flrem_range) * DEG);
-    printf("   при ЛБУ = %.2f км:\n      боковое уклонение = УС = %.2f°\n      дополнительная ПК = %.2f°\n      полная ПК = %.2f°\n", 
+    maneuver.course_correction_curr = (atan(maneuver.lateral_line / maneuver.flcurr_range) * DEG);
+    maneuver.course_correction_rem = (atan(maneuver.lateral_line / maneuver.flrem_range) * DEG);
+    maneuver.course_correction = (atan(maneuver.lateral_line / maneuver.flcurr_range) * DEG) + (atan(maneuver.lateral_line / maneuver.flrem_range) * DEG);
+    printf("   при ЛБУ = %.2f км:\n      боковое уклонение = УС = %.6f°\n      дополнительная ПК = %.6f°\n      полная ПК = %.6f°\n", 
             maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
     return 0;
 }
@@ -362,16 +357,16 @@ void calc_flduration(double ground_speed, double flight_dist, double result_fldu
 int main(void)
 {
     int item;
-    int result_flrange[2], result_flduration[2];
+    double result_flrange[2], result_flduration[2];
     double result_flduration2[3];
     double result_turn[6];
     int res = 0;
     double lat1, lat2, lng1, lng2;
     double res1[2], res2[2];
     double result_db[4];
-    int lat_res1[2], lng_res1[2];
+    float lat_res1[2], lng_res1[2];
     float lat_res2[1], lng_res2[1];
-    int lat_res1_1[2], lng_res1_1[2];
+    float lat_res1_1[2], lng_res1_1[2];
     float lat_res2_2[1], lng_res2_2[1];
     double result_cl2sl2[4];  
     
@@ -474,11 +469,11 @@ int main(void)
             printf("\nError_input!\n");
             return 0;
         }
-        nav_flcalc(flight.desctime, flight.full_fusupp, flight.fucons_TO, flight.fucons_desc, flight.fucons_final_land_taxi, 
+        flrange_duration_calc(flight.desctime, flight.full_fusupp, flight.fucons_TO, flight.fucons_desc, flight.fucons_final_land_taxi, 
                   flight.guarfusupp_unusfures, flight.cruisspeed, flight.engthrust_val, flight.fucons_preTO, flight.descspeed,
                   flight.spec_fuconsclim, flight.average_climspeed, flight.airbornspeed, result_flrange, result_flduration);
-        printf("\nРасполагаемый запас топлива = %d кг\n", result_flrange[0]);
-        printf("Дальность полета = %d км\nПродолжительность полета = %d ч %02d мин\n", 
+        printf("\nРасполагаемый запас топлива = %.f кг\n", result_flrange[0]);
+        printf("Дальность полета = %.1f км\nПродолжительность полета = %02.f ч %02.f мин\n", 
                 result_flrange[1], result_flduration[0], result_flduration[1]);
         return 0;
     case 2:
@@ -550,32 +545,32 @@ int main(void)
             coord_transfer_deg(lat_2.lat, lat_res1_1, lat_res2_2);
             coord_transfer_deg(lng_2.lng, lng_res1_1, lng_res2_2);
             if(lat_res1[0] < 0 && lng_res1[0] < 0) {
-                printf("\nПервая точка:   lat  %03d° %02d' %05.2f''\n                lng %04d° %02d' %05.2f''\n", 
+                printf("\nПервая точка:   lat  %03.f° %02.f' %05.2f''\n                lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             } else
             if(lat_res1[0] < 0) {
-                printf("\nПервая точка:   lat  %03d° %02d' %05.2f''\n                lng  %03d° %02d' %05.2f''\n", 
+                printf("\nПервая точка:   lat  %03.f° %02.f' %05.2f''\n                lng  %03.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             } else
             if(lng_res1[0] < 0) {
-                printf("\nПервая точка:   lat   %02d° %02d' %05.2f''\n                lng %04d° %02d' %05.2f''\n", 
+                printf("\nПервая точка:   lat   %02.f° %02.f' %05.2f''\n                lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             } else
-            printf("\nПервая точка:   lat  %02d° %02d' %05.2f''\n                lng %03d° %02d' %05.2f''\n", 
+            printf("\nПервая точка:   lat  %02.f° %02.f' %05.2f''\n                lng %03.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             if(lat_res1_1[0] < 0 && lng_res1_1[0] < 0) {
-                printf("\nВторая точка:   lat  %03d° %02d' %05.2f''\n                lng %04d° %02d' %05.2f''\n", 
+                printf("\nВторая точка:   lat  %03.f° %02.f' %05.2f''\n                lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
             } else
             if(lat_res1_1[0] < 0) {
-                printf("\nВторая точка:   lat  %03d° %02d' %05.2f''\n                lng  %03d° %02d' %05.2f''\n", 
+                printf("\nВторая точка:   lat  %03.f° %02.f' %05.2f''\n                lng  %03.f° %02.f' %05.2f''\n", 
                     lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
             } else
             if(lng_res1_1[0] < 0) {
-                printf("\nВторая точка:   lat   %02d° %02d' %05.2f''\n                lng %04d° %02d' %05.2f''\n", 
+                printf("\nВторая точка:   lat   %0.fd° %02.f' %05.2f''\n                lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
             } else
-            printf("\nВторая точка:   lat  %02d° %02d' %05.2f''\n                lng %03d° %02d' %05.2f''\n", 
+            printf("\nВторая точка:   lat  %02.f° %02.f' %05.2f''\n                lng %03.f° %02.f' %05.2f''\n", 
                     lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
             calcfldist_bear(lat_1.lat, lng_1.lng, lat_2.lat, lng_2.lng, result_db);
             printf("\nРасстояние = %.1f м\nНачальный азимут = %.6f°\nКонечный азимут = %.6f°\nНа %.f м 1° изменения азимута\n", 
@@ -640,13 +635,13 @@ int main(void)
             calcpoint_coord(res1[0], res1[1], lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
             coord_transfer_deg(result_cl2sl2[0], lat_res1, lat_res2);
             coord_transfer_deg(result_cl2sl2[1], lng_res1, lng_res2);
-            printf("\nВторая точка: lat   %02d° %02d' %05.2f''\n              lng   %02d° %02d' %05.2f''\n\nКонечный азимут = %.6f°\n", 
+            printf("\nВторая точка: lat   %02.f° %02.f' %05.2f''\n              lng   %02.f° %02.f' %05.2f''\n\nКонечный азимут = %.6f°\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0], result_cl2sl2[2]);
             maneuver.magnetpath_angle = lat_1.initial_bearing;
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
             maneuver.flight_track = lat_1.fldist;
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
-            printf("ожидаемое время пролета ППМ через: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
+            printf("время полета: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
                     result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
             current_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
             return 0;
@@ -694,7 +689,7 @@ int main(void)
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
             maneuver.flight_track = lat_1.fldist;
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
-            printf("ожидаемое время пролета ППМ через: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
+            printf("время полета: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
                     result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
             current_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
             return 0;
@@ -743,18 +738,18 @@ int main(void)
             coord_transfer_deg(lat_1.lat, lat_res1, lat_res2);
             coord_transfer_deg(lng_1.lng, lng_res1, lng_res2);
             if(lat_res1[0] < 0 && lng_res1[0] < 0) {
-                printf("\n   lat  %03d° %02d' %05.2f''\n   lng %04d° %02d' %05.2f''\n", 
+                printf("\n   lat  %03.f° %02.f' %05.2f''\n   lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             } else
             if(lat_res1[0] < 0) {
-                printf("\n   lat  %03d° %02d' %05.2f''\n   lng  %03d° %02d' %05.2f''\n", 
+                printf("\n   lat  %03.f° %02.f' %05.2f''\n   lng  %03.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             } else
             if(lng_res1[0] < 0) {
-                printf("\n   lat   %02d° %02d' %05.2f''\n   lng %04d° %02d' %05.2f''\n", 
+                printf("\n   lat   %02.f° %02.f' %05.2f''\n   lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             } else
-            printf("\n   lat  %02d° %02d' %05.2f''\n   lng %03d° %02d' %05.2f''\n", 
+            printf("\n   lat  %02.f° %02.f' %05.2f''\n   lng %03.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             return 0;
         case 3:
