@@ -239,7 +239,7 @@ struct flrange_flduration {
     } flight;
 
 struct fltime_flangle_flspeed {
-    double turn_roll; double turn_angle; double max_aircr_speed; double wind_angle; double magnetpath_angle; 
+    double turn_roll; double turn_angle; double max_aircr_speed; double wind_angle; double path_angle; 
     double aircr_speed; double wind_dir; double ground_speed; double drift_angle; double wind_speed; 
     double speed_range; double time_range; double lateral_line; double flcurr_range; double flrem_range; 
     double flight_track; double heading_corr; double turn_rad; double t; double mindist_checkpoint; 
@@ -266,8 +266,8 @@ void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, d
     flight.timecruise = flight.rangcruise / flight.cruisspeed;
     flight.flrange = flight.flrang_clim_1000 + (flight.average_climspeed * (flight.climtime - flight.climtime_1000) / 3600) + (flight.cruisspeed * flight.timecruise) + (flight.descspeed * flight.desctime / 3600);
     flight.flduration = flight.climtime + (flight.fucons_cruise / 1000 / flight.hourfucons * 3600) + flight.desctime;
-    flight.flduration_h = (int)flight.flduration / 3600;
-    flight.flduration_m = (int)flight.flduration % 3600 / 60;
+    flight.flduration_h = flight.flduration / 3600;
+    flight.flduration_m = flight.flduration % 3600 / 60;
 
     result_flrange[0] = flight.fucons_cruise;
     result_flrange[1] = flight.flrange;
@@ -342,36 +342,37 @@ bool input_verif_lng(int a, int b, float c, int res) {
     } else return false;
 }
 
-double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle, double wind_dir) {
-    if(maneuver.wind_dir == maneuver.magnetpath_angle) {
+double calc_angle(double aircr_speed, double wind_speed, double path_angle, double wind_dir) {
+    if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500 || maneuver.wind_speed < 0 || maneuver.wind_speed > 300) {
+        printf("\nError! Input the unreal speed for an aircraft or for the wind!\n");
+        return 0;
+    }
+    if(maneuver.path_angle < 0 || maneuver.path_angle > 360 || maneuver.wind_dir < 0 || maneuver.wind_dir > 360) {
+        printf("\nError! Angle can't be less 0° or more than 360°\n");
+        return 0;
+    }
+    if(maneuver.wind_dir == maneuver.path_angle) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed + maneuver.wind_speed;
         printf("\nугол сноса = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
         return 0;
     }
-    if(maneuver.wind_dir < maneuver.magnetpath_angle) {
-        maneuver.wind_angle = 360 + maneuver.wind_dir - maneuver.magnetpath_angle;
+    if(maneuver.wind_dir < maneuver.path_angle) {
+        maneuver.wind_angle = 360 + maneuver.wind_dir - maneuver.path_angle;
     } else
-        maneuver.wind_angle = maneuver.wind_dir - maneuver.magnetpath_angle;
+        maneuver.wind_angle = maneuver.wind_dir - maneuver.path_angle;
     if(maneuver.wind_angle == 180 || maneuver.wind_angle == 0 || maneuver.wind_angle == 360) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed - maneuver.wind_speed;
         printf("\nугол сноса = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
         return 0;
-    }
-    if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
+    } else
         maneuver.t = maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
-    if(range(0, maneuver.magnetpath_angle, 180) && range(181, maneuver.wind_dir, 360))
-        maneuver.t = maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
-    if(range(181, maneuver.magnetpath_angle, 360) && range(0, maneuver.wind_dir, 180))
-        maneuver.t = maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
-    if(range(181, maneuver.magnetpath_angle, 360) && range(181, maneuver.wind_dir, 360))
-    maneuver.t = maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
-    maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
-    maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
-    maneuver.heading_corr = maneuver.magnetpath_angle - maneuver.drift_angle;
-    printf("\nугол сноса = %.1f°\nкурс с учетом УС = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
-    return 0;
+        maneuver.drift_angle = asin(maneuver.t) * DEG;
+        maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
+        maneuver.heading_corr = maneuver.path_angle - maneuver.drift_angle;
+        printf("\nугол сноса = %.1f°\nкурс с учетом УС = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
+        return 0;
 }
 
 double calc_timecorrection(double aircr_speed, double max_aircr_speed, double time_range) {
@@ -394,9 +395,9 @@ double calc_trackcorrection(double lateral_line, double flight_track, double flc
 
 void calc_flduration(double ground_speed, double flight_dist, double result_flduration2[3]) {
     flight.flduration = flight_dist / maneuver.ground_speed * 3.6;
-    flight.flduration_h = (int)flight.flduration / 3600;
-    flight.flduration_m = (int)flight.flduration / 60 % 60;
-    flight.flduration_s = (int)flight.flduration % 60;
+    flight.flduration_h = flight.flduration / 3600;
+    flight.flduration_m = flight.flduration / 60 % 60;
+    flight.flduration_s = flight.flduration % 60;
 
     result_flduration2[0] = flight.flduration_h;
     result_flduration2[1] = flight.flduration_m;
@@ -658,8 +659,8 @@ int main(void)
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\n   Введи азимут на вторую точку в °: ");
-            if(scanf("%lf", &lat_1.initial_bearing) != 1) {
+            printf("\n   Введи истинный курс на вторую точку в °: ");
+            if(scanf("%lf", &maneuver.path_angle) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
@@ -669,7 +670,7 @@ int main(void)
                 return 0;
             }
             printf("\n   Введи направление ветра в °: ");
-            if(scanf("%lf", &maneuver.wind_angle) != 1) {
+            if(scanf("%lf", &maneuver.wind_dir) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
@@ -686,10 +687,8 @@ int main(void)
             coord_transfer_deg(result_cl2sl2[1], lng_res1, lng_res2);
             printf("\nВторая точка: lat   %02.f° %02.f' %05.2f''\n              lng   %02.f° %02.f' %05.2f''\n\nКонечный азимут = %.6f°\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0], result_cl2sl2[2]);
-            maneuver.magnetpath_angle = lat_1.initial_bearing;
-            calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
-            maneuver.flight_track = lat_1.fldist;
-            calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
+            calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.path_angle, maneuver.wind_dir);
+            calc_flduration(maneuver.ground_speed, lat_1.fldist, result_flduration2);
             printf("время полета: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
                     result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
             nav_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
@@ -711,8 +710,8 @@ int main(void)
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\n   Введи азимут на вторую точку в °: ");
-            if(scanf("%lf", &lat_1.initial_bearing) != 1) {
+            printf("\n   Введи истинный курс на вторую точку в °: ");
+            if(scanf("%lf", &maneuver.path_angle) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
@@ -722,7 +721,7 @@ int main(void)
                 return 0;
             }
             printf("\n   Введи направление ветра в °: ");
-            if(scanf("%lf", &maneuver.wind_angle) != 1) {
+            if(scanf("%lf", &maneuver.wind_dir) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
@@ -734,10 +733,8 @@ int main(void)
             printf("\nПервая точка:   lat   %.6f°\n                lng   %.6f°\n", lat_1.lat, lng_1.lng);
             calcpoint_coord(lat_1.lat, lng_1.lng, lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
             printf("\nВторая точка:   lat   %.6f°\n                lng   %.6f°\n\nКонечный азимут = %.6f°\n", result_cl2sl2[0], result_cl2sl2[1], result_cl2sl2[2]);
-            maneuver.magnetpath_angle = lat_1.initial_bearing;
-            calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
-            maneuver.flight_track = lat_1.fldist;
-            calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
+            calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.path_angle, maneuver.wind_dir);
+            calc_flduration(maneuver.ground_speed, lat_1.fldist, result_flduration2);
             printf("время полета: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
                     result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
             nav_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
@@ -842,19 +839,11 @@ int main(void)
         case 2:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
             printf("\n   Введи через пробел значение скорость с-та в км/ч, скорость ветра в км/ч, курс полета с-та° и направление нав ветера°: ");
-            if(scanf("%lf %lf %lf %lf", &maneuver.aircr_speed, &maneuver.wind_speed, &maneuver.magnetpath_angle, &maneuver.wind_dir) != 4) {
+            if(scanf("%lf %lf %lf %lf", &maneuver.aircr_speed, &maneuver.wind_speed, &maneuver.path_angle, &maneuver.wind_dir) != 4) {
                 printf("\nError_input!\n");
                 return 0;
             }
-            if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500 || maneuver.wind_speed < 0 || maneuver.wind_speed > 300) {
-                printf("\nError! Input the unreal speed for an aircraft or for the wind!\n");
-                return 0;
-            }
-            if(maneuver.magnetpath_angle < 0 || maneuver.magnetpath_angle > 360 || maneuver.wind_dir < 0 || maneuver.wind_dir > 360) {
-                printf("\nError! Angle can't be less 0° or more than 360°\n");
-                return 0;
-            }
-            calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.magnetpath_angle, maneuver.wind_dir);
+            calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.path_angle, maneuver.wind_dir);
             return 0;
         case 3:
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
