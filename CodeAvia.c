@@ -36,13 +36,13 @@ int current_time(int fl_hours , int fl_minutes, int fl_seconds)
 	month = local->tm_mon + 1;
 	year = local->tm_year + 1900;
 
-    printf("дата: %02d/%02d/%d\n", day, month, year);
+    printf("\nДата: %02d/%02d/%d\n", day, month, year);
 	printf("Текущее время: %02d:%02d:%02d\n", hours, minutes, seconds);
     if(res_hours >= 24) {
-        printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\n", 
+        printf("\nОжидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\n", 
                 day + 1, month, year, res_hours - 24, res_minutes, res_seconds);
     } else
-        printf("Ожидаемое время прибытия: %02d:%02d:%02d\n", res_hours, res_minutes, res_seconds);
+        printf("\nОжидаемое время прибытия: %02d:%02d:%02d\n", res_hours, res_minutes, res_seconds);
 
 	return 0;
 }
