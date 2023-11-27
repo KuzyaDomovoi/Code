@@ -297,7 +297,7 @@ double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle
     if(maneuver.wind_dir == maneuver.magnetpath_angle) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed + maneuver.wind_speed;
-        printf("\nугол сноса = %.6f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
+        printf("\nугол сноса = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
         return 0;
     }
     if(maneuver.wind_dir < maneuver.magnetpath_angle) {
@@ -307,7 +307,7 @@ double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle
     if(maneuver.wind_angle == 180 || maneuver.wind_angle == 0 || maneuver.wind_angle == 360) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed - maneuver.wind_speed;
-        printf("\nугол сноса = %.6f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
+        printf("\nугол сноса = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
         return 0;
     }
     if(range(0, maneuver.magnetpath_angle, 180) && range(0, maneuver.wind_dir, 180))
@@ -321,7 +321,7 @@ double calc_angle(double aircr_speed, double wind_speed, double magnetpath_angle
     maneuver.drift_angle = rint(asin(maneuver.t) * DEG);
     maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
     maneuver.heading_corr = maneuver.magnetpath_angle - maneuver.drift_angle;
-    printf("\nугол сноса = %.6f°\nкурс с учетом УС = %.6f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
+    printf("\nугол сноса = %.1f°\nкурс с учетом УС = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
     return 0;
 }
 
@@ -338,7 +338,7 @@ double calc_trackcorrection(double lateral_line, double flight_track, double flc
     maneuver.course_correction_curr = (atan(maneuver.lateral_line / maneuver.flcurr_range) * DEG);
     maneuver.course_correction_rem = (atan(maneuver.lateral_line / maneuver.flrem_range) * DEG);
     maneuver.course_correction = (atan(maneuver.lateral_line / maneuver.flcurr_range) * DEG) + (atan(maneuver.lateral_line / maneuver.flrem_range) * DEG);
-    printf("   при ЛБУ = %.2f км:\n      боковое уклонение = УС = %.6f°\n      дополнительная ПК = %.6f°\n      полная ПК = %.6f°\n", 
+    printf("   при ЛБУ = %.1f км:\n      боковое уклонение = УС = %.1f°\n      дополнительная ПК = %.1f°\n      полная ПК = %.1f°\n", 
             maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
     return 0;
 }
