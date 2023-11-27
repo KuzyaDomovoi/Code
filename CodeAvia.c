@@ -12,69 +12,87 @@
 #define RAD  M_PI / 180.0
 #define DEG  180.0 / M_PI
 
-int current_time(int fl_hours , int fl_minutes, int fl_seconds)
-{
-	int hours, minutes, seconds, day, month, year;
+int current_time() {
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    printf("\nДата: %02d/%02d/%d\n", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
 
-	time_t now;
-	time(&now);
-	struct tm *local = localtime(&now);
+    int hours = tm.tm_hour;
+    int minutes = tm.tm_min;
+    int seconds = tm.tm_sec;
+  
+    while(1) {
+          // Print the time in HH : MM : SS format
+          printf("Время: %02d:%02d:%02d\r", hours, minutes, seconds);
+          // Clear the output buffer in gcc
+          fflush(stdout);
+          // Increment second
+         seconds++;
+          // Update hour, minute and second
+         if(seconds == 60) {
+            minutes += 1;
+            seconds = 0;
+          }
+          if(minutes == 60) {
+            hours += 1;
+            minutes = 0;
+          }
+          if(hours == 24) {
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+          }
+      // Wait for 1 second
+          sleep(1);
+    }
+    return 0;
+}
 
-	hours = local->tm_hour;
-	minutes = local->tm_min;
-	seconds = local->tm_sec;
+int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+       
+    int year = tm.tm_year + 1900;
+    int mon = tm.tm_mon + 1;
+    int day = tm.tm_mday;
+
+    int hours = tm.tm_hour;
+    int minutes = tm.tm_min;
+    int seconds = tm.tm_sec;
+
+    printf("Время на момнент расчета: %02d/%02d/%d  %02d:%02d:%02d\n", day, mon, year, hours, minutes, seconds);
 
     int c_time = hours * 3600 + minutes * 60 + seconds;
     int fl_time = fl_hours * 3600 + fl_minutes * 60 + fl_seconds;
     int res_time = c_time + fl_time;
+
     int res_hours = res_time / 3600;
     int res_minutes = res_time / 60 % 60;
     int res_seconds = res_time % 60;
-
-	day = local->tm_mday;
-	month = local->tm_mon + 1;
-	year = local->tm_year + 1900;
-
-    printf("\nДата: %02d/%02d/%d\n", day, month, year);
-    
-    while (1) {
-
-    // Print the time in HH : MM : SS format
-    printf("%02d : %02d : %02d \r", hours, minutes, seconds);
-
-    // Clear the output buffer in gcc
-    fflush(stdout);
-
-    // Increment second
-    seconds++;
-
-    // Update hour, minute and second
-    if (seconds == 60) {
-      minutes += 1;
-      seconds = 0;
+    while(1) {
+        if(res_hours >= 24) {
+            printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
+                    day + 1, mon, year, res_hours - 24, res_minutes, res_seconds);
+        } else
+            printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
+                    day, mon, year, res_hours, res_minutes, res_seconds);
+        fflush(stdout);
+        res_seconds++;
+        if(res_seconds == 60) {
+            res_minutes += 1;
+            res_seconds = 0;
+        }
+        if(res_minutes == 60) {
+            res_hours += 1;
+            res_minutes = 0;
+        }
+        if(res_hours == 24) {
+            res_hours = 0;
+            res_minutes = 0;
+            res_seconds = 0;
+        }
+        sleep(1);    
     }
-
-    if (minutes == 60) {
-      hours += 1;
-      minutes = 0;
-    }
-
-    if (hours == 24) {
-      hours = 0;
-      minutes = 0;
-      seconds = 0;
-    }
-
-    // Wait for 1 second
-    sleep(1);
-  }
-
-    if(res_hours >= 24) {
-        printf("\nОжидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\n", 
-                day + 1, month, year, res_hours - 24, res_minutes, res_seconds);
-    } else
-        printf("\nОжидаемое время прибытия: %02d:%02d:%02d\n", res_hours, res_minutes, res_seconds);
-
 	return 0;
 }
 
@@ -674,7 +692,7 @@ int main(void)
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
             printf("время полета: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
                     result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
-            current_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
+            nav_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
             return 0;
         case 2:
             printf("\nРасчет координат второй точки по координатам WGS-84 формата гг.гггггг\n");
@@ -722,7 +740,7 @@ int main(void)
             calc_flduration(maneuver.ground_speed, maneuver.flight_track, result_flduration2);
             printf("время полета: %02.f ч %02.f мин %02.f сек\nНа %.f м 1° изменения азимута\n", 
                     result_flduration2[0], result_flduration2[1], result_flduration2[2], result_cl2sl2[3]);
-            current_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
+            nav_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
             return 0;
         case 3:
             printf("\nEnd of program\n");
