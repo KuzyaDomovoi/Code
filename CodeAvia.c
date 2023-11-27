@@ -683,7 +683,7 @@ int main(void)
             printf("\nПервая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
                     lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
             coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
-            calcpoint_coord(res1[0], res1[1], lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
+            calcpoint_coord(res1[0], res1[1], maneuver.path_angle, lat_1.fldist, result_cl2sl2);
             coord_transfer_deg(result_cl2sl2[0], lat_res1, lat_res2);
             coord_transfer_deg(result_cl2sl2[1], lng_res1, lng_res2);
             printf("\nВторая точка: lat   %02.f° %02.f' %05.2f''\n              lng   %02.f° %02.f' %05.2f''\n\nКонечный азимут = %.6f°\n", 
@@ -732,7 +732,7 @@ int main(void)
                 return 0;
             }
             printf("\nПервая точка:   lat   %.6f°\n                lng   %.6f°\n", lat_1.lat, lng_1.lng);
-            calcpoint_coord(lat_1.lat, lng_1.lng, lat_1.initial_bearing, lat_1.fldist, result_cl2sl2);
+            calcpoint_coord(lat_1.lat, lng_1.lng, maneuver.path_angle, lat_1.fldist, result_cl2sl2);
             printf("\nВторая точка:   lat   %.6f°\n                lng   %.6f°\n\nКонечный азимут = %.6f°\n", result_cl2sl2[0], result_cl2sl2[1], result_cl2sl2[2]);
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.path_angle, maneuver.wind_dir);
             calc_flduration(maneuver.ground_speed, lat_1.fldist, result_flduration2);
