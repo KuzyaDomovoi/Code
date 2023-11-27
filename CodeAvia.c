@@ -71,31 +71,14 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
     int res_minutes = res_time / 60 % 60;
     int res_seconds = res_time % 60;
     
-    while(1) {
         if(res_hours >= 24) {
-            printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
+            printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\n", 
                     day + 1, mon, year, res_hours - 24, res_minutes, res_seconds);
         } else
-            printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
+            printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\n", 
                     day, mon, year, res_hours, res_minutes, res_seconds);
-        fflush(stdout);
-        res_seconds++;
-        if(res_seconds == 60) {
-            res_minutes += 1;
-            res_seconds = 0;
-        }
-        if(res_minutes == 60) {
-            res_hours += 1;
-            res_minutes = 0;
-        }
-        if(res_hours == 24) {
-            res_hours = 0;
-            res_minutes = 0;
-            res_seconds = 0;
-            day += 1;
-        }
-        sleep(1);    
-    }
+    
+
 	return 0;
 }
 
