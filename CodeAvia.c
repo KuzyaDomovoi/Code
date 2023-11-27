@@ -15,14 +15,14 @@
 int current_time() {
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
-    printf("\nДата: %02d/%02d/%d\n", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
-
+    
     int hours = tm.tm_hour;
     int minutes = tm.tm_min;
     int seconds = tm.tm_sec;
   
     while(1) {
           // Print the time in HH : MM : SS format
+          printf("Дата: %02d/%02d/%d\r", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
           printf("Время: %02d:%02d:%02d\r", hours, minutes, seconds);
           // Clear the output buffer in gcc
           fflush(stdout);
@@ -41,6 +41,7 @@ int current_time() {
             hours = 0;
             minutes = 0;
             seconds = 0;
+            tm.tm_mday += 1;
           }
       // Wait for 1 second
           sleep(1);
