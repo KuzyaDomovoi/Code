@@ -37,7 +37,7 @@ int current_time(int fl_hours , int fl_minutes, int fl_seconds)
 	year = local->tm_year + 1900;
 
     printf("\nДата: %02d/%02d/%d\n", day, month, year);
-	printf("Текущее время: %02d:%02d:%02d\n", hours, minutes, seconds);
+	printf("Время: %02d:%02d:%02d\n", hours, minutes, seconds);
     if(res_hours >= 24) {
         printf("\nОжидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\n", 
                 day + 1, month, year, res_hours - 24, res_minutes, res_seconds);
