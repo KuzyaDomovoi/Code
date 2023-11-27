@@ -60,7 +60,7 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
     int minutes = tm.tm_min;
     int seconds = tm.tm_sec;
 
-    printf("Время на момнент расчета: %02d/%02d/%d  %02d:%02d:%02d\n", day, mon, year, hours, minutes, seconds);
+    printf("Время текущее: %02d/%02d/%d  %02d:%02d:%02d\n", day, mon, year, hours, minutes, seconds);
 
     int c_time = hours * 3600 + minutes * 60 + seconds;
     int fl_time = fl_hours * 3600 + fl_minutes * 60 + fl_seconds;
