@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 #define M_PI 3.14159265358979323846
 #define G    9.8
@@ -30,14 +31,44 @@ int current_time(int fl_hours , int fl_minutes, int fl_seconds)
     int res_minutes = res_time / 60 % 60;
     int res_seconds = res_time % 60;
 
-
-
 	day = local->tm_mday;
 	month = local->tm_mon + 1;
 	year = local->tm_year + 1900;
 
     printf("\nДата: %02d/%02d/%d\n", day, month, year);
-	printf("Время: %02d:%02d:%02d\n", hours, minutes, seconds);
+    
+    while (1) {
+
+    // Print the time in HH : MM : SS format
+    printf("%02d : %02d : %02d \r", hours, minutes, seconds);
+
+    // Clear the output buffer in gcc
+    fflush(stdout);
+
+    // Increment second
+    seconds++;
+
+    // Update hour, minute and second
+    if (seconds == 60) {
+      minutes += 1;
+      seconds = 0;
+    }
+
+    if (minutes == 60) {
+      hours += 1;
+      minutes = 0;
+    }
+
+    if (hours == 24) {
+      hours = 0;
+      minutes = 0;
+      seconds = 0;
+    }
+
+    // Wait for 1 second
+    sleep(1);
+  }
+
     if(res_hours >= 24) {
         printf("\nОжидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\n", 
                 day + 1, month, year, res_hours - 24, res_minutes, res_seconds);
