@@ -70,6 +70,7 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
     int res_hours = res_time / 3600;
     int res_minutes = res_time / 60 % 60;
     int res_seconds = res_time % 60;
+    
     while(1) {
         if(res_hours >= 24) {
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
