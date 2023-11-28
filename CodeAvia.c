@@ -24,14 +24,6 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
     int minutes = tm.tm_min;
     int seconds = tm.tm_sec;
 
-    int c_time = hours * 3600 + minutes * 60 + seconds;
-    int fl_time = fl_hours * 3600 + fl_minutes * 60 + fl_seconds;
-    int res_time = c_time + fl_time;
-
-    int res_hours = res_time / 3600;
-    int res_minutes = res_time / 60 % 60;
-    int res_seconds = res_time % 60;
-    
     while(1) {
         t = time(NULL);
         tm = *localtime(&t);
@@ -51,8 +43,15 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
             minutes = 0;
             seconds = 0;
         }
-        sleep(1);
-        
+
+        int c_time = hours * 3600 + minutes * 60 + seconds;
+        int fl_time = fl_hours * 3600 + fl_minutes * 60 + fl_seconds;
+        int res_time = c_time + fl_time;
+
+        int res_hours = res_time / 3600;
+        int res_minutes = res_time / 60 % 60;
+        int res_seconds = res_time % 60;
+
         if(res_hours >= 24) {
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
                     day + 1, mon, year, res_hours - 24, res_minutes, res_seconds);
@@ -66,8 +65,8 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
             res_seconds = 0;
         }
         if(res_minutes == 60) {
-        res_hours += 1;
-        res_minutes = 0;
+            res_hours += 1;
+            res_minutes = 0;
         }
         if(res_hours == 24) {
             res_hours = 0;
