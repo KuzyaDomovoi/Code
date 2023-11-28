@@ -274,12 +274,6 @@ void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double r
     result_turn[5] = maneuver.range_turnlead;
 }
 
-bool range(int x, int a, int y) {
-    if(x <= a && a <= y)
-        return true;
-    return false;
-}
-
 bool range2(float x, float a, float y) {
     if(a < x || a > y)
         return true;
@@ -353,7 +347,8 @@ double calc_angle(double aircr_speed, double wind_speed, double path_angle, doub
         maneuver.drift_angle = asin(maneuver.t) * DEG;
         maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
         maneuver.heading_corr = maneuver.path_angle - maneuver.drift_angle;
-        printf("\nугол сноса = %.1f°\nкурс с учетом УС = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
+        printf("\nугол сноса = %.1f°\nкурс с учетом УС = %.1f°\nпутевая скорость = %.f км/ч\n", 
+                maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
         return 0;
 }
 
@@ -633,7 +628,7 @@ int main(void)
             res = scanf("%d %d %f", &lng_1.deg, &lng_1.min, &lng_1.sec);
             if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, res) != 0)
                 return 0;
-           printf("\n   Введи дальность до второй точки в м: ");
+            printf("\n   Введи дальность до второй точки в м: ");
             if(scanf("%f", &lat_1.fldist) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
@@ -684,7 +679,7 @@ int main(void)
                 printf("\nIncorect Input!\n");
                 return 0;
             }
-           printf("\n   Введи дальность до второй точки в м: ");
+            printf("\n   Введи дальность до второй точки в м: ");
             if(scanf("%f", &lat_1.fldist) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
