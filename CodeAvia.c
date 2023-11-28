@@ -218,7 +218,7 @@ struct flrange_flduration {
     double req_engthrustcruise; double lifttodrag_ratio; double hourfucons; double spec_fuconsclim; double spec_fuconscruise; 
     double rangcruise; double timecruise; double flrang_clim_1000; double flrange; 
     int flduration; int flduration_h; int flduration_m; int flduration_s;
-    } flight;
+} flight;
 
 struct fltime_flangle_flspeed {
     double turn_roll; double turn_angle; double max_aircr_speed; double wind_angle; double path_angle; 
