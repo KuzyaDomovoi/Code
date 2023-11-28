@@ -499,8 +499,8 @@ int main(void)
             return 0;
         }
         flrange_duration_calc(flight.desctime, flight.full_fusupp, flight.fucons_TO, flight.fucons_desc, flight.fucons_final_land_taxi, 
-                  flight.guarfusupp_unusfures, flight.cruisspeed, flight.engthrust_val, flight.fucons_preTO, flight.descspeed,
-                  flight.spec_fuconsclim, flight.average_climspeed, flight.airbornspeed, result_flrange, result_flduration);
+                              flight.guarfusupp_unusfures, flight.cruisspeed, flight.engthrust_val, flight.fucons_preTO, flight.descspeed,
+                              flight.spec_fuconsclim, flight.average_climspeed, flight.airbornspeed, result_flrange, result_flduration);
         printf("\nРасполагаемый запас топлива = %.f кг\n", result_flrange[0]);
         printf("Дальность полета = %.1f км\nПродолжительность полета = %02.f ч %02.f мин\n", 
                 result_flrange[1], result_flduration[0], result_flduration[1]);
@@ -585,8 +585,8 @@ int main(void)
                 printf("\nПервая точка:   lat   %02.f° %02.f' %05.2f''\n                lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             } else
-            printf("\nПервая точка:   lat  %02.f° %02.f' %05.2f''\n                lng %03.f° %02.f' %05.2f''\n", 
-                    lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
+                printf("\nПервая точка:   lat  %02.f° %02.f' %05.2f''\n                lng %03.f° %02.f' %05.2f''\n", 
+                        lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             if(lat_res1_1[0] < 0 && lng_res1_1[0] < 0) {
                 printf("Вторая точка:   lat  %03.f° %02.f' %05.2f''\n                lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
@@ -599,8 +599,8 @@ int main(void)
                 printf("Вторая точка:   lat   %0.fd° %02.f' %05.2f''\n                lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
             } else
-            printf("Вторая точка:   lat  %02.f° %02.f' %05.2f''\n                lng %03.f° %02.f' %05.2f''\n", 
-                    lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
+                printf("Вторая точка:   lat  %02.f° %02.f' %05.2f''\n                lng %03.f° %02.f' %05.2f''\n", 
+                        lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
             calcfldist_bear(lat_1.lat, lng_1.lng, lat_2.lat, lng_2.lng, result_db);
             printf("\nРасстояние = %.1f м\nНачальный азимут = %.6f°\nКонечный азимут = %.6f°\nНа %.f м 1° изменения азимута\n", 
                     result_db[0], result_db[1], result_db[2], result_db[3]);
