@@ -12,43 +12,6 @@
 #define RAD  M_PI / 180.0
 #define DEG  180.0 / M_PI
 
-int current_time() {
-    time_t t = time(NULL);
-    struct tm tm = *localtime(&t);
-    
-    int hours = tm.tm_hour;
-    int minutes = tm.tm_min;
-    int seconds = tm.tm_sec;
-  
-    while(1) {
-          // Print the time in HH : MM : SS format
-          printf("Дата: %02d/%02d/%d\r", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
-          printf("Время: %02d:%02d:%02d\r", hours, minutes, seconds);
-          // Clear the output buffer in gcc
-          fflush(stdout);
-          // Increment second
-         seconds++;
-          // Update hour, minute and second
-         if(seconds == 60) {
-            minutes += 1;
-            seconds = 0;
-          }
-          if(minutes == 60) {
-            hours += 1;
-            minutes = 0;
-          }
-          if(hours == 24) {
-            hours = 0;
-            minutes = 0;
-            seconds = 0;
-            tm.tm_mday += 1;
-          }
-      // Wait for 1 second
-          sleep(1);
-    }
-    return 0;
-}
-
 int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
