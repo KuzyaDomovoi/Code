@@ -388,19 +388,16 @@ void calc_flduration(double ground_speed, double flight_dist, double result_fldu
 
 int main(void)
 {
-    int item;
+    int item, res = 0;
+    double lat1, lat2, lng1, lng2;
     double result_flrange[2], result_flduration[2];
     double result_flduration2[3];
     double result_turn[6];
-    int res = 0;
-    double lat1, lat2, lng1, lng2;
     double res1[2], res2[2];
     double result_db[4];
-    float lat_res1[2], lng_res1[2];
-    float lat_res2[1], lng_res2[1];
-    float lat_res1_1[2], lng_res1_1[2];
-    float lat_res2_2[1], lng_res2_2[1];
-    double result_cl2sl2[4];  
+    double result_cl2sl2[4];
+    float lat_res1[2], lng_res1[2], lat_res2[1], lng_res2[1];
+    float lat_res1_1[2], lng_res1_1[2], lat_res2_2[1], lng_res2_2[1];      
     
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
