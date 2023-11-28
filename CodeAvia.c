@@ -61,8 +61,6 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
     int minutes = tm.tm_min;
     int seconds = tm.tm_sec;
 
-    printf("Время текущее: %02d/%02d/%d  %02d:%02d:%02d\n", day, mon, year, hours, minutes, seconds);
-
     int c_time = hours * 3600 + minutes * 60 + seconds;
     int fl_time = fl_hours * 3600 + fl_minutes * 60 + fl_seconds;
     int res_time = c_time + fl_time;
@@ -71,14 +69,52 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
     int res_minutes = res_time / 60 % 60;
     int res_seconds = res_time % 60;
     
+    while(1) {
+        t = time(NULL);
+        tm = *localtime(&t);
+        printf("Время текущее: %02d/%02d/%d  %02d:%02d:%02d  ", day, mon, year, hours, minutes, seconds);
+        fflush(stdout);
+        seconds++;
+        if(seconds == 60) {
+            minutes += 1;
+            seconds = 0;
+        }
+        if(minutes == 60) {
+            hours += 1;
+            minutes = 0;
+        }
+        if(hours == 24) {
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+            day += 1;
+      }
+        sleep(1);
+
         if(res_hours >= 24) {
-            printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\n", 
+            printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
                     day + 1, mon, year, res_hours - 24, res_minutes, res_seconds);
         } else
-            printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\n", 
+            printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
                     day, mon, year, res_hours, res_minutes, res_seconds);
-    
-
+        fflush(stdout);
+        res_seconds++;
+        if(res_seconds == 60) {
+            res_minutes += 1;
+            res_seconds = 0;
+        }
+        if(res_minutes == 60) {
+        res_hours += 1;
+        res_minutes = 0;
+        }
+        if(res_hours == 24) {
+            res_hours = 0;
+            res_minutes = 0;
+            res_seconds = 0;
+            day += 1;
+        }
+        sleep(1);
+    }
 	return 0;
 }
 
