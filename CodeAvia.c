@@ -44,6 +44,10 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
             seconds = 0;
         }
 
+        int year1 = tm.tm_year + 1900;
+        int mon1 = tm.tm_mon + 1;
+        int day1 = tm.tm_mday;
+
         int c_time = hours * 3600 + minutes * 60 + seconds;
         int fl_time = fl_hours * 3600 + fl_minutes * 60 + fl_seconds;
         int res_time = c_time + fl_time;
@@ -51,13 +55,21 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
         int res_hours = res_time / 3600;
         int res_minutes = res_time / 60 % 60;
         int res_seconds = res_time % 60;
-
+        
+        if(mon1 == 2 && day1 >= 28) {
+            day1 -= 28;
+            mon1 += 1;
+        }
+        if((mon1 == 4 || mon1 == 6 || mon1 == 9 || mon1 == 11) && day1 >= 30) {
+            day1 -= 30;
+            mon1 += 1;
+        }
         if(res_hours >= 24) {
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
-                    day + 1, mon, year, res_hours - 24, res_minutes, res_seconds);
+                    day1 + 1, mon1, year1, res_hours - 24, res_minutes, res_seconds);
         } else
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
-                    day, mon, year, res_hours, res_minutes, res_seconds);
+                    day1, mon1, year1, res_hours, res_minutes, res_seconds);
         fflush(stdout);
         res_seconds++;
         if(res_seconds == 60) {
