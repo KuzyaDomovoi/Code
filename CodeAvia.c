@@ -73,7 +73,7 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
         }
         if(res_hours >= 24) {
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
-                    day1 + 1, mon1, year1, res_hours - 24, res_minutes, res_seconds);
+                    day1 + 1, mon1, year1, res_hours % 24, res_minutes, res_seconds);
         } else
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
                     day1, mon1, year1, res_hours, res_minutes, res_seconds);
