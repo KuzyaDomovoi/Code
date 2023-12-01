@@ -55,14 +55,21 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
         int res_hours = res_time / 3600;
         int res_minutes = res_time / 60 % 60;
         int res_seconds = res_time % 60;
-        
-        if(mon1 == 2 && day1 >= 28) {
-            day1 -= 28;
-            mon1 += 1;
+
+        if(year % 4 == 0 || year % 400 == 0) {
+            if(mon1 == 2 && day1 >= 29) {
+                day1 -= 29;
+                mon1 += 1;
+            }
+        } else if(year % 100 == 0) {
+            if(mon1 == 2 && day1 >= 28) {
+                day1 -= 28;
+                mon1 += 1;
+            }
         }
         if((mon1 == 4 || mon1 == 6 || mon1 == 9 || mon1 == 11) && day1 >= 30) {
-            day1 -= 30;
-            mon1 += 1;
+                day1 -= 30;
+                mon1 += 1;
         }
         if(res_hours >= 24) {
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
