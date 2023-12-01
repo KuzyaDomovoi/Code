@@ -27,7 +27,7 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
     while(1) {
         t = time(NULL);
         tm = *localtime(&t);
-        printf("Время текущее: %02d:%02d:%02d  %02d/%02d/%d  ", hours, minutes, seconds, day, mon, year);
+        printf("Время текущее: %02d/%02d/%d  %02d:%02d:%02d   ", day, mon, year, hours, minutes, seconds);
         fflush(stdout);
         seconds++;
         if(seconds == 60) {
@@ -78,7 +78,7 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
                 year1 += 1;
             }
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
-                    day1 + res_hours % 24, mon1 + day1 % 30, year1 + mon1 % 12, res_hours % 24, res_minutes, res_seconds);
+                    day1, mon1, year1, res_hours % 24, res_minutes, res_seconds);
         } else
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
                     day1, mon1, year1, res_hours, res_minutes, res_seconds);
