@@ -80,7 +80,7 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
             if(mon1 > 12) {
                 mon1 -= 12;
             }
-        year1 += mon1 % 12; // is incorrect for flight-time more than 1000 hours;
+        year1 += mon1 % 12; // can be incorrect for flight-time more than 1000 hours;
 
         if(res_hours >= 24) {
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
