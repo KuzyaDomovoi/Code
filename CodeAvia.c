@@ -73,12 +73,9 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
         }
         
         day1 += res_hours / 24;
-            if(day1 / mdays > 2) {
-                day1 += day1 / (day1 / mdays);
-            } else
                 if(day1 > mdays) {
-                    day1 -= mdays;
-                }
+                day1 = day1 % mdays;
+            }
         mon1 += res_hours / 24 / mdays;
             if(mon1 > 12) {
                 mon1 -= 12;
