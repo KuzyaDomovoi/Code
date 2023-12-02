@@ -888,9 +888,9 @@ int main(void)
             calc_trackcorrection(maneuver.lateral_line, maneuver.flight_track, maneuver.flcurr_range);
             return 0;
         case 5:
-            printf("\n   1. Пересчет скоростей из км/ч в узлы\n"
-                   "   2. Пересчет скоростей из  узлов в км/ч\n");
-            printf("      Выбери действие: ");
+            printf("\n      1. Пересчет скоростей из км/ч в узлы\n"
+                   "      2. Пересчет скоростей из  узлов в км/ч\n");
+            printf("         Выбери действие: ");
             if(scanf("%d", &item) != 1) {
                 printf("\nError! input out of range list!\n");
                 return 0;
