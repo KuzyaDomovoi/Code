@@ -65,10 +65,10 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
         }
         if(mon1 == 2) {
             if(year1 % 400 || year1 % 4) {
-                mdays == 29;
+                mdays = 29;
             }
             if(year1 % 100) {
-                mdays == 28;
+                mdays = 28;
             }
         }
         
