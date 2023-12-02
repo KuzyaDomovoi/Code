@@ -56,12 +56,41 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
         int res_minutes = res_time / 60 % 60;
         int res_seconds = res_time % 60;
 
+        int mdays;
+        if(mon1 == 1 || mon1 == 3 || mon1 == 5 || mon1 == 7 || mon1 == 8 || mon1 == 10 || mon1 == 12) {
+            mdays = 31;
+        }
+        if(mon1 == 4 || mon1 == 6 || mon1 == 9 || mon1 == 11) {
+            mdays = 30;
+        }
+        if(mon1 == 2) {
+            if(year1 % 400 || year1 % 4) {
+                mdays == 29;
+            }
+            if(year1 % 100) {
+                mdays == 28;
+            }
+        }
+        
+        day1 += res_hours / 24;
+            if(day1 / mdays > 2) {
+                day1 += day1 / (day1 / mdays);
+            } else
+                if(day1 > mdays) {
+                    day1 -= mdays;
+                }
+        mon1 += res_hours / 24 / mdays;
+            if(mon1 > 12) {
+                mon1 -= 12;
+            }
+        year1 += res_hours / 24 / mdays / 12;
+
         if(res_hours >= 24) {
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
-                    day1 + res_hours / 24, mon1, year1, res_hours % 24, res_minutes, res_seconds);
+                    day1, mon1, year1, res_hours % 24, res_minutes, res_seconds);
         } else
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
-                    day, mon, year, res_hours, res_minutes, res_seconds);
+                    day1, mon1, year1, res_hours, res_minutes, res_seconds);
         fflush(stdout);
         res_seconds++;
         if(res_seconds == 60) {
