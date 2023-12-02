@@ -897,7 +897,7 @@ int main(void)
             }
             switch(item) {
             case 1:
-                printf("Введи скорость в км/ч: ");
+                printf("\nВведи скорость в км/ч: ");
                 if(scanf("%lf", &maneuver.aircr_speed) != 1) {
                     printf("\nError!\n");
                     return 0;
@@ -906,7 +906,7 @@ int main(void)
                 printf("скорость %.f км/ч = %.f узлов", maneuver.aircr_speed, result_knh[0]);
                 return 0;
             case 2:
-                printf("Введи скорость в узлах: ");
+                printf("\nВведи скорость в узлах: ");
                 if(scanf("%lf", &maneuver.aircr_speed) != 1) {
                     printf("\nError!\n");
                     return 0;
