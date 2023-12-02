@@ -903,7 +903,7 @@ int main(void)
                     return 0;
                 }
                 kmh_to_knh(maneuver.aircr_speed, result_knh);
-                printf("скорость %.f км/ч = %.f узлов", maneuver.aircr_speed, result_knh[0]);
+                printf("скорость %.f км/ч = %.f узлов\n", maneuver.aircr_speed, result_knh[0]);
                 return 0;
             case 2:
                 printf("\nВведи скорость в узлах: ");
@@ -912,7 +912,7 @@ int main(void)
                     return 0;
                 }
                 knh_to_kmh(maneuver.aircr_speed, result_kmh);
-                printf("скорость %.f узлов = %.f км/ч", maneuver.aircr_speed, result_kmh[0]);
+                printf("скорость %.f узлов = %.f км/ч\n", maneuver.aircr_speed, result_kmh[0]);
                 return 0;
             }
         case 6:
