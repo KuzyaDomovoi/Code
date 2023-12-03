@@ -274,13 +274,13 @@ struct fltime_flangle_flspeed {
 } maneuver;
 
 void calc_time_collision(double aircr_speed1, double aircr_speed2, double distance, double result_coll[1]) {
-    double time_collision = (distance / aircr_speed1 + aircr_speed2) * 3600;
+    double time_collision = distance / (aircr_speed1 + aircr_speed2) * 3600;
 
     result_coll[0] = time_collision;
 }
 
 void calc_time_catch(double aircr_speed1, double aircr_speed2, double distance, double result_catch[1]) {
-    double time_catch = (distance / fabs(aircr_speed1 - aircr_speed2)) * 3600;
+    double time_catch = distance / fabs(aircr_speed1 - aircr_speed2) * 3600;
 
     result_catch[0] = time_catch;
 }
