@@ -91,8 +91,15 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
             if(mon1 > 12) {
                 mon1 %= 12;
             }
-        year1 += mon1 % 12; // is correct for flight-durance less than 1440 hours only;
-
+        int yhours;
+        if((year1 % 400 || year1 % 4) == 0) {
+            yhours = 8784; // 366 ydays
+        } else
+            yhours = 8760; // 365 ydays;
+        if(res_hours > yhours) { 
+            year1 += ceil((double)res_hours / 24 / mdays / 12);
+        } else year1 += res_hours / 24 / mdays % 12; // is correct for flight-durance less than 1440 hours only;
+        
         if(res_hours >= 24) {
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
                     day1, mon1, year1, res_hours % 24, res_minutes, res_seconds);
