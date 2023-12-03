@@ -918,7 +918,8 @@ int main(void)
             return 0;
         case 5:
             printf("\n      1. Расчет времени встречи самолетов\n"
-                   "      2. Расчет времени догона самолетов\n");
+                   "      2. Расчет времени догона самолетов\n"
+                   "      3. Выход\n");
             printf("         Выбери действие: ");
             if(scanf("%d", &item) != 1) {
                 printf("\nError! Input is out of range list!\n");
@@ -941,6 +942,12 @@ int main(void)
                     return 0;
                 }
                 calc_time_catch(maneuver.aircr_speed1, maneuver.aircr_speed2, maneuver.distance);
+                return 0;
+            case 3:
+                printf("\nEnd of program\n");
+                return 0;
+            default:
+                printf("\nIncorrect input!\n");
                 return 0;
             }
         case 6:
@@ -969,6 +976,12 @@ int main(void)
                 }
                 knh_to_kmh(maneuver.aircr_speed, result_kmh);
                 printf("скорость %.f узлов = %.f км/ч\n", maneuver.aircr_speed, result_kmh[0]);
+                return 0;
+            case 3:
+                printf("\nEnd of program\n");
+                return 0;
+            default:
+                printf("\nIncorrect input!\n");
                 return 0;
             }
         case 7:
