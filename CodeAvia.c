@@ -91,17 +91,7 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
             if(mon1 > 12) {
                 mon1 %= 12;
             }
-        int ydays;
-        if((year1 % 400 || year1 % 4) == 0) {
-            ydays = 366;
-        } else
-            ydays = 365;
-        if((res_hours / 24) % ydays < 1) {
-            year1 += 0;
-        }
-        if(((res_hours / 24) % ydays) >= 1 && ((res_hours / 24) % ydays) < 2) {
-            year1 += 1;
-        } else year1 += 2;
+        year1 += mon1 % 12;
 
         if(res_hours >= 24) {
             printf("Ожидаемое прибытие: %02d/%02d/%d  %02d:%02d:%02d\r", 
