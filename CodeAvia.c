@@ -268,10 +268,22 @@ struct fltime_flangle_flspeed {
     double aircr_speed; double wind_dir; double ground_speed; double drift_angle; double wind_speed; 
     double speed_range; double time_range; double lateral_line; double flcurr_range; double flrem_range; 
     double flight_track; double heading_corr; double turn_rad; double t; double mindist_checkpoint; 
-    double range_turnlead; double ny; double course_correction_curr; double course_correction_rem; 
-    double course_correction; double turn_speed; 
+    double range_turnlead; double ny; double course_correction_curr; double course_correction_rem; double distance;
+    double course_correction; double turn_speed; double aircr_speed1; double aircr_speed2; double time_collision; double time_cathch;
     int hours; int minutes; int seconds; int turn_time; int turn_time_m; int turn_time_s; 
 } maneuver;
+
+void calc_time_collision(double aircr_speed1, double aircr_speed2, double distance, double result_coll[1]) {
+    double time_collision = (distance / aircr_speed1 + aircr_speed2) * 3600;
+
+    result_coll[0] = time_collision;
+}
+
+void calc_time_catch(double aircr_speed1, double aircr_speed2, double distance, double result_catch[1]) {
+    double time_catch = (distance / fabs(aircr_speed1 - aircr_speed2)) * 3600;
+
+    result_catch[0] = time_catch;
+}
 
 void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, double fucons_TO, double fucons_desc, 
                            double fucons_final_land_taxi, double guarfusupp_unusfures, int cruisspeed, double engthrust_val,  
@@ -436,7 +448,8 @@ int main(void)
     double result_cl2sl2[4];
     float lat_res1[2], lng_res1[2], lat_res2[1], lng_res2[1];
     float lat_res1_1[2], lng_res1_1[2], lat_res2_2[1], lng_res2_2[1];
-    double result_knh[1], result_kmh[1];   
+    double result_knh[1], result_kmh[1];
+    double result_coll[1], result_catch[1];
     
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
@@ -828,11 +841,12 @@ int main(void)
                  "   2. Расчет угла сноса и путевой скорости\n"
                  "   3. Расчет минимального расстояния для возможного погашения опоздания или избытка времени\n"
                  "   4. Расчет поправки в курс по боковому уклонению\n"
-                 "   5. Пересчет скоростей\n"
-                 "   6. Выход\n");
+                 "   5. Расчет времени встречи и догона самолетов\n"
+                 "   6. Пересчет скоростей\n"
+                 "   7. Выход\n");
         printf("      Выбери действие: ");
         if(scanf("%d", &item) != 1) {
-            printf("\nError! input out of range list!\n");
+            printf("\nError! Input is out of range list!\n");
             return 0;
         }
         switch(item) {
@@ -840,7 +854,7 @@ int main(void)
             printf("\nРасчет радиуса, времени и длинны дуги угла разворота\n");
             printf("\n   Введи через пробел скорость с-та в км/ч, угол° и крен°: ");
             if(scanf("%lf %lf %lf", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_roll) != 3) {
-                printf("\nError_input!\n");
+                printf("\nIncorrect input!\n");
                 return 0;
             }
             if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500) {
@@ -859,7 +873,7 @@ int main(void)
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
             printf("\n   Введи через пробел значение скорость с-та в км/ч, скорость ветра в км/ч, курс полета с-та° и направление нав ветера°: ");
             if(scanf("%lf %lf %lf %lf", &maneuver.aircr_speed, &maneuver.wind_speed, &maneuver.path_angle, &maneuver.wind_dir) != 4) {
-                printf("\nError_input!\n");
+                printf("\nIncorrect input!\n");
                 return 0;
             }
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.path_angle, maneuver.wind_dir);
@@ -869,11 +883,11 @@ int main(void)
             printf("\n   Введи через пробел приб скорость полета в км/ч, макс приб скорость в км/ч, " 
                    "макс возможный избыток или недостаток времени в сек: ");
             if(scanf("%lf %lf %lf", &maneuver.aircr_speed, &maneuver.max_aircr_speed, &maneuver.time_range) != 3) {
-                printf("\nError_input!\n");
+                printf("\nIncorrect input!\n");
                 return 0;
             }
             if(maneuver.max_aircr_speed < maneuver.aircr_speed) {
-                printf("\nError_input! The max_aircr_speed can't be less than aircr_speed!\n");
+                printf("\nIncorrect input! The max_aircr_speed can't be less than aircr_speed!\n");
                 return 0; 
             }   
             calc_timecorrection(maneuver.aircr_speed, maneuver.max_aircr_speed, maneuver.time_range);
@@ -882,24 +896,52 @@ int main(void)
             printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
             printf("\n   Введи через пробел линейное боковое уклонение в км, общее расстояние до РТ в км, пройденное/оставшееся расстояние до РТ в км: ");
             if(scanf("%lf %lf %lf", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
-                printf("\nError_input!\n");
+                printf("\nIncorrect input!\n");
                 return 0;
             }
             calc_trackcorrection(maneuver.lateral_line, maneuver.flight_track, maneuver.flcurr_range);
             return 0;
         case 5:
+            printf("\n      1. Расчет времени встречи самолетов\n"
+                   "      2. Расчет времени догона самолетов\n");
+            printf("         Выбери действие: ");
+            if(scanf("%d", &item) != 1) {
+                printf("\nError! Input is out of range list!\n");
+                return 0;
+            }
+            switch(item) {
+            case 1:
+                printf("\nВведи через пробел скорости двух самодетов на встречных курсах в км/ч и дистанцию в км: ");
+                if(scanf("%lf %lf %lf", &maneuver.aircr_speed1, &maneuver.aircr_speed2, &maneuver.distance) != 3) {
+                    printf("\nIncorrect input!\n");
+                    return 0;
+                }
+                calc_time_collision(maneuver.aircr_speed1, maneuver.aircr_speed2, maneuver.distance, result_coll);
+                printf("Время до столкновения = %.f сек\n", result_coll[0]);
+                return 0;
+            case 2:
+                printf("\nВведи через пробел скорости двух самодетов на догоне в км/ч и дистанцию в км: ");
+                if(scanf("%lf %lf %lf", &maneuver.aircr_speed1, &maneuver.aircr_speed2, &maneuver.distance) != 3) {
+                    printf("\nIncorrect input!\n");
+                    return 0;
+                }
+                calc_time_catch(maneuver.aircr_speed1, maneuver.aircr_speed2, maneuver.distance, result_catch);
+                printf("Время до столкновения на догоне = %.f сек\n", result_catch[0]);
+                return 0;
+            }
+        case 6:
             printf("\n      1. Пересчет скоростей из км/ч в узлы\n"
                    "      2. Пересчет скоростей из  узлов в км/ч\n");
             printf("         Выбери действие: ");
             if(scanf("%d", &item) != 1) {
-                printf("\nError! input out of range list!\n");
+                printf("\nError! Input is out of range list!\n");
                 return 0;
             }
             switch(item) {
             case 1:
                 printf("\nВведи скорость в км/ч: ");
                 if(scanf("%lf", &maneuver.aircr_speed) != 1) {
-                    printf("\nError!\n");
+                    printf("\nIncorrect input!\n");
                     return 0;
                 }
                 kmh_to_knh(maneuver.aircr_speed, result_knh);
@@ -908,14 +950,14 @@ int main(void)
             case 2:
                 printf("\nВведи скорость в узлах: ");
                 if(scanf("%lf", &maneuver.aircr_speed) != 1) {
-                    printf("\nError!\n");
+                    printf("\nIncorrect input!\n");
                     return 0;
                 }
                 knh_to_kmh(maneuver.aircr_speed, result_kmh);
                 printf("скорость %.f узлов = %.f км/ч\n", maneuver.aircr_speed, result_kmh[0]);
                 return 0;
             }
-        case 6:
+        case 7:
             printf("\nEnd of program\n");
             return 0;
         default:

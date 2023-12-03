@@ -62,6 +62,7 @@
         "practice79": "c",
         "functional": "c",
         "cmath": "c",
-        "random": "c"
+        "random": "c",
+        "iterator": "c"
     }
 }
