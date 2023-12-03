@@ -93,6 +93,9 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
             if(mon1 > 12) {
                 mon1 %= 12;
             }
+        if(res_hours > 1439) {
+            year1 += mon1 % 12 - 1;
+        } else
         year1 += mon1 % 12; // is incorrect for flight-durance more than 1439 hours;
 
         if(res_hours >= 24) {
