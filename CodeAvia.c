@@ -283,15 +283,15 @@ double calc_time_catch(double aircr_speed1, double aircr_speed2, double distance
     double time_catch;
 
     if(aircr_speed1 < aircr_speed2) {
-        printf("\nНет сбдижения, отставание по скорости на %.f км/ч\n", fabs(aircr_speed1 - aircr_speed2));
+        printf("\nНет сближения, отставание по скорости на %.f км/ч\n", fabs(aircr_speed1 - aircr_speed2));
         return 0;
     }
-    if(aircr_speed1 = aircr_speed2) {
-        printf("\nНет сбдижения, скорости равны\n");
+    if(aircr_speed1 == aircr_speed2) {
+        printf("\nНет сближения, скорости равны\n");
         return 0;
     } else
         time_catch = distance / (aircr_speed1 - aircr_speed2) * 3600;    
-        printf("\nПри скорости сближения = %.f км/ч время до столкновения = %.1f сек\n", aircr_speed1 - aircr_speed2, time_catch);
+        printf("\nПри скорости сближения %.f км/ч время до столкновения %.1f сек\n", aircr_speed1 - aircr_speed2, time_catch);
         return 0;
 }
 
