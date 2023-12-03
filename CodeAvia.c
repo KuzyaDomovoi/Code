@@ -87,11 +87,11 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
         
         day1 += res_hours / 24;
                 if(day1 > mdays) {
-                day1 = day1 % mdays;
+                day1 %= mdays;
             }
         mon1 += res_hours / 24 / mdays;
             if(mon1 > 12) {
-                mon1 -= 12;
+                mon1 %= 12;
             }
         year1 += mon1 % 12; // can be incorrect for flight-time more than 1000 hours;
 
