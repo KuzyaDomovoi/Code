@@ -4,7 +4,7 @@
 int main(void)
 {
     
-    printf(" = %d\n", 991 % 24);
+    printf(" = %d\n", 1439/ 24 / 30 % 12);
 
 return 0;
 }
