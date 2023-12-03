@@ -283,7 +283,7 @@ double calc_time_catch(double aircr_speed1, double aircr_speed2, double distance
     double time_catch;
 
     if(aircr_speed1 < aircr_speed2) {
-        printf("\nОтставание по скорости на %.f км/ч\n", fabs(aircr_speed1 - aircr_speed2));
+        printf("\nНет сбдижения, отставание по скорости на %.f км/ч\n", fabs(aircr_speed1 - aircr_speed2));
         return 0;
     }
     if(aircr_speed1 = aircr_speed2) {
