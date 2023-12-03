@@ -267,7 +267,7 @@ struct fltime_flangle_flspeed {
     double turn_roll; double turn_angle; double max_aircr_speed; double wind_angle; double path_angle; 
     double aircr_speed; double wind_dir; double ground_speed; double drift_angle; double wind_speed; 
     double speed_range; double time_range; double lateral_line; double flcurr_range; double flrem_range; 
-    double flight_track; double heading_corr; double turn_rad; double t; double mindist_checkpoint; 
+    double flight_track; double heading_corr; double turn_rad; double t; double mindist_checkpoint;
     double range_turnlead; double ny; double course_correction_curr; double course_correction_rem; double distance;
     double course_correction; double turn_speed; double aircr_speed1; double aircr_speed2; double time_collision; double time_cathch;
     int hours; int minutes; int seconds; int turn_time; int turn_time_m; int turn_time_s; 
@@ -279,10 +279,20 @@ void calc_time_collision(double aircr_speed1, double aircr_speed2, double distan
     result_coll[0] = time_collision;
 }
 
-void calc_time_catch(double aircr_speed1, double aircr_speed2, double distance, double result_catch[1]) {
-    double time_catch = distance / fabs(aircr_speed1 - aircr_speed2) * 3600;
+double calc_time_catch(double aircr_speed1, double aircr_speed2, double distance) {
+    double time_catch;
 
-    result_catch[0] = time_catch;
+    if(aircr_speed1 < aircr_speed2) {
+        printf("\nОтставание по скорости = %.f км/ч\n", aircr_speed1 - aircr_speed2);
+        return 0;
+    }
+    if(aircr_speed1 = aircr_speed2) {
+        printf("\nНет сбдижения, скорости равны\n");
+        return 0;
+    } else
+        time_catch = distance / (aircr_speed1 - aircr_speed2) * 3600;    
+        printf("\nПри скорости сближения = %.f км/ч время до столкновения = %.1f сек\n", aircr_speed1 - aircr_speed2, time_catch);
+        return 0;
 }
 
 void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, double fucons_TO, double fucons_desc, 
@@ -449,7 +459,7 @@ int main(void)
     float lat_res1[2], lng_res1[2], lat_res2[1], lng_res2[1];
     float lat_res1_1[2], lng_res1_1[2], lat_res2_2[1], lng_res2_2[1];
     double result_knh[1], result_kmh[1];
-    double result_coll[1], result_catch[1];
+    double result_coll[1];
     
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
@@ -925,8 +935,7 @@ int main(void)
                     printf("\nIncorrect input!\n");
                     return 0;
                 }
-                calc_time_catch(maneuver.aircr_speed1, maneuver.aircr_speed2, maneuver.distance, result_catch);
-                printf("Время до столкновения на догоне = %.1f сек\n", result_catch[0]);
+                calc_time_catch(maneuver.aircr_speed1, maneuver.aircr_speed2, maneuver.distance);
                 return 0;
             }
         case 6:
