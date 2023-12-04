@@ -12,9 +12,9 @@ int main(void)
     time_t now;
     struct tm* timeinfo;
     int year;
-    char* month[] = {"January", "February", "March", "April", "May", "June", 
-                     "July", "August", "September", "October", "November", "December"};
-    printf("Input needed Year: ");
+    char* month[] = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", 
+                     "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
+    printf("Введи необходимый год: ");
     scanf("%d", &year);
     time(&now); // get current timeinfo and modify it to the user's choice;
     timeinfo = localtime(&now);
@@ -27,10 +27,9 @@ int main(void)
             timeinfo->tm_mday = i;
             mktime(timeinfo); // call mktime: the whole timeinfo for the day will be set;
             if(timeinfo->tm_mon > m) { // "end month" and "overload" processing;
-                printf("\n\n%28s\n", month[timeinfo->tm_mon]);
+                printf("\n\n  %s\n", month[timeinfo->tm_mon]);
                 printf("  __________________________\n");
-                printf("  Mo  Tu  We  Th  Fr  Sa  Su\n");
-                printf("  __________________________\n");
+                printf("  Пн  Вт  Ср  Чт  Пт  Сб  Вс\n\n");
                 for(int j = 0; j < (get_RUSSIAN_wday(timeinfo)); j++)
                     printf("    ");
                 m++;
