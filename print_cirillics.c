@@ -14,10 +14,10 @@ size_t mbslen(const char *str) {
 
 int main() 
 {
-    const char str1[] = "Hello world!";
+    const char str1[] = "Привет";
     const char str2[] = "Привет мир!";
 
-    printf("%*s\n", SWIDTH(28, str1), str1);
+    printf("%*s\n", SWIDTH(18, str1), str1);
     printf("%*s\n", SWIDTH(18, str2), str2);
 
     return 0;
