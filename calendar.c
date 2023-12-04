@@ -4,8 +4,7 @@
 static inline int get_RUSSIAN_wday(struct tm* tm)
 {
     return(tm->tm_wday + 6) % 7;
-};
-//:%s/tm->tm_wday/get_RUSSIAN_wday(tm)/g
+}; //:%s/tm->tm_wday/get_RUSSIAN_wday(tm)/g
 
 int main(void)
 {   
