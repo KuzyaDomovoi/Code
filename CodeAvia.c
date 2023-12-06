@@ -710,27 +710,27 @@ int main(void)
             res = scanf("%d %d %f", &lng_1.deg, &lng_1.min, &lng_1.sec);
             if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, res) != 0)
                 return 0;
-            printf("\n   Введи дальность до второй точки в м: ");
+            printf("   Введи дальность до второй точки в м: ");
             if(scanf("%f", &lat_1.fldist) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\n   Введи истинный курс на вторую точку в °: ");
+            printf("   Введи истинный курс на вторую точку в °: ");
             if(scanf("%lf", &maneuver.path_angle) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\n   Введи приборную скорость самолета в км/ч: ");
+            printf("   Введи приборную скорость самолета в км/ч: ");
             if(scanf("%lf", &maneuver.aircr_speed) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\n   Введи направление ветра в °: ");
+            printf("   Введи направление ветра в °: ");
             if(scanf("%lf", &maneuver.wind_dir) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\n   Введи скорость ветра в км/ч: ");
+            printf("   Введи скорость ветра в км/ч: ");
             if(scanf("%lf", &maneuver.wind_speed) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
@@ -761,27 +761,27 @@ int main(void)
                 printf("\nIncorect Input!\n");
                 return 0;
             }
-            printf("\n   Введи дальность до второй точки в м: ");
+            printf("   Введи дальность до второй точки в м: ");
             if(scanf("%f", &lat_1.fldist) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\n   Введи истинный курс на вторую точку в °: ");
+            printf("   Введи истинный курс на вторую точку в °: ");
             if(scanf("%lf", &maneuver.path_angle) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\n   Введи приборную скорость самолета в км/ч: ");
+            printf("   Введи приборную скорость самолета в км/ч: ");
             if(scanf("%lf", &maneuver.aircr_speed) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\n   Введи направление ветра в °: ");
+            printf("   Введи направление ветра в °: ");
             if(scanf("%lf", &maneuver.wind_dir) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\n   Введи скорость ветра в км/ч: ");
+            printf("   Введи скорость ветра в км/ч: ");
             if(scanf("%lf", &maneuver.wind_speed) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
