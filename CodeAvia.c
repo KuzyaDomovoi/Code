@@ -328,6 +328,14 @@ void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, d
 }
 
 void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double result_turn[6]) {
+    if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500) {
+        printf("\nError! Input the unreal speed for an aircraft or for the wind!\n");
+        exit(1);
+    }
+    if(maneuver.turn_roll > 83) {
+        printf("\nError! The turn_roll can't be more than 83°!\n");
+        exit(2);
+    }
     maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
     maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
     maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
@@ -870,14 +878,6 @@ int main(void)
             printf("\n   Введи через пробел скорость с-та в км/ч, угол° и крен°: ");
             if(scanf("%lf %lf %lf", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_roll) != 3) {
                 printf("\nIncorrect input!\n");
-                return 0;
-            }
-            if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500) {
-                printf("\nError! Input the unreal speed for an aircraft or for the wind!\n");
-                return 0;
-            }
-            if(maneuver.turn_roll > 83) {
-                printf("\nError! The turn_roll can't be more than 83°!\n");
                 return 0;
             }
             calc_turn(maneuver.aircr_speed, maneuver.turn_angle, maneuver.turn_roll, result_turn);
