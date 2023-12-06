@@ -648,6 +648,7 @@ int main(void)
             coord_transfer_deg(lng_1.lng, lng_res1, lng_res2);
             coord_transfer_deg(lat_2.lat, lat_res1_1, lat_res2_2);
             coord_transfer_deg(lng_2.lng, lng_res1_1, lng_res2_2);
+
             if(lat_res1[0] < 0 && lng_res1[0] < 0) {
                 printf("\nПервая точка:   lat  %03.f° %02.f' %05.2f''\n                lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
@@ -676,6 +677,7 @@ int main(void)
             } else
                 printf("Вторая точка:   lat  %02.f° %02.f' %05.2f''\n                lng %03.f° %02.f' %05.2f''\n", 
                         lat_res1_1[0], lat_res1_1[1], lat_res2_2[0], lng_res1_1[0], lng_res1_1[1], lng_res2_2[0]);
+
             calcfldist_bear(lat_1.lat, lng_1.lng, lat_2.lat, lng_2.lng, result_db);
             printf("\nРасстояние = %.1f м\nНачальный азимут = %.6f°\nКонечный азимут = %.6f°\nНа %.f м 1° изменения азимута\n", 
                     result_db[0], result_db[1], result_db[2], result_db[3]);
@@ -837,6 +839,7 @@ int main(void)
             } 
             coord_transfer_deg(lat_1.lat, lat_res1, lat_res2);
             coord_transfer_deg(lng_1.lng, lng_res1, lng_res2);
+
             if(lat_res1[0] < 0 && lng_res1[0] < 0) {
                 printf("\n   lat  %03.f° %02.f' %05.2f''\n   lng %04.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
@@ -952,7 +955,8 @@ int main(void)
             }
         case 6:
             printf("\n      1. Пересчет скоростей из км/ч в узлы\n"
-                   "      2. Пересчет скоростей из  узлов в км/ч\n");
+                   "      2. Пересчет скоростей из  узлов в км/ч\n"
+                   "      3. Выход\n");
             printf("         Выбери действие: ");
             if(scanf("%d", &item) != 1) {
                 printf("\nError! Input is out of range list!\n");
