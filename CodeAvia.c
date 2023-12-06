@@ -40,7 +40,8 @@ int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
     while(1) {
         t = time(NULL);
         tm = *localtime(&t);
-        printf("Время текущее: %02d/%02d/%d  %02d:%02d:%02d  ", day, mon, year, hours, minutes, seconds);
+        printf("Время текущее: %02d/%02d/%d  %02d:%02d:%02d  ", 
+                day, mon, year, hours, minutes, seconds);
         fflush(stdout);
         seconds++;
         if(seconds == 60) {
