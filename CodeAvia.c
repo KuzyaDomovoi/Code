@@ -434,8 +434,8 @@ double calc_angle(double aircr_speed, double wind_speed, double path_angle, doub
 double calc_timecorrection(double aircr_speed, double max_aircr_speed, double time_range) {
     maneuver.speed_range = maneuver.max_aircr_speed - maneuver.aircr_speed;
     maneuver.mindist_checkpoint = (maneuver.aircr_speed * maneuver.max_aircr_speed / maneuver.speed_range * maneuver.time_range / 3600);
-    printf("\n   при избытке скорости = %.f км/ч\n", maneuver.speed_range);
-    printf("   минимальное расстояние до РТ = %.1f км\n", maneuver.mindist_checkpoint);
+    printf("\nпри избытке скорости = %.f км/ч\n", maneuver.speed_range);
+    printf("минимальное расстояние до РТ = %.1f км\n", maneuver.mindist_checkpoint);
     return 0;
 }
 
@@ -444,8 +444,8 @@ double calc_trackcorrection(double lateral_line, double flight_track, double flc
     maneuver.course_correction_curr = (atan(maneuver.lateral_line / maneuver.flcurr_range) * DEG);
     maneuver.course_correction_rem = (atan(maneuver.lateral_line / maneuver.flrem_range) * DEG);
     maneuver.course_correction = (atan(maneuver.lateral_line / maneuver.flcurr_range) * DEG) + (atan(maneuver.lateral_line / maneuver.flrem_range) * DEG);
-    printf("   при ЛБУ = %.1f км:\n      боковое уклонение = УС = %.1f°\n      дополнительная ПК = %.1f°\n      полная ПК = %.1f°\n", 
-            maneuver.lateral_line, maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
+    printf("боковое уклонение = УС = %.1f°\nдополнительная ПК = %.1f°\nполная ПК = %.1f°\n", 
+            maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
     return 0;
 }
 
