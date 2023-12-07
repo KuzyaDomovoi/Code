@@ -624,8 +624,6 @@ int main(void)
             coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res_lat1, res_lng1, res_lat2, res_lng2);
             coord_transfer_wgs84(lat_2.deg, lat_2.min, lat_2.sec, res_lat1, res_lng1, res_lat2, res_lng2);
             calcfldist_bear(res_lat1[0], res_lng1[0], res_lat2[0], res_lng2[0], result_db);
-            printf("\nПервая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
-                    lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
             printf("Вторая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
                     lat_2.deg, lat_2.min, lat_2.sec, lng_2.deg, lng_2.min, lng_2.sec);
             printf("\nПервая точка: lat   %f°\n              lng   %f°\n", res_lat1[0], res_lng1[0]);
@@ -655,8 +653,6 @@ int main(void)
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\nПервая точка:lat  %f°\n             lng  %f°\n", lat_1.lat, lng_1.lng);
-            printf("Вторая точка:lat  %f°\n             lng  %f°\n", lat_2.lat, lng_2.lng);
             coord_transfer_deg(lat_1.lat, lat_res1, lat_res2);
             coord_transfer_deg(lng_1.lng, lng_res1, lng_res2);
             coord_transfer_deg(lat_2.lat, lat_res1_1, lat_res2_2);
