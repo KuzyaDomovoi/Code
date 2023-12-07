@@ -330,7 +330,7 @@ void calc_time_collision(double aircr_speed1, double aircr_speed2, double distan
     result_coll[0] = time_collision;
 }
 
-double calc_time_catch(double aircr_speed1, double aircr_speed2, double distance, double result_catch[1]) {
+void calc_time_catch(double aircr_speed1, double aircr_speed2, double distance, double result_catch[1]) {
     double time_catch = distance / (aircr_speed1 - aircr_speed2) * 3600;
 
     result_catch[0] = time_catch;
