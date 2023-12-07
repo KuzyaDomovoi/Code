@@ -925,7 +925,7 @@ int main(void)
             }
             switch(item) {
             case 1:
-                printf("\nВведи последовательно:\nскорости двух самодетов на встречных курсах в км/ч\nдистанцию в км\n");
+                printf("\n   Введи последовательно:\nскорости двух самодетов на встречных курсах в км/ч\nдистанцию в км\n");
                 if(scanf("%lf %lf %lf", &maneuver.aircr_speed1, &maneuver.aircr_speed2, &maneuver.distance) != 3) {
                     printf("\nIncorrect input!\n");
                     return 0;
@@ -934,7 +934,7 @@ int main(void)
                 printf("\nвремя до столкновения = %.1f сек\n", result_coll[0]);
                 return 0;
             case 2:
-                printf("\nВведи последовательно:\nскорости двух самодетов на догоне в км/ч\nдистанцию в км\n");
+                printf("\n   Введи последовательно:\nскорости двух самодетов на догоне в км/ч\nдистанцию в км\n");
                 if(scanf("%lf %lf %lf", &maneuver.aircr_speed1, &maneuver.aircr_speed2, &maneuver.distance) != 3) {
                     printf("\nIncorrect input!\n");
                     return 0;
