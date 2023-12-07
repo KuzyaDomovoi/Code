@@ -154,8 +154,70 @@ void coord_transfer_deg(float deg, float result1[2], float result2[1]) {
     result2[0] = fabs(ss);
 }
 
+bool range2(float x, float a, float y) {
+    if(a < x || a > y)
+        return true;
+    return false;
+}
+
+bool input_verif_lat(int a, int b, float c, int res) {
+    if(res != 3) {
+        printf("\nIncorrect input! It should be entered 4 values!\n");
+        return true;
+    }
+    if(range2(-90, a, 90)) {
+        printf("\nIncorrect input! Range of latitude is -90...90\n");
+        return true;
+    }
+    if(range2(0, b, 59) || range2(0, c, 59.99)) {
+        printf("\nIncorrect input! Range of min and sec is 0...59.99\n");
+        return true;
+    }
+    if(range2(-89, a, 89) && (b > 0 || c > 0)) {
+        printf("\nIncorrect input! If the latitude has value -90 or 90, the values of min and sec should be 00 only\n");
+        return true;
+    } else return false;
+}
+
+bool input_verif_lng(int a, int b, float c, int res) {
+    if(res != 3) {
+        printf("\nIncorrect input! It should be entered 4 values!\n");
+        return true;
+    }
+    if(range2(-180, a, 180)) {
+        printf("\nIncorrect input! Range of latitude is -180...180\n");
+        return true;
+    }
+    if(range2(0, b, 59) || range2(0, c, 59.99)) {
+        printf("\nIncorrect input! Range of min and sec is 0...59.99\n");
+        return true;
+    }
+    if(range2(-179, a, 179) && (b > 0 || c > 0)) {
+        printf("\nIncorrect input! If the longitude has value -180 or 180, the values of min and sec should be 00 only\n");
+        return true;
+    } else return false;
+}
+
 void coord_transfer_wgs84(float deg, float min, float sec, double res1[2], double res2[2]) {
+    int res;
     float lat1, lng1, lat2, lng2;
+    printf("\nРасчет расстояния по координатам WGS-84 формата гг мм сс.сс\n");
+    printf("\n   Введи координаты гг мм сс.сс широты первой точки: ");
+    res = scanf("%d %d %f", &lat_1.deg, &lat_1.min, &lat_1.sec);
+    if(input_verif_lat(lat_1.deg, lat_1.min, lat_1.sec, res) != 0)
+        exit(1);
+    printf("   Введи координаты ггг мм сс.сс долготы первой точки: ");
+    res = scanf("%d %d %f", &lng_1.deg, &lng_1.min, &lng_1.sec);
+    if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, res) != 0)
+        exit(2);
+    printf("\n   Введи координаты гг мм сс.сс широты второй точки: ");
+    res = scanf("%d %d %f", &lat_2.deg, &lat_2.min, &lat_2.sec);
+    if(input_verif_lat(lat_2.deg, lat_2.min, lat_2.sec, res) != 0)
+        exit(3);
+    printf("   Введи координаты ггг мм сс.сс долготы второй точки: ");
+    res = scanf("%d %d %f", &lng_2.deg, &lng_2.min, &lng_2.sec);
+    if(input_verif_lng(lng_2.deg, lng_2.min, lng_2.sec, res) != 0)
+        exit(4);
     if(lat_1.deg < 0) {
         lat1 = -1 * (abs(lat_1.deg) + (lat_1.min * 60.0 + lat_1.sec) / 3600.0);
     } else
@@ -438,50 +500,6 @@ void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double r
     result_turn[5] = maneuver.range_turnlead;
 }
 
-bool range2(float x, float a, float y) {
-    if(a < x || a > y)
-        return true;
-    return false;
-}
-
-bool input_verif_lat(int a, int b, float c, int res) {
-    if(res != 3) {
-        printf("\nIncorrect input! It should be entered 4 values!\n");
-        return true;
-    }
-    if(range2(-90, a, 90)) {
-        printf("\nIncorrect input! Range of latitude is -90...90\n");
-        return true;
-    }
-    if(range2(0, b, 59) || range2(0, c, 59.99)) {
-        printf("\nIncorrect input! Range of min and sec is 0...59.99\n");
-        return true;
-    }
-    if(range2(-89, a, 89) && (b > 0 || c > 0)) {
-        printf("\nIncorrect input! If the latitude has value -90 or 90, the values of min and sec should be 00 only\n");
-        return true;
-    } else return false;
-}
-
-bool input_verif_lng(int a, int b, float c, int res) {
-    if(res != 3) {
-        printf("\nIncorrect input! It should be entered 4 values!\n");
-        return true;
-    }
-    if(range2(-180, a, 180)) {
-        printf("\nIncorrect input! Range of latitude is -180...180\n");
-        return true;
-    }
-    if(range2(0, b, 59) || range2(0, c, 59.99)) {
-        printf("\nIncorrect input! Range of min and sec is 0...59.99\n");
-        return true;
-    }
-    if(range2(-179, a, 179) && (b > 0 || c > 0)) {
-        printf("\nIncorrect input! If the longitude has value -180 or 180, the values of min and sec should be 00 only\n");
-        return true;
-    } else return false;
-}
-
 double calc_angle(double aircr_speed, double wind_speed, double path_angle, double wind_dir) {
     if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500 || maneuver.wind_speed < 0 || maneuver.wind_speed > 300) {
         printf("\nError! Input the unreal speed for an aircraft or for the wind!\n");
@@ -593,23 +611,6 @@ int main(void)
         }
         switch(item) {
         case 1:
-            printf("\nРасчет расстояния по координатам WGS-84 формата гг мм сс.сс\n");
-            printf("\n   Введи координаты гг мм сс.сс широты первой точки: ");
-            res = scanf("%d %d %f", &lat_1.deg, &lat_1.min, &lat_1.sec);
-            if(input_verif_lat(lat_1.deg, lat_1.min, lat_1.sec, res) != 0)
-                return 0;
-            printf("   Введи координаты ггг мм сс.сс долготы первой точки: ");
-            res = scanf("%d %d %f", &lng_1.deg, &lng_1.min, &lng_1.sec);
-            if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, res) != 0)
-                return 0;
-            printf("\n   Введи координаты гг мм сс.сс широты второй точки: ");
-            res = scanf("%d %d %f", &lat_2.deg, &lat_2.min, &lat_2.sec);
-            if(input_verif_lat(lat_2.deg, lat_2.min, lat_2.sec, res) != 0)
-                return 0;
-            printf("   Введи координаты ггг мм сс.сс долготы второй точки: ");
-            res = scanf("%d %d %f", &lng_2.deg, &lng_2.min, &lng_2.sec);
-            if(input_verif_lng(lng_2.deg, lng_2.min, lng_2.sec, res) != 0)
-                return 0;
             coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
             calcfldist_bear(res1[0], res1[1], res2[0], res2[1], result_db);
             printf("\nПервая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
