@@ -742,29 +742,12 @@ int main(void)
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("\nПервая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
-                    lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
-            printf("\nРасчет расстояния по координатам WGS-84 формата гг мм сс.сс\n");
-            printf("\n   Введи координаты гг мм сс.сс широты первой точки: ");
-            res = scanf("%d %d %f", &lat_1.deg, &lat_1.min, &lat_1.sec);
-            if(input_verif_lat(lat_1.deg, lat_1.min, lat_1.sec, res) != 0)
-                return 0;
-            printf("   Введи координаты ггг мм сс.сс долготы первой точки: ");
-            res = scanf("%d %d %f", &lng_1.deg, &lng_1.min, &lng_1.sec);
-            if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, res) != 0)
-                return 0;
-            printf("\n   Введи координаты гг мм сс.сс широты второй точки: ");
-            res = scanf("%d %d %f", &lat_2.deg, &lat_2.min, &lat_2.sec);
-            if(input_verif_lat(lat_2.deg, lat_2.min, lat_2.sec, res) != 0)
-                return 0;
-            printf("   Введи координаты ггг мм сс.сс долготы второй точки: ");
-            res = scanf("%d %d %f", &lng_2.deg, &lng_2.min, &lng_2.sec);
-            if(input_verif_lng(lng_2.deg, lng_2.min, lng_2.sec, res) != 0)
-                return 0;
             coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res_lat1, res_lng1, res_lat2, res_lng2);
             calcpoint_coord(res_lat1[0], res_lng1[0], maneuver.path_angle, lat_1.fldist, result_cl2sl2);
             coord_transfer_deg(result_cl2sl2[0], lat_res1, lat_res2);
             coord_transfer_deg(result_cl2sl2[1], lng_res1, lng_res2);
+            printf("\nПервая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
+                    lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
             printf("Вторая точка: lat   %02.f° %02.f' %05.2f''\n              lng   %02.f° %02.f' %05.2f''\n\nКонечный азимут = %.6f°\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0], result_cl2sl2[2]);
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.path_angle, maneuver.wind_dir);
