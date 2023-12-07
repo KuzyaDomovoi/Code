@@ -624,8 +624,6 @@ int main(void)
             coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res_lat1, res_lng1, res_lat2, res_lng2);
             coord_transfer_wgs84(lat_2.deg, lat_2.min, lat_2.sec, res_lat1, res_lng1, res_lat2, res_lng2);
             calcfldist_bear(res_lat1[0], res_lng1[0], res_lat2[0], res_lng2[0], result_db);
-            printf("Вторая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
-                    lat_2.deg, lat_2.min, lat_2.sec, lng_2.deg, lng_2.min, lng_2.sec);
             printf("\nПервая точка: lat   %f°\n              lng   %f°\n", res_lat1[0], res_lng1[0]);
             printf("Вторая точка: lat   %f°\n              lng   %f°\n", res_lat2[0], res_lng2[0]);
             printf("\nРасстояние = %.1f м\nНачальный азимут = %.6f°\nКонечный азимут = %.6f°\nНа %.f м 1° изменения азимута\n", 
