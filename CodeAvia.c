@@ -930,10 +930,10 @@ int main(void)
                     return 0;
                 }
                 calc_time_collision(maneuver.aircr_speed1, maneuver.aircr_speed2, maneuver.distance, result_coll);
-                printf("время до столкновения = %.1f сек\n", result_coll[0]);
+                printf("\nвремя до столкновения = %.1f сек\n", result_coll[0]);
                 return 0;
             case 2:
-                printf("\nВведи через пробел скорости двух самодетов на догоне в км/ч и дистанцию в км: ");
+                printf("\nВведи последовательно:\nскорости двух самодетов на догоне в км/ч\nдистанцию в км\n");
                 if(scanf("%lf %lf %lf", &maneuver.aircr_speed1, &maneuver.aircr_speed2, &maneuver.distance) != 3) {
                     printf("\nIncorrect input!\n");
                     return 0;
