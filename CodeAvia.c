@@ -517,7 +517,7 @@ double calc_angle(double aircr_speed, double wind_speed, double path_angle, doub
         return 0;
 }
 
-double calc_timecorrection(double aircr_speed, double max_aircr_speed, double time_range) {
+double calc_timecorrection(double aircr_speed, double max_aircr_speed, double time_range, double res_timecorr[2]) {
     printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
     printf("\n   Введи последовательно:\nприб скорость полета в км/ч\nмакс приб скорость в км/ч\n" 
            "макс возможный избыток или недостаток времени в сек\n");
@@ -531,9 +531,9 @@ double calc_timecorrection(double aircr_speed, double max_aircr_speed, double ti
     } 
     maneuver.speed_range = maneuver.max_aircr_speed - maneuver.aircr_speed;
     maneuver.mindist_checkpoint = (maneuver.aircr_speed * maneuver.max_aircr_speed / maneuver.speed_range * maneuver.time_range / 3600);
-    printf("\nпри избытке скорости = %.f км/ч\n", maneuver.speed_range);
-    printf("минимальное расстояние до РТ = %.1f км\n", maneuver.mindist_checkpoint);
-    return 0;
+    
+    res_timecorr[0] = maneuver.speed_range;
+    res_timecorr[1] = maneuver.mindist_checkpoint;
 }
 
 double calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range) {            
@@ -569,6 +569,7 @@ int main(void)
     double result_cl2sl2[4];
     double result_knh[1], result_kmh[1];
     double result_coll[1];
+    double res_timecorr[2];
     float lat_res1[2], lng_res1[2], lat_res2[1], lng_res2[1];
     float lat_res1_1[2], lng_res1_1[2], lat_res2_2[1], lng_res2_2[1];
     
@@ -910,7 +911,9 @@ int main(void)
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.path_angle, maneuver.wind_dir);
             return 0;
         case 3:
-            calc_timecorrection(maneuver.aircr_speed, maneuver.max_aircr_speed, maneuver.time_range);
+            calc_timecorrection(maneuver.aircr_speed, maneuver.max_aircr_speed, maneuver.time_range, res_timecorr);
+            printf("\nпри избытке скорости = %.f км/ч\n", res_timecorr[0]);
+            printf("минимальное расстояние до РТ = %.1f км\n", res_timecorr[1]);
             return 0;
         case 4:
             printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
