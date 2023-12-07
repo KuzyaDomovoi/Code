@@ -199,7 +199,7 @@ bool input_verif_lng(int a, int b, float c, int res) {
 }
 
 void coord_transfer_wgs84(float deg, float min, float sec, double res1[2], double res2[2]) {
-    int res;
+    int res = 0;
     float lat1, lng1, lat2, lng2;
     printf("\nРасчет расстояния по координатам WGS-84 формата гг мм сс.сс\n");
     printf("\n   Введи координаты гг мм сс.сс широты первой точки: ");
