@@ -536,7 +536,13 @@ double calc_timecorrection(double aircr_speed, double max_aircr_speed, double ti
     res_timecorr[1] = maneuver.mindist_checkpoint;
 }
 
-double calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range, double res_trackcorr[3]) {            
+double calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range, double res_trackcorr[3]) { 
+    printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
+    printf("\n   Введи последовательно:\nлинейное боковое уклонение в км\nобщее расстояние до РТ в км\nпройденное/оставшееся расстояние до РТ в км\n");
+    if(scanf("%lf %lf %lf", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
+        printf("\nIncorrect input!\n");
+        exit(1);
+    }           
     maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
     maneuver.course_correction_curr = (atan(maneuver.lateral_line / maneuver.flcurr_range) * DEG);
     maneuver.course_correction_rem = (atan(maneuver.lateral_line / maneuver.flrem_range) * DEG);
@@ -918,12 +924,6 @@ int main(void)
             printf("минимальное расстояние до РТ = %.1f км\n", res_timecorr[1]);
             return 0;
         case 4:
-            printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
-            printf("\n   Введи последовательно:\nлинейное боковое уклонение в км\nобщее расстояние до РТ в км\nпройденное/оставшееся расстояние до РТ в км\n");
-            if(scanf("%lf %lf %lf", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
-                printf("\nIncorrect input!\n");
-            return 0;
-            }
             calc_trackcorrection(maneuver.lateral_line, maneuver.flight_track, maneuver.flcurr_range, res_trackcorr);
             printf("\nбоковое уклонение = УС = %.1f°\nдополнительная ПК = %.1f°\nполная ПК = %.1f°\n", 
                     res_trackcorr[0], res_trackcorr[1], res_trackcorr[2]);
