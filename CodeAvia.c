@@ -536,14 +536,15 @@ double calc_timecorrection(double aircr_speed, double max_aircr_speed, double ti
     res_timecorr[1] = maneuver.mindist_checkpoint;
 }
 
-double calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range) {            
+double calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range, double res_trackcorr[3]) {            
     maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
     maneuver.course_correction_curr = (atan(maneuver.lateral_line / maneuver.flcurr_range) * DEG);
     maneuver.course_correction_rem = (atan(maneuver.lateral_line / maneuver.flrem_range) * DEG);
     maneuver.course_correction = (atan(maneuver.lateral_line / maneuver.flcurr_range) * DEG) + (atan(maneuver.lateral_line / maneuver.flrem_range) * DEG);
-    printf("боковое уклонение = УС = %.1f°\nдополнительная ПК = %.1f°\nполная ПК = %.1f°\n", 
-            maneuver.course_correction_curr, maneuver.course_correction_rem, maneuver.course_correction);
-    return 0;
+    
+    res_trackcorr[0] = maneuver.course_correction_curr;
+    res_trackcorr[1] = maneuver.course_correction_rem;
+    res_trackcorr[2] = maneuver.course_correction;
 }
 
 void calc_flduration(double ground_speed, double flight_dist, double result_flduration2[3]) {
@@ -570,6 +571,7 @@ int main(void)
     double result_knh[1], result_kmh[1];
     double result_coll[1];
     double res_timecorr[2];
+    double res_trackcorr[3];
     float lat_res1[2], lng_res1[2], lat_res2[1], lng_res2[1];
     float lat_res1_1[2], lng_res1_1[2], lat_res2_2[1], lng_res2_2[1];
     
@@ -920,9 +922,11 @@ int main(void)
             printf("\n   Введи последовательно:\nлинейное боковое уклонение в км\nобщее расстояние до РТ в км\nпройденное/оставшееся расстояние до РТ в км\n");
             if(scanf("%lf %lf %lf", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
                 printf("\nIncorrect input!\n");
-                return 0;
+            return 0;
             }
-            calc_trackcorrection(maneuver.lateral_line, maneuver.flight_track, maneuver.flcurr_range);
+            calc_trackcorrection(maneuver.lateral_line, maneuver.flight_track, maneuver.flcurr_range, res_trackcorr);
+            printf("\nбоковое уклонение = УС = %.1f°\nдополнительная ПК = %.1f°\nполная ПК = %.1f°\n", 
+                    res_trackcorr[0], res_trackcorr[1], res_trackcorr[2]);
             return 0;
         case 5:
             printf("\n      1. Расчет времени встречи самолетов\n"
