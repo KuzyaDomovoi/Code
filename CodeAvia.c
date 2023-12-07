@@ -880,18 +880,18 @@ int main(void)
         switch(item) {
         case 1:
             printf("\nРасчет радиуса, времени и длинны дуги угла разворота\n");
-            printf("\n   Введи через пробел скорость с-та в км/ч, угол° и крен°: ");
+            printf("\n   Введи последовательно:\nскорость с-та в км/ч\nугол° и крен°\n");
             if(scanf("%lf %lf %lf", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_roll) != 3) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
             calc_turn(maneuver.aircr_speed, maneuver.turn_angle, maneuver.turn_roll, result_turn);
-            printf("\n   радиус разворота = %.1f м\n   время разворота = %.f мин %.f сек\n   угловая скорость р-та = %.1f °/сек\n   ny = %.1f ед\n   длина дуги УР = %.1f м\n", 
+            printf("\nрадиус разворота = %.1f м\nвремя разворота = %.f мин %.f сек\nугловая скорость р-та = %.1f °/сек\nny = %.1f ед\nдлина дуги УР = %.1f м\n", 
                     result_turn[0], result_turn[1], result_turn[2], result_turn[3], result_turn[4], result_turn[5]);
             return 0;
         case 2:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
-            printf("\n   Введи через пробел значение скорость с-та в км/ч, скорость ветра в км/ч, курс полета с-та° и направление нав ветера°: ");
+            printf("\n   Введи последовательно:\nскорость с-та в км/ч\nскорость ветра в км/ч\nкурс полета с-та°\nнаправление нав ветера°\n");
             if(scanf("%lf %lf %lf %lf", &maneuver.aircr_speed, &maneuver.wind_speed, &maneuver.path_angle, &maneuver.wind_dir) != 4) {
                 printf("\nIncorrect input!\n");
                 return 0;
@@ -900,8 +900,8 @@ int main(void)
             return 0;
         case 3:
             printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
-            printf("\n   Введи через пробел приб скорость полета в км/ч, макс приб скорость в км/ч, " 
-                   "макс возможный избыток или недостаток времени в сек: ");
+            printf("\n   Введи последовательно:\nприб скорость полета в км/ч\nмакс приб скорость в км/ч\n" 
+                   "макс возможный избыток или недостаток времени в сек\n");
             if(scanf("%lf %lf %lf", &maneuver.aircr_speed, &maneuver.max_aircr_speed, &maneuver.time_range) != 3) {
                 printf("\nIncorrect input!\n");
                 return 0;
@@ -914,7 +914,7 @@ int main(void)
             return 0;
         case 4:
             printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
-            printf("\n   Введи через пробел линейное боковое уклонение в км, общее расстояние до РТ в км, пройденное/оставшееся расстояние до РТ в км: ");
+            printf("\n   Введи последовательно:\nлинейное боковое уклонение в км\nобщее расстояние до РТ в км\nпройденное/оставшееся расстояние до РТ в км\n");
             if(scanf("%lf %lf %lf", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
                 printf("\nIncorrect input!\n");
                 return 0;
@@ -932,7 +932,7 @@ int main(void)
             }
             switch(item) {
             case 1:
-                printf("\nВведи через пробел скорости двух самодетов на встречных курсах в км/ч и дистанцию в км: ");
+                printf("\nВведи последовательно:\nскорости двух самодетов на встречных курсах в км/ч\nдистанцию в км\n");
                 if(scanf("%lf %lf %lf", &maneuver.aircr_speed1, &maneuver.aircr_speed2, &maneuver.distance) != 3) {
                     printf("\nIncorrect input!\n");
                     return 0;
