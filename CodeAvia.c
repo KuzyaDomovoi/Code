@@ -144,16 +144,6 @@ struct geo_lng {
 struct geo_lat lat_2;
 struct geo_lng lng_2;
 
-void coord_transfer_deg(float deg, float result1[2], float result2[1]) {
-    int dd = trunc(deg);
-    int mm = trunc((deg - dd) * 60);
-    float ss = ((deg - dd) * 60 - mm) * 60;
-
-    result1[0] = dd;
-    result1[1] = abs(mm);
-    result2[0] = fabs(ss);
-}
-
 bool range2(float x, float a, float y) {
     if(a < x || a > y)
         return true;
@@ -196,6 +186,16 @@ bool input_verif_lng(int a, int b, float c, int res) {
         printf("\nIncorrect input! If the longitude has value -180 or 180, the values of min and sec should be 00 only\n");
         return true;
     } else return false;
+}
+
+void coord_transfer_deg(float deg, float result1[2], float result2[1]) {
+    int dd = trunc(deg);
+    int mm = trunc((deg - dd) * 60);
+    float ss = ((deg - dd) * 60 - mm) * 60;
+
+    result1[0] = dd;
+    result1[1] = abs(mm);
+    result2[0] = fabs(ss);
 }
 
 void coord_transfer_wgs84(float deg, float min, float sec, double res1[2], double res2[2]) {
