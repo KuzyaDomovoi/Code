@@ -517,7 +517,7 @@ double calc_angle(double aircr_speed, double wind_speed, double path_angle, doub
         return 0;
 }
 
-double calc_timecorrection(double aircr_speed, double max_aircr_speed, double time_range, double res_timecorr[2]) {
+void calc_timecorrection(double aircr_speed, double max_aircr_speed, double time_range, double res_timecorr[2]) {
     printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
     printf("\n   Введи последовательно:\nприб скорость полета в км/ч\nмакс приб скорость в км/ч\n" 
            "макс возможный избыток или недостаток времени в сек\n");
@@ -536,7 +536,7 @@ double calc_timecorrection(double aircr_speed, double max_aircr_speed, double ti
     res_timecorr[1] = maneuver.mindist_checkpoint;
 }
 
-double calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range, double res_trackcorr[3]) { 
+void calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range, double res_trackcorr[3]) { 
     printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
     printf("\n   Введи последовательно:\nлинейное боковое уклонение в км\nобщее расстояние до РТ в км\nпройденное/оставшееся расстояние до РТ в км\n");
     if(scanf("%lf %lf %lf", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
