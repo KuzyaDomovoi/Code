@@ -305,6 +305,7 @@ void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, d
                            double fucons_final_land_taxi, double guarfusupp_unusfures, int cruisspeed, double engthrust_val,  
                            double spec_fuconsclim, int average_climspeed, int airbornspeed, int descspeed,
                            double result_flrange[2], double result_flduration[2]) {
+    printf("\n  величина тяги для ТРДД при номинал ррд в наборе на средн выс, H: ");
     if(scanf("%lf", &flight.engthrust_val) != 1) {
         printf("\nError_input!\n");
         exit(1);
@@ -574,7 +575,6 @@ int main(void)
     switch(item) {
     case 1:
         printf("Расчет дальности и продолжительности полета\n");
-        printf("\n  величина тяги для ТРДД при номинал ррд в наборе на средн выс, H: ");
         flrange_duration_calc(flight.desctime, flight.full_fusupp, flight.fucons_TO, flight.fucons_desc, flight.fucons_final_land_taxi, 
                               flight.guarfusupp_unusfures, flight.cruisspeed, flight.engthrust_val, flight.fucons_preTO, flight.descspeed,
                               flight.spec_fuconsclim, flight.average_climspeed, flight.airbornspeed, result_flrange, result_flduration);
