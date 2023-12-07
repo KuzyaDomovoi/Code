@@ -908,7 +908,7 @@ int main(void)
         switch(item) {
         case 1:
             printf("\nРасчет радиуса, времени и длинны дуги угла разворота\n");
-            printf("\n   Введи последовательно:\nскорость с-та в км/ч\nугол° и крен°\n");
+            printf("\n   Введи последовательно:\nскорость с-та в км/ч\nугол°\nкрен°\n");
             if(scanf("%lf %lf %lf", &maneuver.aircr_speed, &maneuver.turn_angle, &maneuver.turn_roll) != 3) {
                 printf("\nIncorrect input!\n");
                 return 0;
