@@ -305,6 +305,90 @@ void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, d
                            double fucons_final_land_taxi, double guarfusupp_unusfures, int cruisspeed, double engthrust_val,  
                            double spec_fuconsclim, int average_climspeed, int airbornspeed, int descspeed,
                            double result_flrange[2], double result_flduration[2]) {
+    if(scanf("%lf", &flight.engthrust_val) != 1) {
+        printf("\nError_input!\n");
+        exit(1);
+    }
+    printf("  аэродинамическое качество с-та: ");
+    if(scanf("%lf", &flight.lifttodrag_ratio) != 1) {
+        printf("\nError_input!\n");
+        exit(2);
+    }
+    printf("  скорость отрыва, км/ч: ");
+    if(scanf("%lf", &flight.airbornspeed) != 1) {
+        printf("\nError_input!\n");
+        exit(3);
+    }
+    printf("  скор набора выс, км/ч: ");
+    if(scanf("%lf", &flight.average_climspeed) != 1) {
+        printf("\nError_input!\n");
+        exit(4);
+    }
+    printf("  время набора выс, сек: ");
+    if(scanf("%lf", &flight.climtime) != 1) {
+        printf("\nError_input!\n");
+        exit(5);
+    }
+    printf("  крейс скорость по мрш, км/ч: ");
+    if(scanf("%lf", &flight.cruisspeed) != 1) {
+        printf("\nError_input!\n");
+        exit(6);
+    }
+    printf("  скорость на снижении, км/ч: ");
+    if(scanf("%lf", &flight.descspeed) != 1) {
+        printf("\nError_input!\n");
+        exit(7);
+    }
+    printf("  время снижения, сек: ");
+    if(scanf("%lf", &flight.desctime) != 1) {
+        printf("\nError_input!\n");
+        exit(8);
+    }       
+    printf("  масса снаряж самолета, кг: ");
+    if(scanf("%lf", &flight.load_weight) != 1) {
+        printf("\nError_input!\n");
+        exit(9);
+    }
+    printf("  макс заправка топл, кг: ");
+    if(scanf("%lf", &flight.full_fusupp) != 1) {
+        printf("\nError_input!\n");
+        exit(10);
+    }
+    printf("  удельный расход топл в наборе: ");
+    if(scanf("%lf", &flight.spec_fuconsclim) != 1) {
+        printf("\nError_input!\n");
+        exit(11);
+    }
+    printf("  удельный расход топл по мрш в гп: ");
+    if(scanf("%lf", &flight.spec_fuconscruise) != 1) {
+        printf("\nError_input!\n");
+        exit(12);
+    }
+    printf("  расход топл на прогрев, опроб двиг и руление, кг: ");
+    if(scanf("%lf", &flight.fucons_preTO) != 1) {
+        printf("\nError_input!\n");
+        exit(13);
+    }
+    printf("  расход топл на взлете, кг: ");
+    if(scanf("%lf", &flight.fucons_TO) != 1) {
+        printf("\nError_input!\n");
+        exit(14);
+        }
+    printf("  расход топл на снижении, кг: ");
+    if(scanf("%lf", &flight.fucons_desc) != 1) {
+        printf("\nError_input!\n");
+        exit(15);
+    }
+    printf("  расход топл на кругу, посадке и заруливании, кг: ");
+    if(scanf("%lf", &flight.fucons_final_land_taxi) != 1) {
+        printf("\nError_input!\n");
+        exit(16);
+    }
+    printf("  невырабатываемый остаток топл, кг: ");
+    if(scanf("%lf", &flight.guarfusupp_unusfures) != 1) {
+        printf("\nError_input!\n");
+        exit(17);
+    }
     flight.midaverage_climspeed_1000 = 0.5 * (flight.airbornspeed + flight.average_climspeed);
     flight.midaverage_climspeed = flight.average_climspeed;
     flight.flrang_clim_1000 = (flight.midaverage_climspeed_1000 * 3.6) * ((flight.climtime_1000 / 3600) / 1000);    
@@ -491,90 +575,6 @@ int main(void)
     case 1:
         printf("Расчет дальности и продолжительности полета\n");
         printf("\n  величина тяги для ТРДД при номинал ррд в наборе на средн выс, H: ");
-        if(scanf("%lf", &flight.engthrust_val) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  аэродинамическое качество с-та: ");
-        if(scanf("%lf", &flight.lifttodrag_ratio) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  скорость отрыва, км/ч: ");
-        if(scanf("%lf", &flight.airbornspeed) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  скор набора выс, км/ч: ");
-        if(scanf("%lf", &flight.average_climspeed) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  время набора выс, сек: ");
-        if(scanf("%lf", &flight.climtime) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  крейс скорость по мрш, км/ч: ");
-        if(scanf("%lf", &flight.cruisspeed) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  скорость на снижении, км/ч: ");
-        if(scanf("%lf", &flight.descspeed) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  время снижения, сек: ");
-        if(scanf("%lf", &flight.desctime) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }       
-        printf("  масса снаряж самолета, кг: ");
-        if(scanf("%lf", &flight.load_weight) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  макс заправка топл, кг: ");
-        if(scanf("%lf", &flight.full_fusupp) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  удельный расход топл в наборе: ");
-        if(scanf("%lf", &flight.spec_fuconsclim) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  удельный расход топл по мрш в гп: ");
-        if(scanf("%lf", &flight.spec_fuconscruise) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  расход топл на прогрев, опроб двиг и руление, кг: ");
-        if(scanf("%lf", &flight.fucons_preTO) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  расход топл на взлете, кг: ");
-        if(scanf("%lf", &flight.fucons_TO) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  расход топл на снижении, кг: ");
-        if(scanf("%lf", &flight.fucons_desc) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  расход топл на кругу, посадке и заруливании, кг: ");
-        if(scanf("%lf", &flight.fucons_final_land_taxi) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
-        printf("  невырабатываемый остаток топл, кг: ");
-        if(scanf("%lf", &flight.guarfusupp_unusfures) != 1) {
-            printf("\nError_input!\n");
-            return 0;
-        }
         flrange_duration_calc(flight.desctime, flight.full_fusupp, flight.fucons_TO, flight.fucons_desc, flight.fucons_final_land_taxi, 
                               flight.guarfusupp_unusfures, flight.cruisspeed, flight.engthrust_val, flight.fucons_preTO, flight.descspeed,
                               flight.spec_fuconsclim, flight.average_climspeed, flight.airbornspeed, result_flrange, result_flduration);
