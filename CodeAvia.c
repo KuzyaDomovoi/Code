@@ -198,7 +198,7 @@ void coord_transfer_deg(float deg, float result1[2], float result2[1]) {
     result2[0] = fabs(ss);
 }
 
-void coord_transfer_wgs84(float deg, float min, float sec, double res1[2], double res2[2]) {
+void coord_transfer_wgs84(float deg, float min, float sec, double res_lat1[1], double res_lng1[1], double res_lat2[1], double res_lng2[1]) {
     float lat1, lng1, lat2, lng2;
 
     if(lat_1.deg < 0) {
@@ -218,10 +218,10 @@ void coord_transfer_wgs84(float deg, float min, float sec, double res1[2], doubl
     } else
         lng2 = lng_2.deg + (lng_2.min * 60.0 + lng_2.sec) / 3600.0;
 
-    res1[0] = lat1;
-    res1[1] = lng1;
-    res2[0] = lat2;
-    res2[1] = lng2;
+    res_lat1[0] = lat1;
+    res_lng1[0] = lng1;
+    res_lat2[0] = lat2;
+    res_lng2[0] = lng2;
 }
 
 void calcfldist_bear(double lat1, double lng1, double lat2, double lng2, double result[4]) {
@@ -561,7 +561,7 @@ int main(void)
     double result_flrange[2], result_flduration[2];
     double result_flduration2[3];
     double result_turn[6];
-    double res1[2], res2[2];
+    double res_lat1[1], res_lng1[1], res_lat2[1], res_lng2[1];
     double result_db[4];
     double result_cl2sl2[4];
     double result_knh[1], result_kmh[1];
@@ -604,14 +604,14 @@ int main(void)
         }
         switch(item) {
         case 1:
-            coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
-            calcfldist_bear(res1[0], res1[1], res2[0], res2[1], result_db);
+            coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res_lat1, res_lng1, res_lat2, res_lng2);
+            calcfldist_bear(res_lat1[0], res_lng1[0], res_lat2[0], res_lng2[0], result_db);
             printf("\nПервая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
                     lat_1.deg, lat_1.min, lat_1.sec, lng_1.deg, lng_1.min, lng_1.sec);
             printf("Вторая точка: lat %4d° %02d' %05.2f''\n              lng %4d° %02d' %05.2f''\n",
                     lat_2.deg, lat_2.min, lat_2.sec, lng_2.deg, lng_2.min, lng_2.sec);
-            printf("\nПервая точка: lat   %f°\n              lng   %f°\n", res1[0], res1[1]);
-            printf("Вторая точка: lat   %f°\n              lng   %f°\n", res2[0], res2[1]);
+            printf("\nПервая точка: lat   %f°\n              lng   %f°\n", res_lat1[0], res_lng1[0]);
+            printf("Вторая точка: lat   %f°\n              lng   %f°\n", res_lat2[0], res_lng2[0]);
             printf("\nРасстояние = %.1f м\nНачальный азимут = %.6f°\nКонечный азимут = %.6f°\nНа %.f м 1° изменения азимута\n", 
                     result_db[0], result_db[1], result_db[2], result_db[3]);
             return 0;
@@ -749,8 +749,8 @@ int main(void)
             res = scanf("%d %d %f", &lng_2.deg, &lng_2.min, &lng_2.sec);
             if(input_verif_lng(lng_2.deg, lng_2.min, lng_2.sec, res) != 0)
                 return 0;
-            coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
-            calcpoint_coord(res1[0], res1[1], maneuver.path_angle, lat_1.fldist, result_cl2sl2);
+            coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res_lat1, res_lng1, res_lat2, res_lng2);
+            calcpoint_coord(res_lat1[0], res_lng1[0], maneuver.path_angle, lat_1.fldist, result_cl2sl2);
             coord_transfer_deg(result_cl2sl2[0], lat_res1, lat_res2);
             coord_transfer_deg(result_cl2sl2[1], lng_res1, lng_res2);
             printf("Вторая точка: lat   %02.f° %02.f' %05.2f''\n              lng   %02.f° %02.f' %05.2f''\n\nКонечный азимут = %.6f°\n", 
@@ -834,8 +834,8 @@ int main(void)
             res = scanf("%d %d %f", &lng_1.deg, &lng_1.min, &lng_1.sec);
             if(input_verif_lng(lng_1.deg, lng_1.min, lng_1.sec, res) != 0)
                 return 0;
-            coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res1, res2);
-            printf("\n   lat  %.6f°\n   lng  %.6f°\n", res1[0], res1[1]);
+            coord_transfer_wgs84(lat_1.deg, lat_1.min, lat_1.sec, res_lat1, res_lng1, res_lat2, res_lng2);
+            printf("\nlat  %.6f°\nlng  %.6f°\n", res_lat1[0], res_lng1[0]);
             return 0;
         case 2:
             printf("\nПреобразование координат из градусов в гг мм сс.мс\n");
@@ -853,18 +853,18 @@ int main(void)
             coord_transfer_deg(lng_1.lng, lng_res1, lng_res2);
 
             if(lat_res1[0] < 0 && lng_res1[0] < 0) {
-                printf("\n   lat  %03.f° %02.f' %05.2f''\n   lng %04.f° %02.f' %05.2f''\n", 
+                printf("\nlat  %03.f° %02.f' %05.2f''\nlng %04.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             } else
             if(lat_res1[0] < 0) {
-                printf("\n   lat  %03.f° %02.f' %05.2f''\n   lng  %03.f° %02.f' %05.2f''\n", 
+                printf("\nlat  %03.f° %02.f' %05.2f''\nlng  %03.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             } else
             if(lng_res1[0] < 0) {
-                printf("\n   lat   %02.f° %02.f' %05.2f''\n   lng %04.f° %02.f' %05.2f''\n", 
+                printf("\nlat   %02.f° %02.f' %05.2f''\nlng %04.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             } else
-            printf("\n   lat  %02.f° %02.f' %05.2f''\n   lng %03.f° %02.f' %05.2f''\n", 
+            printf("\nlat  %02.f° %02.f' %05.2f''\nlng %03.f° %02.f' %05.2f''\n", 
                     lat_res1[0], lat_res1[1], lat_res2[0], lng_res1[0], lng_res1[1], lng_res2[0]);
             return 0;
         case 3:
