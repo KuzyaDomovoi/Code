@@ -330,20 +330,10 @@ void calc_time_collision(double aircr_speed1, double aircr_speed2, double distan
     result_coll[0] = time_collision;
 }
 
-double calc_time_catch(double aircr_speed1, double aircr_speed2, double distance) {
-    double time_catch;
+double calc_time_catch(double aircr_speed1, double aircr_speed2, double distance, double result_catch[1]) {
+    double time_catch = distance / (aircr_speed1 - aircr_speed2) * 3600;
 
-    if(aircr_speed1 < aircr_speed2) {
-        printf("\nНет сближения, отставание по скорости на %.f км/ч\n", fabs(aircr_speed1 - aircr_speed2));
-        return 0;
-    }
-    if(aircr_speed1 == aircr_speed2) {
-        printf("\nНет сближения, скорости равны\n");
-        return 0;
-    } else
-        time_catch = distance / (aircr_speed1 - aircr_speed2) * 3600;    
-        printf("\nПри скорости сближения %.f км/ч время до столкновения %.1f сек\n", aircr_speed1 - aircr_speed2, time_catch);
-        return 0;
+    result_catch[0] = time_catch;
 }
 
 void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, double fucons_TO, double fucons_desc, 
@@ -575,7 +565,7 @@ int main(void)
     double result_db[4];
     double result_cl2sl2[4];
     double result_knh[1], result_kmh[1];
-    double result_coll[1];
+    double result_coll[1], result_catch[1];
     double res_timecorr[2];
     double res_trackcorr[3];
     float lat_res1[2], lng_res1[2], lat_res2[1], lng_res2[1];
@@ -945,7 +935,7 @@ int main(void)
                     return 0;
                 }
                 calc_time_collision(maneuver.aircr_speed1, maneuver.aircr_speed2, maneuver.distance, result_coll);
-                printf("Время до столкновения = %.1f сек\n", result_coll[0]);
+                printf("время до столкновения = %.1f сек\n", result_coll[0]);
                 return 0;
             case 2:
                 printf("\nВведи через пробел скорости двух самодетов на догоне в км/ч и дистанцию в км: ");
@@ -953,7 +943,8 @@ int main(void)
                     printf("\nIncorrect input!\n");
                     return 0;
                 }
-                calc_time_catch(maneuver.aircr_speed1, maneuver.aircr_speed2, maneuver.distance);
+                calc_time_catch(maneuver.aircr_speed1, maneuver.aircr_speed2, maneuver.distance, result_catch);
+                printf("\nвремя до столкновения %.1f сек\n", result_catch[0]);
                 return 0;
             case 3:
                 printf("\nEnd of program\n");
