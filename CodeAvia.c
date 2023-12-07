@@ -559,7 +559,6 @@ int main(void)
     double result_coll[1];
     float lat_res1[2], lng_res1[2], lat_res2[1], lng_res2[1];
     float lat_res1_1[2], lng_res1_1[2], lat_res2_2[1], lng_res2_2[1];
-
     
     printf("\n1. Расчет дальности и продолжительности полета\n"
              "2. Расчет расстояния между двумя точками по их координатам\n"
