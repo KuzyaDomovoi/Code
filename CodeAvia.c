@@ -365,7 +365,7 @@ void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, d
         printf("\nError_input!\n");
         exit(5);
     }
-    printf("  крейс скорость по мрш, км/ч: ");
+    printf("  скорость по мрш, км/ч: ");
     if(scanf("%lf", &flight.cruisspeed) != 1) {
         printf("\nError_input!\n");
         exit(6);
@@ -385,7 +385,7 @@ void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, d
         printf("\nError_input!\n");
         exit(9);
     }
-    printf("  макс заправка топл, кг: ");
+    printf("  заправка топл, кг: ");
     if(scanf("%lf", &flight.full_fusupp) != 1) {
         printf("\nError_input!\n");
         exit(10);
