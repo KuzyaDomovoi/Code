@@ -518,6 +518,17 @@ double calc_angle(double aircr_speed, double wind_speed, double path_angle, doub
 }
 
 double calc_timecorrection(double aircr_speed, double max_aircr_speed, double time_range) {
+    printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
+    printf("\n   Введи последовательно:\nприб скорость полета в км/ч\nмакс приб скорость в км/ч\n" 
+           "макс возможный избыток или недостаток времени в сек\n");
+    if(scanf("%lf %lf %lf", &maneuver.aircr_speed, &maneuver.max_aircr_speed, &maneuver.time_range) != 3) {
+        printf("\nIncorrect input!\n");
+        exit(1);
+    }
+    if(maneuver.max_aircr_speed < maneuver.aircr_speed) {
+        printf("\nIncorrect input! The max_aircr_speed can't be less than aircr_speed!\n");
+        exit(2); 
+    } 
     maneuver.speed_range = maneuver.max_aircr_speed - maneuver.aircr_speed;
     maneuver.mindist_checkpoint = (maneuver.aircr_speed * maneuver.max_aircr_speed / maneuver.speed_range * maneuver.time_range / 3600);
     printf("\nпри избытке скорости = %.f км/ч\n", maneuver.speed_range);
@@ -899,17 +910,6 @@ int main(void)
             calc_angle(maneuver.aircr_speed, maneuver.wind_speed, maneuver.path_angle, maneuver.wind_dir);
             return 0;
         case 3:
-            printf("\nРасчет минимального расстояния для возможного погашения опоздания или избытка времени\n");
-            printf("\n   Введи последовательно:\nприб скорость полета в км/ч\nмакс приб скорость в км/ч\n" 
-                   "макс возможный избыток или недостаток времени в сек\n");
-            if(scanf("%lf %lf %lf", &maneuver.aircr_speed, &maneuver.max_aircr_speed, &maneuver.time_range) != 3) {
-                printf("\nIncorrect input!\n");
-                return 0;
-            }
-            if(maneuver.max_aircr_speed < maneuver.aircr_speed) {
-                printf("\nIncorrect input! The max_aircr_speed can't be less than aircr_speed!\n");
-                return 0; 
-            }   
             calc_timecorrection(maneuver.aircr_speed, maneuver.max_aircr_speed, maneuver.time_range);
             return 0;
         case 4:
