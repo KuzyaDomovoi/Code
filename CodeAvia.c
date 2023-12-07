@@ -343,87 +343,87 @@ void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, d
                            double result_flrange[2], double result_flduration[2]) {
     printf("\n  величина тяги для ТРДД при номинал ррд в наборе на средн выс, H: ");
     if(scanf("%lf", &flight.engthrust_val) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(1);
     }
     printf("  аэродинамическое качество с-та: ");
     if(scanf("%lf", &flight.lifttodrag_ratio) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(2);
     }
     printf("  скорость отрыва, км/ч: ");
     if(scanf("%lf", &flight.airbornspeed) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(3);
     }
     printf("  скор набора выс, км/ч: ");
     if(scanf("%lf", &flight.average_climspeed) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(4);
     }
     printf("  время набора выс, сек: ");
     if(scanf("%lf", &flight.climtime) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(5);
     }
     printf("  скорость по мрш, км/ч: ");
     if(scanf("%lf", &flight.cruisspeed) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(6);
     }
     printf("  скорость на снижении, км/ч: ");
     if(scanf("%lf", &flight.descspeed) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(7);
     }
     printf("  время снижения, сек: ");
     if(scanf("%lf", &flight.desctime) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(8);
     }       
     printf("  масса снаряж самолета, кг: ");
     if(scanf("%lf", &flight.load_weight) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(9);
     }
     printf("  заправка топл, кг: ");
     if(scanf("%lf", &flight.full_fusupp) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(10);
     }
     printf("  удельный расход топл в наборе: ");
     if(scanf("%lf", &flight.spec_fuconsclim) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(11);
     }
     printf("  удельный расход топл по мрш в гп: ");
     if(scanf("%lf", &flight.spec_fuconscruise) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(12);
     }
     printf("  расход топл на прогрев, опроб двиг и руление, кг: ");
     if(scanf("%lf", &flight.fucons_preTO) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(13);
     }
     printf("  расход топл на взлете, кг: ");
     if(scanf("%lf", &flight.fucons_TO) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(14);
         }
     printf("  расход топл на снижении, кг: ");
     if(scanf("%lf", &flight.fucons_desc) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(15);
     }
     printf("  расход топл на кругу, посадке и заруливании, кг: ");
     if(scanf("%lf", &flight.fucons_final_land_taxi) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(16);
     }
     printf("  невырабатываемый остаток топл, кг: ");
     if(scanf("%lf", &flight.guarfusupp_unusfures) != 1) {
-        printf("\nError_input!\n");
+        printf("\nIncorrect input!\n");
         exit(17);
     }
     flight.midaverage_climspeed_1000 = 0.5 * (flight.airbornspeed + flight.average_climspeed);
@@ -451,11 +451,11 @@ void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, d
 
 void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double result_turn[6]) {
     if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500) {
-        printf("\nError! Input the unreal speed for an aircraft or for the wind!\n");
+        printf("\nIncorrect input! The unreal speed for an aircraft or for the wind!\n");
         exit(1);
     }
     if(maneuver.turn_roll > 83) {
-        printf("\nError! The turn_roll can't be more than 83°!\n");
+        printf("\nIncorrect input! The turn_roll can't be more than 83°!\n");
         exit(2);
     }
     maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
@@ -476,11 +476,11 @@ void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double r
 
 double calc_angle(double aircr_speed, double wind_speed, double path_angle, double wind_dir) {
     if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500 || maneuver.wind_speed < 0 || maneuver.wind_speed > 300) {
-        printf("\nError! Input the unreal speed for an aircraft or for the wind!\n");
+        printf("\nIncorrect input! The unreal speed for an aircraft or for the wind!\n");
         return 0;
     }
     if(maneuver.path_angle < 0 || maneuver.path_angle > 360 || maneuver.wind_dir < 0 || maneuver.wind_dir > 360) {
-        printf("\nError! Angle can't be less 0° or more than 360°\n");
+        printf("\nIncorrect input! Angle can't be less 0° or more than 360°\n");
         return 0;
     }
     if(maneuver.wind_dir == maneuver.path_angle) {
@@ -580,7 +580,7 @@ int main(void)
              "6. Выход\n");
     printf("   Выбери действие: ");
     if(scanf("%d", &item) != 1) {
-        printf("\nError input!\n");
+        printf("\nError! Input is out of range list!\n");
         return 0;
     }
     switch(item) {
@@ -600,7 +600,7 @@ int main(void)
                  "   3. Выход\n");
         printf("      Выбери действие: ");
         if(scanf("%d", &item) != 1) {
-            printf("\nError input!\n");
+            printf("\nError! Input is out of range list!!\n");
             return 0;
         }
         switch(item) {
@@ -705,7 +705,7 @@ int main(void)
                  "   3. Выход\n");
         printf("      Выбери действие: ");
         if(scanf("%d", &item) != 1) {
-            printf("\nError input!\n");
+            printf("\nError! Input is out of range list!!\n");
             return 0;
         }
         switch(item) {
@@ -817,7 +817,7 @@ int main(void)
                  "   3. Выход\n");
         printf("      Выбери действие: ");
         if(scanf("%d", &item) != 1) {
-            printf("\nError input!\n");
+            printf("\nError! Input is out of range list!!\n");
             return 0;
         }
         switch(item) {
@@ -838,12 +838,12 @@ int main(void)
             printf("\nПреобразование координат из градусов в гг мм сс.мс\n");
             printf("\n   Введи координаты широты: ");
             if(scanf("%lf", &lat_1.lat) != 1) {
-                printf("incorrect input!\n");
+                printf("\nIncorrect input!\n");
                 return 0;
             }    
             printf("   Введи координаты долготы: ");
             if(scanf("%lf", &lng_1.lng) != 1) {
-                printf("incorrect input!\n");
+                printf("\nIncorrect input!\n");
                 return 0;
             } 
             coord_transfer_deg(lat_1.lat, lat_res1, lat_res2);
