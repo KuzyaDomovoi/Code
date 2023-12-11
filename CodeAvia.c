@@ -710,7 +710,6 @@ int main(void)
         }
         switch(item) {
         case 1:
-            printf("\nРасчет пути по координатам формата гг мм сс.сс\n");
             printf("\n   Введи координаты гг мм сс.сс широты первой точки: ");
             res = scanf("%d %d %f", &lat_1.deg, &lat_1.min, &lat_1.sec);
             if(input_verif_lat(lat_1.deg, lat_1.min, lat_1.sec, res) != 0)
@@ -759,7 +758,6 @@ int main(void)
             nav_time(result_flduration2[0], result_flduration2[1], result_flduration2[2]);
             return 0;
         case 2:
-            printf("\nРасчет пути по координатам формата гг.гггггг\n");
             printf("\n   Введи координаты гг.гггггг широты первой точки: ");
             if(scanf("%lf", &lat_1.lat) != 1) {
                 printf("\nIncorect Input!\n");
