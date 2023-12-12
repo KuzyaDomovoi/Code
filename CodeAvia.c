@@ -432,7 +432,7 @@ void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, d
     flight.climtime_1000 = flight.flrang_clim_1000 / flight.midaverage_climspeed_1000;
     flight.flrang_clim = flight.flrang_clim_1000 + (flight.average_climspeed * 3.6) * (((flight.climtime - flight.climtime_1000) / 3600) / 1000);
     flight.climtime = flight.flrang_clim / flight.average_climspeed;
-    flight.fucons_clim = (flight.spec_fuconsclim * flight.engthrust_val) * (flight.climtime / 3600 ); 
+    flight.fucons_clim = (flight.spec_fuconsclim * flight.engthrust_val) * (flight.climtime / 3600); 
     flight.fucons_cruise = flight.full_fusupp - fucons_preTO - flight.fucons_TO - flight.fucons_clim - flight.fucons_desc - flight.fucons_final_land_taxi - flight.guarfusupp_unusfures;
     flight.req_engthrustcruise = (flight.load_weight * G) / flight.lifttodrag_ratio;
     flight.hourfucons = (flight.spec_fuconscruise * flight.req_engthrustcruise) / flight.cruisspeed;
