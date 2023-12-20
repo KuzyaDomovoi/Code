@@ -14,7 +14,7 @@
 #define DEG  180.0 / M_PI
 #define KNH  1.852
 
-struct geo_lat {
+extern struct geo_lat {
     double lat;
     float sec; int min;
     int deg; 
@@ -22,16 +22,16 @@ struct geo_lat {
     float fldist;
 } lat_1;
 
-struct geo_lng {
+extern struct geo_lng {
     double lng;
     float sec; int min;
     int deg;
 } lng_1;
 
-struct geo_lat lat_2;
-struct geo_lng lng_2;
+extern struct geo_lat lat_2;
+extern struct geo_lng lng_2;
 
-struct flrange_flduration {
+extern struct flrange_flduration {
     double airbornspeed; double average_climspeed; double climtime; double cruisspeed; double average_climspeed_1000; 
     double descspeed; double desctime; double load_weight; double full_fusupp; double fucons_preTO; double climtime_1000;
     double fucons_TO; double fucons_desc; double fucons_final_land_taxi; double guarfusupp_unusfures; double engthrust_val;
@@ -41,7 +41,7 @@ struct flrange_flduration {
     int flduration; int flduration_h; int flduration_m; int flduration_s;
 } flight;
 
-struct fltime_flangle_flspeed {
+extern struct fltime_flangle_flspeed {
     double turn_roll; double turn_angle; double max_aircr_speed; double wind_angle; double path_angle; 
     double aircr_speed; double wind_dir; double ground_speed; double drift_angle; double wind_speed; 
     double speed_range; double time_range; double lateral_line; double flcurr_range; double flrem_range; 
