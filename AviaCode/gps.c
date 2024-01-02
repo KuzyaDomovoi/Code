@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <gps.h>
+#include <errno.h>
 #include <math.h>
 
 #define MODE_STR_NUM 4
@@ -11,22 +12,22 @@ static char *mode_str[MODE_STR_NUM] = {
     "3D"
 };
 
-int main(int argc, char *argv[])
+int main()
 {
     struct gps_data_t gps_data;
 
-    if(gps_open("localhost", "2947", &gps_data) == -1) {
-        printf("GPS data open error\n");
-        return 1;
+    if(gps_open("localhost", "2947", &gps_data) < 0) {
+        fprintf(stderr,"Could not connect to GPSd (error %s)\n", gps_errstr(errno));
+        return(-1);
     }
 
 
     gps_stream(&gps_data, WATCH_ENABLE | WATCH_JSON, NULL);
 
     while(gps_waiting(&gps_data, 5000)) {
-        if(gps_read(&gps_data, NULL, 0) == -1) {
-            printf("GPS data read error\n");
-            return 2;
+        if(gps_read(&gps_data, NULL, 0) < 0) {
+            fprintf(stderr,"Could not read GPSd (error %s)\n", gps_errstr(errno));
+            return(-2);
         }
         if(MODE_SET != (MODE_SET & gps_data.set)) { // did not even get mode, nothing to see here
             continue;
