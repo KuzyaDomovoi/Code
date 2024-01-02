@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include <gps.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <math.h>
+#include <gps.h> // for gps_*();
+#include <errno.h> // for error gps;
+#include <stdlib.h> // for return EXIT_FAILURE;
+#include <unistd.h> // for sleep time;
+#include <math.h> // for isfinite();
 
 #define MODE_STR_NUM 4
 
