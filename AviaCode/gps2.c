@@ -6,36 +6,53 @@
 #include <math.h>   // for isfinite();
 #include <time.h>
 
-#define STATUS_FIX 4
+#define MODE_STR_NUM 4
 
-static char *mode_str[STATUS_FIX] = {
+static char *mode_str[MODE_STR_NUM] = {
     "n/a",
     "None",
     "2D",
     "3D"
 };
-int rc;
-struct gps_data_t gpsData;
 
-int main(void) {
-    if((rc = gps_open ("localhost", "2947", &gpsData)) == -1) {
+int main(void) 
+{
+    int rc;
+    struct gps_data_t gps_data;
+    struct timeval tv;
+
+    if((rc = gps_open("localhost", "2947", &gps_data)) == -1) {
         printf("code: %d, reason: %s\n", rc, gps_errstr(rc));
         return EXIT_FAILURE;
     }
-
-    gps_stream(&gpsData, WATCH_ENABLE | WATCH_JSON, NULL); // Ждем пару секунд пока будут приняты данные GPS
-    if(gps_waiting (&gpsData, 2000000)) { // Читаем данные с GPS приемника
-        if((rc = gps_read(&gpsData, NULL, 0)) == -1) {
-            printf("code: %d, reason: %s\n", rc, gps_errstr(rc));
-        } else { // Показать данные GPS приемника
-            if((gpsData.set == STATUS_FIX) && (gpsData.fix.mode == MODE_2D || gpsData.fix.mode == MODE_3D) &&
-                !isnan(gpsData.fix.latitude) && 
-                !isnan(gpsData.fix.longitude)) {
-                printf ("[INFO] Latitude: %.6f Longitude: %.6f\n", gpsData.fix.latitude, gpsData.fix.longitude);
+    
+    gps_stream(&gps_data, WATCH_ENABLE | WATCH_JSON, NULL);
+    while(1) {    
+        if(gps_waiting(&gps_data, 2000000)) {
+            printf("GPS status: %li Fix Mode: %i, Lat: %.6f Lng: %.6f \n", gps_data.set, gps_data.fix.mode, gps_data.fix.latitude, gps_data.fix.longitude);
+            if((rc = gps_read(&gps_data, NULL, 0)) == -1) {
+                printf("code: %d, reason: %s\n", rc, gps_errstr(rc));
+        } else {
+            if(MODE_SET != (MODE_SET & gps_data.set)) { // did not even get mode, nothing to see here
+            continue;
+            }
+            if (gps_data.fix.mode > 0 || MODE_STR_NUM <= gps_data.fix.mode) {
+                gps_data.fix.mode = 0;
+            }
+            printf("Fix mode: %s(%d) Time: ", mode_str[gps_data.fix.mode], gps_data.fix.mode);
+            if(TIME_SET == (TIME_SET & gps_data.set)) { // not 32 bit safe
+                printf("%ld.%09ld ", gps_data.fix.time.tv_sec, gps_data.fix.time.tv_nsec);
+            } else {
+                puts("n/a ");
+            }
+            if(isfinite(gps_data.fix.latitude) && isfinite(gps_data.fix.longitude)) {
+                printf("Lat: %.6f Lng: %.6f\n", gps_data.fix.latitude, gps_data.fix.longitude); // Display data from the GPS receiver if valid.
+            } else {
+                printf("Lat: n/a Lng: n/a\n");
             }
         }
+        }
     }
-    while(1) {}
 
     return 0;
 }
