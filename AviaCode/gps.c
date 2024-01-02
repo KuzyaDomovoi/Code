@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
     gps_stream(&gps_data, WATCH_ENABLE | WATCH_JSON, NULL);
 
-    while (gps_waiting(&gps_data, 500)) {
+    while (gps_waiting(&gps_data, 5000)) {
         if (gps_read(&gps_data, NULL, 0) == -1) {
             printf("GPS read error\n");
             return 2;
