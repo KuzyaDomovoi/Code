@@ -11,7 +11,7 @@ static char *mode_str[MODE_STR_NUM] = {
     "3D"
 };
 
-int main(int argc, char *argv[])
+int main()
 {
     struct gps_data_t gps_data;
 
