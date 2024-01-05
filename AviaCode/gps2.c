@@ -27,7 +27,7 @@ int main()
 
     while(1) {
         /* wait for 2 seconds to receive data */
-        if(gps_waiting (&gps_data, 2000000)) {
+        if(gps_waiting (&gps_data, 5000000)) {
             /* read data */
             printf("GPS Status: %li, GPS Mode: %i, Lat: %f Lng: %f\n", gps_data.set,gps_data.fix.mode,gps_data.fix.latitude, gps_data.fix.longitude);
             if((rc = gps_read(&gps_data, NULL, 0)) == -1) {
