@@ -26,7 +26,7 @@ int main()
     gps_stream(&gps_data, WATCH_ENABLE | WATCH_JSON, NULL);
 
     while(1) {
-        /* wait for 2 seconds to receive data */
+        /* wait for 5 seconds to receive data */
         if(gps_waiting (&gps_data, 5000000)) {
             /* read data */
             printf("GPS Status: %li, GPS Mode: %i, Lat: %f Lng: %f\n", gps_data.set,gps_data.fix.mode,gps_data.fix.latitude, gps_data.fix.longitude);
