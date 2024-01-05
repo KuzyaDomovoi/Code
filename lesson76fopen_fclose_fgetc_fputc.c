@@ -29,7 +29,7 @@ int main(void)
     FILE* in = fopen("my_file.txt", "r"); // read the FILE 'my_file.txt' with r-acces;
     if(in == NULL){ // checking fileopening for errors;
         puts("File open error"); 
-        return 5;
+        return 2;
     }
     
     char ch; // declaration a new temporary variable ch;
