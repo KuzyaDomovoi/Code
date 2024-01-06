@@ -29,7 +29,7 @@ int main()
         /* wait for 5 seconds to receive data */
         if(gps_waiting (&gps_data, 5000000)) {
             /* read data */
-            printf("GPS Status: %li, GPS Mode: %i, Lat: %f Lng: %f\n", gps_data.set,gps_data.fix.mode,gps_data.fix.latitude, gps_data.fix.longitude);
+            printf("GPS Status: %li, GPS Mode: %i, Lat: %f Lng: %f\n", gps_data.set, gps_data.fix.mode, gps_data.fix.latitude, gps_data.fix.longitude);
             if((rc = gps_read(&gps_data, NULL, 0)) == -1) {
                 printf("error occured reading gps data. code: %d, reason: %s\n", rc, gps_errstr(rc));
             } else {

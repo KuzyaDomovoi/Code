@@ -65,6 +65,7 @@
         "cmath": "c",
         "random": "c",
         "iterator": "c",
-        "calc_aviacode.h": "c"
+        "calc_aviacode.h": "c",
+        "gps.h": "c"
     }
 }
