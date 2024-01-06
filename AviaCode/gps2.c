@@ -34,11 +34,11 @@ int main()
                 printf("error occured reading gps data. code: %d, reason: %s\n", rc, gps_errstr(rc));
             } else {
                 /* Display data from the GPS receiver. */
-                    if((gps_data.set == MODE_STR_NUM) && (gps_data.fix.mode == MODE_2D || gps_data.fix.mode == MODE_3D) && !isnan(gps_data.fix.latitude) && !isnan(gps_data.fix.longitude)) { // gettimeofday(&tv, NULL); EDIT: tv.tv_sec isn't actually the timestamp!
-                        printf("GPS Status: %li, latitude: %.6f, longitude: %.6f, speed: %.1f\n", gps_data.set, gps_data.fix.latitude, gps_data.fix.longitude, gps_data.fix.speed); //EDIT: Replaced tv.tv_sec with gps_data.fix.time
-                    } else {
-                        printf("no GPS data available\n");
-                    }
+                if((gps_data.set == MODE_STR_NUM) && (gps_data.fix.mode == MODE_2D || gps_data.fix.mode == MODE_3D) && !isnan(gps_data.fix.latitude) && !isnan(gps_data.fix.longitude)) { // gettimeofday(&tv, NULL); EDIT: tv.tv_sec isn't actually the timestamp!
+                    printf("GPS Status: %li, latitude: %.6f, longitude: %.6f, speed: %.1f\n", gps_data.set, gps_data.fix.latitude, gps_data.fix.longitude, gps_data.fix.speed); //EDIT: Replaced tv.tv_sec with gps_data.fix.time
+                } else {
+                    printf("no GPS data available\n");
+                }
             }
         }
     }
