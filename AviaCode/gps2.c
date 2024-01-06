@@ -44,7 +44,6 @@ int main()
         sleep(3);
         printf("out of sleep \n");
     }
-    
     /* When you are done... */
     gps_stream(&gps_data, WATCH_DISABLE, NULL);
     gps_close (&gps_data);
