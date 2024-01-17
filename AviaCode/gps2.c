@@ -1,52 +1,24 @@
-#include <gps.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <math.h>
 
-#define MODE_STR_NUM 4
-
-static char *mode_str[MODE_STR_NUM] = {
-    "n/a",
-    "None",
-    "2D",
-    "3D"
-};
-
-int main() 
+int main(void)
 {
-    int rc;
-    struct timeval tv;
-    struct gps_data_t gps_data;
+    FILE* f = popen("termux-location", "r");       if(!f) return !0;                          
+    char buf[1024] = {0};
+    fread(buf, sizeof(buf), 1, f);
+    
+    FILE* fp = fopen("gpsd.txt", "w");
+    if(!fp) return !0;
+    fputs(buf, fp);
+    fclose(fp);
 
-    if((rc = gps_open("localhost", "2947", &gps_data)) == -1) {
-        printf("code: %d, reason: %s\n", rc, gps_errstr(rc));
-        return EXIT_FAILURE;
+    double d;
+    FILE* fr = fopen("gpsd.txt", "r");
+    if(!fr) return !0;
+    while(!feof(fr)) {
+	if(fscanf(fr, "%*s%lf,", &d) == 1)
+	printf("%lf\n", d);
     }
-    gps_stream(&gps_data, WATCH_ENABLE | WATCH_JSON, NULL);
-
-    while(1) {
-        /* wait for 5 seconds to receive data */
-        if(gps_waiting (&gps_data, 5000000)) {
-            /* read data */
-            printf("GPS Status: %li, GPS Mode: %i, Lat: %f Lng: %f\n", gps_data.set, gps_data.fix.mode, gps_data.fix.latitude, gps_data.fix.longitude);
-            if((rc = gps_read(&gps_data, NULL, 0)) == -1) {
-                printf("error occured reading gps data. code: %d, reason: %s\n", rc, gps_errstr(rc));
-            } else {
-                /* Display data from the GPS receiver. */
-                if((gps_data.set == MODE_STR_NUM) && (gps_data.fix.mode == MODE_2D || gps_data.fix.mode == MODE_3D) && !isnan(gps_data.fix.latitude) && !isnan(gps_data.fix.longitude)) { // gettimeofday(&tv, NULL); EDIT: tv.tv_sec isn't actually the timestamp!
-                    printf("GPS Status: %li, latitude: %.6f, longitude: %.6f, speed: %.1f\n", gps_data.set, gps_data.fix.latitude, gps_data.fix.longitude, gps_data.fix.speed); //EDIT: Replaced tv.tv_sec with gps_data.fix.time
-                } else {
-                    printf("no GPS data available\n");
-                }
-            }
-        }
-        sleep(3);
-        printf("out of sleep \n");
-    }
-    /* When you are done... */
-    gps_stream(&gps_data, WATCH_DISABLE, NULL);
-    gps_close (&gps_data);
-
-    return EXIT_SUCCESS;
+    fclose(fr);
+    
+    return 0;
 }
