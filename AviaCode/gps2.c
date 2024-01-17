@@ -2,7 +2,8 @@
 
 int main(void)
 {
-    FILE* f = popen("termux-location", "r");       if(!f) return !0;                          
+    FILE* f = popen("termux-location", "r");
+    if(!f) return !0;                          
     char buf[1024] = {0};
     fread(buf, sizeof(buf), 1, f);
     
