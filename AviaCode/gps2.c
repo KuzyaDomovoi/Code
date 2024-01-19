@@ -17,7 +17,7 @@ int main(void)
     if(!fr) return !0;
     while(!feof(fr)) {
 	if(fscanf(fr, "%*s%lf,", &d) == 1)
-	printf("%lf\n", d);
+	    printf("%lf\n", d);
     }
     fclose(fr);
     
