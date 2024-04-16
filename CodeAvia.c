@@ -7,7 +7,6 @@
 
 #define M_PI 3.14159265358979323846
 #define G    9.80665
-#define K    0.0175
 #define R_E  6371008.8
 #define RAD  M_PI / 180.0
 #define DEG  180.0 / M_PI
@@ -321,7 +320,7 @@ struct fltime_flangle_flspeed {
     double flight_track; double heading_corr; double turn_rad; double t; double mindist_checkpoint;
     double range_turnlead; double ny; double course_correction_curr; double course_correction_rem; double distance;
     double course_correction; double turn_speed; double aircr_speed1; double aircr_speed2; double time_collision; double time_cathch;
-    int hours; int minutes; int seconds; int turn_time; int turn_time_m; int turn_time_s; 
+    int hours; int minutes; int seconds; int turn_time; int turn_time_m; int turn_time_s; double lineal_preemption;
 } maneuver;
 
 void calc_time_collision(double aircr_speed1, double aircr_speed2, double distance, double result_coll[1]) {
@@ -449,7 +448,7 @@ void flrange_duration_calc(int desctime, int full_fusupp, double fucons_preTO, d
     result_flduration[1] = flight.flduration_m;
 }
 
-void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double result_turn[6]) {
+void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double result_turn[7]) {
     if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500) {
         printf("\nIncorrect input! The unreal speed for an aircraft or for the wind!\n");
         exit(1);
@@ -459,7 +458,8 @@ void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double r
         exit(2);
     }
     maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
-    maneuver.range_turnlead = K * maneuver.turn_rad * maneuver.turn_angle;
+    maneuver.range_turnlead = RAD * maneuver.turn_rad * maneuver.turn_angle;
+    maneuver.lineal_preemption = maneuver.turn_rad * tan(maneuver.turn_angle * RAD/ 2);
     maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
     maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
     maneuver.turn_time_s = maneuver.turn_time % 60;
@@ -472,6 +472,7 @@ void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double r
     result_turn[3] = maneuver.turn_speed;
     result_turn[4] = maneuver.ny;
     result_turn[5] = maneuver.range_turnlead;
+    result_turn[6] = maneuver.lineal_preemption;
 }
 
 double calc_angle(double aircr_speed, double wind_speed, double path_angle, double wind_dir) {
@@ -561,7 +562,7 @@ int main(void)
     double lat1, lat2, lng1, lng2;
     double result_flrange[2], result_flduration[2];
     double result_flduration2[3];
-    double result_turn[6];
+    double result_turn[7];
     double res_lat1[1], res_lng1[1], res_lat2[1], res_lng2[1];
     double result_db[4];
     double result_cl2sl2[4];
@@ -891,8 +892,8 @@ int main(void)
                 return 0;
             }
             calc_turn(maneuver.aircr_speed, maneuver.turn_angle, maneuver.turn_roll, result_turn);
-            printf("\nрадиус разворота = %.1f м\nвремя разворота = %.f мин %.f сек\nугловая скорость р-та = %.1f °/сек\nny = %.1f ед\nдлина дуги УР = %.1f м\n", 
-                    result_turn[0], result_turn[1], result_turn[2], result_turn[3], result_turn[4], result_turn[5]);
+            printf("\nрадиус разворота = %.1f м\nвремя разворота = %.f мин %.f сек\nугловая скорость р-та = %.1f °/сек\nny = %.1f ед\nдлина дуги УР = %.1f м\n ЛУР = %.1f м\n", 
+                    result_turn[0], result_turn[1], result_turn[2], result_turn[3], result_turn[4], result_turn[5], result_turn[6]);
             return 0;
         case 2:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
