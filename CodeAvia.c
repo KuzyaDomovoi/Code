@@ -458,10 +458,10 @@ void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double r
         exit(2);
     }
     maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
-    maneuver.range_turnlead = RAD * maneuver.turn_rad * maneuver.turn_angle;
-    if(maneuver.turn_angle > 90) {
-        maneuver.turn_angle = maneuver.turn_rad;
-    } else maneuver.turn_angle;
+    maneuver.range_turnlead = RAD * maneuver.turn_rad * maneuver.turn_angle;   
+    if(maneuver.turn_angle < 90) {
+        maneuver.lineal_preemption = maneuver.turn_rad * tan(maneuver.turn_angle * RAD/ 2);
+    } else maneuver.lineal_preemption = maneuver.turn_rad;
     maneuver.lineal_preemption = maneuver.turn_rad * tan(maneuver.turn_angle * RAD/ 2);
     maneuver.turn_time = (2 * M_PI * maneuver.aircr_speed / 3.6) / (G * tan(maneuver.turn_roll * RAD)) * maneuver.turn_angle / 360;
     maneuver.turn_time_m = (maneuver.turn_time / 60) % 60;
