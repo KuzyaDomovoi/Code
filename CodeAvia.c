@@ -457,7 +457,6 @@ void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double r
         printf("\nIncorrect input! The turn_roll can't be more than 83°!\n");
         exit(2);
     }
-
     maneuver.turn_rad = pow(maneuver.aircr_speed / 3.6, 2) / (G * tan(maneuver.turn_roll * RAD));
     maneuver.range_turnlead = RAD * maneuver.turn_rad * maneuver.turn_angle;
     if(maneuver.turn_angle > 90) {
