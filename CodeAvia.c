@@ -914,7 +914,7 @@ int main(void)
             return 0;
         case 4:
             calc_trackcorrection(maneuver.lateral_line, maneuver.flight_track, maneuver.flcurr_range, res_trackcorr);
-            printf("\nбоковое уклонение = УС = %.1f°\nдополнительная ПК = %.1f°\nполная ПК = %.1f°\n", 
+            printf("\nУС = %.1f°\nдополнительная ПК = %.1f°\nполная ПК = %.1f°\n", 
                     res_trackcorr[0], res_trackcorr[1], res_trackcorr[2]);
             return 0;
         case 5:
