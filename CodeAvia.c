@@ -479,7 +479,7 @@ void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double r
 }
 
 double calc_angle(double aircr_speed, double wind_speed, double path_angle, double wind_dir) {
-    if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500 || maneuver.wind_speed < 0 || maneuver.wind_speed > 83) {
+    if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500 || maneuver.wind_speed < 0 || maneuver.wind_speed > 100) {
         printf("\nIncorrect input! The unreal speed for an aircraft or for the wind!\n");
         return 0;
     }
@@ -490,7 +490,8 @@ double calc_angle(double aircr_speed, double wind_speed, double path_angle, doub
     if(maneuver.wind_dir == maneuver.path_angle) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed + (maneuver.wind_speed * 3.6);
-        printf("\nугол сноса = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
+        printf("\nугол сноса = %.1f°\nпутевая скорость = %.f км/ч\nскорость ветра = %.f км/ч\n",
+                maneuver.drift_angle, maneuver.ground_speed, maneuver.wind_speed * 3.6);
         return 0;
     }
     if(maneuver.wind_dir < maneuver.path_angle) {
@@ -500,7 +501,8 @@ double calc_angle(double aircr_speed, double wind_speed, double path_angle, doub
     if(maneuver.wind_angle == 180 || maneuver.wind_angle == 0 || maneuver.wind_angle == 360) {
         maneuver.drift_angle = 0;
         maneuver.ground_speed = maneuver.aircr_speed - (maneuver.wind_speed * 3.6);
-        printf("\nугол сноса = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
+        printf("\nугол сноса = %.1f°\nпутевая скорость = %.f км/ч\nскорость ветра = %.f км/ч\n", 
+                maneuver.drift_angle, maneuver.ground_speed, maneuver.wind_speed * 3.6);
         return 0;
     } else
         maneuver.t = (maneuver.wind_speed * 3.6) / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
