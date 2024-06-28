@@ -479,7 +479,7 @@ void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double r
 }
 
 double calc_angle(double aircr_speed, double wind_speed, double path_angle, double wind_dir) {
-    if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500 || maneuver.wind_speed < 0 || maneuver.wind_speed > 300) {
+    if(maneuver.aircr_speed < 0 || maneuver.aircr_speed > 1500 || maneuver.wind_speed < 0 || maneuver.wind_speed > 83) {
         printf("\nIncorrect input! The unreal speed for an aircraft or for the wind!\n");
         return 0;
     }
@@ -489,7 +489,7 @@ double calc_angle(double aircr_speed, double wind_speed, double path_angle, doub
     }
     if(maneuver.wind_dir == maneuver.path_angle) {
         maneuver.drift_angle = 0;
-        maneuver.ground_speed = maneuver.aircr_speed + maneuver.wind_speed;
+        maneuver.ground_speed = maneuver.aircr_speed + (maneuver.wind_speed * 3.6);
         printf("\nугол сноса = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
         return 0;
     }
@@ -499,16 +499,16 @@ double calc_angle(double aircr_speed, double wind_speed, double path_angle, doub
         maneuver.wind_angle = maneuver.wind_dir - maneuver.path_angle;
     if(maneuver.wind_angle == 180 || maneuver.wind_angle == 0 || maneuver.wind_angle == 360) {
         maneuver.drift_angle = 0;
-        maneuver.ground_speed = maneuver.aircr_speed - maneuver.wind_speed;
+        maneuver.ground_speed = maneuver.aircr_speed - (maneuver.wind_speed * 3.6);
         printf("\nугол сноса = %.1f°\nпутевая скорость = %.f км/ч\n", maneuver.drift_angle, maneuver.ground_speed);
         return 0;
     } else
-        maneuver.t = maneuver.wind_speed / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
+        maneuver.t = (maneuver.wind_speed * 3.6) / maneuver.aircr_speed * sin((maneuver.wind_angle) * RAD);
         maneuver.drift_angle = asin(maneuver.t) * DEG;
-        maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + maneuver.wind_speed * cos(maneuver.wind_angle * RAD);
+        maneuver.ground_speed = maneuver.aircr_speed * cos(maneuver.drift_angle * RAD) + (maneuver.wind_speed * 3.6) * cos(maneuver.wind_angle * RAD);
         maneuver.heading_corr = maneuver.path_angle - maneuver.drift_angle;
-        printf("\nугол сноса = %.1f°\nкурс с учетом УС = %.1f°\nпутевая скорость = %.f км/ч\n", 
-                maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed);
+        printf("\nугол сноса = %.1f°\nкурс с учетом УС = %.1f°\nпутевая скорость = %.f км/ч\nскорость ветра = %.f км/ч\n", 
+                maneuver.drift_angle, maneuver.heading_corr, maneuver.ground_speed, maneuver.wind_speed * 3.6);
         return 0;
 }
 
@@ -742,7 +742,7 @@ int main(void)
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("   Введи скорость ветра в км/ч: ");
+            printf("   Введи скорость ветра в м/с: ");
             if(scanf("%lf", &maneuver.wind_speed) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
@@ -792,7 +792,7 @@ int main(void)
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("   Введи скорость ветра в км/ч: ");
+            printf("   Введи скорость ветра в м/с: ");
             if(scanf("%lf", &maneuver.wind_speed) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
@@ -900,7 +900,7 @@ int main(void)
             return 0;
         case 2:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
-            printf("\n   Введи последовательно:\nскорость с-та в км/ч\nскорость ветра в км/ч\nкурс полета с-та°\nнаправление нав ветера°\n");
+            printf("\n   Введи последовательно:\nскорость с-та в км/ч\nскорость ветра в м/с\nкурс полета с-та°\nнаправление нав ветера°\n");
             if(scanf("%lf %lf %lf %lf", &maneuver.aircr_speed, &maneuver.wind_speed, &maneuver.path_angle, &maneuver.wind_dir) != 4) {
                 printf("\nIncorrect input!\n");
                 return 0;
