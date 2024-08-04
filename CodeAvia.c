@@ -46,8 +46,8 @@ void hph_to_hm(double alt_hph, double result_hm[1]) {
     result_hm[0] = alt_m;
 }
 
-void ias_to_tas(double airspeed_kmh, double alt, double result_tas[1]) {
-    double n = M * G * alt / R * (T0 + t0);
+void ias_to_tas(double airspeed_kmh, double aircr_alt, double result_tas[1]) {
+    double n = M * G * aircr_alt / R * (T0 + t0);
     double pH = P0 * exp(-n);
     double p = pH * M / R * (T0 + t0);
     double tas = (airspeed_kmh + dV) / sqrt(pH / p0);
