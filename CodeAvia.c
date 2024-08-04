@@ -1034,7 +1034,7 @@ int main(void)
                     printf("\nскорость %.f узлов = %.f км/ч\n", flight.ias, result_kmh[0]);
                     return 0;
                 case 3:
-                    printf("\n   Введи скорость приборную в км/ч, высоту полета в метрах, температуру на высоте в °C: ");
+                    printf("\n   Введи аоследовательно:\nскорость приборную в км/ч\nвысоту полета в метрах\nтемпературу на высоте в °C:\n");
                     if(scanf("%lf %lf %lf", &flight.ias, &flight.alt, &flight.airtemp_h) != 3) {
                         printf("\nIncorrect input!\n");
                         return 0;
