@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <tgmath.h>
 
 #define M_PI 3.14159265358979323846
 #define G    9.80665
@@ -20,7 +21,6 @@
 #define P0   760
 #define p0   1.2250
 #define dV   -1 // not true for airspeed >= 300 kmh;
-#define E    2,718281828459045
 
 void kmh_to_knh(double airspeed_kmh, double result_knh[1]) {
     double airspeed_knh = airspeed_kmh / KNH;
@@ -46,9 +46,9 @@ void hph_to_hm(double alt_hph, double result_hm[1]) {
     result_hm[0] = alt_m;
 }
 
-void ias_to_tas(double airspeed_kmh, double aircr_alt, double result_tas[1]) {
-    double n = M * G * aircr_alt / R * (T0 + t0);
-    double pH = P0 * exp(-n);
+void ias_to_tas(double airspeed_kmh, double aircr_alt, double airtemp_h, double result_tas[1]) {
+    double n = M * G * aircr_alt / R * (T0 + t0 + airtemp_h);
+    double pH = P0 * expl(-n);
     double p = pH * M / R * (T0 + t0);
     double tas = (airspeed_kmh + dV) / sqrt(pH / p0);
 
@@ -341,7 +341,7 @@ struct flrange_flduration {
     double midaverage_climspeed; double flrang_clim; double fucons_clim; double fucons_cruise; double midaverage_climspeed_1000; 
     double req_engthrustcruise; double lifttodrag_ratio; double hourfucons; double spec_fuconsclim; double spec_fuconscruise; 
     double rangcruise; double timecruise; double flrang_clim_1000; double flrange; double alt; double ias; double tas;
-    int flduration; int flduration_h; int flduration_m; int flduration_s;
+    int flduration; int flduration_h; int flduration_m; int flduration_s; double airtemp_h;
 } flight;
 
 struct fltime_flangle_flspeed {
@@ -1036,11 +1036,11 @@ int main(void)
                     return 0;
                 case 3:
                     printf("\n   Введи скорость приборную в км/ч м высоту полета в метрах: ");
-                    if(scanf("%lf %lf", &flight.ias, &flight.alt) != 2) {
+                    if(scanf("%lf %lf %lf", &flight.ias, &flight.alt, &flight.airtemp_h) != 3) {
                         printf("\nIncorrect input!\n");
                         return 0;
                     }
-                    ias_to_tas(flight.ias, flight.alt, result_tas);
+                    ias_to_tas(flight.ias, flight.alt, flight.airtemp_h, result_tas);
                     printf("\nистинная скорость = %.f км/ч\n", result_tas[0]);
                     return 0;
                 case 4:
