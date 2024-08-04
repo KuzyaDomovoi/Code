@@ -16,10 +16,10 @@
 #define kPpa 133.322
 #define M    29
 #define R    8.31447
-#define T0   -273.15
-#define t0   15
-#define P0   760
-#define p0   1.2250
+#define T0   273.15 // 0 K;
+#define t0   15 // 288.15 K;
+#define P0   101.325 // 760 мм рт ст;
+#define p0   1.225
 #define dV   -1 // not true for airspeed >= 300 kmh;
 
 void kmh_to_knh(double airspeed_kmh, double result_knh[1]) {
@@ -47,9 +47,9 @@ void hph_to_hm(double alt_hph, double result_hm[1]) {
 }
 
 void ias_to_tas(double airspeed_kmh, double aircr_alt, double airtemp_h, double result_tas[1]) {
-    double pH = P0 * expl(- M * G * aircr_alt / R * (T0 + airtemp_h));
-    double p = pH * M / R * (T0 + t0);
-    double tas = (airspeed_kmh + dV) / sqrt(pH / p0);
+    double pH = P0 * exp(- (M * G * aircr_alt) / (R * (T0)));
+    double p = (pH * M )/ (R * (T0 + airtemp_h));
+    double tas = (airspeed_kmh + dV) / sqrt(p / p0);
 
     result_tas[0] = tas;
 }
