@@ -11,6 +11,16 @@
 #define RAD  M_PI / 180.0
 #define DEG  180.0 / M_PI
 #define KNH  1.852
+#define kHph 3.2808
+#define kPpa 133.322
+#define M    29
+#define R    8.31447
+#define T0   -273.15
+#define t0   15
+#define P0   760
+#define p0   1.2250
+#define dV   -1 // not true for airspeed >= 300 kmh;
+#define E    2,718281828459045
 
 void kmh_to_knh(double airspeed_kmh, double result_knh[1]) {
     double airspeed_knh = airspeed_kmh / KNH;
@@ -22,6 +32,27 @@ void knh_to_kmh(double airspeed_knh, double result_kmh[1]) {
     double airspeed_kmh = airspeed_knh * KNH;
 
     result_kmh[0] = airspeed_kmh;
+}
+
+void hm_to_hph(double alt_m, double result_hph[1]) {
+    double alt_ph = alt_m * kHph;
+
+    result_hph[0] = alt_ph;
+}
+
+void hph_to_hm(double alt_hph, double result_hm[1]) {
+    double alt_m = alt_hph / kHph;
+
+    result_hm[0] = alt_m;
+}
+
+void ias_to_tas(double airspeed_kmh, double alt, double result_tas[1]) {
+    double n = M * G * alt / R * (T0 + t0);
+    double pH = P0 * exp(-n);
+    double p = pH * M / R * (T0 + t0);
+    double tas = (airspeed_kmh + dV) / sqrt(pH / p0);
+
+    result_tas[0] = tas;
 }
 
 int nav_time(int fl_hours , int fl_minutes, int fl_seconds) {
@@ -309,7 +340,7 @@ struct flrange_flduration {
     double fucons_TO; double fucons_desc; double fucons_final_land_taxi; double guarfusupp_unusfures; double engthrust_val;
     double midaverage_climspeed; double flrang_clim; double fucons_clim; double fucons_cruise; double midaverage_climspeed_1000; 
     double req_engthrustcruise; double lifttodrag_ratio; double hourfucons; double spec_fuconsclim; double spec_fuconscruise; 
-    double rangcruise; double timecruise; double flrang_clim_1000; double flrange; 
+    double rangcruise; double timecruise; double flrang_clim_1000; double flrange; double alt; double ias; double tas;
     int flduration; int flduration_h; int flduration_m; int flduration_s;
 } flight;
 
@@ -572,6 +603,8 @@ int main(void)
     double result_db[4];
     double result_cl2sl2[4];
     double result_knh[1], result_kmh[1];
+    double result_hph[1], result_hm[1];  
+    double result_tas[1], result_ias[1];
     double result_coll[1], result_catch[2];
     double res_timecorr[2];
     double res_trackcorr[3];
@@ -881,7 +914,7 @@ int main(void)
                  "   3. Расчет минимального расстояния для возможного погашения опоздания или избытка времени\n"
                  "   4. Расчет поправки в курс по боковому уклонению\n"
                  "   5. Расчет времени встречи и догона самолетов\n"
-                 "   6. Пересчет скоростей\n"
+                 "   6. Пересчет скоростей и высот полета\n"
                  "   7. Выход\n");
         printf("      Выбери действие: ");
         if(scanf("%d", &item) != 1) {
@@ -963,8 +996,8 @@ int main(void)
                 return 0;
             }
         case 6:
-            printf("\n      1. Пересчет скоростей из км/ч в узлы\n"
-                     "      2. Пересчет скоростей из узлов в км/ч\n"
+            printf("\n      1. Пересчет скоростей полета\n"
+                     "      2. Пересчет высот полета\n"
                      "      3. Выход\n");
             printf("         Выбери действие: ");
             if(scanf("%d", &item) != 1) {
@@ -973,30 +1006,92 @@ int main(void)
             }
             switch(item) {
             case 1:
-                printf("\n   Введи скорость в км/ч: ");
-                if(scanf("%lf", &maneuver.aircr_speed) != 1) {
+                printf("\n         1. Пересчет скоростей из км/ч в узлы\n"
+                         "         2. Пересчет скоростей из узлов в км/ч\n"
+                         "         3. Пересчет приборной скорости в истинную воздушную\n"
+                         "         4. Выход\n");
+                printf("            Выбери действие: ");
+                if(scanf("%d", &item) != 1) {
+                    printf("\nError! Input is out of range list!\n");
+                    return 0;
+                }
+                switch(item) {
+                case 1:
+                    printf("\n   Введи скорость в км/ч: ");
+                    if(scanf("%lf", &flight.ias) != 1) {
+                        printf("\nIncorrect printf!\n");
+                        return 0;
+                    }
+                    kmh_to_knh(flight.ias, result_knh);
+                    printf("\nскорость %.f км/ч = %.f узлов\n", flight.ias, result_knh[0]);
+                    return 0;
+                case 2:
+                    printf("\n   Введи скорость в узлах: ");
+                    if(scanf("%lf", &flight.ias) != 1) {
+                        printf("\nIncorrect input!\n");
+                        return 0;
+                    }
+                    knh_to_kmh(flight.ias, result_kmh);
+                    printf("\nскорость %.f узлов = %.f км/ч\n", flight.ias, result_kmh[0]);
+                    return 0;
+                case 3:
+                    printf("\n   Введи скорость приборную в км/ч м высоту полета в метрах: ");
+                    if(scanf("%lf %lf", &flight.ias, &flight.alt) != 2) {
+                        printf("\nIncorrect input!\n");
+                        return 0;
+                    }
+                    ias_to_tas(flight.ias, flight.alt, result_tas);
+                    printf("\nистинная скорость = %.f км/ч\n", result_tas[0]);
+                    return 0;
+                case 4:
+                    printf("\nEnd of program\n");
+                    return 0;
+                default:
                     printf("\nIncorrect input!\n");
                     return 0;
                 }
-                kmh_to_knh(maneuver.aircr_speed, result_knh);
-                printf("\nскорость %.f км/ч = %.f узлов\n", maneuver.aircr_speed, result_knh[0]);
-                return 0;
             case 2:
-                printf("\n   Введи скорость в узлах: ");
-                if(scanf("%lf", &maneuver.aircr_speed) != 1) {
-                    printf("\nIncorrect input!\n");
+                printf("\n         1. Пересчет высоты из метров в футы\n"
+                         "         2. Пересчет высоты из футов в метры\n"
+                         "         3. Выход\n");
+                printf("            Выбери действие: ");
+                if(scanf("%d", &item) != 1) {
+                    printf("\nError! Input is out of range list!\n");
                     return 0;
                 }
-                knh_to_kmh(maneuver.aircr_speed, result_kmh);
-                printf("\nскорость %.f узлов = %.f км/ч\n", maneuver.aircr_speed, result_kmh[0]);
-                return 0;
+                switch(item) {
+                case 1:
+                    printf("\n   Введи высоту приборную в м: ");
+                        if(scanf("%lf", &flight.alt) != 1) {
+                            printf("\nIncorrect input!\n");
+                            return 0;
+                        }
+                    hm_to_hph(flight.alt, result_hph);
+                        printf("\nвысота = %.f футов\n", result_hph[0]);
+                        return 0;
+                case 2:
+                    printf("\n   Введи высоту приборную в футах: ");
+                        if(scanf("%lf", &flight.alt) != 1) {
+                            printf("\nIncorrect input!\n");
+                            return 0;
+                        }
+                    hph_to_hm(flight.ias, result_hm);
+                        printf("\nвысота = %.f метров\n", result_hm[0]);
+                        return 0;
+                case 3:
+                    printf("\nEnd of program\n");
+                    return 0;
+                default:
+                    printf("\nIncorrect input!\n");
+                    return 0;
+                }                                                         
             case 3:
                 printf("\nEnd of program\n");
                 return 0;
             default:
                 printf("\nIncorrect input!\n");
                 return 0;
-            }
+            }                
         case 7:
             printf("\nEnd of program\n");
             return 0;
