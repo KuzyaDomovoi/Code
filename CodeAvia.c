@@ -48,7 +48,7 @@ void hph_to_hm(double alt_hph, double result_hm[1]) {
 
 void ias_to_tas(double airspeed_kmh, double aircr_alt, double airtemp_h, double result_tas[1]) {
     double pH = P0 * exp(- (M * G * (aircr_alt/1000)) / (R * (T0)));
-    double p = (pH * M) / (R * (T0 + airtemp_h));
+    double p = (pH * M) / (R * (T0 + (airtemp_h - 6.5 * (aircr_alt/1000))));
     double tas = (airspeed_kmh + dV) / sqrt(p / p0);
 
     result_tas[0] = tas;
@@ -1034,7 +1034,7 @@ int main(void)
                     printf("\nскорость %.f узлов = %.f км/ч\n", flight.ias, result_kmh[0]);
                     return 0;
                 case 3:
-                    printf("\n   Введи аоследовательно:\nскорость приборную в км/ч\nвысоту полета в метрах\nтемпературу на высоте в °C:\n");
+                    printf("\n   Введи аоследовательно:\nскорость приборную в км/ч\nвысоту полета в метрах\nтемпературу у земли в °C:\n");
                     if(scanf("%lf %lf %lf", &flight.ias, &flight.alt, &flight.airtemp_h) != 3) {
                         printf("\nIncorrect input!\n");
                         return 0;
