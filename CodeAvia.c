@@ -20,7 +20,7 @@
 #define t0   15 // 288.15 K;
 #define P0   101.325 // 760 мм рт ст;
 #define p0   1.225
-#define dV   -1 // not true for airspeed >= 300 kmh;
+#define dV   -1 // is not true for airspeed >= 300 kmh;
 
 void kmh_to_knh(double airspeed_kmh, double result_knh[1]) {
     double airspeed_knh = airspeed_kmh / KNH;
