@@ -397,7 +397,7 @@ void flrange_duration_calc(double lifttodrag_ratio, double load_weight, double r
         printf("\nIncorrect input!\n");
         exit(6);
     }
-    printf("  километровый расход топлива по мрш:, кг: ");
+    printf("  километровый расход топлива по мрш, кг: ");
     if(scanf("%lf", &flight.average_kmfucons) != 1) {
         printf("\nIncorrect input!\n");
         exit(7);
