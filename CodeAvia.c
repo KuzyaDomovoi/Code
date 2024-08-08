@@ -594,7 +594,7 @@ int main(void)
         flrange_duration_calc(flight.lifttodrag_ratio, flight.load_weight, flight.req_engthrustcruise, flight.fastspeed, flight.initial_climspeed, 
                               flight.climtime, flight.cruisspeed, flight.descspeed, flight.desctime, flight.fuweight,
                               result_flrange, result_flduration);
-        printf("Дальность полета = %.1f км\nПродолжительность полета = %02.f ч %02.f мин\n", 
+        printf("\nДальность полета = %.1f км\nПродолжительность полета = %02.f ч %02.f мин\n", 
                 result_flrange[0], result_flduration[0], result_flduration[1]);
         return 0;
     case 2:
