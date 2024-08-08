@@ -337,7 +337,7 @@ struct flrange_flduration {
     int climtime; double cruisspeed; int fuweight; double descspeed; double desctime; double req_engthrustcruise; 
     double lifttodrag_ratio; double flrange; double alt; double ias; double tas; double cruisfuweight; double load_weight;
     int flduration; int flduration_h; int flduration_m; int flduration_s; double airtemp_h; double cruistime;
-    double cruisalt; double descrange; double fastspeed; double cruisrange; double average_kmfucons; double load_weight;
+    double cruisalt; double descrange; double fastspeed; double cruisrange; double average_kmfucons;
     double average_descspeed; double initial_climspeed; double climrange; double fucons_cruise;
 } flight;
 
