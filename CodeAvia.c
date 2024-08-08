@@ -337,7 +337,7 @@ struct flrange_flduration {
     int climtime; double cruisspeed; int fuweight; double descspeed; double desctime; double req_engthrustcruise; 
     double lifttodrag_ratio; double flrange; double alt; double ias; double tas; double cruisfuweight; double load_weight;
     int flduration; int flduration_h; int flduration_m; int flduration_s; double airtemp_h; double cruistime;
-    double cruisalt; double descrange; double fastspeed; double cruisrange; double average_kmfucons; 
+    double cruisalt; double descrange; double fastspeed; double cruisrange; double average_kmfucons; double load_weight;
     double average_descspeed; double initial_climspeed; double climrange; double fucons_cruise;
 } flight;
 
@@ -364,61 +364,65 @@ void calc_time_catch(double aircr_speed1, double aircr_speed2, double distance, 
     result_catch[1] = time_catch;
 }
 
-void flrange_duration_calc(double lifttodrag_ratio, double req_engthrustcruise, double fastspeed, int climtime,
-                           double cruisspeed, int descspeed, int desctime, double fuweight, double cruisfuweight,
+void flrange_duration_calc(double lifttodrag_ratio, double load_weight, double req_engthrustcruise, double fastspeed, double initial_climspeed, 
+                           int climtime, double cruisspeed, double descspeed, int desctime, double fuweight, double cruisfuweight,
                            double result_flrange[1], double result_flduration[2]) {
     printf("  аэродинамическое качество с-та: ");
     if(scanf("%lf", &flight.lifttodrag_ratio) != 1) {
         printf("\nIncorrect input!\n");
         exit(1);
     }
+    printf("  аэродинамическое качество с-та: ");
+    if(scanf("%lf", &flight.load_weight) != 1) {
+        printf("\nIncorrect input!\n");
+        exit(2);
+    }
     printf("  начальная скорость набора высоты, км/ч: ");
     if(scanf("%lf", &initial_climspeed) != 1) {
         printf("\nIncorrect input!\n");
-        exit(2);
+        exit(3);
     }
     printf("  время набора выс, сек: ");
     if(scanf("%d", &flight.climtime) != 1) {
         printf("\nIncorrect input!\n");
-        exit(3);
+        exit(4);
     }
     printf("  скорость по мрш, км/ч: ");
     if(scanf("%lf", &flight.cruisspeed) != 1) {
         printf("\nIncorrect input!\n");
-        exit(4);
+        exit(5);
     }
     printf("  крейсерская скорость полета, км/ч: ");
     if(scanf("%lf", &flight.fastspeed) != 1) {
         printf("\nIncorrect input!\n");
-        exit(5);
+        exit(6);
     }
     printf("  расчетная тяга двигателя по мрш:, Н ");
     if(scanf("%lf", &flight.req_engthrustcruise) != 1) {
         printf("\nIncorrect input!\n");
-        exit(6);
+        exit(7);
     }
     printf("  заправка топл, кг: ");
     if(scanf("%d", &flight.fuweight) != 1) {
         printf("\nIncorrect input!\n");
-        exit(7);
+        exit(8);
     }
     printf("  расход топл по мрш, кг: ");
     if(scanf("%lf", &flight.cruisfuweight) != 1) {
         printf("\nIncorrect input!\n");
-        exit(8);
+        exit(9);
     }
     printf("  скорость на снижении, км/ч: ");
     if(scanf("%lf", &flight.descspeed) != 1) {
         printf("\nIncorrect input!\n");
-        exit(9);
+        exit(10);
     }
     printf("  время снижения, сек: ");
     if(scanf("%lf", &flight.desctime) != 1) {
         printf("\nIncorrect input!\n");
-        exit(10);
+        exit(11);
     }       
     
-
     flight.req_engthrustcruise = (flight.load_weight * G) / flight.lifttodrag_ratio; 
     flight.descrange = 20 * flight.cruisalt; 
     flight.desctime = flight.descrange / 3.6 * flight.descspeed;
@@ -429,6 +433,8 @@ void flrange_duration_calc(double lifttodrag_ratio, double req_engthrustcruise, 
     flight.cruistime = flight.cruisrange / 3.6 * flight.cruisspeed;
     flight.flrange = flight.climrange + flight.cruisrange + flight.descrange;
     flight.flduration = flight.climtime + flight.cruistime + flight.desctime;
+    flight.flduration_h = flight.flduration / 3600;
+    flight.flduration_m = flight.flduration % 3600 / 60;
 
     result_flrange[0] = flight.flrange;
     result_flduration[0] = flight.flduration_h;
@@ -522,11 +528,21 @@ void calc_timecorrection(double aircr_speed, double max_aircr_speed, double time
 
 void calc_trackcorrection(double lateral_line, double flight_track, double flcurr_range, double res_trackcorr[3]) { 
     printf("\nРасчет поправки в курс по расстоянию и боковому уклонению\n");
-    printf("\n   Введи последовательно:\nлинейное боковое уклонение в км\nобщее расстояние до РТ в км\nпройденное/оставшееся расстояние до РТ в км\n");
-    if(scanf("%lf %lf %lf", &maneuver.lateral_line, &maneuver.flight_track, &maneuver.flcurr_range) != 3) {
+    printf("\n   Введи линейное боковое уклонение в км: ");
+    if(scanf("%lf", &maneuver.lateral_line) != 1) {
         printf("\nIncorrect input!\n");
         exit(1);
-    }           
+    }
+    printf("   Введи общее расстояние до РТ в км: ");
+    if(scanf("%lf", &maneuver.flight_track) != 1) {
+        printf("\nIncorrect input!\n");
+        exit(2);
+    }
+    printf("   Введи пройденное/оставшееся расстояние до РТ в км: ");
+    if(scanf("%lf", &maneuver.flcurr_range) != 1) {
+        printf("\nIncorrect input!\n");
+        exit(3);
+    }          
     maneuver.flrem_range = maneuver.flight_track - maneuver.flcurr_range;
     maneuver.course_correction_curr = (atan(maneuver.lateral_line / maneuver.flcurr_range) * DEG);
     maneuver.course_correction_rem = (atan(maneuver.lateral_line / maneuver.flrem_range) * DEG);
@@ -552,7 +568,7 @@ int main(void)
 {
     int item, res = 0;
     double lat1, lat2, lng1, lng2;
-    double result_flrange[2], result_flduration[2];
+    double result_flrange[1], result_flduration[2];
     double result_flduration2[3];
     double result_turn[7];
     double res_lat1[1], res_lng1[1], res_lat2[1], res_lng2[1];
@@ -581,12 +597,11 @@ int main(void)
     switch(item) {
     case 1:
         printf("Расчет дальности и продолжительности полета\n");
-        flrange_duration_calc(flight.lifttodrag_ratio, flight.req_engthrustcruise, flight.fastspeed,
-                              flight.climtime, flight.cruisspeed, flight.descspeed, flight.desctime, 
-                              flight.fuweight, flight.cruisfuweight, result_flrange, result_flduration);
-        printf("\nРасполагаемый запас топлива = %.f кг\n", result_flrange[0]);
+        flrange_duration_calc(flight.lifttodrag_ratio, flight.load_weight, flight.req_engthrustcruise, flight.fastspeed, flight.initial_climspeed, 
+                              flight.climtime, flight.cruisspeed, flight.descspeed, flight.desctime, flight.fuweight, flight.cruisfuweight,
+                              result_flrange, result_flduration);
         printf("Дальность полета = %.1f км\nПродолжительность полета = %02.f ч %02.f мин\n", 
-                result_flrange[1], result_flduration[0], result_flduration[1]);
+                result_flrange[0], result_flduration[0], result_flduration[1]);
         return 0;
     case 2:
         printf("\nРасчет расстояния между двумя точками по их координатам\n");
