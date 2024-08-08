@@ -372,7 +372,7 @@ void flrange_duration_calc(double lifttodrag_ratio, double load_weight, double r
         printf("\nIncorrect input!\n");
         exit(1);
     }
-    printf("  аэродинамическое качество с-та: ");
+    printf("  взлетный вес самолета, кг: ");
     if(scanf("%lf", &flight.load_weight) != 1) {
         printf("\nIncorrect input!\n");
         exit(2);
