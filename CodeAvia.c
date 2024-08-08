@@ -335,10 +335,10 @@ void calcpoint_coord(double lat1, double lng1, double bearing, double dist, doub
 
 struct flrange_flduration {
     int climtime; double cruisspeed; int fuweight; double descspeed; double desctime; double req_engthrustcruise; 
-    double lifttodrag_ratio; double flrange; double alt; double ias; double tas; double cruisfuweight;
+    double lifttodrag_ratio; double flrange; double alt; double ias; double tas; double cruisfuweight; double load_weight;
     int flduration; int flduration_h; int flduration_m; int flduration_s; double airtemp_h; double cruistime;
     double cruisalt; double descrange; double fastspeed; double cruisrange; double average_kmfucons; 
-    double average_descspeed; double initial_climspeed; double climrange;
+    double average_descspeed; double initial_climspeed; double climrange; double fucons_cruise;
 } flight;
 
 struct fltime_flangle_flspeed {
@@ -383,7 +383,7 @@ void flrange_duration_calc(double lifttodrag_ratio, double req_engthrustcruise, 
         exit(2);
     }
     printf("  время набора выс, сек: ");
-    if(scanf("%lf", &flight.climtime) != 1) {
+    if(scanf("%d", &flight.climtime) != 1) {
         printf("\nIncorrect input!\n");
         exit(3);
     }
@@ -403,7 +403,7 @@ void flrange_duration_calc(double lifttodrag_ratio, double req_engthrustcruise, 
         exit(6);
     }       
     printf("  заправка топл, кг: ");
-    if(scanf("%lf", &flight.fuweight) != 1) {
+    if(scanf("%d", &flight.fuweight) != 1) {
         printf("\nIncorrect input!\n");
         exit(7);
     }
