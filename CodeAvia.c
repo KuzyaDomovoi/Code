@@ -889,17 +889,17 @@ int main(void)
         switch(item) {
         case 1:
             printf("\nРасчет радиуса, времени и длинны дуги угла разворота\n");
-            printf("   Введи скорость самолета в км/ч: \n");
+            printf("\n   Введи скорость самолета в км/ч: ");
             if(scanf("%lf", &maneuver.aircr_speed) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("   Введи угол разворота в °: \n");
+            printf("   Введи угол разворота в °: ");
             if(scanf("%lf", &maneuver.turn_angle) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("   Введи крен самолета в °: \n");
+            printf("   Введи крен самолета в °: ");
             if(scanf("%lf", &maneuver.turn_roll) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
@@ -910,22 +910,22 @@ int main(void)
             return 0;
         case 2:
             printf("\nРасчет угла сноса и путевой скорости по известному вектору ветра\n");
-            printf("   Введи скорость самолета в км/ч: \n");
+            printf("\n   Введи скорость самолета в км/ч: ");
             if(scanf("%lf", &maneuver.aircr_speed) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("   Введи скорость ветра в м/с: \n");
+            printf("   Введи скорость ветра в м/с: ");
             if(scanf("%lf", &maneuver.wind_speed) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("   Введи курс полета самолета в °: \n");
+            printf("   Введи курс полета самолета в °: ");
             if(scanf("%lf", &maneuver.path_angle) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
             }
-            printf("   Введи направление навигационного ветера в °: \n");
+            printf("   Введи направление навигационного ветера в °: ");
             if(scanf("%lf", &maneuver.wind_dir) != 1) {
                 printf("\nIncorrect input!\n");
                 return 0;
@@ -953,17 +953,17 @@ int main(void)
             }
             switch(item) {
             case 1:
-                printf("   Введи скорость первого самодета в км/ч: \n");
+                printf("\n   Введи скорость первого самодета в км/ч: ");
                 if(scanf("%lf", &maneuver.aircr_speed1) != 1) {
                     printf("\nIncorrect input!\n");
                     return 0;
                 }
-                printf("   Введи скорость второго самодета в км/ч: \n");
+                printf("   Введи скорость второго самодета в км/ч: ");
                 if(scanf("%lf", &maneuver.aircr_speed2) != 1) {
                     printf("\nIncorrect input!\n");
                     return 0;
                 }
-                printf("   Введи текущую дистанцию между самолетами в км: \n");
+                printf("   Введи текущую дистанцию между самолетами в км: ");
                 if(scanf("%lf", &maneuver.distance) != 1) {
                     printf("\nIncorrect input!\n");
                     return 0;
@@ -972,17 +972,17 @@ int main(void)
                 printf("\nвремя до столкновения = %.1f сек\n", result_coll[0]);
                 return 0;
             case 2:
-                printf("   Введи скорость первого самодета в км/ч: \n");
+                printf("\n   Введи скорость первого самодета в км/ч: ");
                 if(scanf("%lf", &maneuver.aircr_speed1) != 1) {
                     printf("\nIncorrect input!\n");
                     return 0;
                 }
-                printf("   Введи скорость второго самодета в км/ч: \n");
+                printf("   Введи скорость второго самодета в км/ч: ");
                 if(scanf("%lf", &maneuver.aircr_speed2) != 1) {
                     printf("\nIncorrect input!\n");
                     return 0;
                 }
-                 printf("   Введи текущую дистанцию между самолетами в км: \n");
+                 printf("   Введи текущую дистанцию между самолетами в км: ");
                 if(scanf("%lf", &maneuver.distance) != 1) {
                     printf("\nIncorrect input!\n");
                     return 0;
@@ -1045,17 +1045,17 @@ int main(void)
                     printf("\nскорость %.f узлов = %.f км/ч\n", flight.ias, result_kmh[0]);
                     return 0;
                 case 3:
-                    printf("  Введи скорость приборную в км/ч: \n");
+                    printf("\n  Введи скорость приборную в км/ч: ");
                     if(scanf("%lf", &flight.ias) != 1) {
                         printf("\nIncorrect input!\n");
                         return 0;
                     }
-                    printf("   Введи высоту полета в метрах: \n");
+                    printf("   Введи высоту полета в метрах: ");
                     if(scanf("%lf", &flight.alt) != 1) {
                         printf("\nIncorrect input!\n");
                         return 0;
                     }
-                    printf("   Введи температуру у земли в °C:\n");
+                    printf("   Введи температуру у земли в °C: ");
                     if(scanf("%lf", &flight.airtemp_h) != 1) {
                         printf("\nIncorrect input!\n");
                         return 0;
