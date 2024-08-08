@@ -397,7 +397,7 @@ void flrange_duration_calc(double lifttodrag_ratio, double load_weight, double r
         printf("\nIncorrect input!\n");
         exit(6);
     }
-    printf("  расчетная тяга двигателя по мрш:, Н ");
+    printf("  расчетная тяга двигателя по мрш:, Н: ");
     if(scanf("%lf", &flight.req_engthrustcruise) != 1) {
         printf("\nIncorrect input!\n");
         exit(7);
