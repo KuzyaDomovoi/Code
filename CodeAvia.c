@@ -428,11 +428,6 @@ void flrange_duration_calc(double lifttodrag_ratio, double load_weight, double r
         printf("\nIncorrect input!\n");
         exit(12);
     }
-    printf("  количество топлива на круг, посадку и руление, кг: ");
-    if(scanf("%lf", &flight.mfufinal) != 1) {
-        printf("\nIncorrect input!\n");
-        exit(13);
-    }
     printf("  расстояние по кругу, км: ");
     if(scanf("%lf", &flight.finalrange) != 1) {
         printf("\nIncorrect input!\n");
@@ -442,6 +437,7 @@ void flrange_duration_calc(double lifttodrag_ratio, double load_weight, double r
     flight.average_climtime = flight.climalt / flight.average_verticalclimspeed;
     flight.average_desctime = flight.apralt / flight.average_verticaldescspeed;
     flight.cruisspeed = 1.31 * flight.fastspeed;
+    flight.mfufinal = 1.3 * flight.average_kmfucons * flight.finalrange;
     flight.cruisrange = (flight.fuweight - flight.mfufinal) / flight.average_kmfucons;
     flight.average_descspeed = (flight.descspeed + flight.finalspeed) / 2;
     flight.climrange = flight.average_climspeed * (flight.average_climtime / 3600);
