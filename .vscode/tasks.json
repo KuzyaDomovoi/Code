@@ -9,9 +9,15 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+<<<<<<< HEAD
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-lm"
+=======
+                "-lm",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+>>>>>>> 679128c (Code)
             ],
             "options": {
                 "cwd": "${fileDirname}"

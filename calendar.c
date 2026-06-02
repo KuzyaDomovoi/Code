@@ -4,16 +4,27 @@
 static inline int get_RUSSIAN_wday(struct tm* tm)
 {
     return(tm->tm_wday + 6) % 7;
+<<<<<<< HEAD
 }; //:%s/tm->tm_wday/get_RUSSIAN_wday(tm)/g
+=======
+};
+//:%s/tm->tm_wday/get_RUSSIAN_wday(tm)/g
+>>>>>>> 679128c (Code)
 
 int main(void)
 {   
     time_t now;
     struct tm* timeinfo;
     int year;
+<<<<<<< HEAD
     char* month[] = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", 
                      "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
     printf("Введи необходимый год: ");
+=======
+    char* month[] = {"January", "February", "March", "April", "May", "June", 
+                     "July", "August", "September", "October", "November", "December"};
+    printf("Input needed Year: ");
+>>>>>>> 679128c (Code)
     scanf("%d", &year);
     time(&now); // get current timeinfo and modify it to the user's choice;
     timeinfo = localtime(&now);
@@ -26,9 +37,16 @@ int main(void)
             timeinfo->tm_mday = i;
             mktime(timeinfo); // call mktime: the whole timeinfo for the day will be set;
             if(timeinfo->tm_mon > m) { // "end month" and "overload" processing;
+<<<<<<< HEAD
                 printf("\n\n  %s\n", month[timeinfo->tm_mon]);
                 printf("  __________________________\n");
                 printf("  Пн  Вт  Ср  Чт  Пт  Сб  Вс\n\n");
+=======
+                printf("\n\n%28s\n", month[timeinfo->tm_mon]);
+                printf("  __________________________\n");
+                printf("  Mo  Tu  We  Th  Fr  Sa  Su\n");
+                printf("  __________________________\n");
+>>>>>>> 679128c (Code)
                 for(int j = 0; j < (get_RUSSIAN_wday(timeinfo)); j++)
                     printf("    ");
                 m++;

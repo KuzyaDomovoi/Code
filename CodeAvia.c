@@ -45,6 +45,20 @@ void hph_to_hm(double alt_hph, double result_hm[1]) {
 
     result_hm[0] = alt_m;
 }
+<<<<<<< HEAD
+=======
+void kmh_to_ms(double aircr_speed, double result_kmh_ms[1]) {
+    double aircr_speed_ms = aircr_speed / 3.6;
+
+    result_kmh_ms[0] = aircr_speed_ms;
+}
+
+void ms_to_kmh(double aircr_speed_ms, double result_ms_kmh[1]) {
+    double aircr_speed = aircr_speed_ms * 3.6;
+
+    result_ms_kmh[0] = aircr_speed;
+}
+>>>>>>> 679128c (Code)
 
 void ias_to_tas(double airspeed_kmh, double aircr_alt, double airtemp_h, double result_tas[1]) {
     double tH = airtemp_h - (6.5 * (aircr_alt / 1000));
@@ -344,12 +358,22 @@ struct flrange_flduration {
 
 struct fltime_flangle_flspeed {
     double turn_roll; double turn_angle; double max_aircr_speed; double wind_angle; double path_angle;
+<<<<<<< HEAD
     double aircr_speed; double wind_dir; double ground_speed; double drift_angle; double wind_speed; 
     double speed_range; double time_range; double lateral_line; double flcurr_range; double flrem_range; 
     double flight_track; double heading_corr; double turn_rad; double t; double mindist_checkpoint; double time_cathch;
     double range_turnlead; double ny; double course_correction_curr; double course_correction_rem; double distance;
     double course_correction; double turn_speed; double aircr_speed1; double aircr_speed2; double time_collision; 
     int hours; int minutes; int seconds; int turn_time; int turn_time_m; int turn_time_s; double lineal_preemption; int lineal_preemption_time; int lineal_preemption_time_m; int lineal_preemption_time_s;
+=======
+    double aircr_speed; double aircr_speed_ms; double wind_dir; double ground_speed; double drift_angle; double wind_speed;
+    double speed_range; double time_range; double lateral_line; double flcurr_range; double flrem_range;
+    double flight_track; double heading_corr; double turn_rad; double t; double mindist_checkpoint; double time_cathch;
+    double range_turnlead; double ny; double course_correction_curr; double course_correction_rem; double distance;
+    double course_correction; double turn_speed; double aircr_speed1; double aircr_speed2; double time_collision;
+    int hours; int minutes; int seconds; int turn_time; int turn_time_m; int turn_time_s; double lineal_preemption;
+    int lineal_preemption_time; int lineal_preemption_time_m; int lineal_preemption_time_s;
+>>>>>>> 679128c (Code)
 } maneuver;
 
 void calc_time_collision(double aircr_speed1, double aircr_speed2, double distance, double result_coll[1]) {
@@ -478,7 +502,11 @@ void calc_turn(double aircr_speed, double turn_angle, double turn_roll, double r
     maneuver.turn_time_s = maneuver.turn_time % 60;
     maneuver.ny = 1 / cos(maneuver.turn_roll * RAD);
     maneuver.turn_speed = maneuver.turn_angle / maneuver.turn_time;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 679128c (Code)
     result_turn[0] = maneuver.turn_rad;
     result_turn[1] = maneuver.turn_time_m;
     result_turn[2] = maneuver.turn_time_s;
@@ -594,7 +622,12 @@ int main(void)
     double result_db[4];
     double result_cl2sl2[4];
     double result_knh[1], result_kmh[1];
+<<<<<<< HEAD
     double result_hph[1], result_hm[1];  
+=======
+    double result_hph[1], result_hm[1];
+    double result_kmh_ms[1], result_ms_kmh[1];
+>>>>>>> 679128c (Code)
     double result_tas[1], result_ias[1];
     double result_coll[1], result_catch[2];
     double res_timecorr[2];
@@ -1045,7 +1078,12 @@ int main(void)
                 printf("\n         1. Пересчет скоростей из км/ч в узлы\n"
                          "         2. Пересчет скоростей из узлов в км/ч\n"
                          "         3. Пересчет приборной скорости в истинную воздушную\n"
+<<<<<<< HEAD
                          "         4. Выход\n");
+=======
+                         "         4. Скорость км/ч в м/с\n"
+                         "         5. Выход\n");
+>>>>>>> 679128c (Code)
                 printf("            Выбери действие: ");
                 if(scanf("%d", &item) != 1) {
                     printf("\nError! Input is out of range list!\n");
@@ -1090,6 +1128,18 @@ int main(void)
                     printf("\nистинная скорость = %.f км/ч\n", result_tas[0]);
                     return 0;
                 case 4:
+<<<<<<< HEAD
+=======
+                    printf("\n   Введи скорость в км/ч: ");
+                    if(scanf("%lf", &maneuver.aircr_speed) != 1) {
+                        printf("\nIncorrect input!\n");
+                        return 0;
+                    }
+                    kmh_to_ms(maneuver.aircr_speed, result_kmh_ms);
+                    printf("\nскорость = %.f м/с\n", result_kmh_ms[0]);
+                    return 0;
+                case 5:
+>>>>>>> 679128c (Code)
                     printf("\nEnd of program\n");
                     return 0;
                 default:

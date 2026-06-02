@@ -152,7 +152,11 @@ int main(void)
                 printf("\nSqrt%lf = %lf\n", a, sqrt(a));
                 return 0;
             case 9:
+<<<<<<< HEAD
                 printf("\nEnter a number and the value separated by space to raise it to POW: ");
+=======
+                printf("\nEnter a number and the value to raise it to POW separated by space: ");
+>>>>>>> 679128c (Code)
                 if(scanf("%lf %lf", &a, &b) != 2 ) {
                     printf("\nError input!\n");
                     return 0;

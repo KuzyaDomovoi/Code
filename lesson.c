@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //my first program;
 
 #include <stdio.h> /* <standart input output.header>
@@ -21,3 +22,12 @@ int main(void) /* int - integer datatype;
 } //end of program body;
   
 // gcc -std=c99 -o outputfiie sourcefile.c
+=======
+#include <stdio.h>
+
+int main(void)
+{
+    printf("Привет!");
+    return 0;
+}
+>>>>>>> 679128c (Code)

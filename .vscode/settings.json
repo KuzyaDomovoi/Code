@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "code-runner.runInTerminal": true,
     "code-runner.executorMap": {
         "javascript": "node",
@@ -8,6 +9,15 @@
         //"c": "cd $dir && gcc -std=c99 $fileName calc_funcs.c -o $fileNameWithoutExt -lm && $dir$fileNameWithoutExt", // for AviaCodeNav.c;
         "zig": "zig run",
         "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt -lm && $dir$fileNameWithoutExt",
+=======
+    "code-runner.runInTerminal": false,
+    "code-runner.executorMap": {
+        "javascript": "node",
+        "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+        "c": "cd $dir && gcc -std=c99 $fileName -lm -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "zig": "zig run",
+        "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+>>>>>>> 679128c (Code)
         "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "php": "php",
         "python": "python -u",
@@ -54,6 +64,7 @@
         "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+<<<<<<< HEAD
         "sml": "cd $dir && sml $fileName"
     },
     "C_Cpp.errorSquiggles": "disabled",
@@ -68,5 +79,13 @@
         "iterator": "c",
         "calc_aviacode.h": "c",
         "gps.h": "c"
+=======
+        "sml": "cd $dir && sml $fileName",
+        "mojo": "mojo run",
+        "erlang": "escript",
+        "spwn": "spwn build",
+        "pkl": "cd $dir && pkl eval -f yaml $fileName -o $fileNameWithoutExt.yaml",
+        "gleam": "gleam run -m $fileNameWithoutExt"
+>>>>>>> 679128c (Code)
     }
 }
