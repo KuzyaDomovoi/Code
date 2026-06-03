@@ -401,7 +401,7 @@ void flrange_duration_calc(double lifttodrag_ratio, double load_weight, double r
         printf("\nIncorrect input!\n");
         exit(4);
     }
-    printf("  скорость в наборе высоты, км/ч: ");
+    printf("  приборная скорость в наборе высоты, км/ч: ");
     if(scanf("%lf", &flight.average_climspeed) != 1) {
         printf("\nIncorrect input!\n");
         exit(5);
@@ -411,12 +411,12 @@ void flrange_duration_calc(double lifttodrag_ratio, double load_weight, double r
         printf("\nIncorrect input!\n");
         exit(6);
     }
-    printf("  скорость по мрш, км/ч: ");
+    printf("  приборная скорость по мрш, км/ч: ");
     if(scanf("%lf", &flight.cruisspeed) != 1) {
         printf("\nIncorrect input!\n");
         exit(7);
     }
-    printf("  крейсерская скорость полета, км/ч: ");
+    printf("  крейсерская приборная скорость полета, км/ч: ");
     if(scanf("%lf", &flight.fastspeed) != 1) {
         printf("\nIncorrect input!\n");
         exit(8);
@@ -426,7 +426,7 @@ void flrange_duration_calc(double lifttodrag_ratio, double load_weight, double r
         printf("\nIncorrect input!\n");
         exit(9);
     }
-    printf("  скорость на снижении, км/ч: ");
+    printf("  приборная скорость на снижении, км/ч: ");
     if(scanf("%lf", &flight.descspeed) != 1) {
         printf("\nIncorrect input!\n");
         exit(10);
@@ -436,7 +436,7 @@ void flrange_duration_calc(double lifttodrag_ratio, double load_weight, double r
         printf("\nIncorrect input!\n");
         exit(11);
     }
-    printf("  скорость на глиссаде, км/ч: ");
+    printf("  приборная скорость на глиссаде, км/ч: ");
     if(scanf("%lf", &flight.finalspeed) != 1) {
         printf("\nIncorrect input!\n");
         exit(12);
@@ -1059,7 +1059,8 @@ int main(void)
                          "         2. Пересчет скоростей из узлов в км/ч\n"
                          "         3. Пересчет приборной скорости в истинную воздушную\n"
                          "         4. Скорость км/ч в м/с\n"
-                         "         5. Выход\n");
+			 "         5. Скорость м/с в км/ч\n"
+                         "         6. Выход\n");
                 printf("            Выбери действие: ");
                 if(scanf("%d", &item) != 1) {
                     printf("\nError! Input is out of range list!\n");
@@ -1112,7 +1113,11 @@ int main(void)
                     kmh_to_ms(maneuver.aircr_speed, result_kmh_ms);
                     printf("\nскорость = %.f м/с\n", result_kmh_ms[0]);
                     return 0;
-                case 5:
+		case 5:                                                                                printf("\n   Введи скорость в м/с: ");                                             if(scanf("%lf", &maneuver.aircr_speed_ms) != 1) {                                         printf("\nIncorrect input!\n");                                                    return 0;
+                    }                                                                                       ms_to_kmh(maneuver.aircr_speed_ms, result_ms_kmh);
+                    printf("\nскорость = %.f км/ч\n", result_ms_kmh[0]);
+                    return 0;
+                case 6:
                     printf("\nEnd of program\n");
                     return 0;
                 default:
