@@ -57,6 +57,18 @@ void ms_to_kmh(double aircr_speed_ms, double result_ms_kmh[1]) {
     result_ms_kmh[0] = aircr_speed;
 }
 
+void Pmm_to_Ppa(double P_mm, double result_Pmm_to_Ppa[1]) {
+    double P_pa = P_mm * kPpa *100;
+
+    result_Pmm_to_Ppa[0] = P_pa;
+}
+
+void Ppa_to_Pmm(double P_pa, double result_Ppa_to_Pmm[1]) {
+    double P_mm = P_pa / kPpa * 100;
+	
+    result_Ppa_to_Pmm[0] = P_mm;
+}
+
 void ias_to_tas(double airspeed_kmh, double aircr_alt, double airtemp_h, double result_tas[1]) {
     double tH = airtemp_h - (6.5 * (aircr_alt / 1000));
     double pH = P0 * exp(- (M * G * (aircr_alt / 1000)) / (R * T0));
@@ -345,6 +357,10 @@ void calcpoint_coord(double lat1, double lng1, double bearing, double dist, doub
     result_cl2sl2[3] = onegrad_dist;
 }
 
+struct Pres_pamm {
+    double P_pa; double P_mm;
+} pressure;
+
 struct flrange_flduration {
     int climtime; double cruisspeed; int fuweight; double descspeed; double desctime; double req_engthrustcruise; double finalrange; double apralt;
     double lifttodrag_ratio; double flrange; double alt; double climalt; double ias; double tas; double load_weight; double average_desctime;
@@ -600,6 +616,7 @@ int main(void)
     int item, res = 0;
     double lat1, lat2, lng1, lng2;
     double result_flrange[1], result_flduration[2];
+    double result_Ppa_to_Pmm[1], result_Pmm_to_Ppa[1];
     double result_flduration2[3];
     double result_turn[9];
     double res_lat1[1], res_lng1[1], res_lat2[1], res_lng2[1];
@@ -620,7 +637,8 @@ int main(void)
              "3. Расчет навигационных данных\n"
              "4. Преобразование координат\n"
              "5. Расчеты маневрирования\n"
-             "6. Выход\n");
+	     "6. Пересчет атмосферного давления\n"
+             "7. Выход\n");
     printf("   Выбери действие: ");
     if(scanf("%d", &item) != 1) {
         printf("\nError! Input is out of range list!\n");
@@ -1174,6 +1192,15 @@ int main(void)
             return 0;
         }
     case 6:
+	printf("\n   Введи давление в kPa: ");
+        if(scanf("%lf", &pressure.P_pa) != 1) {
+            printf("\nIncorrect input!\n");                              
+	    return 0;                                                
+	}
+        Ppa_to_Pmm(pressure.P_pa, result_Ppa_to_Pmm);
+	    printf("\nДавление в мм.рт.ст. = %.f\n", result_Ppa_to_Pmm[0]);
+	    return 0;
+    case 7:
         printf("\nEnd of program\n");
         return 0;
     default:
