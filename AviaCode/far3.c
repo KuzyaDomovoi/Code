@@ -29,9 +29,10 @@ int main(void)
     node_t save_table = table;
     for(char *curr = file; curr < file + size;) {
         char *buff;
-        strtok(curr, "\"");
-        table->label = strtok(NULL, "\"");
-        curr = strtok(NULL, " ") + 2;
+	char *saveptr;
+        strtok_r(curr, "\"", &saveptr);
+        table->label = strtok_r(NULL, "\"", &saveptr);
+        curr = strtok_r(NULL, " ", &saveptr) + 2;
         table->value = strtod(curr, &buff);
         if(buff == curr)
             break ;
